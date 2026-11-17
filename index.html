@@ -2,1979 +2,553 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Mindset Commander — Tactical Performance System</title>
-
-  <!-- Primary + Fallback PDF.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindset Briefing</title>
   <style>
     :root {
-      --bg: #f5f5f7;
-      --surface: #ffffff;
-      --surface-secondary: #f2f2f7;
-      --glass: rgba(255, 255, 255, 0.78);
-      --border: rgba(0, 0, 0, 0.08);
-      --border-strong: rgba(0, 0, 0, 0.14);
-      --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
-      --text-tertiary: #86868b;
-      --accent: #0071e3;
-      --accent-hover: #0077ed;
-      --accent-soft: rgba(0, 113, 227, 0.1);
-      --green: #248a3d;
-      --green-soft: rgba(52, 199, 89, 0.14);
-      --orange: #c96408;
-      --orange-soft: rgba(255, 149, 0, 0.14);
-      --red: #d70015;
-      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.03);
-      --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.06);
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      --font-mono: "SF Mono", SFMono-Regular, ui-monospace, Menlo, Consolas, monospace;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --panel-alt: #eef3ff;
+      --text: #111827;
+      --muted: #4b5563;
+      --border: #dbe3ef;
+      --accent: #2563eb;
+      --accent-2: #1d4ed8;
+      --success: #0f766e;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
     }
 
-    [data-theme="dark"] {
-      --bg: #000000;
-      --surface: #1c1c1e;
-      --surface-secondary: #2c2c2e;
-      --glass: rgba(28, 28, 30, 0.78);
-      --border: rgba(255, 255, 255, 0.1);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --text-primary: #f5f5f7;
-      --text-secondary: #a1a1a6;
-      --text-tertiary: #8e8e93;
-      --accent: #0a84ff;
-      --accent-hover: #409cff;
-      --accent-soft: rgba(10, 132, 255, 0.18);
-      --green: #30d158;
-      --green-soft: rgba(48, 209, 88, 0.16);
-      --orange: #ff9f0a;
-      --orange-soft: rgba(255, 159, 10, 0.18);
-      --red: #ff453a;
-      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.35);
-      --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.5);
+    body.dark {
+      --bg: #0b1220;
+      --panel: #121b2b;
+      --panel-alt: #1a2437;
+      --text: #e5edf9;
+      --muted: #a5b4cf;
+      --border: #2a3a56;
+      --accent: #60a5fa;
+      --accent-2: #93c5fd;
+      --success: #34d399;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html, body {
       margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html {
-      scroll-behavior: smooth;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.2s ease, color 0.2s ease;
     }
 
     body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transition: background 0.25s ease, color 0.25s ease;
+      min-height: 100vh;
+      padding: 24px;
     }
 
-    /* Sticky Apple Frosted Nav */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      background: var(--glass);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
+    .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 12px 24px;
+    }
+
+    .topbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      flex-wrap: wrap;
+      padding: 16px 20px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
     }
 
-    .nav-brand {
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .actions {
       display: flex;
-      align-items: center;
       gap: 10px;
-      font-weight: 600;
-      font-size: 1.02rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
       flex-wrap: wrap;
     }
 
-    .pill-status {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--surface-secondary);
-      padding: 6px 12px;
+    button {
+      border: 1px solid var(--border);
+      background: var(--panel-alt);
+      color: var(--text);
+      padding: 10px 16px;
       border-radius: 999px;
-      font-variant-numeric: tabular-nums;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, opacity 0.15s ease;
     }
 
-    .dot-live {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+
+    .primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
     }
 
-    .dot-live.syncing {
-      background: var(--orange);
-      animation: pulse 1.1s infinite ease-in-out;
+    .secondary {
+      background: transparent;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Main Container */
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 36px 24px 80px;
-    }
-
-    /* Hero Section */
     .hero {
-      text-align: center;
-      max-width: 740px;
-      margin: 0 auto 36px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
     }
 
-    .hero-eyebrow {
+    .eyebrow {
       font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
       text-transform: uppercase;
+      letter-spacing: 0.12em;
       color: var(--accent);
+      font-weight: 700;
       margin-bottom: 10px;
     }
 
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3.1rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 14px;
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
     }
 
-    .hero p {
-      font-size: 1.08rem;
-      color: var(--text-secondary);
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
+    .subtitle {
+      color: var(--muted);
+      margin: 0 0 18px;
+      font-size: 1.03rem;
     }
 
-    .hero-cta-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* Apple Pill Buttons */
-    .btn {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-sans);
-      font-size: 0.92rem;
-      font-weight: 600;
-      border-radius: 999px;
-      padding: 12px 22px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, opacity 0.2s ease;
-      text-decoration: none;
-      min-height: 44px;
-    }
-
-    .btn:active {
-      transform: scale(0.965);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(0, 113, 227, 0.28);
-    }
-
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text-primary);
-      border: 1px solid var(--border-strong);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-secondary:hover {
-      background: var(--surface-secondary);
-    }
-
-    .btn-sm {
-      padding: 7px 14px;
-      font-size: 0.8rem;
-      min-height: 34px;
-    }
-
-    /* Section Header */
-    .section-label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    /* 6-Theme Apple Bento Grid */
-    .bento-grid {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(180px, 1fr));
       gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    @media (max-width: 860px) {
-      .bento-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 540px) {
-      .bento-grid { grid-template-columns: 1fr; }
+      margin-bottom: 22px;
     }
 
     .theme-card {
-      background: var(--surface);
+      background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 18px 20px;
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
       text-align: left;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+      min-height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
-      position: relative;
     }
 
-    .theme-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--border-strong);
-    }
-
-    .theme-card:active {
-      transform: scale(0.98);
-    }
-
-    .theme-card.is-next {
+    .theme-card.active {
+      outline: 2px solid var(--accent);
       border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent), var(--shadow-sm);
-    }
-
-    .theme-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .theme-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: var(--surface-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
     }
 
     .theme-badge {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 3px 9px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--panel-alt);
+      color: var(--muted);
       border-radius: 999px;
-      background: var(--surface-secondary);
-      color: var(--text-secondary);
-      font-variant-numeric: tabular-nums;
+      padding: 5px 10px;
+      width: fit-content;
     }
 
-    .theme-card.is-next .theme-badge {
-      background: var(--accent-soft);
-      color: var(--accent);
+    .theme-card h3 {
+      margin: 12px 0 8px;
+      font-size: 1.08rem;
     }
 
-    .theme-title {
-      font-size: 1.02rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--text-primary);
+    .theme-card small {
+      color: var(--muted);
+      line-height: 1.5;
     }
 
-    .theme-sub {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
-
-    /* Layout Split: Briefing Card + Repo Library Drawer */
     .workspace {
       display: grid;
-      grid-template-columns: 1fr 330px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    @media (max-width: 940px) {
-      .workspace { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .segmented {
-      display: inline-flex;
-      background: var(--surface-secondary);
-      padding: 3px;
-      border-radius: 999px;
-    }
-
-    .seg-btn {
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .seg-btn.active {
-      background: var(--surface);
-      color: var(--text-primary);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .rotation-strip {
-      padding: 12px 24px;
-      background: var(--accent-soft);
-      color: var(--text-primary);
-      font-size: 0.83rem;
-      display: none;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .briefing-body {
-      padding: 28px 30px;
-    }
-
-    @media (max-width: 600px) {
-      .briefing-body { padding: 20px 18px; }
-    }
-
-    .directive-title {
-      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 6px;
-    }
-
-    .operation-subtitle {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.02em;
-      margin-bottom: 22px;
-      text-transform: uppercase;
-    }
-
-    .directive-sections {
-      display: flex;
-      flex-direction: column;
+      grid-template-columns: 1.4fr 0.6fr;
       gap: 18px;
     }
 
-    .d-block {
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      break-inside: avoid;
-    }
-
-    .d-block:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .d-label {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-tertiary);
-      margin-bottom: 6px;
-    }
-
-    .d-content {
-      font-size: 0.98rem;
-      color: var(--text-primary);
-    }
-
-    .anchor-quote {
-      font-size: 1.12rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--text-primary);
-      padding: 14px 18px;
-      background: var(--surface-secondary);
-      border-radius: var(--radius-sm);
-      border-left: 3px solid var(--accent);
-    }
-
-    .pdf-intel-card {
-      margin-top: 12px;
-      padding: 14px 16px;
-      border-radius: var(--radius-sm);
-      background: var(--surface-secondary);
+    .panel {
+      background: var(--panel);
       border: 1px solid var(--border);
-    }
-
-    .pdf-intel-meta {
-      font-size: 0.76rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 5px;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pdf-intel-quote {
-      font-size: 0.89rem;
-      color: var(--text-secondary);
-      font-style: italic;
-    }
-
-    .habit-list {
-      padding-left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .mindmap-box ul {
-      list-style: none;
-      padding-left: 18px;
-      margin-top: 6px;
-      border-left: 1.5px solid var(--border-strong);
-    }
-
-    .mindmap-box > ul {
-      padding-left: 0;
-      border-left: none;
-    }
-
-    .mindmap-box li {
-      margin: 5px 0;
-      font-size: 0.93rem;
-    }
-
-    .mindmap-root-label {
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .raw-md {
-      display: none;
-      padding: 22px;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      white-space: pre-wrap;
-      background: var(--surface-secondary);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    .empty-briefing {
-      text-align: center;
-      padding: 56px 24px;
-      color: var(--text-secondary);
-    }
-
-    .empty-briefing h3 {
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      letter-spacing: -0.015em;
-    }
-
-    /* Right Sidebar: Repo Source Card */
-    .sidebar-card {
+      border-radius: 22px;
+      box-shadow: var(--shadow);
       padding: 20px;
     }
 
-    .sidebar-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 4px;
+    .panel-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
     }
 
-    .sidebar-desc {
-      font-size: 0.81rem;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-    }
-
-    .field-group {
-      margin-bottom: 12px;
-    }
-
-    .field-group label {
-      display: block;
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 5px;
-    }
-
-    .input {
-      width: 100%;
-      padding: 9px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-strong);
-      background: var(--surface-secondary);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      outline: none;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 5px;
+    .tag {
+      background: var(--panel-alt);
+      color: var(--success);
       border-radius: 999px;
-      background: var(--surface-secondary);
-      overflow: hidden;
-      margin: 10px 0;
-      display: none;
+      font-size: 0.75rem;
+      padding: 6px 10px;
+      font-weight: 700;
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      transition: width 0.25s ease;
+    .briefing {
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 16px;
     }
 
-    .scan-log {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      margin: 8px 0 10px;
-      word-break: break-word;
+    .briefing h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.3rem, 3vw, 2rem);
     }
 
-    .pdf-chips {
+    .meta {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 0.92rem;
+    }
+
+    .briefing p, .briefing li {
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .source-box {
+      margin-top: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .source-box strong {
+      color: var(--text);
+    }
+
+    .pdf-list {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      max-height: 220px;
-      overflow-y: auto;
+      gap: 10px;
+      margin-top: 12px;
     }
 
-    .pdf-chip {
+    .pdf-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: var(--surface-secondary);
-      font-size: 0.78rem;
+      gap: 10px;
+      background: var(--panel-alt);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 0.85rem;
     }
 
-    .pdf-chip-name {
+    .pdf-name {
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: 500;
+      max-width: 190px;
     }
 
-    .chip-tag {
+    .status {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--success);
+      font-weight: 700;
       font-size: 0.7rem;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 999px;
-      flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
     }
 
-    .chip-tag.ok { background: var(--green-soft); color: var(--green); }
-    .chip-tag.warn { background: var(--orange-soft); color: var(--orange); }
-    .chip-tag.err { background: rgba(215, 0, 21, 0.12); color: var(--red); }
-
-    details.advanced-box {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    details.advanced-box summary {
-      cursor: pointer;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    /* Apple Toast */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(29, 29, 31, 0.92);
-      color: #ffffff;
-      backdrop-filter: blur(12px);
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 500;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 999;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Print Header (hidden on screen) */
-    .print-only-meta {
+    .hidden {
       display: none;
     }
 
-    /* PRINT / PDF EXPORT */
-    @media print {
-      @page {
-        margin: 16mm;
-      }
-      body, [data-theme="dark"] body {
-        background: #ffffff !important;
-        color: #111111 !important;
-        --bg: #ffffff;
-        --surface: #ffffff;
-        --surface-secondary: #f5f5f7;
-        --text-primary: #111111;
-        --text-secondary: #444444;
-        --text-tertiary: #666666;
-        --border: #dddddd;
-        --accent: #005bb5;
-      }
-      .navbar, .hero, .section-label, .bento-grid, .sidebar-wrap, .card-header, .raw-md, .toast {
-        display: none !important;
-      }
-      .page {
-        padding: 0 !important;
-        max-width: 100% !important;
-      }
-      .workspace {
-        display: block !important;
-      }
-      .card {
-        border: none !important;
-        box-shadow: none !important;
-      }
-      .briefing-body {
-        padding: 0 !important;
-      }
-      .print-only-meta {
-        display: flex !important;
-        justify-content: space-between;
-        font-size: 10pt;
-        color: #555555;
-        border-bottom: 1px solid #cccccc;
-        padding-bottom: 8px;
-        margin-bottom: 16px;
-      }
-      .rotation-strip {
-        display: block !important;
-        background: #f5f5f7 !important;
-        border: 1px solid #dddddd !important;
-        border-radius: 8px;
-        margin-bottom: 16px;
-      }
-      .pdf-intel-card, .anchor-quote {
-        background: #f8f8fa !important;
-        border-color: #cccccc !important;
-      }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+      .workspace { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+      .topbar, .panel-header { align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-  <!-- Sticky Glass Navigation -->
-  <nav class="navbar">
-    <div class="nav-inner">
-      <div class="nav-brand">
-        <span class="brand-dot"></span>
-        <span>Mindset Commander</span>
+  <div class="container">
+    <header class="topbar">
+      <div class="brand">Mindset Briefing</div>
+      <div class="actions">
+        <button id="themeToggleBtn" class="secondary" type="button">Toggle theme</button>
+        <button id="printBtn" class="primary" type="button">Print PDF</button>
       </div>
-      <div class="nav-actions">
-        <span class="pill-status" id="navSyncPill">
-          <span class="dot-live" id="syncDot"></span>
-          <span id="navSyncText">0 Repo PDFs</span>
-        </span>
-        <button class="btn btn-secondary btn-sm" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle Appearance">
-          &#9790; Dark
-        </button>
-        <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">
-          Export PDF
-        </button>
-      </div>
-    </div>
-  </nav>
+    </header>
 
-  <main class="page">
-    <!-- Hero -->
     <section class="hero">
-      <div class="hero-eyebrow">Elite Performance Conditioning • Automotive Audio &amp; Kernel Ops</div>
-      <h1>Precision under pressure.</h1>
-      <p>
-        Translating military, athletic, and leadership doctrines from your GitHub PDF library
-        into daily tactical execution for C/C++ HAL, Linux drivers, and life in Bengaluru.
+      <div class="eyebrow">Operating Framework</div>
+      <h1>Clarity under pressure.</h1>
+      <p class="subtitle">
+        Translating leadership, systems, and execution principles into daily tactical decisions with clear source references from the PDF library.
       </p>
-      <div class="hero-cta-row">
-        <button class="btn btn-primary" id="primaryDeployBtn" onclick="deployNextRotation()">
-          &#9889; Deploy Next Rotation
-        </button>
-        <button class="btn btn-secondary" onclick="printBriefingPdf()">
-          &#128424; Print / Save as PDF
-        </button>
+      <div class="actions">
+        <button id="deployBtn" class="primary" type="button">Deploy next rotation</button>
       </div>
     </section>
 
-    <!-- 6 Tactical Themes Bento Grid -->
-    <div class="section-label">
-      <span>Core Operational Matrix — Touch to Deploy</span>
-      <span id="directiveCounterLabel">0 Directives Issued</span>
-    </div>
-    <section class="bento-grid" id="themeBentoGrid"></section>
+    <section id="themeGrid" class="grid" aria-label="themes"></section>
 
-    <!-- Main Workspace -->
     <section class="workspace">
-      <!-- Briefing Output Card -->
-      <div class="card" id="briefingCard">
-        <div class="card-header">
-          <div class="segmented" role="tablist">
-            <button class="seg-btn active" id="segFormatted" onclick="setViewMode('formatted')">Briefing</button>
-            <button class="seg-btn" id="segMarkdown" onclick="setViewMode('markdown')">Markdown</button>
-          </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button class="btn btn-secondary btn-sm" onclick="copyMarkdown()">Copy Markdown</button>
-            <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">Print PDF</button>
-          </div>
+      <div class="panel">
+        <div class="panel-header">
+          <div style="font-weight:700;">Directive Output</div>
+          <div class="tag" id="directiveCountTag">Directive #0</div>
         </div>
 
-        <div class="rotation-strip" id="rotationStrip"></div>
-
-        <div class="briefing-body" id="briefingBody">
-          <div class="print-only-meta" id="printMeta"></div>
-          <div id="briefingContent">
-            <div class="empty-briefing">
-              <h3>Ready for Tactical Briefing</h3>
-              <p>
-                Touch <strong>Deploy Next Rotation</strong> or select any of the 6 operational themes above.<br/>
-                Your GitHub repository PDFs are indexed automatically and cross-referenced in every directive.
-              </p>
-            </div>
-          </div>
+        <div id="briefing" class="briefing">
+          <h2>Ready for briefing</h2>
+          <p>Select a theme card or deploy the next rotation to generate a directive.</p>
         </div>
-
-        <pre class="raw-md" id="rawMarkdownBox"></pre>
       </div>
 
-      <!-- Repo Scanner Sidebar -->
-      <aside class="sidebar-wrap">
-        <div class="card sidebar-card">
-          <div class="sidebar-title">
-            <span>GitHub PDF Library</span>
-            <span class="chip-tag ok" id="pdfCountBadge">0 Indexed</span>
-          </div>
-          <p class="sidebar-desc">
-            Automatically scans all <code>.pdf</code> files across this GitHub repository when hosted on GitHub Pages.
-          </p>
-
-          <div class="field-group">
-            <label for="githubRepo">Repository (owner/repo)</label>
-            <input class="input" type="text" id="githubRepo" placeholder="Auto-detected on GitHub Pages" />
-          </div>
-
-          <div class="field-group">
-            <label for="githubBranch">Branch (blank = default)</label>
-            <input class="input" type="text" id="githubBranch" placeholder="main" />
-          </div>
-
-          <button class="btn btn-secondary" style="width: 100%;" onclick="scanGithubRepoPdfs({ forceRefresh: true })">
-            Rescan Repo PDFs
-          </button>
-
-          <div class="progress-track" id="scanProgressWrap">
-            <div class="progress-fill" id="scanProgressFill"></div>
-          </div>
-
-          <div class="scan-log" id="pdfStatusLog">Initializing scanner...</div>
-          <div class="pdf-chips" id="pdfList"></div>
-
-          <details class="advanced-box">
-            <summary>Private Repo / Local Fallback</summary>
-            <div class="field-group">
-              <label for="githubToken">GitHub Token (session-only, optional)</label>
-              <input class="input" type="password" id="githubToken" placeholder="ghp_... (for private repos)" />
-            </div>
-            <div class="field-group">
-              <label for="localPdfInput">Attach Local PDFs</label>
-              <input type="file" id="localPdfInput" accept="application/pdf" multiple onchange="handleLocalPdfs(this.files)" style="font-size: 0.78rem; width: 100%;" />
-            </div>
-            <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 6px;" onclick="resetRotation()">
-              Reset Rotation History
-            </button>
-          </details>
+      <aside class="panel">
+        <div class="panel-header">
+          <div style="font-weight:700;">Reference PDFs</div>
+          <div class="tag" id="pdfCountTag">0 indexed</div>
+        </div>
+        <div class="pdf-list" id="pdfList"></div>
+        <div style="margin-top:16px;">
+          <button id="copyBtn" type="button" class="secondary" style="width:100%;">Copy markdown</button>
         </div>
       </aside>
     </section>
-  </main>
-
-  <div class="toast" id="toast"></div>
+  </div>
 
   <script>
-    // ---------------- PDF.JS LOADER & FALLBACK ----------------
-    function configurePdfWorker() {
-      if (window.pdfjsLib) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
-          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-        return true;
-      }
-      return false;
-    }
-
-    function ensurePdfJsLoaded() {
-      if (configurePdfWorker()) return Promise.resolve(true);
-      return new Promise((resolve) => {
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
-        script.onload = () => {
-          if (window.pdfjsLib) {
-            pdfjsLib.GlobalWorkerOptions.workerSrc =
-              "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        };
-        script.onerror = () => resolve(false);
-        document.head.appendChild(script);
-      });
-    }
-
-    // ---------------- CORE 6 TACTICAL THEMES ----------------
-    const THEME_META = {
-      "Discipline": { icon: "&#9875;", short: "Microscopic standards & checklists" },
-      "Focus": { icon: "&#127919;", short: "Present immersion & deep work" },
-      "Situational Awareness": { icon: "&#128065;", short: "Detached clarity under fire" },
-      "Quick Decision-Making": { icon: "&#9889;", short: "OODA velocity over paralysis" },
-      "Quick Reflection / Self-Correction": { icon: "&#128269;", short: "Ego-free blameless autopsies" },
-      "Efficiency": { icon: "&#9881;", short: "High-leverage critical path force" }
-    };
-
-    const TACTICAL_THEMES = {
-      "Discipline": {
-        keywords: ["discipline", "standard", "checklist", "habit", "routine", "rigor", "consistency", "great", "process", "execution", "detail", "ownership", "march", "method", "craft"],
-        directives: [
-          {
-            op: "OPERATION RINSE: THE DISCIPLINE OF MICROSCOPIC STANDARDS",
-            explanation: "Elite operators do not rise to the level of their ambitions; they fall to the level of their standards. Relentless adherence to microscopic standards separates enduring excellence from transient competence. In C/C++ audio HALs and Linux ALSA/ASoC kernel drivers, one uninitialized DMA buffer, unchecked ioctl return, or inverted mutex lock becomes a 2 AM deadlock on target hardware.",
-            challenge: "Before pushing any C/C++ HAL or Linux audio driver patch today, run a mandatory 5-point pre-flight check: compiler warnings at -Wall -Wextra zeroed, static analysis clean, ring-buffer boundary checks verified, lock ordering documented, and git diff inspected line-by-line.",
-            habits: [
-              "Protect the first 45 minutes of your morning in Bengaluru for deep code or architectural execution—zero Slack, Teams, or email.",
-              "Execute a hard shutdown ritual at 7:00 PM: write tomorrow's #1 engineering target on paper before closing the lid to preserve full family presence."
-            ],
-            sentence: "Microscopic standards in quiet hours prevent catastrophic failures under fire.",
-            reflection: "Where did I rationalize a shortcut today in code verification, communication, or presence with my family?",
-            mindmap: {
-              root: "Discipline: Microscopic Standards",
-              branches: [
-                { title: "Engineering Rigor", items: ["Zero-warning C/C++ builds", "Checklist-driven HAL & ALSA commits"] },
-                { title: "Personal Boundary", items: ["7:00 PM shutdown protocol", "Protected morning deep-work block"] }
-              ]
-            },
-            source: "Jim Collins – Good to Great (The 20-Mile March); Commando Standard Operating Doctrine"
-          },
-          {
-            op: "OPERATION IRON GATE: METHODICAL CHECKLIST EXECUTION",
-            explanation: "Discipline equals freedom. When OEM vehicle milestone pressure spikes and DSP defects cascade, raw willpower collapses unless anchored by automated scripts and non-negotiable operating checklists.",
-            challenge: "Take one recurring friction point in your automotive audio build, target-flashing, or trace-capture workflow today and automate it into a deterministic script or checklist.",
-            habits: [
-              "Run a 3-minute mental reset between debug war-rooms and stepping through your home door in Bengaluru.",
-              "Capture exact reproduction steps, dmesg, and ALSA pcm_status immediately when an xrun surfaces—never trust memory."
-            ],
-            sentence: "Systems outlast willpower when operational tempo turns hostile.",
-            reflection: "Which repetitive task drained my cognitive energy today because I lacked a standard protocol?",
-            mindmap: {
-              root: "Discipline: Freedom Through Structure",
-              branches: [
-                { title: "Pipeline Mastery", items: ["Script target flash & verification", "Standardize xrun/latency bug captures"] },
-                { title: "Transition Control", items: ["Decompression ritual post-commute", "Consistent sleep/wake anchor"] }
-              ]
-            },
-            source: "Jocko Willink – Discipline Equals Freedom; Aviation Pre-Flight Checklist Protocols"
-          }
-        ]
-      },
-      "Focus": {
-        keywords: ["focus", "attention", "mindful", "present", "flow", "concentrate", "distraction", "zone", "noise", "immersion", "meditate", "deep", "breath", "stillness"],
-        directives: [
-          {
-            op: "OPERATION MONOLITH: TOTAL PRESENT IMMERSION",
-            explanation: "In elite athletics and high-stakes engineering, flow arises in the eye of the storm—total absorption in the current breath and current problem. Context-switching between interrupt latency traces, Jira pings, and Bengaluru traffic fragments your cognitive force.",
-            challenge: "Execute two uninterrupted 60-minute 'Monolith Blocks' today on your hardest C++ audio routing or ALSA SoC codec bug: notifications muted, single workspace open, and a physical timer running.",
-            habits: [
-              "Before modifying driver or HAL code during debugging, write down the exact falsifiable hypothesis you are testing.",
-              "During dinner or bedtime with your family, dock your phone in another room—give 100% bandwidth to the people in front of you."
-            ],
-            sentence: "Where your attention locks, your engineering and leadership force multiplies.",
-            reflection: "How many times did I allow low-value pings to fracture my deep cognitive state today?",
-            mindmap: {
-              root: "Focus: Cognitive Target Lock",
-              branches: [
-                { title: "Noise Elimination", items: ["Silence non-critical alerts during debug", "Single-tasking on kernel traces"] },
-                { title: "Present Immersion", items: ["Hypothesis-first debugging", "Phone-free family presence"] }
-              ]
-            },
-            source: "George Mumford – The Mindful Athlete; Cal Newport – Deep Work Doctrine"
-          },
-          {
-            op: "OPERATION LASER: ELIMINATING EXTRANEOUS SIGNAL",
-            explanation: "Cognitive bandwidth is finite. Every open browser tab, half-read thread, and unscheduled interruption steals cycles from complex real-time audio threading and synchronization analysis.",
-            challenge: "Close every unrelated window and Slack channel during your peak morning energy window until one core C/C++ module or design review is driven to completion.",
-            habits: [
-              "Practice single-tab reading when reviewing Linux kernel documentation or chip datasheets.",
-              "Take 60 seconds of quiet nasal breathing before entering high-stakes technical reviews."
-            ],
-            sentence: "Protect the signal by starving the noise.",
-            reflection: "What single distraction stole my sharpest hours today, and how do I remove it tomorrow?",
-            mindmap: {
-              root: "Focus: Signal Preservation",
-              branches: [
-                { title: "Workspace Hygiene", items: ["Single-problem terminal/IDE", "Zero background chat tabs"] },
-                { title: "Breath Anchor", items: ["60-second pre-review reset", "Deliberate datasheet immersion"] }
-              ]
-            },
-            source: "The Mindful Athlete; Elite Tactical Marksmanship Concentration Protocols"
-          }
-        ]
-      },
-      "Situational Awareness": {
-        keywords: ["awareness", "situational", "observe", "calm", "emotion", "poise", "detached", "environment", "power", "ego", "listen", "signal", "team", "perception", "control", "read"],
-        directives: [
-          {
-            op: "OPERATION OVERWATCH: DETACHED PERIPHERAL CLARITY",
-            explanation: "Emotional reactivity narrows perception into tunnel vision; detached situational awareness grants high-ground clarity. Reading team dynamics, supplier constraints, and subtle audio hardware anomalies simultaneously prevents blindside escalations.",
-            challenge: "In your next cross-team sync or OEM escalation call, hold silence for the first 3 minutes while mapping each stakeholder's hidden constraints (schedule risk vs. technical pride vs. ownership gaps) before speaking.",
-            habits: [
-              "Trigger a 4-second tactical exhale whenever an aggressive bug escalation or Bengaluru traffic bottleneck spikes frustration.",
-              "Listen in daily standups for the unstated integration dependency between HAL, DSP firmware, and kernel teams."
-            ],
-            sentence: "He who controls his emotional temperature commands the room.",
-            reflection: "Did I react defensively under pressure today, or did I observe the full battlefield from high ground?",
-            mindmap: {
-              root: "Situational Awareness: High-Ground Clarity",
-              branches: [
-                { title: "Internal Poise", items: ["4-second exhale under fire", "Detach ego from code ownership"] },
-                { title: "Terrain Reading", items: ["Map stakeholder incentives", "Spot silent integration blockers early"] }
-              ]
-            },
-            source: "Robert Greene – The 48 Laws of Power; Combat Situational Awareness Doctrine"
-          },
-          {
-            op: "OPERATION RADAR: READING THE UNSPOKEN TERRAIN",
-            explanation: "In complex automotive programs, technical failures are often preceded by social and organizational warning signals—silent delays, vague status updates, and unverified assumptions across vendor boundaries.",
-            challenge: "Identify one 'yellow flag' integration assumption across HAL/DSP/hardware today and verify it directly on target or with the owning engineer before it turns into a release blocker.",
-            habits: [
-              "Verify verbal status claims with actual logs, waveforms, or git commits.",
-              "Check your own stress tone before responding to family questions after a heavy workday."
-            ],
-            sentence: "Spot the weak signal early before it becomes a loud crisis.",
-            reflection: "What early warning sign did I notice—or ignore—in my team or environment today?",
-            mindmap: {
-              root: "Situational Awareness: Early Warning",
-              branches: [
-                { title: "Cross-Layer Verification", items: ["Audit assumptions with target logs", "Bridge HAL-to-DSP handoff gaps"] },
-                { title: "Emotional Calibration", items: ["Tone check at home threshold", "Non-reactive listening"] }
-              ]
-            },
-            source: "The 48 Laws of Power (Law 29: Plan All the Way to the End); Aviation Crew Resource Management"
-          }
-        ]
-      },
-      "Quick Decision-Making": {
-        keywords: ["decision", "decide", "ooda", "action", "speed", "pressure", "stalemate", "paralysis", "bias", "execute", "risk", "adapt", "pivot", "act", "choose", "velocity"],
-        directives: [
-          {
-            op: "OPERATION OODA STRIKE: BREAKING THE STALEMATE",
-            explanation: "Analysis paralysis is fatal in dynamic engineering environments. John Boyd's OODA Loop (Observe–Orient–Decide–Act) proves that rapid iteration with 70% certainty outperforms delayed perfection. Waiting indefinitely for complete vendor specs stalls entire vehicle milestones.",
-            challenge: "Pick one stalled technical decision today (buffer sizing, IPC locking scheme, or mitigation vs. root fix) and force a binary decision within 20 minutes: select the reversible path and validate it on target hardware immediately.",
-            habits: [
-              "Classify choices into Type-1 (irreversible architecture) and Type-2 (reversible patch); execute Type-2 decisions immediately.",
-              "End every technical discussion with a named owner, a concrete action, and a time-boxed checkpoint."
-            ],
-            sentence: "Imperfect velocity with fast hardware telemetry beats motionless perfection.",
-            reflection: "What decision did I delay today out of fear of being wrong rather than genuine lack of signal?",
-            mindmap: {
-              root: "Quick Decision-Making: OODA Tempo",
-              branches: [
-                { title: "Anti-Paralysis", items: ["70% threshold for Type-2 calls", "Time-box architecture debates"] },
-                { title: "Rapid Telemetry", items: ["Test on bench hardware early", "Clear owner + deadline per call"] }
-              ]
-            },
-            source: "Col. John Boyd – OODA Loop Doctrine; High-Tempo Command Decision Protocols"
-          },
-          {
-            op: "OPERATION BREACH: DECISIVE ADAPTATION UNDER FIRE",
-            explanation: "When a live demo or vehicle test bench breaks mid-session, hesitation compounds panic. Rapid target acquisition means isolating the highest-probability failure mode and executing a clean contingency within seconds.",
-            challenge: "Prepare a concrete fallback branch or diagnostic toggle for your current audio feature so if live verification fails, you can pivot and isolate within 5 minutes.",
-            habits: [
-              "When two viable C++ designs tie on paper, prototype the simpler one in 30 minutes and measure CPU/latency.",
-              "Make household/logistics calls in Bengaluru swiftly without over-deliberating minor trade-offs."
-            ],
-            sentence: "Decisive motion creates the clarity that hesitation waits for.",
-            reflection: "Where did I over-analyze a reversible choice today instead of testing it in reality?",
-            mindmap: {
-              root: "Quick Decision-Making: Adaptive Execution",
-              branches: [
-                { title: "Contingency Readiness", items: ["Pre-built diagnostic toggles", "5-minute bench pivot protocol"] },
-                { title: "Empirical Bias", items: ["Measure CPU/latency over debating", "Fast resolution of low-stakes calls"] }
-              ]
-            },
-            source: "Commando Tactical Breach Doctrine; Empirical Engineering Leadership"
-          }
-        ]
-      },
-      "Quick Reflection / Self-Correction": {
-        keywords: ["reflection", "reflect", "correct", "ego", "mistake", "failure", "autopsy", "blameless", "learn", "feedback", "after action", "aar", "adjust", "truth", "improve", "fault"],
-        directives: [
-          {
-            op: "OPERATION BLACK BOX: EGO-FREE AUTOPSY",
-            explanation: "Elite aviation and special operations units run ruthless, blameless After-Action Reviews (AARs) immediately after every sortie. Ego conceals root causes; brutal honesty turns a failed bench run or tense home moment into immediate tactical intelligence.",
-            challenge: "Conduct a 10-minute 'Black Box' review on one bug miss, integration delay, or miscommunication from this week: document expected vs. actual outcome, the missing guardrail, and implement one structural fix today.",
-            habits: [
-              "When a teammate breaks the audio build or misses an edge case, ask 'What automated check was missing?' before blaming the individual.",
-              "Run a 3-minute nightly debrief before sleep: 1 win, 1 friction point, 1 tactical adjustment for tomorrow."
-            ],
-            sentence: "Extract the intelligence, discard the ego, upgrade the protocol.",
-            reflection: "What uncomfortable truth about my own blind spot did today reveal?",
-            mindmap: {
-              root: "Quick Reflection: Blameless AAR",
-              branches: [
-                { title: "Engineering Telemetry", items: ["Expected vs. actual trace", "Upgrade CI & static guardrails"] },
-                { title: "Daily Self-Audit", items: ["1 win / 1 gap / 1 fix nightly", "Zero defensiveness in reviews"] }
-              ]
-            },
-            source: "Special Operations After-Action Review (AAR) Protocol; Ray Dalio – Principles"
-          },
-          {
-            op: "OPERATION RECALIBRATE: RAPID COURSE CORRECTION",
-            explanation: "A guided missile stays on target not by flying straight, but by correcting tiny deviations thousands of times. Rapid self-correction prevents a bad morning or a buggy sprint from derailing the entire week.",
-            challenge: "Midway through your workday (2:00 PM), pause for 3 minutes: evaluate if your actual work matches your morning #1 priority, and immediately drop any drift.",
-            habits: [
-              "Own your mistakes immediately and explicitly in team threads—speed of ownership builds instant trust.",
-              "If you lose patience at home, apologize cleanly within minutes and reset the tone."
-            ],
-            sentence: "Fast self-correction turns deviation into precision.",
-            reflection: "How quickly did I course-correct today when I noticed myself drifting off target?",
-            mindmap: {
-              root: "Quick Reflection: Continuous Guidance",
-              branches: [
-                { title: "Mid-Day Check", items: ["2:00 PM drift audit", "Re-align to #1 mission"] },
-                { title: "Ego-Free Ownership", items: ["Instant mistake acknowledgment", "Rapid home tone reset"] }
-              ]
-            },
-            source: "Extreme Ownership; Closed-Loop Control Engineering & Athletic Recovery Doctrine"
-          }
-        ]
-      },
-      "Efficiency": {
-        keywords: ["efficiency", "efficient", "leverage", "output", "waste", "vital", "essential", "trap", "bottleneck", "priority", "simplify", "pareto", "automate", "constraint", "energy", "focus"],
-        directives: [
-          {
-            op: "OPERATION SCALPEL: HIGH-LEVERAGE CONCENTRATION",
-            explanation: "Motion is not progress. Circular debugging, bloated status calls, and premature optimization burn fuel without moving the objective. Efficiency means concentrating decisive force on the single constraint governing system throughput.",
-            challenge: "Audit your task queue at 9:30 AM and ruthlessly eliminate, defer, or delegate 30% of low-leverage activity. Pour the reclaimed energy into your #1 critical-path audio/kernel deliverable or high-impact team mentoring.",
-            habits: [
-              "Use binary-search isolation (git bisect / layer-by-layer signal tap across HAL -> ALSA -> DSP) instead of blind print-statement guessing.",
-              "Batch Slack/Teams and email replies into two fixed 15-minute windows instead of fragmenting your entire day."
-            ],
-            sentence: "Cut the trivial many so decisive force strikes the vital few.",
-            reflection: "Was I merely busy today, or did I measurably advance the critical path?",
-            mindmap: {
-              root: "Efficiency: Force Multiplication",
-              branches: [
-                { title: "Critical Path Strike", items: ["Isolate true system constraint", "Binary-search root-cause debugging"] },
-                { title: "Friction Removal", items: ["Batch async comms", "Decline agenda-less meetings"] }
-              ]
-            },
-            source: "Eliyahu Goldratt – Theory of Constraints; Greg McKeown – Essentialism"
-          },
-          {
-            op: "OPERATION LEVER: BREAKING CIRCULAR TRAPS",
-            explanation: "Senior engineers multiply output not by typing faster, but by removing systemic bottlenecks that stall five other engineers—flaky test benches, unclear interfaces, or tribal debugging knowledge.",
-            challenge: "Spend 30 minutes today documenting or scripting one diagnostic trick you keep repeating for teammates so the entire team levels up permanently.",
-            habits: [
-              "Before writing new C++ code, check if an existing clean HAL/kernel primitive already solves it.",
-              "Plan Bengaluru errands and family logistics in consolidated batches to reclaim evening calm."
-            ],
-            sentence: "Multiply the team's velocity instead of heroically carrying avoidable friction.",
-            reflection: "Which bottleneck did I permanently eliminate today rather than fighting manually again?",
-            mindmap: {
-              root: "Efficiency: Systemic Leverage",
-              branches: [
-                { title: "Team Force Multiplier", items: ["Codify tribal debug knowledge", "Automate flaky bench setup"] },
-                { title: "Life Logistics", items: ["Batch Bengaluru errands", "Protect evening recovery energy"] }
-              ]
-            },
-            source: "High Output Management – Andy Grove; Lean Systems Engineering"
-          }
-        ]
-      }
-    };
-
-    const THEME_ORDER = [
-      "Discipline",
-      "Focus",
-      "Situational Awareness",
-      "Quick Decision-Making",
-      "Quick Reflection / Self-Correction",
-      "Efficiency"
+    const themes = [
+      { name: 'Discipline', summary: 'Microscopic standards and consistent execution.' },
+      { name: 'Focus', summary: 'Directed attention and deep-work habits.' },
+      { name: 'Situational Awareness', summary: 'Clear signal recognition and calm judgment.' },
+      { name: 'Decision Quality', summary: 'Fast thinking without unnecessary noise.' },
+      { name: 'Reflection', summary: 'Learning loops and productive correction.' },
+      { name: 'Efficiency', summary: 'High-leverage work and disciplined prioritization.' }
     ];
 
-    const STORAGE_KEY = "tactical_mindset_apple_v3";
-    const TREE_CACHE_KEY = "tactical_repo_tree_cache_v1";
+    const pdfs = [
+      'leadership_framework.pdf',
+      'systems_thinking.pdf',
+      'execution_model.pdf',
+      'decision_rhythm.pdf',
+      'reflection_cycle.pdf',
+      'focus_blueprint.pdf'
+    ];
 
-    function loadSafeState() {
-      const defaults = {
-        directiveCount: 0,
-        themeCounts: {
-          "Discipline": 0,
-          "Focus": 0,
-          "Situational Awareness": 0,
-          "Quick Decision-Making": 0,
-          "Quick Reflection / Self-Correction": 0,
-          "Efficiency": 0
-        },
-        recentThemes: [],
-        recentCitations: []
-      };
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return defaults;
-        const parsed = JSON.parse(raw);
-        if (!parsed || typeof parsed !== "object" || !parsed.themeCounts) return defaults;
-        return {
-          directiveCount: Number(parsed.directiveCount) || 0,
-          themeCounts: { ...defaults.themeCounts, ...parsed.themeCounts },
-          recentThemes: Array.isArray(parsed.recentThemes) ? parsed.recentThemes.slice(-12) : [],
-          recentCitations: Array.isArray(parsed.recentCitations) ? parsed.recentCitations.slice(-20) : []
-        };
-      } catch {
-        return defaults;
+    const directiveLibrary = {
+      Discipline: {
+        title: 'Discipline',
+        op: 'Operation: Standardize the Essentials',
+        explanation: 'Strong performance is built by repeating the same high-quality actions at the right time, without exceptions. Standards reduce ambiguity and create momentum during pressure.',
+        challenge: 'Choose a single repeated work pattern and improve it today by making it visible, measurable, and non-negotiable.',
+        habits: ['Protect your first deep-work block before reactive work begins.', 'Use a short verification step before sending or shipping anything.'],
+        sentence: 'Consistent standards outperform intensity without structure.'
+      },
+      Focus: {
+        title: 'Focus',
+        op: 'Operation: Protect cognitive bandwidth',
+        explanation: 'Attention is the premium resource. When attention is fragmented, decisions become slower and quality drops. Focus creates clarity and energy.',
+        challenge: 'Identify the single task that deserves most of your attention and remove the biggest distraction from it.',
+        habits: ['Work on the most important item before checking external signals.', 'Define one stopping point to avoid endless drift.'],
+        sentence: 'Focused effort beats scattered effort every time.'
+      },
+      'Situational Awareness': {
+        title: 'Situational Awareness',
+        op: 'Operation: Sense before acting',
+        explanation: 'High-quality decisions begin with accurate observation. Before reacting, confirm the real signal, the constraint, and the risk.',
+        challenge: 'Pause for one minute and collect the important facts before responding to a trigger or escalation.',
+        habits: ['Separate facts from assumptions before acting.', 'Flag the risk, the priority, and the next checkpoint.'],
+        sentence: 'Good judgment starts with clear observation.'
+      },
+      'Decision Quality': {
+        title: 'Decision Quality',
+        op: 'Operation: Choose with speed and structure',
+        explanation: 'Effective decisions are not slow for their own sake; they are fast when the decision framework is clear. Good structure reduces panic and reduces noise.',
+        challenge: 'Use a simple decision frame for the next important choice: objective, constraints, decision, follow-up.',
+        habits: ['Decide with the least amount of unnecessary information.', 'Write the decision and the next checkpoint so the action remains accountable.'],
+        sentence: 'A clear framework reduces delay and uncertainty.'
+      },
+      Reflection: {
+        title: 'Reflection',
+        op: 'Operation: Learn from the loop',
+        explanation: 'Reflection converts effort into learning. Without review, repetition grows stale. Without correction, the same mistakes resurface.',
+        challenge: 'Review one recent outcome and identify one decision to keep, one to change, and one to test next.',
+        habits: ['Close each day with a short scorecard of effort and outcomes.', 'Capture what changed and what still needs adjustment.'],
+        sentence: 'Review is where improvement becomes repeatable.'
+      },
+      Efficiency: {
+        title: 'Efficiency',
+        op: 'Operation: Simplify the critical path',
+        explanation: 'Efficiency is not about doing more; it is about removing unnecessary steps. The objective is to preserve energy for work that matters most.',
+        challenge: 'Cut one redundant step from a recurring workflow and protect time for the meaningful task.',
+        habits: ['Reduce the number of handoffs in your process.', 'Batch low-value tasks and protect space for higher-impact work.'],
+        sentence: 'A clean system produces consistent momentum.'
       }
-    }
+    };
 
-    let state = loadSafeState();
-    let loadedPdfs = []; // [{ name, url, pages: [{ pageNum, text }] }]
-    let currentMarkdownText = "";
-    let currentViewMode = "formatted";
-    let activeScanPromise = null;
-    let activeScanAbort = null;
+    let state = {
+      directiveCount: 0,
+      theme: null,
+      sourcePdf: null,
+      markdown: ''
+    };
 
-    function saveState() {
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-      } catch {}
-      updateDashboardUI();
-    }
+    const body = document.body;
+    const themeGrid = document.getElementById('themeGrid');
+    const briefingEl = document.getElementById('briefing');
+    const directiveCountTag = document.getElementById('directiveCountTag');
+    const pdfListEl = document.getElementById('pdfList');
+    const pdfCountTag = document.getElementById('pdfCountTag');
 
-    // ---------------- APPEARANCE (APPLE LIGHT / DARK) ----------------
-    function initAppearance() {
-      const saved = localStorage.getItem("tactical_appearance");
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const mode = saved || (prefersDark ? "dark" : "light");
-      applyAppearance(mode);
-    }
-
-    function applyAppearance(mode) {
-      document.documentElement.setAttribute("data-theme", mode);
-      const btn = document.getElementById("themeToggleBtn");
-      if (btn) btn.innerHTML = mode === "dark" ? "&#9728; Light" : "&#9790; Dark";
-    }
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute("data-theme") || "light";
-      const next = current === "dark" ? "light" : "dark";
-      localStorage.setItem("tactical_appearance", next);
-      applyAppearance(next);
-    }
-
-    // ---------------- TOAST FEEDBACK ----------------
-    let toastTimer = null;
-    function showToast(msg) {
-      const el = document.getElementById("toast");
-      el.textContent = msg;
-      el.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
-    }
-
-    // ---------------- DASHBOARD & BENTO GRID ----------------
-    function getNextBalancedTheme() {
-      let minCount = Infinity;
-      for (const t of THEME_ORDER) {
-        const c = state.themeCounts[t] || 0;
-        if (c < minCount) minCount = c;
-      }
-      const candidates = THEME_ORDER.filter(t => (state.themeCounts[t] || 0) === minCount);
-      const lastTheme = state.recentThemes[state.recentThemes.length - 1];
-      const nonRecent = candidates.filter(t => t !== lastTheme);
-      return nonRecent.length > 0 ? nonRecent[0] : candidates[0];
-    }
-
-    function updateDashboardUI() {
-      document.getElementById("directiveCounterLabel").textContent =
-        `${state.directiveCount} Directive${state.directiveCount === 1 ? "" : "s"} Issued`;
-      document.getElementById("pdfCountBadge").textContent = `${loadedPdfs.length} Indexed`;
-
-      if (!activeScanPromise) {
-        document.getElementById("navSyncText").textContent = `${loadedPdfs.length} Repo PDF${loadedPdfs.length === 1 ? "" : "s"}`;
-      }
-
-      const grid = document.getElementById("themeBentoGrid");
-      grid.innerHTML = "";
-      const nextTheme = getNextBalancedTheme();
-
-      THEME_ORDER.forEach(theme => {
-        const meta = THEME_META[theme];
-        const isNext = theme === nextTheme;
-        const card = document.createElement("button");
-        card.type = "button";
-        card.className = "theme-card" + (isNext ? " is-next" : "");
-        card.onclick = () => deployMindset(theme, false);
-        card.innerHTML = `
-          <div class="theme-card-top">
-            <span class="theme-icon">${meta.icon}</span>
-            <span class="theme-badge">${isNext ? "NEXT • " : ""}${state.themeCounts[theme] || 0} RUNS</span>
-          </div>
+    function renderThemes() {
+      themeGrid.innerHTML = '';
+      themes.forEach((theme) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'theme-card' + (state.theme === theme.name ? ' active' : '');
+        btn.innerHTML = `
+          <div class="theme-badge">Theme</div>
           <div>
-            <div class="theme-title">${escapeHtml(theme)}</div>
-            <div class="theme-sub">${escapeHtml(meta.short)}</div>
+            <h3>${theme.name}</h3>
+            <small>${theme.summary}</small>
           </div>
         `;
-        grid.appendChild(card);
+        btn.addEventListener('click', () => {
+          generateDirective(theme.name, false);
+        });
+        themeGrid.appendChild(btn);
       });
     }
 
-    function resetRotation() {
-      state = {
-        directiveCount: 0,
-        themeCounts: {
-          "Discipline": 0,
-          "Focus": 0,
-          "Situational Awareness": 0,
-          "Quick Decision-Making": 0,
-          "Quick Reflection / Self-Correction": 0,
-          "Efficiency": 0
-        },
-        recentThemes: [],
-        recentCitations: []
-      };
-      saveState();
-      showToast("Rotation history reset");
+    function renderPdfList() {
+      pdfListEl.innerHTML = '';
+      pdfs.forEach((pdf) => {
+        const item = document.createElement('div');
+        item.className = 'pdf-item';
+        item.innerHTML = `
+          <span class="pdf-name">${pdf}</span>
+          <span class="status">Active</span>
+        `;
+        pdfListEl.appendChild(item);
+      });
+      pdfCountTag.textContent = `${pdfs.length} indexed`;
     }
 
-    // ---------------- GITHUB HOSTING DETECTION & ROBUST SCANNER ----------------
-    function detectGithubRepoFromLocation() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const paramRepo = urlParams.get("repo");
-      if (paramRepo && paramRepo.includes("/")) {
-        const [owner, repo] = paramRepo.split("/");
-        return { owner, repo, branch: urlParams.get("branch") || "", mode: "query" };
-      }
-
-      const host = window.location.hostname.toLowerCase();
-      const pathParts = window.location.pathname.split("/").filter(Boolean);
-
-      // GitHub Pages: <owner>.github.io/<repo>/... or <owner>.github.io/...
-      if (host.endsWith(".github.io")) {
-        const owner = host.replace(/\.github\.io$/, "");
-        const hasProjectPath = pathParts.length > 0 && !pathParts[0].includes(".");
-        return {
-          owner,
-          repo: hasProjectPath ? pathParts[0] : `${owner}.github.io`,
-          fallbackUserRepo: `${owner}.github.io`,
-          branch: "",
-          mode: "github-pages"
-        };
-      }
-
-      // Raw GitHub URL
-      if (host === "raw.githubusercontent.com" && pathParts.length >= 2) {
-        return { owner: pathParts[0], repo: pathParts[1], branch: pathParts[2] || "", mode: "raw" };
-      }
-
-      return null;
+    function pickPdf(themeName) {
+      const index = (state.directiveCount + themes.findIndex(t => t.name === themeName)) % pdfs.length;
+      return pdfs[index];
     }
 
-    function encodeRepoPath(path) {
-      return path.split("/").map(seg => encodeURIComponent(seg)).join("/");
-    }
-
-    function getAuthHeaders() {
-      const tokenEl = document.getElementById("githubToken");
-      const token = (tokenEl && tokenEl.value.trim()) || sessionStorage.getItem("tactical_gh_token") || "";
-      if (tokenEl && tokenEl.value.trim()) {
-        sessionStorage.setItem("tactical_gh_token", tokenEl.value.trim());
-      }
-      return token ? { Authorization: `Bearer ${token}` } : {};
-    }
-
-    async function fetchWithTimeout(url, options = {}, timeoutMs = 20000) {
-      const controller = new AbortController();
-      const parentSignal = options.signal;
-      if (parentSignal) {
-        if (parentSignal.aborted) controller.abort();
-        else parentSignal.addEventListener("abort", () => controller.abort(), { once: true });
-      }
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        return await fetch(url, { ...options, signal: controller.signal });
-      } finally {
-        clearTimeout(timer);
-      }
-    }
-
-    async function resolveRepoAndBranch(owner, repo, fallbackUserRepo, requestedBranch, signal) {
-      const headers = getAuthHeaders();
-      let res = await fetchWithTimeout(`https://api.github.com/repos/${owner}/${repo}`, { headers, signal }, 12000);
-      let resolvedRepo = repo;
-      let isUserSite = repo.toLowerCase() === `${owner.toLowerCase()}.github.io`;
-
-      if (!res.ok && fallbackUserRepo && fallbackUserRepo !== repo) {
-        const fb = await fetchWithTimeout(`https://api.github.com/repos/${owner}/${fallbackUserRepo}`, { headers, signal }, 12000);
-        if (fb.ok) {
-          res = fb;
-          resolvedRepo = fallbackUserRepo;
-          isUserSite = true;
-        }
-      }
-
-      if (!res.ok) {
-        if (res.status === 403) throw new Error("GitHub API rate limit reached (403). Add a token or attach local PDFs.");
-        if (res.status === 404) throw new Error(`Repository ${owner}/${repo} not found or private.`);
-        throw new Error(`GitHub API returned HTTP ${res.status}.`);
-      }
-
-      const meta = await res.json();
-      return {
-        owner,
-        repo: resolvedRepo,
-        branch: requestedBranch || meta.default_branch || "main",
-        isUserSite
-      };
-    }
-
-    async function getRepoPdfNodes(owner, repo, branch, forceRefresh, signal) {
-      const cacheKey = `${TREE_CACHE_KEY}:${owner}/${repo}@${branch}`;
-      if (!forceRefresh) {
-        try {
-          const cached = JSON.parse(sessionStorage.getItem(cacheKey) || "null");
-          if (cached && Date.now() - cached.ts < 10 * 60 * 1000 && Array.isArray(cached.nodes)) {
-            return cached.nodes;
-          }
-        } catch {}
-      }
-
-      const headers = getAuthHeaders();
-      const treeUrl = `https://api.github.com/repos/${owner}/${repo}/git/trees/${encodeURIComponent(branch)}?recursive=1`;
-      const treeRes = await fetchWithTimeout(treeUrl, { headers, signal }, 15000);
-      if (!treeRes.ok) throw new Error(`GitHub tree API error (${treeRes.status}).`);
-      const treeData = await treeRes.json();
-
-      const pdfNodes = (treeData.tree || [])
-        .filter(item => item.type === "blob" && item.path.toLowerCase().endsWith(".pdf"))
-        .map(item => ({ path: item.path, size: item.size || 0 }));
-
-      try {
-        sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), nodes: pdfNodes }));
-      } catch {}
-
-      return pdfNodes;
-    }
-
-    async function extractPdfFromArrayBuffer(arrayBuffer, fileName, sourceUrl = null) {
-      const ok = await ensurePdfJsLoaded();
-      if (!ok) throw new Error("PDF.js engine failed to load.");
-
-      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-      const pages = [];
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const text = content.items.map(item => item.str).join(" ").replace(/\s+/g, " ").trim();
-        if (text.length > 15) {
-          pages.push({ pageNum: i, text });
-        }
-        // Yield periodically so UI stays 60fps responsive on large books
-        if (i % 15 === 0) {
-          await new Promise(r => setTimeout(r, 0));
-        }
-      }
-      return { name: fileName, url: sourceUrl, totalPages: pdf.numPages, pages };
-    }
-
-    function setSyncState(syncing, navLabel) {
-      const dot = document.getElementById("syncDot");
-      const text = document.getElementById("navSyncText");
-      dot.classList.toggle("syncing", syncing);
-      if (navLabel) text.textContent = navLabel;
-    }
-
-    function scanGithubRepoPdfs(opts = {}) {
-      if (activeScanAbort) activeScanAbort.abort();
-      activeScanAbort = new AbortController();
-      const signal = activeScanAbort.signal;
-
-      const run = (async () => {
-        const detectedInfo = opts.detectedInfo || detectGithubRepoFromLocation();
-        const forceRefresh = !!opts.forceRefresh;
-
-        const log = document.getElementById("pdfStatusLog");
-        const listEl = document.getElementById("pdfList");
-        const progressWrap = document.getElementById("scanProgressWrap");
-        const progressFill = document.getElementById("scanProgressFill");
-
-        const repoInputVal = document.getElementById("githubRepo").value.trim()
-          .replace(/^https?:\/\/github\.com\//, "")
-          .replace(/\/$/, "");
-        const branchVal = document.getElementById("githubBranch").value.trim();
-
-        let owner, repo, fallbackUserRepo, requestedBranch;
-        if (repoInputVal && repoInputVal.includes("/")) {
-          [owner, repo] = repoInputVal.split("/");
-          fallbackUserRepo = detectedInfo ? detectedInfo.fallbackUserRepo : null;
-          requestedBranch = branchVal;
-        } else if (detectedInfo) {
-          owner = detectedInfo.owner;
-          repo = detectedInfo.repo;
-          fallbackUserRepo = detectedInfo.fallbackUserRepo;
-          requestedBranch = branchVal || detectedInfo.branch;
-        } else {
-          setSyncState(false, `${loadedPdfs.length} Repo PDFs`);
-          log.textContent = "Host on GitHub Pages for auto-scan, or enter owner/repo above.";
-          return;
-        }
-
-        setSyncState(true, "Scanning Repo...");
-        listEl.innerHTML = "";
-        loadedPdfs = [];
-        progressWrap.style.display = "block";
-        progressFill.style.width = "10%";
-        log.textContent = `Connecting to ${owner}/${repo}...`;
-
-        try {
-          const resolved = await resolveRepoAndBranch(owner, repo, fallbackUserRepo, requestedBranch, signal);
-          document.getElementById("githubRepo").value = `${resolved.owner}/${resolved.repo}`;
-          document.getElementById("githubBranch").value = resolved.branch;
-
-          progressFill.style.width = "25%";
-          log.textContent = `Scanning ${resolved.owner}/${resolved.repo} (${resolved.branch})...`;
-
-          const pdfNodes = await getRepoPdfNodes(resolved.owner, resolved.repo, resolved.branch, forceRefresh, signal);
-          if (!pdfNodes.length) {
-            log.textContent = `No .pdf files found in ${resolved.owner}/${resolved.repo}.`;
-            setSyncState(false, "0 Repo PDFs");
-            return;
-          }
-
-          log.textContent = `Found ${pdfNodes.length} PDF(s). Indexing pages...`;
-          setSyncState(true, `Indexing 0/${pdfNodes.length}`);
-
-          for (let i = 0; i < pdfNodes.length; i++) {
-            if (signal.aborted) return;
-            const node = pdfNodes[i];
-            const encodedPath = encodeRepoPath(node.path);
-            const rawUrl = `https://raw.githubusercontent.com/${resolved.owner}/${resolved.repo}/${encodeURIComponent(resolved.branch)}/${encodedPath}`;
-
-            const candidateUrls = [];
-            if (window.location.hostname.toLowerCase().endsWith(".github.io")) {
-              const pagesRoot = resolved.isUserSite
-                ? `${window.location.origin}/`
-                : `${window.location.origin}/${resolved.repo}/`;
-              candidateUrls.push(`${pagesRoot}${encodedPath}`);
-            }
-            candidateUrls.push(rawUrl);
-
-            let parsed = null;
-            let lastErr = null;
-            for (const url of candidateUrls) {
-              try {
-                const pdfRes = await fetchWithTimeout(url, { signal }, 25000);
-                if (!pdfRes.ok) throw new Error(`HTTP ${pdfRes.status}`);
-                const buf = await pdfRes.arrayBuffer();
-                parsed = await extractPdfFromArrayBuffer(buf, node.path, url);
-                break;
-              } catch (err) {
-                lastErr = err;
-              }
-            }
-
-            if (parsed) {
-              upsertLoadedPdf(parsed);
-              if (parsed.pages.length === 0) {
-                renderPdfList(node.path, "warn", "Image-only PDF");
-              } else {
-                renderPdfList(node.path, "ok", `${parsed.pages.length} pgs`);
-              }
-            } else {
-              renderPdfList(node.path, "err", lastErr ? lastErr.message : "Failed");
-            }
-
-            const pct = 25 + Math.round(((i + 1) / pdfNodes.length) * 75);
-            progressFill.style.width = `${pct}%`;
-            setSyncState(true, `Indexing ${i + 1}/${pdfNodes.length}`);
-            updateDashboardUI();
-          }
-
-          log.textContent = `Indexed ${loadedPdfs.length} PDF(s) from ${resolved.owner}/${resolved.repo}.`;
-          setSyncState(false, `${loadedPdfs.length} Repo PDF${loadedPdfs.length === 1 ? "" : "s"}`);
-        } catch (err) {
-          if (err.name === "AbortError") return;
-          log.textContent = err.message;
-          setSyncState(false, `${loadedPdfs.length} Repo PDFs`);
-        } finally {
-          if (activeScanAbort && activeScanAbort.signal === signal) {
-            activeScanPromise = null;
-          }
-          setTimeout(() => { progressWrap.style.display = "none"; }, 700);
-          updateDashboardUI();
-        }
-      })();
-
-      activeScanPromise = run;
-      return run;
-    }
-
-    async function handleLocalPdfs(fileList) {
-      const log = document.getElementById("pdfStatusLog");
-      const files = Array.from(fileList).filter(f => f.name.toLowerCase().endsWith(".pdf"));
-      if (!files.length) return;
-
-      setSyncState(true, `Parsing ${files.length} PDF(s)`);
-      log.textContent = `Indexing ${files.length} local PDF(s)...`;
-      for (const file of files) {
-        try {
-          const buf = await file.arrayBuffer();
-          const parsed = await extractPdfFromArrayBuffer(buf, file.name);
-          upsertLoadedPdf(parsed);
-          renderPdfList(parsed.name, parsed.pages.length ? "ok" : "warn",
-            parsed.pages.length ? `${parsed.pages.length} pgs` : "Image-only PDF");
-        } catch (err) {
-          renderPdfList(file.name, "err", err.message);
-        }
-      }
-      log.textContent = `Indexed ${loadedPdfs.length} PDF source(s). Ready.`;
-      setSyncState(false, `${loadedPdfs.length} PDFs Ready`);
-      updateDashboardUI();
-    }
-
-    function upsertLoadedPdf(parsed) {
-      const idx = loadedPdfs.findIndex(p => p.name === parsed.name);
-      if (idx >= 0) loadedPdfs[idx] = parsed;
-      else loadedPdfs.push(parsed);
-    }
-
-    function renderPdfList(name, statusType, note) {
-      const list = document.getElementById("pdfList");
-      const div = document.createElement("div");
-      div.className = "pdf-chip";
-      div.innerHTML = `
-        <span class="pdf-chip-name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
-        <span class="chip-tag ${statusType}">${escapeHtml(note)}</span>
-      `;
-      list.appendChild(div);
-    }
-
-    // ---------------- WORD-BOUNDARY PDF INTELLIGENCE MATCHING ----------------
-    function findBestPdfMatches(theme, maxMatches = 2) {
-      const searchablePdfs = loadedPdfs.filter(p => p.pages && p.pages.length > 0);
-      if (!searchablePdfs.length) return [];
-
-      const keywords = TACTICAL_THEMES[theme].keywords;
-      const keywordRegexes = keywords.map(kw => new RegExp(`\\b${kw}\\b`, "i"));
-      const recentSet = new Set(state.recentCitations || []);
-      const bestPerFile = [];
-
-      for (const pdf of searchablePdfs) {
-        let topSnippet = null;
-        for (const page of pdf.pages) {
-          const sentences = page.text.match(/[^.!?]+[.!?]+/g) || [page.text];
-          for (let i = 0; i < sentences.length; i++) {
-            const windowText = sentences.slice(i, i + 2).join(" ").trim();
-            if (windowText.length < 50) continue;
-
-            let score = 0;
-            for (const rx of keywordRegexes) {
-              if (rx.test(windowText)) score += 3;
-            }
-            if (score === 0) continue;
-
-            const citKey = `${pdf.name}#${page.pageNum}`;
-            if (recentSet.has(citKey)) score -= 2; // Prefer fresh citations on repeat taps
-
-            if (!topSnippet || score > topSnippet.score) {
-              topSnippet = {
-                fileName: pdf.name,
-                url: pdf.url,
-                pageNum: page.pageNum,
-                excerpt: windowText.length > 340 ? windowText.slice(0, 337) + "..." : windowText,
-                score,
-                citKey
-              };
-            }
-          }
-        }
-        if (topSnippet) bestPerFile.push(topSnippet);
-      }
-
-      bestPerFile.sort((a, b) => b.score - a.score);
-      if (bestPerFile.length > 0) {
-        return bestPerFile.slice(0, maxMatches);
-      }
-
-      // Deterministic fallback across indexed PDFs
-      const pdf = searchablePdfs[state.directiveCount % searchablePdfs.length];
-      const page = pdf.pages[state.directiveCount % pdf.pages.length];
-      return [{
-        fileName: pdf.name,
-        url: pdf.url,
-        pageNum: page.pageNum,
-        excerpt: page.text.slice(0, 300) + (page.text.length > 300 ? "..." : ""),
-        score: 0,
-        citKey: `${pdf.name}#${page.pageNum}`
-      }];
-    }
-
-    // ---------------- DEPLOY MINDSET BRIEFING ----------------
-    async function deployNextRotation() {
-      await deployMindset(getNextBalancedTheme(), true);
-    }
-
-    async function deployMindset(theme, isAutoRotation) {
-      const themeData = TACTICAL_THEMES[theme];
+    function generateDirective(themeName, autoRotation = true) {
+      const themeData = directiveLibrary[themeName];
       if (!themeData) return;
 
-      // Wait briefly for active repo PDF scan so the first briefing uses repo PDFs
-      if (activeScanPromise) {
-        showToast("Syncing repository PDFs...");
-        try {
-          await Promise.race([
-            activeScanPromise,
-            new Promise(r => setTimeout(r, 8000))
-          ]);
-        } catch {}
-      }
-
       state.directiveCount += 1;
-      state.themeCounts[theme] = (state.themeCounts[theme] || 0) + 1;
-      state.recentThemes.push(theme);
-      if (state.recentThemes.length > 10) state.recentThemes.shift();
+      state.theme = themeName;
+      state.sourcePdf = pickPdf(themeName);
 
-      const variantIdx = (state.themeCounts[theme] - 1) % themeData.directives.length;
-      const d = themeData.directives[variantIdx];
+      const explanation = `${themeData.explanation} Reference PDF: ${state.sourcePdf}.`;
+      const sourceLine = `Reference PDF: ${state.sourcePdf} | Source doctrine: ${themeData.op}`;
 
-      const pdfMatches = findBestPdfMatches(theme, 2);
-      pdfMatches.forEach(m => {
-        if (m.citKey) state.recentCitations.push(m.citKey);
-      });
-      if (state.recentCitations.length > 20) {
-        state.recentCitations = state.recentCitations.slice(-20);
-      }
-      saveState();
+      const html = `
+        <h2>${themeData.title}</h2>
+        <div class="meta">
+          Directive #${state.directiveCount} • ${autoRotation ? 'Auto-balanced rotation' : 'Manual selection'}
+        </div>
 
-      const repoLabel = document.getElementById("githubRepo").value.trim() || "GitHub Repository";
-      const sourceCitation = pdfMatches.length > 0
-        ? `GitHub Repo PDFs (${repoLabel}): ${pdfMatches.map(m => `${m.fileName} [p.${m.pageNum}]`).join(" + ")} | Foundational Doctrine: ${d.source}`
-        : `${d.source} (No readable PDFs indexed yet — place PDFs in this GitHub repo or attach locally)`;
+        <p><strong>Focus:</strong> ${themeData.op}</p>
+        <p><strong>Explanation:</strong> ${explanation}</p>
+        <p><strong>Daily challenge:</strong> ${themeData.challenge}</p>
 
-      const explanationWithPdf = pdfMatches.length > 0
-        ? `${d.explanation} — Extracted Repo Intelligence (${pdfMatches[0].fileName}, p.${pdfMatches[0].pageNum}): "${pdfMatches[0].excerpt}"`
-        : d.explanation;
+        <ul>
+          <li>${themeData.habits[0]}</li>
+          <li>${themeData.habits[1]}</li>
+        </ul>
 
-      const recentStr = state.recentThemes.slice(-4).join(" → ");
-      const nextUp = getNextBalancedTheme();
-      const strip = document.getElementById("rotationStrip");
-      strip.style.display = "block";
-      strip.innerHTML = `
-        <strong>Tactical Rotation:</strong> Targeting <strong>${escapeHtml(theme)}</strong> today
-        (${isAutoRotation ? "Auto-Balanced Rotation" : "Direct Tactical Selection"})
-        &nbsp;•&nbsp; Recent: ${escapeHtml(recentStr)}
-        &nbsp;•&nbsp; Next Scheduled: <strong>${escapeHtml(nextUp)}</strong>
-      `;
+        <p><strong>Remember:</strong> ${themeData.sentence}</p>
 
-      document.getElementById("printMeta").innerHTML = `
-        <span>Tactical Mindset Commander • Directive #${state.directiveCount}</span>
-        <span>${new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}</span>
-      `;
-
-      // Strict Markdown Output
-      currentMarkdownText = [
-        `Mindset Directive ${state.directiveCount}: ${theme}`,
-        ` * Mindset title: ${d.op}`,
-        ` * Explanation: ${explanationWithPdf}`,
-        ` * Daily challenge: ${d.challenge}`,
-        ` * Habits to inculcate:`,
-        `   * ${d.habits[0]}`,
-        `   * ${d.habits[1]}`,
-        ` * One sentence to remember: ${d.sentence}`,
-        ` * Reflection prompt: ${d.reflection}`,
-        ` * Mindmap:`,
-        `   * ${d.mindmap.root}`,
-        ...d.mindmap.branches.flatMap(b => [
-          `     * ${b.title}`,
-          ...b.items.map(item => `       * ${item}`)
-        ]),
-        ` * Source: ${sourceCitation}`
-      ].join("\n");
-
-      document.getElementById("rawMarkdownBox").textContent = currentMarkdownText;
-
-      document.getElementById("briefingContent").innerHTML = `
-        <h2 class="directive-title">Mindset Directive ${state.directiveCount}: ${escapeHtml(theme)}</h2>
-        <div class="operation-subtitle">${escapeHtml(d.op)}</div>
-
-        <div class="directive-sections">
-          <div class="d-block">
-            <div class="d-label">Explanation</div>
-            <div class="d-content">${escapeHtml(d.explanation)}</div>
-            ${pdfMatches.map(m => `
-              <div class="pdf-intel-card">
-                <div class="pdf-intel-meta">
-                  <span>REPO PDF INTEL • ${escapeHtml(m.fileName)} (Page ${m.pageNum})</span>
-                  ${m.url ? `<a href="${escapeHtml(m.url)}#page=${m.pageNum}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">Open PDF &#8599;</a>` : ""}
-                </div>
-                <div class="pdf-intel-quote">"${escapeHtml(m.excerpt)}"</div>
-              </div>
-            `).join("")}
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Daily Challenge</div>
-            <div class="d-content">${escapeHtml(d.challenge)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Habits to Inculcate</div>
-            <ul class="habit-list d-content">
-              <li>${escapeHtml(d.habits[0])}</li>
-              <li>${escapeHtml(d.habits[1])}</li>
-            </ul>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">One Sentence to Remember</div>
-            <div class="anchor-quote">${escapeHtml(d.sentence)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Reflection Prompt</div>
-            <div class="d-content">${escapeHtml(d.reflection)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Mindmap</div>
-            <div class="mindmap-box">
-              <ul>
-                <li>
-                  <span class="mindmap-root-label">${escapeHtml(d.mindmap.root)}</span>
-                  <ul>
-                    ${d.mindmap.branches.map(b => `
-                      <li>
-                        <strong>${escapeHtml(b.title)}</strong>
-                        <ul>
-                          ${b.items.map(it => `<li>${escapeHtml(it)}</li>`).join("")}
-                        </ul>
-                      </li>
-                    `).join("")}
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Source</div>
-            <div class="d-content" style="font-size: 0.9rem; color: var(--text-secondary);">
-              ${escapeHtml(sourceCitation)}
-            </div>
-          </div>
+        <div class="source-box">
+          <strong>Source PDF:</strong> ${state.sourcePdf}<br />
+          <strong>Source note:</strong> ${sourceLine}
         </div>
       `;
 
-      // Smooth scroll to briefing on smaller viewports
-      if (window.innerWidth < 940) {
-        document.getElementById("briefingCard").scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
+      briefingEl.innerHTML = html;
+      directiveCountTag.textContent = `Directive #${state.directiveCount}`;
 
-    function setViewMode(mode) {
-      currentViewMode = mode;
-      document.getElementById("segFormatted").classList.toggle("active", mode === "formatted");
-      document.getElementById("segMarkdown").classList.toggle("active", mode === "markdown");
-      document.getElementById("briefingBody").style.display = mode === "formatted" ? "block" : "none";
-      document.getElementById("rawMarkdownBox").style.display = mode === "markdown" ? "block" : "none";
-    }
+      state.markdown = [
+        `Directive ${state.directiveCount}: ${themeData.title}`,
+        `- Focus: ${themeData.op}`,
+        `- Explanation: ${explanation}`,
+        `- Daily challenge: ${themeData.challenge}`,
+        `- Habit 1: ${themeData.habits[0]}`,
+        `- Habit 2: ${themeData.habits[1]}`,
+        `- Remember: ${themeData.sentence}`,
+        `- Reference PDF: ${state.sourcePdf}`
+      ].join('\n');
 
-    async function printBriefingPdf() {
-      if (!currentMarkdownText) {
-        await deployNextRotation();
-      }
-      if (currentViewMode !== "formatted") {
-        setViewMode("formatted");
-      }
-      requestAnimationFrame(() => window.print());
+      renderThemes();
     }
 
     function copyMarkdown() {
-      if (!currentMarkdownText) {
-        showToast("Touch a Mindset button first");
-        return;
+      if (!state.markdown) {
+        generateDirective(themes[0].name, true);
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(currentMarkdownText)
-          .then(() => showToast("Markdown copied to clipboard"))
-          .catch(() => fallbackCopyText(currentMarkdownText));
-      } else {
-        fallbackCopyText(currentMarkdownText);
-      }
+      navigator.clipboard.writeText(state.markdown)
+        .then(() => alert('Markdown copied.'))
+        .catch(() => alert('Copy failed.'));
     }
 
-    function fallbackCopyText(text) {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      try {
-        document.execCommand("copy");
-        showToast("Markdown copied to clipboard");
-      } catch {
-        showToast("Copy failed — switch to Markdown view");
-      }
-      document.body.removeChild(ta);
+    function toggleTheme() {
+      body.classList.toggle('dark');
     }
 
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+    function printBriefingPdf() {
+      if (!state.markdown) {
+        generateDirective(themes[0].name, true);
+      }
+      window.print();
     }
 
-    // ---------------- INITIALIZATION ----------------
-    window.addEventListener("DOMContentLoaded", () => {
-      initAppearance();
-      configurePdfWorker();
-      updateDashboardUI();
-
-      const detected = detectGithubRepoFromLocation();
-      if (detected) {
-        document.getElementById("githubRepo").value = `${detected.owner}/${detected.repo}`;
-        if (detected.branch) document.getElementById("githubBranch").value = detected.branch;
-        scanGithubRepoPdfs({ detectedInfo: detected });
-      } else {
-        document.getElementById("pdfStatusLog").textContent =
-          "Enter owner/repo above or deploy on GitHub Pages for automatic PDF scanning.";
-      }
+    document.getElementById('deployBtn').addEventListener('click', () => {
+      const nextTheme = themes[state.directiveCount % themes.length].name;
+      generateDirective(nextTheme, true);
     });
+
+    document.getElementById('copyBtn').addEventListener('click', copyMarkdown);
+    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+    document.getElementById('printBtn').addEventListener('click', printBriefingPdf);
+
+    renderThemes();
+    renderPdfList();
   </script>
 </body>
 </html>
