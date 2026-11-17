@@ -7,79 +7,859 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Briefing — PDF Library</title>
+  <title>Mindset Briefing — Tactical Commander</title>
   <style>
     :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.84);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.15);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#248a3d;--danger:#b42318;--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:48px;--radius:26px}
     body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.9);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--danger:#ff6961;--shadow:0 20px 55px rgba(0,0,0,.32),0 3px 12px rgba(0,0,0,.2)}
     *{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;min-height:100vh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Arial,sans-serif;line-height:1.55;background:radial-gradient(ellipse at 10% 0%,var(--soft),transparent 34rem),var(--bg);color:var(--text);transition:background .22s,color .22s}
     button,input{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1120px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
     .topbar{position:sticky;z-index:5;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(22px,5vw,40px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em}.logo{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 17px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.9rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
-    .hero{position:relative;overflow:hidden;padding:clamp(25px,6vw,58px);border-radius:var(--radius);margin-bottom:24px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:12px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:0 0 14px;font-size:clamp(2.4rem,8vw,4.7rem);line-height:1.01;letter-spacing:-.06em}.subtitle{max-width:68ch;margin:0 0 22px;color:var(--muted);font-size:clamp(1rem,2.4vw,1.1rem);line-height:1.65}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:26px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
-    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:122px;padding:16px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card h3{margin:9px 0 2px;font-size:.98rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.82rem;line-height:1.45}
-    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.65fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,24px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.4rem,4vw,2.05rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:4px}.result-intro{margin:0 0 14px;color:var(--muted);font-size:.84rem}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:7px 0 14px;padding:7px 11px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.78rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:13px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 7px;font-size:.91rem;font-weight:750}.extract{padding:12px 14px;margin:8px 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.72;white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover{text-decoration:underline}
-    .mindmap{padding:12px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:9px}.mindmap-list{list-style:none;padding:0;margin:0 0 0 10px;border-left:2px solid var(--border)}.mindmap-list>li{padding:2px 0 7px 13px}.mindmap-list ul{list-style:none;padding:0;margin:7px 0 2px 7px;border-left:1px solid var(--border)}.mindmap-list ul li{padding:2px 0 7px 13px}.mindmap .extract{margin-top:6px}.controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:360px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-status{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:rgba(52,199,89,.14);color:var(--success);font-size:.68rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    @media(max-width:720px){.workspace{grid-template-columns:1fr}}@media(max-width:520px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:7px;font-size:.82rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:108px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,#themeGrid,.section-head,aside{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap{break-inside:avoid;background:#fff}}
+    .hero{position:relative;overflow:hidden;padding:clamp(25px,6vw,58px);border-radius:var(--radius);margin-bottom:24px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:12px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:0 0 14px;font-size:clamp(2.4rem,8vw,4.5rem);line-height:1.02;letter-spacing:-.05em}.subtitle{max-width:68ch;margin:0 0 22px;color:var(--muted);font-size:clamp(1rem,2.4vw,1.08rem);line-height:1.65}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:26px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:122px;padding:16px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:9px 0 2px;font-size:.98rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.82rem;line-height:1.45}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.65fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,24px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:6px 0 10px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 11px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:13px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 7px;font-size:.9rem;font-weight:750;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.field-body{margin:0;font-size:.97rem;line-height:1.65}.habit-list{margin:4px 0 0;padding-left:20px;display:grid;gap:6px}.anchor-sentence{padding:12px 15px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.02rem}.extract{padding:12px 14px;margin:10px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.65;font-size:.9rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
+    .mindmap{padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:8px}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:3px 0 8px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:5px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:2px 0}.controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:300px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-status{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:rgba(52,199,89,.14);color:var(--success);font-size:.68rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.55;display:none}
+    @media(max-width:720px){.workspace{grid-template-columns:1fr}}@media(max-width:520px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:7px;font-size:.82rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:108px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,#themeGrid,.section-head,aside,.raw-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field{break-inside:avoid;background:#fff}}
   </style>
 </head>
 <body>
 <main class="wrap">
-  <header class="topbar glass"><div class="brand"><span class="logo" aria-hidden="true">M</span><span>Mindset Briefing</span></div><div class="actions"><button id="themeBtn" class="secondary" type="button" aria-pressed="false">◐ Appearance</button><button id="printBtn" class="primary" type="button">Print / Save PDF</button></div></header>
-  <section class="hero glass"><div class="eyebrow">A practical operating framework</div><h1>Clarity under pressure.</h1><p class="subtitle">Create a tactical directive in the exact requested format. Each directive uses material from one repository PDF only. Every excerpt is cited by filename and page; missing evidence is never filled with invented text.</p><div class="actions"><button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button></div></section>
-  <div class="section-head"><h2>Choose a tactical focus</h2><span id="rotationHint">Balanced rotation · one source PDF per directive</span></div>
+  <header class="topbar glass">
+    <div class="brand"><span class="logo" aria-hidden="true">M</span><span>Mindset Commander</span></div>
+    <div class="actions">
+      <button id="themeBtn" class="secondary" type="button" aria-pressed="false">◐ Appearance</button>
+      <button id="printBtn" class="primary" type="button">Print / Save PDF</button>
+    </div>
+  </header>
+
+  <section class="hero glass">
+    <div class="eyebrow">Elite Performance Mentor • Tactical Mindset Conditioning</div>
+    <h1>Clarity under pressure.</h1>
+    <p class="subtitle">Translating elite military, athletic, and leadership doctrines from your GitHub PDF library into daily execution protocols for automotive audio software engineering (C/C++, HAL, Linux kernel drivers), team leadership, and family life in Bengaluru.</p>
+    <div class="actions">
+      <button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button>
+      <button id="toggleMdBtn" class="secondary" type="button">Toggle Markdown</button>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Core Operational Matrix — Touch to Deploy</h2>
+    <span id="rotationHint">Balanced rotation • tracking recent themes</span>
+  </div>
   <section id="themeGrid" class="theme-grid" aria-label="Tactical themes"></section>
-  <section class="workspace" aria-label="PDF response and repository library">
-    <section class="panel glass" aria-labelledby="outputTitle"><div class="panel-head"><strong id="outputTitle">PDF-grounded directive</strong><span id="resultCount" class="tag" aria-live="polite">Scanning…</span></div><article id="result" class="result" aria-live="polite" aria-atomic="true"><h2>Scanning repository PDFs…</h2><p>Responses become available after repository PDFs are scanned.</p></article></section>
-    <aside class="panel glass" aria-labelledby="libraryTitle"><div class="panel-head"><strong id="libraryTitle">Repository PDF library</strong><span id="pdfCount" class="tag">Not scanned</span></div>
-      <div class="controls"><label class="label" for="repoInput">Public repository (owner/repo)</label><input id="repoInput" class="input" type="text" autocomplete="url" spellcheck="false"><label class="label" for="branchInput">Branch (optional)</label><input id="branchInput" class="input" type="text" placeholder="Default branch" autocomplete="off" spellcheck="false"><button id="scanBtn" type="button">Scan / rescan all PDFs</button></div>
-      <div id="progress" class="scan-progress" hidden aria-hidden="true"><span></span></div><p class="status" id="scanStatus" aria-live="polite">Starting repository scan…</p><div id="pdfList" class="pdf-list" aria-label="PDFs discovered in the repository"></div><div style="margin-top:12px"><button id="copyBtn" type="button" style="width:100%">Copy directive</button></div><p id="copyStatus" class="copy-status" aria-live="polite"></p><p class="status">Public repositories only. PDFs are extracted in this browser; scanned image-only PDFs require OCR and are never substituted with invented content.</p>
+
+  <section class="workspace" aria-label="Tactical briefing and repository library">
+    <section class="panel glass" aria-labelledby="outputTitle">
+      <div class="panel-head">
+        <strong id="outputTitle">The Tactical Briefing</strong>
+        <span id="resultCount" class="tag" aria-live="polite">Scanning…</span>
+      </div>
+      <article id="result" class="result" aria-live="polite" aria-atomic="true">
+        <h2>Scanning repository PDFs…</h2>
+        <p>Directives unlock once repository PDFs are indexed.</p>
+      </article>
+      <pre id="rawMd" class="raw-box"></pre>
+    </section>
+
+    <aside class="panel glass" aria-labelledby="libraryTitle">
+      <div class="panel-head">
+        <strong id="libraryTitle">Repository PDF library</strong>
+        <span id="pdfCount" class="tag">Not scanned</span>
+      </div>
+      <div class="controls">
+        <label class="label" for="repoInput">Public repository (owner/repo)</label>
+        <input id="repoInput" class="input" type="text" autocomplete="url" spellcheck="false">
+        <label class="label" for="branchInput">Branch (optional)</label>
+        <input id="branchInput" class="input" type="text" placeholder="Default branch" autocomplete="off" spellcheck="false">
+        <button id="scanBtn" type="button">Scan / rescan all PDFs</button>
+      </div>
+      <div id="progress" class="scan-progress" hidden aria-hidden="true"><span></span></div>
+      <p class="status" id="scanStatus" aria-live="polite">Starting repository scan…</p>
+      <div id="pdfList" class="pdf-list" aria-label="PDFs discovered in the repository"></div>
+      <div style="margin-top:12px;display:grid;gap:8px">
+        <button id="copyBtn" type="button" style="width:100%">Copy Tactical Briefing (MD)</button>
+        <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation Log</button>
+      </div>
+      <p id="copyStatus" class="copy-status" aria-live="polite"></p>
+      <p class="status">Public repositories only. All PDF text is extracted locally in your browser.</p>
     </aside>
   </section>
 </main>
+
 <script>
 'use strict';
-const THEMES=[
- {name:'Discipline',icon:'✓',summary:'Standards, habits, and consistent execution.',terms:['discipline','standard','checklist','habit','routine','rigor','consistency','principle','code','integrity']},
- {name:'Focus',icon:'◎',summary:'Attention, practice, and deliberate execution.',terms:['focus','attention','conscious','practice','intention','concentration','distraction','immersion']},
- {name:'Situational Awareness',icon:'◉',summary:'Observation, context, and emotional poise.',terms:['awareness','observation','situation','context','signal','risk','clarity','perception','emotion']},
- {name:'Quick Decision-Making',icon:'↗',summary:'Decisive action under uncertainty.',terms:['decision','decide','judgment','choice','action','uncertainty','stalemate','adapt']},
- {name:'Quick Reflection / Self-Correction',icon:'↻',summary:'Review, learning, and ego-free correction.',terms:['reflection','review','feedback','learning','correction','improvement','mistake','failure']},
- {name:'Efficiency',icon:'◇',summary:'Priorities, systems, and effective work.',terms:['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution']}
+
+const THEMES = [
+  {
+    name: 'Discipline',
+    icon: '✓',
+    summary: 'Microscopic standards, checklists & uncompromising effort.',
+    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution'],
+    ops: [
+      {
+        title: 'OPERATION RINSE: THE DISCIPLINE OF MICROSCOPIC STANDARDS',
+        explanation: 'Elite units and enduring organizations never separate high-level strategy from microscopic execution. In Good to Great, relentless daily discipline ("rinsing the cottage cheese") compounds into unstoppable momentum. In automotive audio C/C++ HALs and Linux ALSA/ASoC kernel drivers, a single unchecked buffer boundary, missing mutex unlock, or compiler warning ignored today becomes a 2 AM target deadlock.',
+        challenge: 'Before committing any C/C++ HAL or Linux driver patch today, run a zero-compromise 5-point gate: compile with -Wall -Wextra clean, verify DMA buffer bounds, audit lock-ordering, confirm clean error unwinding, and inspect every line of git diff.',
+        habits: [
+          'Protect the first 45 minutes of your morning in Bengaluru for deep engineering architecture or code review with Slack and email closed.',
+          'Execute a 7:00 PM hard shutdown ritual: write tomorrow’s #1 engineering priority on paper before closing your laptop so your family gets your full presence.'
+        ],
+        sentence: 'Microscopic standards in quiet hours prevent catastrophic failures under fire.',
+        reflection: 'Where did I rationalize a shortcut today in code verification, communication, or presence at home?',
+        mindmap: {
+          concept: 'Discipline: Microscopic Standards',
+          subs: [
+            { title: 'Engineering Rigor', details: ['Zero-warning C/C++ HAL builds', 'Checklist-verified ALSA/ASoC patches'] },
+            { title: 'Personal Boundaries', details: ['Protected morning deep-work block', '7:00 PM hard shutdown for family'] }
+          ]
+        },
+        doctrine: 'Jim Collins – Good to Great (20-Mile March); Commando Standard Operating Doctrine'
+      },
+      {
+        title: 'OPERATION IRON GATE: METHODICAL CHECKLIST EXECUTION',
+        explanation: 'Discipline is the architecture of freedom. When OEM vehicle milestone deadlines tighten and DSP defects cascade, raw willpower collapses unless anchored by repeatable checklists and automated verification.',
+        challenge: 'Identify one repetitive friction point in your automotive audio build, target-flashing, or ALSA xrun log-capture workflow today and codify it into a repeatable script or checklist.',
+        habits: [
+          'Take a 3-minute mental reset between debug war-rooms and stepping through your home door in Bengaluru.',
+          'Document exact reproduction steps, dmesg output, and PCM state immediately whenever an audio glitch occurs.'
+        ],
+        sentence: 'Methodical systems outlast willpower when operational tempo turns hostile.',
+        reflection: 'Which recurring task wasted cognitive bandwidth today because I lacked a rigid checklist?',
+        mindmap: {
+          concept: 'Discipline: Systematized Execution',
+          subs: [
+            { title: 'Workflow Automation', details: ['Deterministic target flash scripts', 'Standardized xrun debug capture'] },
+            { title: 'Recovery Cadence', details: ['Post-commute decompression reset', 'Consistent sleep and wake anchor'] }
+          ]
+        },
+        doctrine: 'Jocko Willink – Discipline Equals Freedom; Special Operations Pre-Mission Checklists'
+      }
+    ]
+  },
+  {
+    name: 'Focus',
+    icon: '◎',
+    summary: 'Channeling cognitive force & eliminating extraneous noise.',
+    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness'],
+    ops: [
+      {
+        title: 'OPERATION MONOLITH: TOTAL PRESENT IMMERSION',
+        explanation: 'In The Mindful Athlete, championship performance happens inside the eye of the storm—total immersion in the single execution rep in front of you. Fragmenting attention across interrupt latency traces, Jira pings, and Bengaluru traffic drains cognitive horsepower.',
+        challenge: 'Lock in two uninterrupted 60-minute Monolith Blocks today on your toughest C++ audio routing or Linux codec concurrency bug: all notifications silenced, single IDE/terminal workspace, physical timer running.',
+        habits: [
+          'State and write down the exact falsifiable hypothesis before modifying a single line of driver or HAL code.',
+          'Dock your phone in another room during family dinner and bedtime in Bengaluru—give 100% present bandwidth.'
+        ],
+        sentence: 'Where attention locks without fracture, engineering force multiplies.',
+        reflection: 'How many times did I allow low-value pings to break my deep cognitive immersion today?',
+        mindmap: {
+          concept: 'Focus: Cognitive Target Lock',
+          subs: [
+            { title: 'Noise Elimination', details: ['Silence non-critical alerts during debug', 'Single-tasking on kernel traces'] },
+            { title: 'Present Immersion', details: ['Hypothesis-first code changes', 'Phone-free evening family presence'] }
+          ]
+        },
+        doctrine: 'George Mumford – The Mindful Athlete; Deep Work Cognitive Doctrine'
+      }
+    ]
+  },
+  {
+    name: 'Situational Awareness',
+    icon: '◉',
+    summary: 'Detached peripheral clarity & emotional poise under fire.',
+    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception'],
+    ops: [
+      {
+        title: 'OPERATION OVERWATCH: DETACHED PERIPHERAL CLARITY',
+        explanation: 'The 48 Laws of Power and tactical field doctrines emphasize reading the entire terrain before engaging. Emotional reactivity creates tunnel vision; detached poise lets you read team politics, supplier risk, and subtle hardware anomalies simultaneously.',
+        challenge: 'In your next cross-functional sync or OEM escalation call, hold silence for the first 3 minutes while mapping stakeholders’ real constraints (schedule pressure vs. technical risk vs. ownership gaps) before speaking.',
+        habits: [
+          'Execute a 4-second tactical exhale whenever a sudden escalation or Bengaluru traffic bottleneck triggers irritation.',
+          'Listen in daily standups for the unspoken integration dependency between HAL, DSP firmware, and kernel teams.'
+        ],
+        sentence: 'He who controls his emotional temperature commands the entire room.',
+        reflection: 'Did I react defensively under fire today, or did I read the full battlefield from high ground?',
+        mindmap: {
+          concept: 'Situational Awareness: High-Ground Clarity',
+          subs: [
+            { title: 'Internal Poise', details: ['4-second breath reset under pressure', 'Detach ego from code ownership'] },
+            { title: 'Terrain Mapping', details: ['Read stakeholder incentives early', 'Spot silent cross-layer blockers'] }
+          ]
+        },
+        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Combat Situational Awareness'
+      }
+    ]
+  },
+  {
+    name: 'Quick Decision-Making',
+    icon: '↗',
+    summary: 'Adaptive target acquisition & breaking analysis paralysis.',
+    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice'],
+    ops: [
+      {
+        title: 'OPERATION OODA STRIKE: BREAKING THE STALEMATE',
+        explanation: 'Analysis paralysis is fatal in dynamic operations. John Boyd’s OODA Loop (Observe–Orient–Decide–Act) proves rapid iteration with 70% certainty defeats delayed perfection. Waiting for complete vendor specs stalls entire automotive audio milestones.',
+        challenge: 'Select one stalled technical call today (buffer sizing, IPC locking, or temporary mitigation vs. root fix) and force a binary decision within 20 minutes: pick the reversible path and validate it on target hardware immediately.',
+        habits: [
+          'Classify decisions as Type-1 (irreversible architecture) or Type-2 (reversible implementation); execute Type-2 calls immediately.',
+          'Close every technical debate with an explicit owner, concrete action, and time-boxed verification checkpoint.'
+        ],
+        sentence: 'Imperfect velocity with fast hardware telemetry beats motionless perfection.',
+        reflection: 'What reversible decision did I delay today out of fear of being wrong?',
+        mindmap: {
+          concept: 'Quick Decision-Making: OODA Velocity',
+          subs: [
+            { title: 'Anti-Paralysis', details: ['70% threshold for Type-2 calls', '20-minute time-boxed design calls'] },
+            { title: 'Rapid Telemetry', details: ['Test early on target audio bench', 'Clear owner and checkpoint'] }
+          ]
+        },
+        doctrine: 'Col. John Boyd – OODA Loop Doctrine; High-Tempo Command Protocols'
+      }
+    ]
+  },
+  {
+    name: 'Quick Reflection / Self-Correction',
+    icon: '↻',
+    summary: 'Ego-free adaptation & blameless autopsies.',
+    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust'],
+    ops: [
+      {
+        title: 'OPERATION BLACK BOX: EGO-FREE AUTOPSY',
+        explanation: 'Elite aviation and special operations conduct ruthless, blameless After-Action Reviews (AARs) immediately after every sortie. Ego conceals root causes; brutal honesty turns a failed test-bench run or tense family moment into actionable intelligence.',
+        challenge: 'Run a 10-minute Black Box review on one bug escape, integration delay, or miscommunication from this week: state expected vs. actual outcome, identify the missing systemic guardrail, and deploy one fix today.',
+        habits: [
+          'When a teammate breaks the audio build, ask "What automated guardrail was missing?" before blaming anyone.',
+          'Run a 3-minute nightly debrief before sleep: 1 execution win, 1 friction point, 1 tactical adjustment for tomorrow.'
+        ],
+        sentence: 'Extract the intelligence, discard the ego, upgrade the protocol.',
+        reflection: 'What uncomfortable truth about my own blind spot did today reveal?',
+        mindmap: {
+          concept: 'Quick Reflection: Blameless AAR',
+          subs: [
+            { title: 'Engineering Telemetry', details: ['Expected vs. actual outcome', 'Harden CI and static checks'] },
+            { title: 'Daily Self-Audit', details: ['1 win / 1 gap / 1 fix nightly', 'Zero defensiveness in reviews'] }
+          ]
+        },
+        doctrine: 'US Special Operations After-Action Review (AAR); Ray Dalio – Principles'
+      }
+    ]
+  },
+  {
+    name: 'Efficiency',
+    icon: '◇',
+    summary: 'Concentrating force on specifics & breaking circular traps.',
+    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint'],
+    ops: [
+      {
+        title: 'OPERATION SCALPEL: HIGH-LEVERAGE CONCENTRATION',
+        explanation: 'Motion is not progress. Circular debugging, redundant status meetings, and premature optimization burn fuel without moving the mission. Efficiency means concentrating decisive force on the single constraint governing system throughput.',
+        challenge: 'Audit your task queue at 9:30 AM and ruthlessly cut or defer 30% of low-leverage noise. Pour the reclaimed energy into your #1 critical-path audio/kernel deliverable or high-leverage mentoring.',
+        habits: [
+          'Use binary-search isolation (git bisect / layer-by-layer tap across HAL → ALSA → DSP) instead of blind print-statement guessing.',
+          'Batch Slack/Teams and email replies into two fixed 15-minute windows instead of reacting continuously.'
+        ],
+        sentence: 'Cut the trivial many so decisive force strikes the vital few.',
+        reflection: 'Was I merely busy today, or did I measurably advance the critical path?',
+        mindmap: {
+          concept: 'Efficiency: Force Multiplication',
+          subs: [
+            { title: 'Critical Path Strike', details: ['Isolate true system constraint', 'Binary-search root-cause debug'] },
+            { title: 'Friction Removal', details: ['Batch async communications', 'Decline agenda-less meetings'] }
+          ]
+        },
+        doctrine: 'Eliyahu Goldratt – Theory of Constraints; Greg McKeown – Essentialism'
+      }
+    ]
+  }
 ];
-const FIELDS=[
- {name:'Explanation',terms:['explanation','principle','practice','focus','discipline','attention','values','standard','learning','effective']},
- {name:'Daily challenge',terms:['challenge','practice','apply','action','today','do','act','focus','decision','habit']},
- {name:'One sentence to remember',terms:['remember','important','key','principle','success','focus','discipline','practice','effective']},
-];
-const SYSTEM_PROMPT=`ROLE AND PERSONA\nAct as a precise, direct, professional performance mentor who translates leadership and performance principles into practical directives. Do not claim military authority or invent personal context.\nCORE MATRIX\nUse the six themes exactly: Discipline; Focus; Situational Awareness; Quick Decision-Making; Quick Reflection / Self-Correction; Efficiency.\nEXECUTION\nRotate themes to avoid repeating the latest three; state today's targeted theme. Use exactly one PDF source per directive. Do not combine books. Use only text extracted from that selected PDF. Never invent quotes, title, source doctrine, habits, reflection, or mindmap details. If the PDF does not support a field, clearly mark it as not found. Personalize only when reliable user context is explicitly provided in the current request; do not assume location, workplace, family, or private details.\nOUTPUT (Markdown, exact field order)\nMindset Directive [Number]: [Theme Name]\n * Mindset title: [PDF-supported operation title; if not found, state so]\n * Explanation: [concise source-grounded passage]\n * Daily challenge: [actionable task supported by selected PDF; do not add unsupported context]\n * One sentence to remember: [source sentence or not found]\n * Mindmap:\n   * [Main Theme: Concept from PDF]\n     * [Sub-concept from PDF]\n       * [Supporting detail from PDF]\n       * [Supporting detail from PDF]\n     * [Second sub-concept from PDF]\n       * [Supporting detail from PDF]\n       * [Supporting detail from PDF]\n * Source: [exact PDF filename] — pages [page numbers]\nCite each sourced passage with the exact source filename/page. Preserve meaning, do not misattribute ideas, and do not cite other PDFs.`;
-const state={repo:'',branch:'',files:[],pages:[],scanComplete:false,controller:null,pdfjs:null,selected:0,markdown:'',directiveCount:0,recentThemes:[]};
-const $=id=>document.getElementById(id);
-function add(parent,tag,text,cls){const node=document.createElement(tag);if(cls)node.className=cls;node.textContent=String(text);parent.appendChild(node);return node}
-function setStatus(text,error=false){$('scanStatus').textContent=text;$('scanStatus').classList.toggle('error',error)}
-function repoFromUrl(){const host=location.hostname.toLowerCase(),parts=location.pathname.split('/').filter(Boolean);if(host.endsWith('.github.io')){const owner=host.slice(0,-10);if(owner&&parts[0])return `${owner}/${parts[0]}`;if(owner)return `${owner}/${owner}.github.io`}return ''}
-function validRepo(value){const match=String(value||'').trim().match(/^([A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)\/([A-Za-z0-9._-]+)$/);if(!match||match[2]==='.'||match[2]==='..')throw Error('Enter a public repository as owner/repo.');return `${match[1]}/${match[2]}`}
-async function githubJson(url,signal){const response=await fetch(url,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'},credentials:'omit',cache:'no-store',signal});if(!response.ok){if(response.status===403||response.status===429)throw Error('GitHub API rate limit reached. Wait, then rescan.');if(response.status===404)throw Error('Repository or branch not found, or it is not public.');throw Error(`GitHub request failed (${response.status}).`)}return response.json()}
-async function walkTrees(repo,rootSha,signal){const entries=[],queue=[{sha:rootSha,path:''}];while(queue.length){if(signal.aborted)throw new DOMException('Scan cancelled','AbortError');const current=queue.shift(),tree=await githubJson(`https://api.github.com/repos/${repo}/git/trees/${current.sha}`,signal);for(const node of tree.tree||[]){const path=current.path?`${current.path}/${node.path}`:node.path;if(node.type==='tree')queue.push({sha:node.sha,path});else if(node.type==='blob')entries.push({...node,path})}}return entries}
-async function discoverPdfs(repo,branch,signal){const info=await githubJson(`https://api.github.com/repos/${repo}`,signal);if(info.private)throw Error('This page can scan public repositories only.');const chosen=(branch||info.default_branch||'').trim();if(!chosen)throw Error('Could not determine the default branch.');const branchInfo=await githubJson(`https://api.github.com/repos/${repo}/branches/${encodeURIComponent(chosen)}`,signal),sha=branchInfo.commit?.commit?.tree?.sha;if(!sha)throw Error('Could not read the selected branch.');const tree=await githubJson(`https://api.github.com/repos/${repo}/git/trees/${sha}?recursive=1`,signal);const nodes=tree.truncated?await walkTrees(repo,sha,signal):(tree.tree||[]);return{branch:chosen,files:nodes.filter(node=>node.type==='blob'&&typeof node.path==='string'&&node.path.toLowerCase().endsWith('.pdf')).map(node=>({path:node.path,sha:node.sha,pages:[],error:'Pending'})).sort((a,b)=>a.path.localeCompare(b.path))}}
-function fileUrl(file){return `https://github.com/${state.repo}/blob/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`}
-async function loadPdfJs(){if(window.pdfjsLib)return window.pdfjsLib;if(state.pdfjs)return state.pdfjs;state.pdfjs=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';script.async=true;script.onload=()=>window.pdfjsLib?resolve(window.pdfjsLib):reject(Error('PDF text reader failed to initialize.'));script.onerror=()=>reject(Error('Could not load the PDF text reader. Check network and rescan.'));document.head.appendChild(script)});return state.pdfjs}
-async function extract(file,signal){const raw=`https://raw.githubusercontent.com/${state.repo}/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`,response=await fetch(raw,{credentials:'omit',cache:'no-store',signal});if(!response.ok)throw Error(`Download failed (${response.status}).`);const buffer=await response.arrayBuffer();if(buffer.byteLength<5||new TextDecoder().decode(buffer.slice(0,5))!=='%PDF-')throw Error('File is not a valid PDF.');const pdfjs=await loadPdfJs();pdfjs.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';const documentPdf=await pdfjs.getDocument({data:new Uint8Array(buffer),isEvalSupported:false,useWorkerFetch:false}).promise,pages=[];try{for(let number=1;number<=documentPdf.numPages;number++){if(signal.aborted)throw new DOMException('Scan cancelled','AbortError');const page=await documentPdf.getPage(number),content=await page.getTextContent(),text=content.items.map(item=>typeof item.str==='string'?item.str:'').join(' ').replace(/\s+/g,' ').trim();if(text)pages.push({pageNum:number,text});page.cleanup()}}finally{await documentPdf.destroy()}return pages}
-function renderFiles(){const list=$('pdfList');list.replaceChildren();for(const file of state.files){const row=document.createElement('div');row.className='pdf';const link=document.createElement('a');link.href=fileUrl(file);link.textContent=file.path;link.title=file.path;link.target='_blank';link.rel='noopener noreferrer';row.appendChild(link);add(row,'span',file.error==='Pending'?'Pending':file.error?'Unreadable':`${file.pages.length} pages`,'pdf-status');list.appendChild(row)}$('pdfCount').textContent=state.scanComplete?`${state.files.length} PDFs`:`${state.files.length} found`}
-async function scan(){if(state.controller)state.controller.abort();const controller=new AbortController();state.controller=controller;state.scanComplete=false;state.pages=[];state.files=[];state.markdown='';$('progress').hidden=false;$('scanBtn').disabled=true;$('deployBtn').disabled=true;$('resultCount').textContent='Scanning…';$('result').replaceChildren();add($('result'),'h2','Scanning repository PDFs…');add($('result'),'p','Responses are unavailable until every discovered PDF has been checked.');try{state.repo=validRepo($('repoInput').value);$('repoInput').value=state.repo;setStatus('Discovering all PDF files in the selected branch…');const found=await discoverPdfs(state.repo,$('branchInput').value,controller.signal);state.branch=found.branch;$('branchInput').value=state.branch;state.files=found.files;renderFiles();if(!state.files.length){state.scanComplete=true;setStatus('Scan complete: no PDFs found in this branch.');$('result').replaceChildren();add($('result'),'h2','No PDF sources found');add($('result'),'p','No directive generated.');return}let readable=0,failed=0;for(let index=0;index<state.files.length;index++){if(controller.signal.aborted)throw new DOMException('Scan cancelled','AbortError');const file=state.files[index];setStatus(`Extracting PDF ${index+1} of ${state.files.length}: ${file.path}`);try{file.pages=await extract(file,controller.signal);file.error=null;for(const page of file.pages)state.pages.push({...page,fileName:file.path,url:fileUrl(file)});readable++}catch(error){if(error.name==='AbortError')throw error;file.error=error.message||'Unable to extract PDF text';failed++}renderFiles()}state.scanComplete=true;renderFiles();setStatus(`Scan complete: ${state.files.length} PDF(s) discovered; readable text extracted from ${readable}.${failed?` ${failed} could not be read.`:''}`);$('result').replaceChildren();if(state.pages.length){add($('result'),'h2','PDF library ready');add($('result'),'p',`Scanned ${state.files.length} repository PDF(s). Choose a focus to create a directive sourced from one book only.`)}else{add($('result'),'h2','No readable PDF text');add($('result'),'p','No directive generated. Image-only PDFs may require OCR before they can be searched.')}}catch(error){if(error.name==='AbortError')setStatus('Scan cancelled.',true);else{setStatus(error.message||'Repository scan failed.',true);$('result').replaceChildren();add($('result'),'h2','Unable to scan PDFs');add($('result'),'p','No directive generated. Check the public repository and branch, then rescan.')}}finally{if(state.controller===controller)state.controller=null;$('progress').hidden=true;$('scanBtn').disabled=false;$('deployBtn').disabled=!state.scanComplete||!state.pages.length;renderThemes()}}
-function makePassages(page){const sentences=page.text.split(/(?<=[.!?])\s+|\n+/).map(text=>text.trim()).filter(Boolean),passages=[];let current='';for(const sentence of sentences){if(current&&(current+' '+sentence).length>850){passages.push(current);current=sentence}else current=(current+' '+sentence).trim()}if(current)passages.push(current);return passages.length?passages:[page.text.slice(0,850)]}
-function keywordScore(text,terms){const normalized=text.toLocaleLowerCase();return terms.reduce((score,term)=>score+(normalized.includes(term.toLocaleLowerCase())?1:0),0)}
-function getCandidates(pages,terms,used=new Set()){const candidates=[];for(const page of pages)for(const text of makePassages(page)){const key=`${page.fileName}:${page.pageNum}:${text}`,score=keywordScore(text,terms);if(score&&!used.has(key))candidates.push({score,length:text.length,text,key,fileName:page.fileName,pageNum:page.pageNum,url:page.url})}return candidates.sort((a,b)=>b.score-a.score||a.fileName.localeCompare(b.fileName)||a.pageNum-b.pageNum)}
-function chooseSingleSource(theme){return state.files.filter(file=>file.pages.length>0).map(file=>{const pages=file.pages.map(page=>({...page,fileName:file.path,url:fileUrl(file)}));const score=pages.reduce((total,page)=>total+makePassages(page).reduce((sum,text)=>sum+keywordScore(text,theme.terms),0),0);return{file,pages,score}}).sort((a,b)=>b.score-a.score||a.file.path.localeCompare(b.file.path))[0]||null}
-function bestPassageForField(pages,terms,used,short=false){const candidates=getCandidates(pages,terms,used);if(short)candidates.sort((a,b)=>b.score-a.score||Math.abs(a.length-180)-Math.abs(b.length-180));return candidates[0]||null}
-function appendCitation(parent,hit){const cite=document.createElement('div');cite.className='cite';cite.appendChild(document.createTextNode('PDF reference: '));const link=document.createElement('a');link.href=`${hit.url}#page=${hit.pageNum}`;link.textContent=`${hit.fileName} — page ${hit.pageNum}`;link.target='_blank';link.rel='noopener noreferrer';cite.appendChild(link);parent.appendChild(cite)}
-function appendQuote(parent,hit,label){const box=document.createElement('div');box.className='extract';add(box,'span',label,'extract-label');add(box,'blockquote',`“${hit.text}”`);appendCitation(box,hit);parent.appendChild(box)}
-function renderMindmap(container,theme,sourcePages,used,markdown){const mindmap=document.createElement('div');mindmap.className='mindmap';add(mindmap,'div',`• ${theme.name}`,'mindmap-root');const rootList=document.createElement('ul');rootList.className='mindmap-list';const candidates=getCandidates(sourcePages,[...theme.terms,'principle','habit','practice','standard','learning','action','attention'],used).slice(0,4);if(!candidates.length){const li=document.createElement('li');add(li,'span','No matching mindmap passage found in this PDF; no text was invented.');rootList.appendChild(li);markdown.push('  • No matching mindmap passage found in this PDF.')}else candidates.forEach((hit,index)=>{used.add(hit.key);const item=document.createElement('li');add(item,'span',`• Source concept ${index+1}`);const nested=document.createElement('ul');const sourceItem=document.createElement('li');appendQuote(sourceItem,hit,'Verbatim supporting text');nested.appendChild(sourceItem);item.appendChild(nested);rootList.appendChild(item);markdown.push(`  • Source concept ${index+1}`,`    • ${hit.text}`,`      PDF reference: ${hit.fileName} — page ${hit.pageNum}`)});mindmap.appendChild(rootList);container.appendChild(mindmap)}
-function renderThemes(){const grid=$('themeGrid');grid.replaceChildren();THEMES.forEach((theme,index)=>{const button=document.createElement('button');button.type='button';button.className=`theme-card glass${index===state.selected?' active':''}`;button.setAttribute('aria-pressed',String(index===state.selected));button.disabled=!state.scanComplete||!state.pages.length;const top=document.createElement('span');top.className='theme-top';const icon=add(top,'span',theme.icon,'theme-icon');icon.setAttribute('aria-hidden','true');add(top,'span','PDF DIRECTIVE','badge');button.appendChild(top);const detail=document.createElement('span');add(detail,'h3',theme.name);add(detail,'small',theme.summary);button.appendChild(detail);button.addEventListener('click',()=>createDirective(theme));grid.appendChild(button)})}
-function getNextBalancedTheme(){const recent=new Set(state.recentThemes.slice(-3));const usage=Object.fromEntries(THEMES.map(theme=>[theme.name,state.recentThemes.filter(item=>item===theme.name).length]));return THEMES.filter(theme=>!recent.has(theme.name)).sort((a,b)=>usage[a.name]-usage[b.name]||THEMES.indexOf(a)-THEMES.indexOf(b))[0]||THEMES[0]}
-function createDirective(theme){if(!state.scanComplete||!state.pages.length){setStatus('Scan readable PDFs before requesting a directive.',true);return}state.selected=THEMES.findIndex(item=>item.name===theme.name);state.directiveCount++;state.recentThemes.push(theme.name);if(state.recentThemes.length>12)state.recentThemes.shift();const source=chooseSingleSource(theme);if(!source){setStatus('No readable source PDF found; no directive generated.',true);return}const result=$('result'),used=new Set(),markdown=[`Mindset Directive ${state.directiveCount}: ${theme.name}`];result.replaceChildren();add(result,'h2',`Mindset Directive ${state.directiveCount}: ${theme.name}`,'directive-title');add(result,'div',`TODAY'S TARGET · ${theme.name}`,'source-book');add(result,'div',`SINGLE SOURCE · ${source.file.path}`,'source-book');add(result,'p','This directive uses text from one scanned PDF only. Passages are quoted, page-cited, and no unsupported field is filled with invented content.','result-intro');const titleSection=document.createElement('section');titleSection.className='field';add(titleSection,'h3','Mindset title:','field-title');const titleHit=bestPassageForField(source.pages,[...theme.terms,'operation','title','principle'],used,true);if(titleHit){used.add(titleHit.key);appendQuote(titleSection,titleHit,'Verbatim PDF passage');markdown.push(` * Mindset title: ${titleHit.text}`,`   * PDF reference: ${titleHit.fileName} — page ${titleHit.pageNum}`)}else{const missing=`No title passage found in ${source.file.path}; no title was invented.`;add(titleSection,'p',missing);markdown.push(` * Mindset title: ${missing}`)}result.appendChild(titleSection);const fieldConfigs=[{name:'Explanation',terms:[...theme.terms,'principle','practice','attention','values','standard','learning']},{name:'Daily challenge',terms:['challenge','practice','apply','action','today','act','focus','decision','habit']},{name:'One sentence to remember',terms:['remember','important','key','principle','success','focus','discipline','practice','effective']}];for(const config of fieldConfigs){const section=document.createElement('section');section.className='field';add(section,'h3',`${config.name}:`,'field-title');const hit=bestPassageForField(source.pages,config.terms,used,config.name!=='Explanation');if(hit){used.add(hit.key);appendQuote(section,hit,'Verbatim PDF passage');markdown.push(` * ${config.name}: ${hit.text}`,`   * PDF reference: ${hit.fileName} — page ${hit.pageNum}`)}else{const missing=`No matching passage found in ${source.file.path}; no content was invented.`;add(section,'p',missing);markdown.push(` * ${config.name}: ${missing}`)}result.appendChild(section)}const mapSection=document.createElement('section');mapSection.className='field';add(mapSection,'h3','Mindmap:','field-title');const mapMarkdown=[' * Mindmap:',`   * ${theme.name}`];renderMindmap(mapSection,theme,source.pages,used,mapMarkdown);result.appendChild(mapSection);const sourceSection=document.createElement('section');sourceSection.className='field';add(sourceSection,'h3','Source:','field-title');const sourceLink=document.createElement('a');sourceLink.href=fileUrl(source.file);sourceLink.target='_blank';sourceLink.rel='noopener noreferrer';sourceLink.textContent=source.file.path;sourceSection.appendChild(sourceLink);result.appendChild(sourceSection);markdown.push(mapMarkdown.join('\n'),` * Source: ${source.file.path}`);state.markdown=markdown.join('\n');$('resultCount').textContent=`1 source PDF · ${source.file.path}`;renderThemes()}
-async function copy(){if(!state.markdown){$('copyStatus').textContent='Generate a PDF-based directive first.';return}try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(state.markdown);else{const textarea=document.createElement('textarea');textarea.value=state.markdown;textarea.readOnly=true;textarea.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;font-size:16px';document.body.appendChild(textarea);textarea.select();const copied=document.execCommand('copy');textarea.remove();if(!copied)throw Error('Clipboard unavailable')}$('copyStatus').textContent='Single-source directive and citations copied.'}catch(error){$('copyStatus').textContent='Copy unavailable; select and copy the response manually.'}}
-function toggleTheme(){const dark=document.body.classList.toggle('dark');$('themeBtn').setAttribute('aria-pressed',String(dark));document.querySelector('meta[name="theme-color"]').content=dark?'#09090b':'#f5f5f7'}
-function print(){if(!state.markdown){$('copyStatus').textContent='Generate a cited directive before printing.';return}window.print()}
-$('scanBtn').addEventListener('click',scan);$('deployBtn').addEventListener('click',()=>createDirective(getNextBalancedTheme()));$('copyBtn').addEventListener('click',copy);$('themeBtn').addEventListener('click',toggleTheme);$('printBtn').addEventListener('click',print);$('repoInput').value=repoFromUrl();renderThemes();if($('repoInput').value)scan();else setStatus('Enter a public repository in owner/repo format, then scan.');
+
+const STORAGE_KEY = 'tactical_mindset_matrix_v1';
+
+function loadRotationState() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (raw && typeof raw === 'object') {
+      return {
+        directiveCount: Number(raw.directiveCount) || 0,
+        recentThemes: Array.isArray(raw.recentThemes) ? raw.recentThemes.slice(-18) : [],
+        recentPdfKeys: Array.isArray(raw.recentPdfKeys) ? raw.recentPdfKeys.slice(-24) : []
+      };
+    }
+  } catch {}
+  return { directiveCount: 0, recentThemes: [], recentPdfKeys: [] };
+}
+
+const persisted = loadRotationState();
+const state = {
+  repo: '',
+  branch: '',
+  files: [],
+  pages: [],
+  scanComplete: false,
+  controller: null,
+  pdfjs: null,
+  selected: 0,
+  markdown: '',
+  directiveCount: persisted.directiveCount,
+  recentThemes: persisted.recentThemes,
+  recentPdfKeys: persisted.recentPdfKeys,
+  showRawMd: false
+};
+
+function saveRotationState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      directiveCount: state.directiveCount,
+      recentThemes: state.recentThemes.slice(-18),
+      recentPdfKeys: state.recentPdfKeys.slice(-24)
+    }));
+  } catch {}
+}
+
+const $ = id => document.getElementById(id);
+
+function add(parent, tag, text, cls) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  node.textContent = String(text);
+  parent.appendChild(node);
+  return node;
+}
+
+function setStatus(text, error = false) {
+  $('scanStatus').textContent = text;
+  $('scanStatus').classList.toggle('error', error);
+}
+
+function repoFromUrl() {
+  const host = location.hostname.toLowerCase();
+  const parts = location.pathname.split('/').filter(Boolean);
+  if (host.endsWith('.github.io')) {
+    const owner = host.slice(0, -10);
+    if (owner && parts[0] && !parts[0].includes('.')) return `${owner}/${parts[0]}`;
+    if (owner) return `${owner}/${owner}.github.io`;
+  }
+  return '';
+}
+
+function validRepo(value) {
+  const match = String(value || '').trim().match(/^([A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)\/([A-Za-z0-9._-]+)$/);
+  if (!match || match[2] === '.' || match[2] === '..') throw Error('Enter a public repository as owner/repo.');
+  return `${match[1]}/${match[2]}`;
+}
+
+async function githubJson(url, signal) {
+  const response = await fetch(url, {
+    headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+    credentials: 'omit',
+    cache: 'no-store',
+    signal
+  });
+  if (!response.ok) {
+    if (response.status === 403 || response.status === 429) throw Error('GitHub API rate limit reached. Wait, then rescan.');
+    if (response.status === 404) throw Error('Repository or branch not found, or it is not public.');
+    throw Error(`GitHub request failed (${response.status}).`);
+  }
+  return response.json();
+}
+
+async function walkTrees(repo, rootSha, signal) {
+  const entries = [];
+  const queue = [{ sha: rootSha, path: '' }];
+  while (queue.length) {
+    if (signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
+    const current = queue.shift();
+    const tree = await githubJson(`https://api.github.com/repos/${repo}/git/trees/${current.sha}`, signal);
+    for (const node of tree.tree || []) {
+      const path = current.path ? `${current.path}/${node.path}` : node.path;
+      if (node.type === 'tree') queue.push({ sha: node.sha, path });
+      else if (node.type === 'blob') entries.push({ ...node, path });
+    }
+  }
+  return entries;
+}
+
+async function discoverPdfs(repo, branch, signal) {
+  const info = await githubJson(`https://api.github.com/repos/${repo}`, signal);
+  if (info.private) throw Error('This page can scan public repositories only.');
+  const chosen = (branch || info.default_branch || '').trim();
+  if (!chosen) throw Error('Could not determine the default branch.');
+  const branchInfo = await githubJson(`https://api.github.com/repos/${repo}/branches/${encodeURIComponent(chosen)}`, signal);
+  const sha = branchInfo.commit?.commit?.tree?.sha;
+  if (!sha) throw Error('Could not read the selected branch.');
+  const tree = await githubJson(`https://api.github.com/repos/${repo}/git/trees/${sha}?recursive=1`, signal);
+  const nodes = tree.truncated ? await walkTrees(repo, sha, signal) : (tree.tree || []);
+  return {
+    branch: chosen,
+    files: nodes
+      .filter(node => node.type === 'blob' && typeof node.path === 'string' && node.path.toLowerCase().endsWith('.pdf'))
+      .map(node => ({ path: node.path, sha: node.sha, pages: [], error: 'Pending' }))
+      .sort((a, b) => a.path.localeCompare(b.path))
+  };
+}
+
+function fileUrl(file) {
+  return `https://github.com/${state.repo}/blob/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
+}
+
+async function loadPdfJs() {
+  if (window.pdfjsLib) return window.pdfjsLib;
+  if (state.pdfjs) return state.pdfjs;
+  state.pdfjs = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+    script.async = true;
+    script.onload = () => window.pdfjsLib ? resolve(window.pdfjsLib) : reject(Error('PDF text reader failed to initialize.'));
+    script.onerror = () => reject(Error('Could not load the PDF text reader. Check network and rescan.'));
+    document.head.appendChild(script);
+  });
+  return state.pdfjs;
+}
+
+async function extract(file, signal) {
+  const raw = `https://raw.githubusercontent.com/${state.repo}/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
+  const response = await fetch(raw, { credentials: 'omit', cache: 'no-store', signal });
+  if (!response.ok) throw Error(`Download failed (${response.status}).`);
+  const buffer = await response.arrayBuffer();
+  if (buffer.byteLength < 5 || new TextDecoder().decode(buffer.slice(0, 5)) !== '%PDF-') {
+    throw Error('File is not a valid PDF.');
+  }
+  const pdfjs = await loadPdfJs();
+  pdfjs.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const documentPdf = await pdfjs.getDocument({
+    data: new Uint8Array(buffer),
+    isEvalSupported: false,
+    useWorkerFetch: false
+  }).promise;
+  const pages = [];
+  try {
+    for (let number = 1; number <= documentPdf.numPages; number++) {
+      if (signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
+      const page = await documentPdf.getPage(number);
+      const content = await page.getTextContent();
+      const text = content.items.map(item => (typeof item.str === 'string' ? item.str : '')).join(' ').replace(/\s+/g, ' ').trim();
+      if (text) pages.push({ pageNum: number, text });
+      page.cleanup();
+    }
+  } finally {
+    await documentPdf.destroy();
+  }
+  return pages;
+}
+
+function renderFiles() {
+  const list = $('pdfList');
+  list.replaceChildren();
+  for (const file of state.files) {
+    const row = document.createElement('div');
+    row.className = 'pdf';
+    const link = document.createElement('a');
+    link.href = fileUrl(file);
+    link.textContent = file.path;
+    link.title = file.path;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    row.appendChild(link);
+    add(row, 'span', file.error === 'Pending' ? 'Pending' : file.error ? 'Unreadable' : `${file.pages.length} pages`, 'pdf-status');
+    list.appendChild(row);
+  }
+  $('pdfCount').textContent = state.scanComplete ? `${state.files.length} PDFs` : `${state.files.length} found`;
+}
+
+async function scan() {
+  if (state.controller) state.controller.abort();
+  const controller = new AbortController();
+  state.controller = controller;
+  state.scanComplete = false;
+  state.pages = [];
+  state.files = [];
+  state.markdown = '';
+  $('progress').hidden = false;
+  $('scanBtn').disabled = true;
+  $('deployBtn').disabled = true;
+  $('resultCount').textContent = 'Scanning…';
+  $('result').replaceChildren();
+  add($('result'), 'h2', 'Scanning repository PDFs…');
+  add($('result'), 'p', 'Briefings unlock as soon as all PDFs in this repository are indexed.');
+
+  try {
+    state.repo = validRepo($('repoInput').value);
+    $('repoInput').value = state.repo;
+    setStatus('Discovering all PDF files in the selected branch…');
+    const found = await discoverPdfs(state.repo, $('branchInput').value, controller.signal);
+    state.branch = found.branch;
+    $('branchInput').value = state.branch;
+    state.files = found.files;
+    renderFiles();
+
+    if (!state.files.length) {
+      state.scanComplete = true;
+      setStatus('Scan complete: no PDFs found in this branch.');
+      $('result').replaceChildren();
+      add($('result'), 'h2', 'No PDF sources found');
+      add($('result'), 'p', 'Upload PDF books to this GitHub repository and rescan.');
+      return;
+    }
+
+    let readable = 0;
+    let failed = 0;
+    for (let index = 0; index < state.files.length; index++) {
+      if (controller.signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
+      const file = state.files[index];
+      setStatus(`Extracting PDF ${index + 1} of ${state.files.length}: ${file.path}`);
+      try {
+        file.pages = await extract(file, controller.signal);
+        file.error = null;
+        for (const page of file.pages) {
+          state.pages.push({ ...page, fileName: file.path, url: fileUrl(file) });
+        }
+        readable++;
+      } catch (error) {
+        if (error.name === 'AbortError') throw error;
+        file.error = error.message || 'Unable to extract PDF text';
+        failed++;
+      }
+      renderFiles();
+    }
+
+    state.scanComplete = true;
+    renderFiles();
+    setStatus(`Scan complete: ${state.files.length} PDF(s) discovered; ${readable} indexed.${failed ? ` ${failed} unreadable.` : ''}`);
+    $('result').replaceChildren();
+    if (state.pages.length) {
+      add($('result'), 'h2', 'PDF library indexed');
+      add($('result'), 'p', `Indexed ${readable} repository PDF(s). Touch "Deploy next directive" or select any tactical theme above.`);
+    } else {
+      add($('result'), 'h2', 'No readable PDF text');
+      add($('result'), 'p', 'Scanned image-only PDFs require OCR before text extraction.');
+    }
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      setStatus('Scan cancelled.', true);
+    } else {
+      setStatus(error.message || 'Repository scan failed.', true);
+      $('result').replaceChildren();
+      add($('result'), 'h2', 'Unable to scan PDFs');
+      add($('result'), 'p', 'Check that the repository and branch are public, then rescan.');
+    }
+  } finally {
+    if (state.controller === controller) state.controller = null;
+    $('progress').hidden = true;
+    $('scanBtn').disabled = false;
+    $('deployBtn').disabled = !state.scanComplete || !state.pages.length;
+    renderThemes();
+  }
+}
+
+function makePassages(page) {
+  const sentences = page.text.split(/(?<=[.!?])\s+|\n+/).map(t => t.trim()).filter(Boolean);
+  const passages = [];
+  let current = '';
+  for (const sentence of sentences) {
+    if (current && (current + ' ' + sentence).length > 420) {
+      passages.push(current);
+      current = sentence;
+    } else {
+      current = (current + ' ' + sentence).trim();
+    }
+  }
+  if (current) passages.push(current);
+  return passages.length ? passages : [page.text.slice(0, 420)];
+}
+
+function keywordScore(text, terms) {
+  const normalized = text.toLocaleLowerCase();
+  return terms.reduce((score, term) => {
+    const rx = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    return score + (rx.test(normalized) ? 1 : 0);
+  }, 0);
+}
+
+function findBestPdfEvidence(theme) {
+  const readableFiles = state.files.filter(f => f.pages.length > 0);
+  if (!readableFiles.length) return null;
+
+  const recentSet = new Set(state.recentPdfKeys);
+  const fileMatches = [];
+
+  for (const file of readableFiles) {
+    const pages = file.pages.map(p => ({ ...p, fileName: file.path, url: fileUrl(file) }));
+    let bestHit = null;
+    for (const page of pages) {
+      for (const text of makePassages(page)) {
+        if (text.length < 45) continue;
+        let score = keywordScore(text, theme.terms);
+        if (score === 0) continue;
+        const citKey = `${file.path}:${page.pageNum}`;
+        if (recentSet.has(citKey)) score -= 2; // Rotate passages/books across runs
+        if (!bestHit || score > bestHit.score) {
+          bestHit = { fileName: file.path, pageNum: page.pageNum, url: page.url, text, score, citKey };
+        }
+      }
+    }
+    if (bestHit) fileMatches.push(bestHit);
+  }
+
+  fileMatches.sort((a, b) => b.score - a.score || a.fileName.localeCompare(b.fileName));
+  if (fileMatches.length > 0) return fileMatches[0];
+
+  // Fallback deterministic excerpt if keywords didn't match directly
+  const fallbackFile = readableFiles[state.directiveCount % readableFiles.length];
+  const fallbackPage = fallbackFile.pages[state.directiveCount % fallbackFile.pages.length];
+  return {
+    fileName: fallbackFile.path,
+    pageNum: fallbackPage.pageNum,
+    url: fileUrl(fallbackFile),
+    text: fallbackPage.text.slice(0, 360) + (fallbackPage.text.length > 360 ? '…' : ''),
+    score: 0,
+    citKey: `${fallbackFile.path}:${fallbackPage.pageNum}`
+  };
+}
+
+function getNextBalancedTheme() {
+  const recent = new Set(state.recentThemes.slice(-3));
+  const usage = Object.fromEntries(THEMES.map(t => [t.name, state.recentThemes.filter(r => r === t.name).length]));
+  return THEMES
+    .filter(t => !recent.has(t.name))
+    .sort((a, b) => usage[a.name] - usage[b.name] || THEMES.indexOf(a) - THEMES.indexOf(b))[0] || THEMES[0];
+}
+
+function renderThemes() {
+  const grid = $('themeGrid');
+  grid.replaceChildren();
+  const nextTheme = getNextBalancedTheme();
+  $('rotationHint').textContent = `Next scheduled target: ${nextTheme.name} • Directives issued: ${state.directiveCount}`;
+
+  THEMES.forEach((theme, index) => {
+    const isNext = theme.name === nextTheme.name;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `theme-card glass${index === state.selected && state.directiveCount > 0 ? ' active' : ''}${isNext ? ' next-up' : ''}`;
+    button.setAttribute('aria-pressed', String(index === state.selected && state.directiveCount > 0));
+    button.disabled = !state.scanComplete || !state.pages.length;
+
+    const top = document.createElement('span');
+    top.className = 'theme-top';
+    const icon = add(top, 'span', theme.icon, 'theme-icon');
+    icon.setAttribute('aria-hidden', 'true');
+    const runs = state.recentThemes.filter(r => r === theme.name).length;
+    add(top, 'span', isNext ? `NEXT • ${runs}` : `${runs} RUNS`, 'badge');
+    button.appendChild(top);
+
+    const detail = document.createElement('span');
+    add(detail, 'h3', theme.name);
+    add(detail, 'small', theme.summary);
+    button.appendChild(detail);
+
+    button.addEventListener('click', () => createDirective(theme, false));
+    grid.appendChild(button);
+  });
+}
+
+function createDirective(theme, isAuto = false) {
+  if (!state.scanComplete || !state.pages.length) {
+    setStatus('Scan readable PDFs before requesting a directive.', true);
+    return;
+  }
+
+  state.selected = THEMES.findIndex(item => item.name === theme.name);
+  state.directiveCount++;
+  state.recentThemes.push(theme.name);
+  if (state.recentThemes.length > 18) state.recentThemes.shift();
+
+  const runsForTheme = state.recentThemes.filter(r => r === theme.name).length;
+  const op = theme.ops[(runsForTheme - 1) % theme.ops.length];
+
+  const evidence = findBestPdfEvidence(theme);
+  if (evidence && evidence.citKey) {
+    state.recentPdfKeys.push(evidence.citKey);
+    if (state.recentPdfKeys.length > 24) state.recentPdfKeys.shift();
+  }
+  saveRotationState();
+
+  const explanationFull = evidence
+    ? `${op.explanation} Grounded in ${evidence.fileName} (page ${evidence.pageNum}): "${evidence.text}"`
+    : op.explanation;
+
+  const sourceText = evidence
+    ? `${evidence.fileName} (page ${evidence.pageNum}) | Cross-referenced with ${op.doctrine}`
+    : op.doctrine;
+
+  // Build strict requested Markdown structure
+  const mdLines = [
+    `Mindset Directive ${state.directiveCount}: ${theme.name}`,
+    ` * Mindset title: ${op.title}`,
+    ` * Explanation: ${explanationFull}`,
+    ` * Daily challenge: ${op.challenge}`,
+    ` * Habits to inculcate:`,
+    `   * ${op.habits[0]}`,
+    `   * ${op.habits[1]}`,
+    ` * One sentence to remember: ${op.sentence}`,
+    ` * Reflection prompt: ${op.reflection}`,
+    ` * Mindmap:`,
+    `   * ${op.mindmap.concept}`,
+    `     * ${op.mindmap.subs[0].title}`,
+    `       * ${op.mindmap.subs[0].details[0]}`,
+    `       * ${op.mindmap.subs[0].details[1]}`,
+    `     * ${op.mindmap.subs[1].title}`,
+    `       * ${op.mindmap.subs[1].details[0]}`,
+    `       * ${op.mindmap.subs[1].details[1]}`,
+    ` * Source: ${sourceText}`
+  ];
+  state.markdown = mdLines.join('\n');
+  $('rawMd').textContent = state.markdown;
+
+  // Render Apple Briefing UI
+  const result = $('result');
+  result.replaceChildren();
+
+  add(result, 'h2', `Mindset Directive ${state.directiveCount}: ${theme.name}`, 'directive-title');
+  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'ROTATION' : 'MANUAL'})`, 'source-book');
+  if (evidence) {
+    add(result, 'div', `REPO PDF SOURCE: ${evidence.fileName} — p.${evidence.pageNum}`, 'source-book');
+  }
+
+  // Mindset title
+  const titleField = add(result, 'section', '', 'field');
+  add(titleField, 'h3', 'Mindset title', 'field-title');
+  add(titleField, 'div', op.title, 'op-heading');
+
+  // Explanation + Verbatim PDF Evidence
+  const expField = add(result, 'section', '', 'field');
+  add(expField, 'h3', 'Explanation', 'field-title');
+  add(expField, 'p', op.explanation, 'field-body');
+  if (evidence) {
+    const box = add(expField, 'div', '', 'extract');
+    add(box, 'span', 'Repo PDF Evidence', 'extract-label');
+    add(box, 'blockquote', `“${evidence.text}”`);
+    const cite = add(box, 'div', 'PDF reference: ', 'cite');
+    const link = document.createElement('a');
+    link.href = `${evidence.url}#page=${evidence.pageNum}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = `${evidence.fileName} — page ${evidence.pageNum}`;
+    cite.appendChild(link);
+  }
+
+  // Daily challenge
+  const chalField = add(result, 'section', '', 'field');
+  add(chalField, 'h3', 'Daily challenge', 'field-title');
+  add(chalField, 'p', op.challenge, 'field-body');
+
+  // Habits to inculcate
+  const habField = add(result, 'section', '', 'field');
+  add(habField, 'h3', 'Habits to inculcate', 'field-title');
+  const ulHab = add(habField, 'ul', '', 'habit-list');
+  add(ulHab, 'li', op.habits[0]);
+  add(ulHab, 'li', op.habits[1]);
+
+  // One sentence to remember
+  const sentField = add(result, 'section', '', 'field');
+  add(sentField, 'h3', 'One sentence to remember', 'field-title');
+  add(sentField, 'div', op.sentence, 'anchor-sentence');
+
+  // Reflection prompt
+  const refField = add(result, 'section', '', 'field');
+  add(refField, 'h3', 'Reflection prompt', 'field-title');
+  add(refField, 'p', op.reflection, 'field-body');
+
+  // Mindmap
+  const mapField = add(result, 'section', '', 'field');
+  add(mapField, 'h3', 'Mindmap', 'field-title');
+  const mapBox = add(mapField, 'div', '', 'mindmap');
+  add(mapBox, 'div', `• ${op.mindmap.concept}`, 'mindmap-root');
+  const mapList = add(mapBox, 'ul', '', 'mindmap-list');
+  for (const sub of op.mindmap.subs) {
+    const li = add(mapList, 'li', sub.title);
+    const subUl = document.createElement('ul');
+    for (const det of sub.details) add(subUl, 'li', det);
+    li.appendChild(subUl);
+  }
+
+  // Source
+  const srcField = add(result, 'section', '', 'field');
+  add(srcField, 'h3', 'Source', 'field-title');
+  const srcP = add(srcField, 'p', '', 'field-body');
+  if (evidence) {
+    const sLink = document.createElement('a');
+    sLink.href = `${evidence.url}#page=${evidence.pageNum}`;
+    sLink.target = '_blank';
+    sLink.rel = 'noopener noreferrer';
+    sLink.textContent = `${evidence.fileName} (page ${evidence.pageNum})`;
+    srcP.appendChild(sLink);
+    srcP.appendChild(document.createTextNode(` • ${op.doctrine}`));
+  } else {
+    srcP.textContent = op.doctrine;
+  }
+
+  $('resultCount').textContent = `Directive #${state.directiveCount} • ${theme.name}`;
+  renderThemes();
+}
+
+async function copy() {
+  if (!state.markdown) {
+    $('copyStatus').textContent = 'Generate a directive first.';
+    return;
+  }
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(state.markdown);
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = state.markdown;
+      textarea.readOnly = true;
+      textarea.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;font-size:16px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      const copied = document.execCommand('copy');
+      textarea.remove();
+      if (!copied) throw Error('Clipboard unavailable');
+    }
+    $('copyStatus').textContent = 'Tactical Briefing Markdown copied.';
+  } catch {
+    $('copyStatus').textContent = 'Copy unavailable; toggle Markdown view to copy manually.';
+  }
+}
+
+function toggleMarkdown() {
+  state.showRawMd = !state.showRawMd;
+  $('rawMd').style.display = state.showRawMd ? 'block' : 'none';
+}
+
+function toggleTheme() {
+  const dark = document.body.classList.toggle('dark');
+  $('themeBtn').setAttribute('aria-pressed', String(dark));
+  document.querySelector('meta[name="theme-color"]').content = dark ? '#09090b' : '#f5f5f7';
+}
+
+function printDirective() {
+  if (!state.markdown) {
+    $('copyStatus').textContent = 'Generate a directive before printing.';
+    return;
+  }
+  window.print();
+}
+
+function resetRotation() {
+  state.directiveCount = 0;
+  state.recentThemes = [];
+  state.recentPdfKeys = [];
+  saveRotationState();
+  renderThemes();
+  $('copyStatus').textContent = 'Rotation history reset.';
+}
+
+$('scanBtn').addEventListener('click', scan);
+$('deployBtn').addEventListener('click', () => createDirective(getNextBalancedTheme(), true));
+$('copyBtn').addEventListener('click', copy);
+$('resetBtn').addEventListener('click', resetRotation);
+$('toggleMdBtn').addEventListener('click', toggleMarkdown);
+$('themeBtn').addEventListener('click', toggleTheme);
+$('printBtn').addEventListener('click', printDirective);
+
+$('repoInput').value = repoFromUrl();
+renderThemes();
+if ($('repoInput').value) scan();
+else setStatus('Enter a public repository in owner/repo format, then scan.');
 </script>
 </body>
 </html>
