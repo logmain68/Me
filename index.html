@@ -2,349 +2,122 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" />
+  <meta name="theme-color" content="#f5f7fb" />
   <title>Mindset Briefing</title>
   <style>
     :root {
-      --bg: #f5f7fb;
-      --panel: #ffffff;
-      --panel-alt: #eef3ff;
-      --text: #111827;
-      --muted: #4b5563;
-      --border: #dbe3ef;
-      --accent: #2563eb;
-      --accent-2: #1d4ed8;
-      --success: #0f766e;
-      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      color-scheme: light;
+      --bg: #f5f7fb; --panel: #fff; --panel-alt: #eef3ff;
+      --text: #111827; --muted: #4b5563; --border: #dbe3ef;
+      --accent: #2563eb; --success: #0f766e;
+      --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+      --tap-size: 44px;
     }
-
     body.dark {
-      --bg: #0b1220;
-      --panel: #121b2b;
-      --panel-alt: #1a2437;
-      --text: #e5edf9;
-      --muted: #a5b4cf;
-      --border: #2a3a56;
-      --accent: #60a5fa;
-      --accent-2: #93c5fd;
-      --success: #34d399;
-      --shadow: 0 10px 30px rgba(2, 6, 23, 0.45);
+      color-scheme: dark;
+      --bg: #0b1220; --panel: #121b2b; --panel-alt: #1a2437;
+      --text: #e5edf9; --muted: #a5b4cf; --border: #2a3a56;
+      --accent: #60a5fa; --success: #34d399;
+      --shadow: 0 10px 30px rgba(2, 6, 23, .45);
     }
-
     * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    body {
-      min-height: 100vh;
-      padding: 24px;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-    }
-
-    .brand {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.04em;
-    }
-
-    .actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    button {
-      border: 1px solid var(--border);
-      background: var(--panel-alt);
-      color: var(--text);
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease, opacity 0.15s ease;
-    }
-
+    html { min-height: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body { margin: 0; min-height: 100vh; min-height: 100dvh; padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(24px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: var(--bg); color: var(--text); transition: background .2s ease, color .2s ease; }
+    button { font: inherit; color: inherit; touch-action: manipulation; }
+    button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .container { width: min(1100px, 100%); margin: 0 auto; }
+    .topbar, .hero, .panel, .theme-card { background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 18px; border-radius: 18px; margin-bottom: 18px; }
+    .brand { font-weight: 750; font-size: 1.1rem; letter-spacing: .02em; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button { min-height: var(--tap-size); border: 1px solid var(--border); background: var(--panel-alt); padding: 9px 16px; border-radius: 999px; font-weight: 700; cursor: pointer; transition: transform .15s ease, background .15s ease; }
     button:hover { transform: translateY(-1px); }
     button:active { transform: translateY(0); }
-
-    .primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    .secondary {
-      background: transparent;
-    }
-
-    .hero {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px 24px;
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-    }
-
-    .eyebrow {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    h1 {
-      margin: 0 0 12px;
-      font-size: clamp(2rem, 5vw, 3rem);
-      line-height: 1.1;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      margin: 0 0 18px;
-      font-size: 1.03rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 22px;
-    }
-
-    .theme-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 18px 16px;
-      box-shadow: var(--shadow);
-      text-align: left;
-      min-height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .theme-card.active {
-      outline: 2px solid var(--accent);
-      border-color: var(--accent);
-    }
-
-    .theme-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.72rem;
-      font-weight: 700;
-      background: var(--panel-alt);
-      color: var(--muted);
-      border-radius: 999px;
-      padding: 5px 10px;
-      width: fit-content;
-    }
-
-    .theme-card h3 {
-      margin: 12px 0 8px;
-      font-size: 1.08rem;
-    }
-
-    .theme-card small {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .workspace {
-      display: grid;
-      grid-template-columns: 1.4fr 0.6fr;
-      gap: 18px;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
-
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    .tag {
-      background: var(--panel-alt);
-      color: var(--success);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      padding: 6px 10px;
-      font-weight: 700;
-    }
-
-    .briefing {
-      background: var(--panel-alt);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 16px;
-    }
-
-    .briefing h2 {
-      margin: 0 0 8px;
-      font-size: clamp(1.3rem, 3vw, 2rem);
-    }
-
-    .meta {
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-size: 0.92rem;
-    }
-
-    .briefing p, .briefing li {
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    .source-box {
-      margin-top: 16px;
-      border-top: 1px solid var(--border);
-      padding-top: 12px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .source-box strong {
-      color: var(--text);
-    }
-
-    .pdf-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .pdf-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      background: var(--panel-alt);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 0.85rem;
-    }
-
-    .pdf-name {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 190px;
-    }
-
-    .status {
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.12);
-      color: var(--success);
-      font-weight: 700;
-      font-size: 0.7rem;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    @media (max-width: 760px) {
-      .grid { grid-template-columns: 1fr 1fr; }
-      .workspace { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 520px) {
-      .grid { grid-template-columns: 1fr; }
-      .topbar, .panel-header { align-items: flex-start; }
+    .primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .secondary { background: transparent; }
+    .hero { border-radius: 22px; padding: clamp(20px, 5vw, 32px); margin-bottom: 18px; }
+    .eyebrow { color: var(--accent); font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 750; margin-bottom: 10px; }
+    h1 { margin: 0 0 12px; font-size: clamp(2rem, 6vw, 3rem); line-height: 1.1; }
+    .subtitle { color: var(--muted); margin: 0 0 18px; font-size: 1.03rem; max-width: 70ch; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 14px; margin-bottom: 20px; }
+    .theme-card { border-radius: 18px; padding: 16px; min-height: 122px; display: flex; flex-direction: column; justify-content: space-between; text-align: left; width: 100%; }
+    .theme-card.active { outline: 2px solid var(--accent); outline-offset: 1px; }
+    .theme-badge, .tag { display: inline-flex; align-items: center; border-radius: 999px; padding: 5px 10px; background: var(--panel-alt); width: fit-content; font-size: .75rem; font-weight: 700; }
+    .theme-badge { color: var(--muted); }
+    .theme-card h3 { margin: 10px 0 6px; font-size: 1.05rem; }
+    .theme-card small { color: var(--muted); line-height: 1.5; font-size: .88rem; }
+    .workspace { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(260px, .6fr); gap: 16px; align-items: start; }
+    .panel { min-width: 0; border-radius: 22px; padding: clamp(16px, 3vw, 22px); }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .tag { color: var(--success); }
+    .briefing { overflow-wrap: anywhere; background: var(--panel-alt); border: 1px solid var(--border); border-radius: 16px; padding: clamp(15px, 3vw, 20px); }
+    .briefing h2 { margin: 0 0 8px; font-size: clamp(1.35rem, 4vw, 2rem); }
+    .meta { color: var(--muted); margin-bottom: 16px; font-size: .92rem; }
+    .briefing p, .briefing li { color: var(--text); line-height: 1.7; }
+    .briefing ul { padding-left: 1.4rem; }
+    .source-box { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; color: var(--muted); font-size: .92rem; overflow-wrap: anywhere; }
+    .source-box strong { color: var(--text); }
+    .pdf-list { display: flex; flex-direction: column; gap: 9px; margin-top: 12px; }
+    .pdf-item { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--panel-alt); border: 1px solid var(--border); border-radius: 12px; padding: 10px; font-size: .85rem; }
+    .pdf-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .status { flex: 0 0 auto; padding: 4px 8px; border-radius: 999px; background: rgba(16, 185, 129, .12); color: var(--success); font-weight: 700; font-size: .7rem; }
+    .notice { color: var(--muted); font-size: .82rem; line-height: 1.5; margin: 12px 0 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 700px) { .workspace { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { body { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); } .topbar { align-items: flex-start; flex-direction: column; } .topbar .actions, .topbar .actions button { width: 100%; } .hero .actions button { width: 100%; } }
+    @media (hover: none) { button:hover { transform: none; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+    @media print {
+      body { background: #fff; color: #111; padding: 0; }
+      .topbar, .hero, #themeGrid, aside, .no-print { display: none !important; }
+      .container, .workspace { display: block; width: 100%; max-width: none; }
+      .panel { border: 0; box-shadow: none; padding: 0; }
+      .briefing { border: 0; background: #fff; padding: 0; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <main class="container">
     <header class="topbar">
       <div class="brand">Mindset Briefing</div>
       <div class="actions">
-        <button id="themeToggleBtn" class="secondary" type="button">Toggle theme</button>
-        <button id="printBtn" class="primary" type="button">Print PDF</button>
+        <button id="themeToggleBtn" class="secondary" type="button" aria-pressed="false">Toggle theme</button>
+        <button id="printBtn" class="primary" type="button">Print / Save PDF</button>
       </div>
     </header>
 
-    <section class="hero">
+    <section class="hero" aria-labelledby="pageTitle">
       <div class="eyebrow">Operating Framework</div>
-      <h1>Clarity under pressure.</h1>
-      <p class="subtitle">
-        Translating leadership, systems, and execution principles into daily tactical decisions with clear source references from the PDF library.
-      </p>
-      <div class="actions">
-        <button id="deployBtn" class="primary" type="button">Deploy next rotation</button>
-      </div>
+      <h1 id="pageTitle">Clarity under pressure.</h1>
+      <p class="subtitle">Leadership, systems, and execution principles for better daily decisions, with a reference PDF named in every generated directive.</p>
+      <div class="actions"><button id="deployBtn" class="primary" type="button">Deploy next rotation</button></div>
     </section>
 
-    <section id="themeGrid" class="grid" aria-label="themes"></section>
+    <section id="themeGrid" class="grid" aria-label="Choose a briefing theme"></section>
 
-    <section class="workspace">
-      <div class="panel">
-        <div class="panel-header">
-          <div style="font-weight:700;">Directive Output</div>
-          <div class="tag" id="directiveCountTag">Directive #0</div>
-        </div>
+    <section class="workspace" aria-label="Briefing and references">
+      <section class="panel" aria-labelledby="outputTitle">
+        <div class="panel-header"><strong id="outputTitle">Directive Output</strong><span class="tag" id="directiveCountTag" aria-live="polite">Directive #0</span></div>
+        <article id="briefing" class="briefing" aria-live="polite" aria-atomic="true">
+          <h2>Ready for briefing</h2><p>Select a theme or deploy the next rotation to generate a directive.</p>
+        </article>
+      </section>
 
-        <div id="briefing" class="briefing">
-          <h2>Ready for briefing</h2>
-          <p>Select a theme card or deploy the next rotation to generate a directive.</p>
-        </div>
-      </div>
-
-      <aside class="panel">
-        <div class="panel-header">
-          <div style="font-weight:700;">Reference PDFs</div>
-          <div class="tag" id="pdfCountTag">0 indexed</div>
-        </div>
+      <aside class="panel" aria-labelledby="pdfTitle">
+        <div class="panel-header"><strong id="pdfTitle">Reference PDFs</strong><span class="tag" id="pdfCountTag">0 listed</span></div>
         <div class="pdf-list" id="pdfList"></div>
-        <div style="margin-top:16px;">
-          <button id="copyBtn" type="button" class="secondary" style="width:100%;">Copy markdown</button>
-        </div>
+        <p class="notice">These are demonstration reference names. Replace them in the page script with the actual PDF filenames in your library before relying on them as source citations.</p>
+        <div style="margin-top:14px"><button id="copyBtn" type="button" class="secondary" style="width:100%">Copy Markdown</button></div>
+        <p class="sr-only" id="copyStatus" aria-live="polite"></p>
       </aside>
     </section>
-  </div>
+  </main>
 
   <script>
+    'use strict';
     const themes = [
       { name: 'Discipline', summary: 'Microscopic standards and consistent execution.' },
       { name: 'Focus', summary: 'Directed attention and deep-work habits.' },
@@ -353,200 +126,143 @@
       { name: 'Reflection', summary: 'Learning loops and productive correction.' },
       { name: 'Efficiency', summary: 'High-leverage work and disciplined prioritization.' }
     ];
-
-    const pdfs = [
-      'leadership_framework.pdf',
-      'systems_thinking.pdf',
-      'execution_model.pdf',
-      'decision_rhythm.pdf',
-      'reflection_cycle.pdf',
-      'focus_blueprint.pdf'
-    ];
-
+    // Replace these example names with the real PDF files used by the project.
+    const pdfs = ['leadership_framework.pdf', 'systems_thinking.pdf', 'execution_model.pdf', 'decision_rhythm.pdf', 'reflection_cycle.pdf', 'focus_blueprint.pdf'];
     const directiveLibrary = {
-      Discipline: {
-        title: 'Discipline',
-        op: 'Operation: Standardize the Essentials',
-        explanation: 'Strong performance is built by repeating the same high-quality actions at the right time, without exceptions. Standards reduce ambiguity and create momentum during pressure.',
-        challenge: 'Choose a single repeated work pattern and improve it today by making it visible, measurable, and non-negotiable.',
-        habits: ['Protect your first deep-work block before reactive work begins.', 'Use a short verification step before sending or shipping anything.'],
-        sentence: 'Consistent standards outperform intensity without structure.'
-      },
-      Focus: {
-        title: 'Focus',
-        op: 'Operation: Protect cognitive bandwidth',
-        explanation: 'Attention is the premium resource. When attention is fragmented, decisions become slower and quality drops. Focus creates clarity and energy.',
-        challenge: 'Identify the single task that deserves most of your attention and remove the biggest distraction from it.',
-        habits: ['Work on the most important item before checking external signals.', 'Define one stopping point to avoid endless drift.'],
-        sentence: 'Focused effort beats scattered effort every time.'
-      },
-      'Situational Awareness': {
-        title: 'Situational Awareness',
-        op: 'Operation: Sense before acting',
-        explanation: 'High-quality decisions begin with accurate observation. Before reacting, confirm the real signal, the constraint, and the risk.',
-        challenge: 'Pause for one minute and collect the important facts before responding to a trigger or escalation.',
-        habits: ['Separate facts from assumptions before acting.', 'Flag the risk, the priority, and the next checkpoint.'],
-        sentence: 'Good judgment starts with clear observation.'
-      },
-      'Decision Quality': {
-        title: 'Decision Quality',
-        op: 'Operation: Choose with speed and structure',
-        explanation: 'Effective decisions are not slow for their own sake; they are fast when the decision framework is clear. Good structure reduces panic and reduces noise.',
-        challenge: 'Use a simple decision frame for the next important choice: objective, constraints, decision, follow-up.',
-        habits: ['Decide with the least amount of unnecessary information.', 'Write the decision and the next checkpoint so the action remains accountable.'],
-        sentence: 'A clear framework reduces delay and uncertainty.'
-      },
-      Reflection: {
-        title: 'Reflection',
-        op: 'Operation: Learn from the loop',
-        explanation: 'Reflection converts effort into learning. Without review, repetition grows stale. Without correction, the same mistakes resurface.',
-        challenge: 'Review one recent outcome and identify one decision to keep, one to change, and one to test next.',
-        habits: ['Close each day with a short scorecard of effort and outcomes.', 'Capture what changed and what still needs adjustment.'],
-        sentence: 'Review is where improvement becomes repeatable.'
-      },
-      Efficiency: {
-        title: 'Efficiency',
-        op: 'Operation: Simplify the critical path',
-        explanation: 'Efficiency is not about doing more; it is about removing unnecessary steps. The objective is to preserve energy for work that matters most.',
-        challenge: 'Cut one redundant step from a recurring workflow and protect time for the meaningful task.',
-        habits: ['Reduce the number of handoffs in your process.', 'Batch low-value tasks and protect space for higher-impact work.'],
-        sentence: 'A clean system produces consistent momentum.'
-      }
+      Discipline: { op: 'Standardize the essentials', explanation: 'Strong performance is built by repeating high-quality actions at the right time. Standards reduce ambiguity and create momentum under pressure.', challenge: 'Improve one repeated work pattern today by making it visible, measurable, and consistent.', habits: ['Protect your first deep-work block before reactive work begins.', 'Use a short verification step before sending or shipping anything.'], sentence: 'Consistent standards outperform intensity without structure.' },
+      Focus: { op: 'Protect cognitive bandwidth', explanation: 'Attention is a premium resource. When it is fragmented, decisions slow down and quality drops. Focus creates clarity and energy.', challenge: 'Choose the single task that deserves your attention and remove its biggest distraction.', habits: ['Work on the most important item before checking external signals.', 'Define a stopping point to avoid endless drift.'], sentence: 'Focused effort beats scattered effort.' },
+      'Situational Awareness': { op: 'Sense before acting', explanation: 'High-quality decisions begin with accurate observation. Before reacting, confirm the real signal, the constraint, and the risk.', challenge: 'Pause and collect the important facts before responding to an escalation.', habits: ['Separate facts from assumptions before acting.', 'Identify the risk, priority, and next checkpoint.'], sentence: 'Good judgment starts with clear observation.' },
+      'Decision Quality': { op: 'Choose with speed and structure', explanation: 'Effective decisions are fast when the decision framework is clear. Structure reduces panic and unnecessary noise.', challenge: 'Use a simple frame for your next important choice: objective, constraints, decision, follow-up.', habits: ['Decide with only the information needed.', 'Record the decision and the next checkpoint.'], sentence: 'A clear framework reduces delay and uncertainty.' },
+      Reflection: { op: 'Learn from the loop', explanation: 'Reflection converts effort into learning. Without review, the same mistakes can resurface.', challenge: 'Review one recent outcome: identify one decision to keep, one to change, and one to test next.', habits: ['Close the day with a short review of effort and outcomes.', 'Capture what changed and what still needs adjustment.'], sentence: 'Review makes improvement repeatable.' },
+      Efficiency: { op: 'Simplify the critical path', explanation: 'Efficiency is not about doing more; it is about removing unnecessary steps and preserving energy for work that matters.', challenge: 'Remove one redundant step from a recurring workflow.', habits: ['Reduce unnecessary handoffs.', 'Batch low-value tasks and protect time for high-impact work.'], sentence: 'A clean system produces consistent momentum.' }
     };
+    const state = { directiveCount: 0, theme: null, markdown: '' };
+    const $ = (id) => document.getElementById(id);
 
-    let state = {
-      directiveCount: 0,
-      theme: null,
-      sourcePdf: null,
-      markdown: ''
-    };
-
-    const body = document.body;
-    const themeGrid = document.getElementById('themeGrid');
-    const briefingEl = document.getElementById('briefing');
-    const directiveCountTag = document.getElementById('directiveCountTag');
-    const pdfListEl = document.getElementById('pdfList');
-    const pdfCountTag = document.getElementById('pdfCountTag');
+    function appendText(parent, tag, text, className) {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      node.textContent = String(text);
+      parent.appendChild(node);
+      return node;
+    }
 
     function renderThemes() {
-      themeGrid.innerHTML = '';
+      const grid = $('themeGrid');
+      grid.replaceChildren();
       themes.forEach((theme) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'theme-card' + (state.theme === theme.name ? ' active' : '');
-        btn.innerHTML = `
-          <div class="theme-badge">Theme</div>
-          <div>
-            <h3>${theme.name}</h3>
-            <small>${theme.summary}</small>
-          </div>
-        `;
-        btn.addEventListener('click', () => {
-          generateDirective(theme.name, false);
-        });
-        themeGrid.appendChild(btn);
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `theme-card${state.theme === theme.name ? ' active' : ''}`;
+        button.setAttribute('aria-pressed', String(state.theme === theme.name));
+        const badge = appendText(button, 'span', 'Theme', 'theme-badge');
+        badge.setAttribute('aria-hidden', 'true');
+        const content = document.createElement('span');
+        appendText(content, 'strong', theme.name);
+        appendText(content, 'small', theme.summary);
+        button.appendChild(content);
+        button.addEventListener('click', () => generateDirective(theme.name, false));
+        grid.appendChild(button);
       });
     }
 
     function renderPdfList() {
-      pdfListEl.innerHTML = '';
-      pdfs.forEach((pdf) => {
-        const item = document.createElement('div');
-        item.className = 'pdf-item';
-        item.innerHTML = `
-          <span class="pdf-name">${pdf}</span>
-          <span class="status">Active</span>
-        `;
-        pdfListEl.appendChild(item);
+      const list = $('pdfList');
+      list.replaceChildren();
+      pdfs.forEach((filename) => {
+        const row = document.createElement('div');
+        row.className = 'pdf-item';
+        appendText(row, 'span', filename, 'pdf-name');
+        appendText(row, 'span', 'Example', 'status');
+        list.appendChild(row);
       });
-      pdfCountTag.textContent = `${pdfs.length} indexed`;
+      $('pdfCountTag').textContent = `${pdfs.length} listed`;
     }
 
-    function pickPdf(themeName) {
-      const index = (state.directiveCount + themes.findIndex(t => t.name === themeName)) % pdfs.length;
-      return pdfs[index];
+    function getPdfFor(themeName) {
+      const themeIndex = themes.findIndex((theme) => theme.name === themeName);
+      return pdfs[(state.directiveCount + themeIndex + pdfs.length) % pdfs.length];
     }
 
     function generateDirective(themeName, autoRotation = true) {
-      const themeData = directiveLibrary[themeName];
-      if (!themeData) return;
-
+      const data = directiveLibrary[themeName];
+      if (!data || pdfs.length === 0) return;
       state.directiveCount += 1;
       state.theme = themeName;
-      state.sourcePdf = pickPdf(themeName);
+      const pdf = getPdfFor(themeName);
+      const explanation = `${data.explanation} Reference PDF: ${pdf}.`;
 
-      const explanation = `${themeData.explanation} Reference PDF: ${state.sourcePdf}.`;
-      const sourceLine = `Reference PDF: ${state.sourcePdf} | Source doctrine: ${themeData.op}`;
-
-      const html = `
-        <h2>${themeData.title}</h2>
-        <div class="meta">
-          Directive #${state.directiveCount} • ${autoRotation ? 'Auto-balanced rotation' : 'Manual selection'}
-        </div>
-
-        <p><strong>Focus:</strong> ${themeData.op}</p>
-        <p><strong>Explanation:</strong> ${explanation}</p>
-        <p><strong>Daily challenge:</strong> ${themeData.challenge}</p>
-
-        <ul>
-          <li>${themeData.habits[0]}</li>
-          <li>${themeData.habits[1]}</li>
-        </ul>
-
-        <p><strong>Remember:</strong> ${themeData.sentence}</p>
-
-        <div class="source-box">
-          <strong>Source PDF:</strong> ${state.sourcePdf}<br />
-          <strong>Source note:</strong> ${sourceLine}
-        </div>
-      `;
-
-      briefingEl.innerHTML = html;
-      directiveCountTag.textContent = `Directive #${state.directiveCount}`;
+      const article = $('briefing');
+      article.replaceChildren();
+      appendText(article, 'h2', themeName);
+      appendText(article, 'div', `Directive #${state.directiveCount} • ${autoRotation ? 'Auto-balanced rotation' : 'Manual selection'}`, 'meta');
+      appendText(article, 'p', `Focus: ${data.op}`);
+      appendText(article, 'p', `Explanation: ${explanation}`);
+      appendText(article, 'p', `Daily challenge: ${data.challenge}`);
+      const habits = document.createElement('ul');
+      data.habits.forEach((habit) => appendText(habits, 'li', habit));
+      article.appendChild(habits);
+      appendText(article, 'p', `Remember: ${data.sentence}`);
+      const source = document.createElement('div');
+      source.className = 'source-box';
+      appendText(source, 'strong', `Reference PDF: ${pdf}`);
+      article.appendChild(source);
 
       state.markdown = [
-        `Directive ${state.directiveCount}: ${themeData.title}`,
-        `- Focus: ${themeData.op}`,
+        `Directive ${state.directiveCount}: ${themeName}`,
+        `- Focus: ${data.op}`,
         `- Explanation: ${explanation}`,
-        `- Daily challenge: ${themeData.challenge}`,
-        `- Habit 1: ${themeData.habits[0]}`,
-        `- Habit 2: ${themeData.habits[1]}`,
-        `- Remember: ${themeData.sentence}`,
-        `- Reference PDF: ${state.sourcePdf}`
+        `- Daily challenge: ${data.challenge}`,
+        `- Habit 1: ${data.habits[0]}`,
+        `- Habit 2: ${data.habits[1]}`,
+        `- Remember: ${data.sentence}`,
+        `- Reference PDF: ${pdf}`
       ].join('\n');
-
+      $('directiveCountTag').textContent = `Directive #${state.directiveCount}`;
       renderThemes();
     }
 
-    function copyMarkdown() {
-      if (!state.markdown) {
-        generateDirective(themes[0].name, true);
+    async function copyMarkdown() {
+      if (!state.markdown) generateDirective(themes[0].name, true);
+      const status = $('copyStatus');
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(state.markdown);
+        } else {
+          const textarea = document.createElement('textarea');
+          textarea.value = state.markdown;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          const copied = document.execCommand('copy');
+          textarea.remove();
+          if (!copied) throw new Error('Clipboard unavailable');
+        }
+        status.textContent = 'Markdown copied to clipboard.';
+      } catch (error) {
+        status.textContent = 'Copy failed. Select and copy the Markdown from the generated directive.';
       }
-      navigator.clipboard.writeText(state.markdown)
-        .then(() => alert('Markdown copied.'))
-        .catch(() => alert('Copy failed.'));
     }
 
     function toggleTheme() {
-      body.classList.toggle('dark');
+      const enabled = document.body.classList.toggle('dark');
+      $('themeToggleBtn').setAttribute('aria-pressed', String(enabled));
+      document.querySelector('meta[name="theme-color"]').content = enabled ? '#0b1220' : '#f5f7fb';
     }
 
     function printBriefingPdf() {
-      if (!state.markdown) {
-        generateDirective(themes[0].name, true);
-      }
+      if (!state.markdown) generateDirective(themes[0].name, true);
       window.print();
     }
 
-    document.getElementById('deployBtn').addEventListener('click', () => {
-      const nextTheme = themes[state.directiveCount % themes.length].name;
-      generateDirective(nextTheme, true);
+    $('deployBtn').addEventListener('click', () => {
+      generateDirective(themes[state.directiveCount % themes.length].name, true);
     });
-
-    document.getElementById('copyBtn').addEventListener('click', copyMarkdown);
-    document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
-    document.getElementById('printBtn').addEventListener('click', printBriefingPdf);
-
+    $('copyBtn').addEventListener('click', copyMarkdown);
+    $('themeToggleBtn').addEventListener('click', toggleTheme);
+    $('printBtn').addEventListener('click', printBriefingPdf);
     renderThemes();
     renderPdfList();
   </script>
