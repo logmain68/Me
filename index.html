@@ -7,18 +7,18 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Briefing — Tactical Commander</title>
+  <title>Mindset Briefing — Tactical Performance System</title>
   <style>
     :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.84);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.15);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#248a3d;--danger:#b42318;--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:48px;--radius:26px}
     body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.9);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--danger:#ff6961;--shadow:0 20px 55px rgba(0,0,0,.32),0 3px 12px rgba(0,0,0,.2)}
     *{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;min-height:100vh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Arial,sans-serif;line-height:1.55;background:radial-gradient(ellipse at 10% 0%,var(--soft),transparent 34rem),var(--bg);color:var(--text);transition:background .22s,color .22s}
     button,input{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1120px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
     .topbar{position:sticky;z-index:5;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(22px,5vw,40px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em}.logo{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 17px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.9rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
-    .hero{position:relative;overflow:hidden;padding:clamp(25px,6vw,58px);border-radius:var(--radius);margin-bottom:24px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:12px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:0 0 14px;font-size:clamp(2.4rem,8vw,4.5rem);line-height:1.02;letter-spacing:-.05em}.subtitle{max-width:68ch;margin:0 0 22px;color:var(--muted);font-size:clamp(1rem,2.4vw,1.08rem);line-height:1.65}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:26px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
-    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,215px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:122px;padding:16px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:9px 0 2px;font-size:.98rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.82rem;line-height:1.45}
-    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.65fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,24px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:6px 0 10px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 11px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:13px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 7px;font-size:.9rem;font-weight:750;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.field-body{margin:0;font-size:.97rem;line-height:1.65}.habit-list{margin:4px 0 0;padding-left:20px;display:grid;gap:6px}.anchor-sentence{padding:12px 15px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.02rem}.extract{padding:12px 14px;margin:10px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.65;font-size:.9rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
-    .mindmap{padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:8px}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:3px 0 8px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:5px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:2px 0}.controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:300px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-status{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:rgba(52,199,89,.14);color:var(--success);font-size:.68rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.55;display:none}
-    @media(max-width:720px){.workspace{grid-template-columns:1fr}}@media(max-width:520px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:7px;font-size:.82rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:108px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,#themeGrid,.section-head,aside,.raw-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field{break-inside:avoid;background:#fff}}
+    .hero{position:relative;overflow:hidden;padding:clamp(25px,6vw,58px);border-radius:var(--radius);margin-bottom:24px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:12px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:0 0 14px;font-size:clamp(2.4rem,8vw,4.5rem);line-height:1.02;letter-spacing:-.05em}.subtitle{max-width:72ch;margin:0 0 22px;color:var(--muted);font-size:clamp(1rem,2.4vw,1.08rem);line-height:1.68}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:26px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:142px;padding:18px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.83rem;line-height:1.5;display:block}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.65fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,26px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1.03rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:4px 0 8px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 11px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:14px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 7px;font-size:.88rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field-body{margin:0;font-size:.98rem;line-height:1.7}.habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:8px;font-size:.96rem;line-height:1.65}.anchor-sentence{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.04rem;line-height:1.55}.extract{padding:13px 15px;margin:12px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.68;font-size:.91rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
+    .mindmap{padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:10px;font-size:1rem}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:4px 0 10px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:6px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:3px 0;line-height:1.55}.controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:300px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-status{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:rgba(52,199,89,.14);color:var(--success);font-size:.68rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.6;display:none}
+    @media(max-width:720px){.workspace{grid-template-columns:1fr}}@media(max-width:520px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:7px;font-size:.82rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:118px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,#themeGrid,.section-head,aside,.raw-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field{break-inside:avoid;background:#fff}}
   </style>
 </head>
 <body>
@@ -34,7 +34,7 @@
   <section class="hero glass">
     <div class="eyebrow">Elite Performance Mentor • Tactical Mindset Conditioning</div>
     <h1>Clarity under pressure.</h1>
-    <p class="subtitle">Translating elite military, athletic, and leadership doctrines from your GitHub PDF library into daily execution protocols for automotive audio software engineering (C/C++, HAL, Linux kernel drivers), team leadership, and family life in Bengaluru.</p>
+    <p class="subtitle">An uncompromising mental conditioning system that translates elite military, athletic, and leadership doctrines from your GitHub PDF library into structured daily execution briefings—complete with actionable challenges, habit protocols, diagnostic reflection prompts, and hierarchical mindmaps.</p>
     <div class="actions">
       <button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button>
       <button id="toggleMdBtn" class="secondary" type="button">Toggle Markdown</button>
@@ -42,7 +42,7 @@
   </section>
 
   <div class="section-head">
-    <h2>Core Operational Matrix — Touch to Deploy</h2>
+    <h2>Core Operational Matrix — Select or Rotate</h2>
     <span id="rotationHint">Balanced rotation • tracking recent themes</span>
   </div>
   <section id="themeGrid" class="theme-grid" aria-label="Tactical themes"></section>
@@ -55,14 +55,14 @@
       </div>
       <article id="result" class="result" aria-live="polite" aria-atomic="true">
         <h2>Scanning repository PDFs…</h2>
-        <p>Directives unlock once repository PDFs are indexed.</p>
+        <p>Directives unlock automatically once all PDFs in this GitHub repository are discovered and indexed.</p>
       </article>
       <pre id="rawMd" class="raw-box"></pre>
     </section>
 
     <aside class="panel glass" aria-labelledby="libraryTitle">
       <div class="panel-head">
-        <strong id="libraryTitle">Repository PDF library</strong>
+        <strong id="libraryTitle">Repository PDF Library</strong>
         <span id="pdfCount" class="tag">Not scanned</span>
       </div>
       <div class="controls">
@@ -80,7 +80,7 @@
         <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation Log</button>
       </div>
       <p id="copyStatus" class="copy-status" aria-live="polite"></p>
-      <p class="status">Public repositories only. All PDF text is extracted locally in your browser.</p>
+      <p class="status">Scans public GitHub repositories recursively. All PDF text extraction runs locally inside your browser with zero external tracking.</p>
     </aside>
   </section>
 </main>
@@ -92,187 +92,426 @@ const THEMES = [
   {
     name: 'Discipline',
     icon: '✓',
-    summary: 'Microscopic standards, checklists & uncompromising effort.',
-    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution'],
+    summary: 'The foundation of execution: microscopic standards, methodical checklists, and uncompromising daily effort even when motivation fades.',
+    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution','craft','detail'],
     ops: [
       {
         title: 'OPERATION RINSE: THE DISCIPLINE OF MICROSCOPIC STANDARDS',
-        explanation: 'Elite units and enduring organizations never separate high-level strategy from microscopic execution. In Good to Great, relentless daily discipline ("rinsing the cottage cheese") compounds into unstoppable momentum. In automotive audio C/C++ HALs and Linux ALSA/ASoC kernel drivers, a single unchecked buffer boundary, missing mutex unlock, or compiler warning ignored today becomes a 2 AM target deadlock.',
-        challenge: 'Before committing any C/C++ HAL or Linux driver patch today, run a zero-compromise 5-point gate: compile with -Wall -Wextra clean, verify DMA buffer bounds, audit lock-ordering, confirm clean error unwinding, and inspect every line of git diff.',
+        explanation: 'Elite performers and enduring organizations never separate grand strategy from microscopic execution. As illustrated in Good to Great and Special Operations doctrine, relentless consistency in small, unglamorous details—rinsing away every trace of sloppiness before moving to the next phase—builds an insurmountable standard of reliability. When pressure spikes, you do not rise to your highest ambition; you fall back to the exact level of your daily standards and checklists.',
+        challenge: 'Select your highest-priority technical or leadership deliverable today and subject it to a zero-compromise, 5-point pre-submission audit before considering it complete: verify edge cases, check documentation clarity, eliminate avoidable ambiguity, validate assumptions with objective evidence, and review the final output line by line without skimming.',
         habits: [
-          'Protect the first 45 minutes of your morning in Bengaluru for deep engineering architecture or code review with Slack and email closed.',
-          'Execute a 7:00 PM hard shutdown ritual: write tomorrow’s #1 engineering priority on paper before closing your laptop so your family gets your full presence.'
+          'Protect the first 45 minutes of every workday as a non-negotiable deep execution block—close messaging feeds, silence alerts, and focus exclusively on your primary objective.',
+          'Execute an end-of-day shutdown protocol: clear your workspace, log what was completed against plan, and write tomorrow’s single most critical objective on paper before stepping away.'
         ],
-        sentence: 'Microscopic standards in quiet hours prevent catastrophic failures under fire.',
-        reflection: 'Where did I rationalize a shortcut today in code verification, communication, or presence at home?',
+        sentence: 'Microscopic standards practiced in quiet hours prevent catastrophic failures under fire.',
+        reflection: 'Where did I rationalize a small shortcut or lower my standard today simply because nobody else was watching?',
         mindmap: {
-          concept: 'Discipline: Microscopic Standards',
+          concept: 'Discipline: Microscopic Standards & Execution',
           subs: [
-            { title: 'Engineering Rigor', details: ['Zero-warning C/C++ HAL builds', 'Checklist-verified ALSA/ASoC patches'] },
-            { title: 'Personal Boundaries', details: ['Protected morning deep-work block', '7:00 PM hard shutdown for family'] }
+            {
+              title: 'Uncompromising Verification Gates',
+              details: [
+                'Replace memory and guesswork with explicit pre-flight checklists for every critical output',
+                'Audit edge cases, assumptions, and failure modes before declaring any task finished'
+              ]
+            },
+            {
+              title: 'Daily Operational Cadence',
+              details: [
+                'Lock the opening 45 minutes of the day for high-value, interruption-free execution',
+                'Close every day with a structured reset and tomorrow’s #1 priority defined in writing'
+              ]
+            }
           ]
         },
-        doctrine: 'Jim Collins – Good to Great (20-Mile March); Commando Standard Operating Doctrine'
+        doctrine: 'Jim Collins – Good to Great (The 20-Mile March & Disciplined Thought); Commando Standard Operating Doctrine'
       },
       {
         title: 'OPERATION IRON GATE: METHODICAL CHECKLIST EXECUTION',
-        explanation: 'Discipline is the architecture of freedom. When OEM vehicle milestone deadlines tighten and DSP defects cascade, raw willpower collapses unless anchored by repeatable checklists and automated verification.',
-        challenge: 'Identify one repetitive friction point in your automotive audio build, target-flashing, or ALSA xrun log-capture workflow today and codify it into a repeatable script or checklist.',
+        explanation: 'Discipline equals freedom. Under tight deadlines and competing demands, raw willpower is an unreliable fuel source that depletes rapidly. Methodical checklists, repeatable workflows, and disciplined boundaries remove decision fatigue and protect cognitive bandwidth for complex problem-solving.',
+        challenge: 'Identify one recurring task or handoff in your daily workflow that consistently creates friction, rework, or errors, and formalize it today into a clear, repeatable 5-step standard operating checklist that anyone on your team could follow without ambiguity.',
         habits: [
-          'Take a 3-minute mental reset between debug war-rooms and stepping through your home door in Bengaluru.',
-          'Document exact reproduction steps, dmesg output, and PCM state immediately whenever an audio glitch occurs.'
+          'Document root causes, reproduction steps, and decisions immediately at the point of discovery rather than trusting short-term memory.',
+          'Hold yourself to fixed start and stop boundaries for reactive communication so urgency never hijacks your entire schedule.'
         ],
         sentence: 'Methodical systems outlast willpower when operational tempo turns hostile.',
-        reflection: 'Which recurring task wasted cognitive bandwidth today because I lacked a rigid checklist?',
+        reflection: 'Which recurring friction point drained my energy today because I still relied on improvisation instead of a disciplined system?',
         mindmap: {
-          concept: 'Discipline: Systematized Execution',
+          concept: 'Discipline: Freedom Through Repeatable Systems',
           subs: [
-            { title: 'Workflow Automation', details: ['Deterministic target flash scripts', 'Standardized xrun debug capture'] },
-            { title: 'Recovery Cadence', details: ['Post-commute decompression reset', 'Consistent sleep and wake anchor'] }
+            {
+              title: 'Standard Operating Protocols',
+              details: [
+                'Codify repetitive multi-step workflows into deterministic, error-proof checklists',
+                'Capture evidence and decisions immediately in writing to eliminate downstream rework'
+              ]
+            },
+            {
+              title: 'Protected Operational Boundaries',
+              details: [
+                'Contain reactive communication inside scheduled windows instead of constant interruption',
+                'Maintain consistent sleep, preparation, and recovery anchors regardless of workload'
+              ]
+            }
           ]
         },
-        doctrine: 'Jocko Willink – Discipline Equals Freedom; Special Operations Pre-Mission Checklists'
+        doctrine: 'Jocko Willink – Discipline Equals Freedom; Aviation & Special Operations Checklist Protocols'
       }
     ]
   },
   {
     name: 'Focus',
     icon: '◎',
-    summary: 'Channeling cognitive force & eliminating extraneous noise.',
-    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness'],
+    summary: 'Channeling cognitive force into a single target, achieving total present immersion, and ruthlessly eliminating extraneous noise.',
+    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness','deep','singular'],
     ops: [
       {
         title: 'OPERATION MONOLITH: TOTAL PRESENT IMMERSION',
-        explanation: 'In The Mindful Athlete, championship performance happens inside the eye of the storm—total immersion in the single execution rep in front of you. Fragmenting attention across interrupt latency traces, Jira pings, and Bengaluru traffic drains cognitive horsepower.',
-        challenge: 'Lock in two uninterrupted 60-minute Monolith Blocks today on your toughest C++ audio routing or Linux codec concurrency bug: all notifications silenced, single IDE/terminal workspace, physical timer running.',
+        explanation: 'In The Mindful Athlete, championship performance emerges inside the eye of the storm—complete, unfractured absorption in the single repetition directly in front of you. Multitasking is a myth that forces high cognitive switching penalties; every glance at an incoming message fractures deep architectural reasoning and degrades precision.',
+        challenge: 'Execute two uninterrupted 60-minute Monolith Blocks today on your most demanding analytical or creative problem: close every unrelated tab, mute all non-emergency notifications, place your phone out of sight, and work on that single objective until a physical timer concludes.',
         habits: [
-          'State and write down the exact falsifiable hypothesis before modifying a single line of driver or HAL code.',
-          'Dock your phone in another room during family dinner and bedtime in Bengaluru—give 100% present bandwidth.'
+          'Before starting any complex debugging, analysis, or writing session, define the exact question you are answering in one clear sentence.',
+          'When transitioning to a meeting or conversation, close open screens and commit 100% of your attention to the people and topic in front of you.'
         ],
-        sentence: 'Where attention locks without fracture, engineering force multiplies.',
-        reflection: 'How many times did I allow low-value pings to break my deep cognitive immersion today?',
+        sentence: 'Where attention locks without fracture, intellectual and leadership force multiplies.',
+        reflection: 'How many times today did I allow low-value notifications or self-inflicted distractions to shatter my deep focus?',
         mindmap: {
-          concept: 'Focus: Cognitive Target Lock',
+          concept: 'Focus: Singular Cognitive Target Lock',
           subs: [
-            { title: 'Noise Elimination', details: ['Silence non-critical alerts during debug', 'Single-tasking on kernel traces'] },
-            { title: 'Present Immersion', details: ['Hypothesis-first code changes', 'Phone-free evening family presence'] }
+            {
+              title: 'Environmental Noise Elimination',
+              details: [
+                'Silence chats, email popups, and secondary feeds during scheduled deep-execution blocks',
+                'Restrict active workspace to the single tool, document, or problem currently under attack'
+              ]
+            },
+            {
+              title: 'Present-Moment Immersion',
+              details: [
+                'Anchor every work block with a single crisp objective written down before starting',
+                'Give undivided presence during interpersonal discussions instead of splitting attention across screens'
+              ]
+            }
           ]
         },
-        doctrine: 'George Mumford – The Mindful Athlete; Deep Work Cognitive Doctrine'
+        doctrine: 'George Mumford – The Mindful Athlete; Cal Newport – Deep Work Doctrine'
+      },
+      {
+        title: 'OPERATION LASER: STARVING THE NOISE',
+        explanation: 'Cognitive energy is a finite tactical reserve. Every open loop, half-read thread, and reactive interruption consumes mental cycles that should be powering breakthrough execution. True focus is as much about what you aggressively ignore as what you engage.',
+        challenge: 'Audit your open browser tabs, active tasks, and calendar commitments right now: close or defer everything not tied to your top two priorities for today, and complete one high-difficulty task end-to-end before reopening any communication channel.',
+        habits: [
+          'Take 60 seconds of quiet, controlled breathing before entering high-stakes reviews or problem-solving sessions to clear residual mental clutter.',
+          'Read technical specifications, contracts, or complex briefs in single-pass deep focus without skimming or checking parallel feeds.'
+        ],
+        sentence: 'Protect the signal by systematically starving the noise.',
+        reflection: 'What specific distraction stole my sharpest cognitive hours today, and what physical barrier will block it tomorrow?',
+        mindmap: {
+          concept: 'Focus: Signal Preservation Under Load',
+          subs: [
+            {
+              title: 'Ruthless Workspace Hygiene',
+              details: [
+                'Close unessential tabs, background channels, and low-priority open loops before deep work',
+                'Finish one high-value deliverable end-to-end prior to checking reactive message queues'
+              ]
+            },
+            {
+              title: 'Cognitive Reset Rituals',
+              details: [
+                'Use 60-second controlled breathing to clear mental residue between intense sessions',
+                'Engage complex reference material with deliberate, unhurried, single-threaded reading'
+              ]
+            }
+          ]
+        },
+        doctrine: 'The Mindful Athlete; Elite Tactical Marksmanship Concentration Protocols'
       }
     ]
   },
   {
     name: 'Situational Awareness',
     icon: '◉',
-    summary: 'Detached peripheral clarity & emotional poise under fire.',
-    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception'],
+    summary: 'Navigating complex environments with detached peripheral clarity, mental environment control, and emotional poise under fire.',
+    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception','read','context'],
     ops: [
       {
         title: 'OPERATION OVERWATCH: DETACHED PERIPHERAL CLARITY',
-        explanation: 'The 48 Laws of Power and tactical field doctrines emphasize reading the entire terrain before engaging. Emotional reactivity creates tunnel vision; detached poise lets you read team politics, supplier risk, and subtle hardware anomalies simultaneously.',
-        challenge: 'In your next cross-functional sync or OEM escalation call, hold silence for the first 3 minutes while mapping stakeholders’ real constraints (schedule pressure vs. technical risk vs. ownership gaps) before speaking.',
+        explanation: 'Emotional reactivity narrows perception into dangerous tunnel vision, while detached situational awareness grants high-ground clarity. Drawing on The 48 Laws of Power and tactical field doctrine, an elite operator reads stakeholder incentives, unstated constraints, and emerging risks simultaneously—responding with calculated poise rather than defensive impulse.',
+        challenge: 'In your most important meeting or negotiation today, deliberately pause and listen for the first 3 minutes without interrupting: map out each participant’s underlying priority, unspoken concern, and hidden dependency before delivering a concise, high-impact response.',
         habits: [
-          'Execute a 4-second tactical exhale whenever a sudden escalation or Bengaluru traffic bottleneck triggers irritation.',
-          'Listen in daily standups for the unspoken integration dependency between HAL, DSP firmware, and kernel teams.'
+          'Execute a slow 4-second exhale whenever sudden criticism, shifting requirements, or operational friction triggers frustration—never speak from an elevated pulse.',
+          'Actively scan team communications for weak warning signals—vague status updates, silent blockers, or unverified handoffs—before they escalate into crises.'
         ],
         sentence: 'He who controls his emotional temperature commands the entire room.',
-        reflection: 'Did I react defensively under fire today, or did I read the full battlefield from high ground?',
+        reflection: 'Did I react impulsively to friction today, or did I observe the full terrain from high ground before acting?',
         mindmap: {
           concept: 'Situational Awareness: High-Ground Clarity',
           subs: [
-            { title: 'Internal Poise', details: ['4-second breath reset under pressure', 'Detach ego from code ownership'] },
-            { title: 'Terrain Mapping', details: ['Read stakeholder incentives early', 'Spot silent cross-layer blockers'] }
+            {
+              title: 'Emotional Poise & Self-Regulation',
+              details: [
+                'Use a 4-second physiological exhale to neutralize defensiveness before responding under pressure',
+                'Separate objective facts from personal ego when plans or work are challenged'
+              ]
+            },
+            {
+              title: 'Peripheral Terrain Mapping',
+              details: [
+                'Identify hidden stakeholder incentives, constraints, and unspoken risks in group discussions',
+                'Detect weak operational warning signals early before cross-team dependencies break'
+              ]
+            }
           ]
         },
-        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Combat Situational Awareness'
+        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Combat Situational Awareness Doctrine'
+      },
+      {
+        title: 'OPERATION RADAR: READING THE UNSPOKEN TERRAIN',
+        explanation: 'Major execution failures rarely happen without warning; they are almost always preceded by subtle social, organizational, or technical signals that rushed operators overlook. Situational awareness means looking two moves ahead and verifying critical assumptions rather than trusting comforting appearances.',
+        challenge: 'Identify one critical assumption in an active project or collaboration today that everyone is taking for granted without hard verification, and validate it directly through objective data, primary documentation, or a candid alignment check.',
+        habits: [
+          'Verify verbal confidence with concrete artifacts—metrics, timelines, written owners, and real test results.',
+          'Assess the energy and stress level of your team early in the day so you can recalibrate expectations and remove hidden friction proactively.'
+        ],
+        sentence: 'Spot the weak signal early before it matures into a loud crisis.',
+        reflection: 'What early warning sign did I notice—or conveniently ignore—in my environment or team today?',
+        mindmap: {
+          concept: 'Situational Awareness: Early-Warning Intelligence',
+          subs: [
+            {
+              title: 'Assumption Auditing',
+              details: [
+                'Cross-check optimistic verbal updates against primary data and verifiable milestones',
+                'Trace downstream dependencies two steps ahead of the current execution phase'
+              ]
+            },
+            {
+              title: 'Team & Climate Sensing',
+              details: [
+                'Read vocal tone, hesitation, and silence in meetings as meaningful diagnostic data',
+                'Address unspoken misalignment privately and early before friction hardens'
+              ]
+            }
+          ]
+        },
+        doctrine: 'The 48 Laws of Power (Law 29: Plan All the Way to the End); Crew Resource Management Doctrine'
       }
     ]
   },
   {
     name: 'Quick Decision-Making',
     icon: '↗',
-    summary: 'Adaptive target acquisition & breaking analysis paralysis.',
-    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice'],
+    summary: 'Executing decisively under pressure, establishing adaptive target acquisition, and breaking stalemates without analysis paralysis.',
+    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice','velocity'],
     ops: [
       {
         title: 'OPERATION OODA STRIKE: BREAKING THE STALEMATE',
-        explanation: 'Analysis paralysis is fatal in dynamic operations. John Boyd’s OODA Loop (Observe–Orient–Decide–Act) proves rapid iteration with 70% certainty defeats delayed perfection. Waiting for complete vendor specs stalls entire automotive audio milestones.',
-        challenge: 'Select one stalled technical call today (buffer sizing, IPC locking, or temporary mitigation vs. root fix) and force a binary decision within 20 minutes: pick the reversible path and validate it on target hardware immediately.',
+        explanation: 'Analysis paralysis is lethal in fast-moving environments. Colonel John Boyd’s OODA Loop (Observe–Orient–Decide–Act) demonstrates that rapid, disciplined decision cycles driven by 70% certainty consistently outmaneuver slow perfectionism. Waiting indefinitely for 100% information surrenders initiative and stalls entire teams.',
+        challenge: 'Select one decision you or your team have been postponing or over-debating this week, apply a strict 20-minute decision clock, distinguish whether it is reversible or irreversible, and execute the reversible option immediately to gather real-world feedback.',
         habits: [
-          'Classify decisions as Type-1 (irreversible architecture) or Type-2 (reversible implementation); execute Type-2 calls immediately.',
-          'Close every technical debate with an explicit owner, concrete action, and time-boxed verification checkpoint.'
+          'Classify every pending choice as Type-1 (irreversible, high-blast-radius) or Type-2 (reversible, low-cost); make Type-2 calls immediately without committee paralysis.',
+          'Close every technical or strategic discussion with three explicit commitments: one clear decision, one named owner, and one fixed verification deadline.'
         ],
-        sentence: 'Imperfect velocity with fast hardware telemetry beats motionless perfection.',
-        reflection: 'What reversible decision did I delay today out of fear of being wrong?',
+        sentence: 'Imperfect velocity paired with rapid feedback defeats motionless perfection.',
+        reflection: 'What reversible decision did I delay today out of fear of criticism rather than a genuine lack of information?',
         mindmap: {
-          concept: 'Quick Decision-Making: OODA Velocity',
+          concept: 'Quick Decision-Making: OODA Tempo Advantage',
           subs: [
-            { title: 'Anti-Paralysis', details: ['70% threshold for Type-2 calls', '20-minute time-boxed design calls'] },
-            { title: 'Rapid Telemetry', details: ['Test early on target audio bench', 'Clear owner and checkpoint'] }
+            {
+              title: 'Eliminating Analysis Paralysis',
+              details: [
+                'Apply the 70% information threshold for reversible Type-2 operational calls',
+                'Enforce strict time-boxes on design debates so momentum never stalls indefinitely'
+              ]
+            },
+            {
+              title: 'Decisive Accountability Loops',
+              details: [
+                'Run small, fast experiments to convert theoretical arguments into empirical telemetry',
+                'End every decision cycle with a named owner, concrete action, and review checkpoint'
+              ]
+            }
           ]
         },
-        doctrine: 'Col. John Boyd – OODA Loop Doctrine; High-Tempo Command Protocols'
+        doctrine: 'Col. John Boyd – OODA Loop Doctrine; High-Tempo Command Decision Protocols'
+      },
+      {
+        title: 'OPERATION BREACH: ADAPTIVE TARGET ACQUISITION',
+        explanation: 'When conditions shift unexpectedly mid-execution, hesitation multiplies risk. Adaptive decision-making means maintaining clear contingency options in advance so that when Plan A encounters resistance, you pivot to Plan B in seconds with zero emotional friction.',
+        challenge: 'Before beginning your next major presentation, release, or high-stakes task today, write down the top two failure scenarios that could occur and pre-commit to the exact 5-minute contingency pivot you will execute if either triggers.',
+        habits: [
+          'When two viable paths appear nearly equal on paper, choose the simpler one immediately and measure real results rather than debating edge aesthetics.',
+          'Communicate decisive pivots clearly and calmly so your team immediately knows the new objective without confusion.'
+        ],
+        sentence: 'Decisive motion generates the clarity that endless hesitation waits for.',
+        reflection: 'Where did I over-analyze a low-risk choice today instead of testing it in reality and adapting from the result?',
+        mindmap: {
+          concept: 'Quick Decision-Making: Adaptive Pivoting',
+          subs: [
+            {
+              title: 'Pre-Planned Contingencies',
+              details: [
+                'Identify top two failure modes before execution and pre-authorize fallback paths',
+                'Shift from Plan A to Plan B swiftly without sunk-cost regret when facts change'
+              ]
+            },
+            {
+              title: 'Bias Toward Simplicity',
+              details: [
+                'Break deadlocks between equal options by selecting the simpler, faster-to-validate path',
+                'Broadcast clear, unambiguous direction whenever priorities shift under pressure'
+              ]
+            }
+          ]
+        },
+        doctrine: 'Commando Tactical Breach Doctrine; Empirical Leadership Execution'
       }
     ]
   },
   {
     name: 'Quick Reflection / Self-Correction',
     icon: '↻',
-    summary: 'Ego-free adaptation & blameless autopsies.',
-    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust'],
+    summary: 'Ego-free adaptation, blameless autopsies, and rapid extraction of actionable intelligence from friction or failure.',
+    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust','audit'],
     ops: [
       {
         title: 'OPERATION BLACK BOX: EGO-FREE AUTOPSY',
-        explanation: 'Elite aviation and special operations conduct ruthless, blameless After-Action Reviews (AARs) immediately after every sortie. Ego conceals root causes; brutal honesty turns a failed test-bench run or tense family moment into actionable intelligence.',
-        challenge: 'Run a 10-minute Black Box review on one bug escape, integration delay, or miscommunication from this week: state expected vs. actual outcome, identify the missing systemic guardrail, and deploy one fix today.',
+        explanation: 'Elite aviation and special operations units conduct ruthless, blameless After-Action Reviews (AARs) immediately after every mission. Ego conceals root causes and perpetuates repeat errors; radical honesty strips away blame and converts setbacks, missed expectations, or friction into immediate operational intelligence.',
+        challenge: 'Conduct a focused 10-minute Black Box autopsy on one mistake, missed target, or communication breakdown from this week: state what was planned, what actually occurred, the exact systemic gap that allowed it, and deploy one concrete structural safeguard today.',
         habits: [
-          'When a teammate breaks the audio build, ask "What automated guardrail was missing?" before blaming anyone.',
-          'Run a 3-minute nightly debrief before sleep: 1 execution win, 1 friction point, 1 tactical adjustment for tomorrow.'
+          'When an error occurs on your team, ask "What process guardrail or clarity was missing?" before assigning personal blame.',
+          'Run a structured 3-minute evening debrief before ending your day: record 1 clear win, 1 point of friction, and 1 specific adjustment for tomorrow.'
         ],
-        sentence: 'Extract the intelligence, discard the ego, upgrade the protocol.',
-        reflection: 'What uncomfortable truth about my own blind spot did today reveal?',
+        sentence: 'Extract the intelligence, discard the ego, and upgrade the protocol.',
+        reflection: 'What uncomfortable truth about my own blind spot or execution gap did today’s friction expose?',
         mindmap: {
-          concept: 'Quick Reflection: Blameless AAR',
+          concept: 'Quick Reflection: Blameless After-Action Review',
           subs: [
-            { title: 'Engineering Telemetry', details: ['Expected vs. actual outcome', 'Harden CI and static checks'] },
-            { title: 'Daily Self-Audit', details: ['1 win / 1 gap / 1 fix nightly', 'Zero defensiveness in reviews'] }
+            {
+              title: 'Root-Cause Extraction',
+              details: [
+                'Compare planned expectations against actual outcomes using objective, non-defensive facts',
+                'Fix the underlying system, checklist, or communication gap rather than blaming individuals'
+              ]
+            },
+            {
+              title: 'Continuous Feedback Cadence',
+              details: [
+                'Complete a 3-minute nightly debrief capturing win, friction, and next-day correction',
+                'Seek blunt, constructive critique early while course correction is still inexpensive'
+              ]
+            }
           ]
         },
-        doctrine: 'US Special Operations After-Action Review (AAR); Ray Dalio – Principles'
+        doctrine: 'US Special Operations After-Action Review (AAR); Ray Dalio – Principles (Pain + Reflection = Progress)'
+      },
+      {
+        title: 'OPERATION RECALIBRATE: CLOSED-LOOP COURSE CORRECTION',
+        explanation: 'Precision guidance systems do not fly in a straight line by luck—they measure tiny deviations continuously and correct them instantly. Rapid self-correction keeps a difficult morning or an unexpected setback from cascading into a wasted week.',
+        challenge: 'Set a mid-day recalibration checkpoint at 2:00 PM today: pause for 3 minutes, compare what you actually spent the morning doing against your top mission priority, and immediately eliminate any drift.',
+        habits: [
+          'Acknowledge your own missteps openly and concisely the moment you spot them—fast ownership builds immediate credibility.',
+          'Treat every piece of critical feedback as raw tactical telemetry rather than a personal attack.'
+        ],
+        sentence: 'Rapid mid-course correction turns early deviation into pinpoint accuracy.',
+        reflection: 'How quickly did I recognize and correct my own drift off-target today?',
+        mindmap: {
+          concept: 'Quick Reflection: Closed-Loop Self-Correction',
+          subs: [
+            {
+              title: 'In-Flight Calibration',
+              details: [
+                'Run a 3-minute mid-day alignment check against the morning’s highest-value objective',
+                'Cut low-impact drift immediately rather than waiting until tomorrow to reset'
+              ]
+            },
+            {
+              title: 'Ego-Free Ownership',
+              details: [
+                'Own errors swiftly and transparently with a clear corrective plan attached',
+                'Convert sharp feedback directly into upgraded habits and sharper execution'
+              ]
+            }
+          ]
+        },
+        doctrine: 'Jocko Willink – Extreme Ownership; Closed-Loop Athletic & Control-System Recovery'
       }
     ]
   },
   {
     name: 'Efficiency',
     icon: '◇',
-    summary: 'Concentrating force on specifics & breaking circular traps.',
-    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint'],
+    summary: 'Maximizing operational output, breaking circular activity traps, and concentrating force into high-leverage specifics.',
+    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint','vital','pareto'],
     ops: [
       {
         title: 'OPERATION SCALPEL: HIGH-LEVERAGE CONCENTRATION',
-        explanation: 'Motion is not progress. Circular debugging, redundant status meetings, and premature optimization burn fuel without moving the mission. Efficiency means concentrating decisive force on the single constraint governing system throughput.',
-        challenge: 'Audit your task queue at 9:30 AM and ruthlessly cut or defer 30% of low-leverage noise. Pour the reclaimed energy into your #1 critical-path audio/kernel deliverable or high-leverage mentoring.',
+        explanation: 'Busyness is not progress. Circular activity traps, bloated meetings, and low-value perfectionism burn finite fuel while leaving the core objective untouched. True efficiency—rooted in Theory of Constraints and Essentialism—concentrates decisive force on the single bottleneck governing total output.',
+        challenge: 'Audit your entire task list before noon today and ruthlessly eliminate, defer, or delegate at least 30% of low-leverage items; redirect every recovered minute into the single highest-impact deliverable or bottleneck on your critical path.',
         habits: [
-          'Use binary-search isolation (git bisect / layer-by-layer tap across HAL → ALSA → DSP) instead of blind print-statement guessing.',
-          'Batch Slack/Teams and email replies into two fixed 15-minute windows instead of reacting continuously.'
+          'Use structured isolation (divide-and-conquer diagnostics) whenever solving complex problems instead of random trial-and-error.',
+          'Batch routine messages, administrative approvals, and email replies into two fixed 15-minute windows instead of reacting all day.'
         ],
-        sentence: 'Cut the trivial many so decisive force strikes the vital few.',
-        reflection: 'Was I merely busy today, or did I measurably advance the critical path?',
+        sentence: 'Cut away the trivial many so decisive force strikes the vital few.',
+        reflection: 'Was I merely occupied with motion today, or did I measurably move the single most important constraint forward?',
         mindmap: {
-          concept: 'Efficiency: Force Multiplication',
+          concept: 'Efficiency: High-Leverage Force Multiplication',
           subs: [
-            { title: 'Critical Path Strike', details: ['Isolate true system constraint', 'Binary-search root-cause debug'] },
-            { title: 'Friction Removal', details: ['Batch async communications', 'Decline agenda-less meetings'] }
+            {
+              title: 'Critical-Path Targeting',
+              details: [
+                'Identify the single bottleneck limiting throughput and focus 80% of energy there',
+                'Apply systematic divide-and-conquer isolation instead of blind trial-and-error'
+              ]
+            },
+            {
+              title: 'Waste & Friction Elimination',
+              details: [
+                'Prune 30% of low-value commitments, redundant meetings, and circular busywork',
+                'Batch routine communication into fixed windows to preserve continuous output'
+              ]
+            }
           ]
         },
         doctrine: 'Eliyahu Goldratt – Theory of Constraints; Greg McKeown – Essentialism'
+      },
+      {
+        title: 'OPERATION LEVER: MULTIPLYING TEAM VELOCITY',
+        explanation: 'High-output leaders do not scale impact merely by working longer hours; they remove systemic bottlenecks that slow down everyone around them. Clarifying ambiguous specifications, automating repetitive setup, and empowering clear ownership generate permanent compound efficiency.',
+        challenge: 'Invest 30 focused minutes today into permanently eliminating one recurring bottleneck or knowledge gap that slows down your collaborators—write the concise guide, build the template, or clarify the decision boundary once for good.',
+        habits: [
+          'Before building something from scratch, verify whether a proven template, tool, or standard already exists to achieve the result in half the time.',
+          'Decline or reshape meetings that lack a written objective, pre-read, or clear decision requirement.'
+        ],
+        sentence: 'Eliminate systemic friction once instead of heroically fighting it every day.',
+        reflection: 'What recurring bottleneck did I permanently remove today to multiply future output?',
+        mindmap: {
+          concept: 'Efficiency: Systemic Leverage & Velocity',
+          subs: [
+            {
+              title: 'Force Multiplication',
+              details: [
+                'Document tribal knowledge and reusable templates to accelerate everyone’s execution',
+                'Resolve ambiguous ownership boundaries early so parallel workstreams never collide'
+              ]
+            },
+            {
+              title: 'Meeting & Process Discipline',
+              details: [
+                'Require clear agendas and decision goals before committing calendar hours',
+                'Reuse proven building blocks rather than reinventing solved components'
+              ]
+            }
+          ]
+        },
+        doctrine: 'Andy Grove – High Output Management; Lean Systems Engineering'
       }
     ]
   }
 ];
 
-const STORAGE_KEY = 'tactical_mindset_matrix_v1';
+const STORAGE_KEY = 'tactical_mindset_matrix_v2';
 
 function loadRotationState() {
   try {
@@ -496,7 +735,7 @@ async function scan() {
       setStatus('Scan complete: no PDFs found in this branch.');
       $('result').replaceChildren();
       add($('result'), 'h2', 'No PDF sources found');
-      add($('result'), 'p', 'Upload PDF books to this GitHub repository and rescan.');
+      add($('result'), 'p', 'Upload PDF files to this GitHub repository and rescan.');
       return;
     }
 
@@ -555,7 +794,7 @@ function makePassages(page) {
   const passages = [];
   let current = '';
   for (const sentence of sentences) {
-    if (current && (current + ' ' + sentence).length > 420) {
+    if (current && (current + ' ' + sentence).length > 560) {
       passages.push(current);
       current = sentence;
     } else {
@@ -563,7 +802,7 @@ function makePassages(page) {
     }
   }
   if (current) passages.push(current);
-  return passages.length ? passages : [page.text.slice(0, 420)];
+  return passages.length ? passages : [page.text.slice(0, 560)];
 }
 
 function keywordScore(text, terms) {
@@ -586,11 +825,11 @@ function findBestPdfEvidence(theme) {
     let bestHit = null;
     for (const page of pages) {
       for (const text of makePassages(page)) {
-        if (text.length < 45) continue;
+        if (text.length < 60) continue;
         let score = keywordScore(text, theme.terms);
         if (score === 0) continue;
         const citKey = `${file.path}:${page.pageNum}`;
-        if (recentSet.has(citKey)) score -= 2; // Rotate passages/books across runs
+        if (recentSet.has(citKey)) score -= 2;
         if (!bestHit || score > bestHit.score) {
           bestHit = { fileName: file.path, pageNum: page.pageNum, url: page.url, text, score, citKey };
         }
@@ -602,14 +841,13 @@ function findBestPdfEvidence(theme) {
   fileMatches.sort((a, b) => b.score - a.score || a.fileName.localeCompare(b.fileName));
   if (fileMatches.length > 0) return fileMatches[0];
 
-  // Fallback deterministic excerpt if keywords didn't match directly
   const fallbackFile = readableFiles[state.directiveCount % readableFiles.length];
   const fallbackPage = fallbackFile.pages[state.directiveCount % fallbackFile.pages.length];
   return {
     fileName: fallbackFile.path,
     pageNum: fallbackPage.pageNum,
     url: fileUrl(fallbackFile),
-    text: fallbackPage.text.slice(0, 360) + (fallbackPage.text.length > 360 ? '…' : ''),
+    text: fallbackPage.text.slice(0, 480) + (fallbackPage.text.length > 480 ? '…' : ''),
     score: 0,
     citKey: `${fallbackFile.path}:${fallbackPage.pageNum}`
   };
@@ -627,7 +865,7 @@ function renderThemes() {
   const grid = $('themeGrid');
   grid.replaceChildren();
   const nextTheme = getNextBalancedTheme();
-  $('rotationHint').textContent = `Next scheduled target: ${nextTheme.name} • Directives issued: ${state.directiveCount}`;
+  $('rotationHint').textContent = `Targeted today: ${nextTheme.name} • Directives issued: ${state.directiveCount}`;
 
   THEMES.forEach((theme, index) => {
     const isNext = theme.name === nextTheme.name;
@@ -681,10 +919,9 @@ function createDirective(theme, isAuto = false) {
     : op.explanation;
 
   const sourceText = evidence
-    ? `${evidence.fileName} (page ${evidence.pageNum}) | Cross-referenced with ${op.doctrine}`
+    ? `${evidence.fileName} (page ${evidence.pageNum}) | Foundational Framework: ${op.doctrine}`
     : op.doctrine;
 
-  // Build strict requested Markdown structure
   const mdLines = [
     `Mindset Directive ${state.directiveCount}: ${theme.name}`,
     ` * Mindset title: ${op.title}`,
@@ -708,22 +945,19 @@ function createDirective(theme, isAuto = false) {
   state.markdown = mdLines.join('\n');
   $('rawMd').textContent = state.markdown;
 
-  // Render Apple Briefing UI
   const result = $('result');
   result.replaceChildren();
 
   add(result, 'h2', `Mindset Directive ${state.directiveCount}: ${theme.name}`, 'directive-title');
-  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'ROTATION' : 'MANUAL'})`, 'source-book');
+  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'TACTICAL ROTATION' : 'DIRECT SELECTION'})`, 'source-book');
   if (evidence) {
     add(result, 'div', `REPO PDF SOURCE: ${evidence.fileName} — p.${evidence.pageNum}`, 'source-book');
   }
 
-  // Mindset title
   const titleField = add(result, 'section', '', 'field');
   add(titleField, 'h3', 'Mindset title', 'field-title');
   add(titleField, 'div', op.title, 'op-heading');
 
-  // Explanation + Verbatim PDF Evidence
   const expField = add(result, 'section', '', 'field');
   add(expField, 'h3', 'Explanation', 'field-title');
   add(expField, 'p', op.explanation, 'field-body');
@@ -740,29 +974,24 @@ function createDirective(theme, isAuto = false) {
     cite.appendChild(link);
   }
 
-  // Daily challenge
   const chalField = add(result, 'section', '', 'field');
   add(chalField, 'h3', 'Daily challenge', 'field-title');
   add(chalField, 'p', op.challenge, 'field-body');
 
-  // Habits to inculcate
   const habField = add(result, 'section', '', 'field');
   add(habField, 'h3', 'Habits to inculcate', 'field-title');
   const ulHab = add(habField, 'ul', '', 'habit-list');
   add(ulHab, 'li', op.habits[0]);
   add(ulHab, 'li', op.habits[1]);
 
-  // One sentence to remember
   const sentField = add(result, 'section', '', 'field');
   add(sentField, 'h3', 'One sentence to remember', 'field-title');
   add(sentField, 'div', op.sentence, 'anchor-sentence');
 
-  // Reflection prompt
   const refField = add(result, 'section', '', 'field');
   add(refField, 'h3', 'Reflection prompt', 'field-title');
   add(refField, 'p', op.reflection, 'field-body');
 
-  // Mindmap
   const mapField = add(result, 'section', '', 'field');
   add(mapField, 'h3', 'Mindmap', 'field-title');
   const mapBox = add(mapField, 'div', '', 'mindmap');
@@ -775,7 +1004,6 @@ function createDirective(theme, isAuto = false) {
     li.appendChild(subUl);
   }
 
-  // Source
   const srcField = add(result, 'section', '', 'field');
   add(srcField, 'h3', 'Source', 'field-title');
   const srcP = add(srcField, 'p', '', 'field-body');
