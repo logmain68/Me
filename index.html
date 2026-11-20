@@ -7,43 +7,74 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Briefing — Tactical Performance System</title>
+  <title>Mindset Commander — Behavioral &amp; Performance Coach</title>
   <style>
-    :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.84);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.15);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#248a3d;--danger:#b42318;--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:48px;--radius:26px}
-    body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.9);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--danger:#ff6961;--shadow:0 20px 55px rgba(0,0,0,.32),0 3px 12px rgba(0,0,0,.2)}
-    *{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;min-height:100vh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Arial,sans-serif;line-height:1.55;background:radial-gradient(ellipse at 10% 0%,var(--soft),transparent 34rem),var(--bg);color:var(--text);transition:background .22s,color .22s}
-    button,input{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1120px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-    .topbar{position:sticky;z-index:5;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(22px,5vw,40px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em}.logo{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 17px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.9rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
-    .hero{position:relative;overflow:hidden;padding:clamp(25px,6vw,58px);border-radius:var(--radius);margin-bottom:24px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:12px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:760px;margin:0 0 14px;font-size:clamp(2.4rem,8vw,4.5rem);line-height:1.02;letter-spacing:-.05em}.subtitle{max-width:72ch;margin:0 0 22px;color:var(--muted);font-size:clamp(1rem,2.4vw,1.08rem);line-height:1.68}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:26px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
-    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,255px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:142px;padding:18px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.83rem;line-height:1.5;display:block}
-    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,.65fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,26px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1.03rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:4px 0 8px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 11px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:14px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 7px;font-size:.88rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field-body{margin:0;font-size:.98rem;line-height:1.7}.habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:8px;font-size:.96rem;line-height:1.65}.anchor-sentence{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.04rem;line-height:1.55}.extract{padding:13px 15px;margin:12px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.68;font-size:.91rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
-    .mindmap{padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:10px;font-size:1rem}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:4px 0 10px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:6px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:3px 0;line-height:1.55}.controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:300px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-status{flex:0 0 auto;padding:3px 7px;border-radius:999px;background:rgba(52,199,89,.14);color:var(--success);font-size:.68rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.6;display:none}
-    @media(max-width:720px){.workspace{grid-template-columns:1fr}}@media(max-width:520px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:7px;font-size:.82rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:118px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,#themeGrid,.section-head,aside,.raw-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field{break-inside:avoid;background:#fff}}
+    :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.84);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.15);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#248a3d;--success-soft:rgba(52,199,89,.14);--warn:#b25000;--warn-soft:rgba(255,149,0,.14);--danger:#b42318;--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:46px;--radius:26px}
+    body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.9);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--success-soft:rgba(48,209,88,.18);--warn:#ff9f0a;--warn-soft:rgba(255,159,10,.18);--danger:#ff6961;--shadow:0 20px 55px rgba(0,0,0,.32),0 3px 12px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;min-height:100vh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Arial,sans-serif;line-height:1.55;background:radial-gradient(ellipse at 10% 0%,var(--soft),transparent 34rem),var(--bg);color:var(--text);transition:background .22s,color .22s}
+    button,input,textarea{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1160px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+    .topbar{position:sticky;z-index:10;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(20px,4vw,36px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em}.logo{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.88rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
+    .hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,52px);border-radius:var(--radius);margin-bottom:20px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:10px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:780px;margin:0 0 12px;font-size:clamp(2.2rem,7.5vw,4.2rem);line-height:1.03;letter-spacing:-.05em}.subtitle{max-width:74ch;margin:0 0 20px;color:var(--muted);font-size:clamp(.98rem,2.3vw,1.06rem);line-height:1.68}
+    .calibration-bar{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px 20px;border-radius:20px;margin-bottom:20px}@media(max-width:800px){.calibration-bar{grid-template-columns:1fr}}.cal-group{display:flex;flex-direction:column;gap:8px}.cal-label{font-size:.74rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.segmented{display:inline-flex;flex-wrap:wrap;gap:4px;background:var(--alt);padding:4px;border-radius:14px}.seg-btn{min-height:36px;padding:6px 12px;border:none;border-radius:10px;background:transparent;font-size:.8rem;font-weight:650;color:var(--muted);box-shadow:none}.seg-btn:hover{transform:none;box-shadow:none;color:var(--text)}.seg-btn.active{background:var(--solid);color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:22px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:150px;padding:18px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.83rem;line-height:1.5;display:block}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(295px,.68fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,26px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1.05rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:4px 0 8px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.state-protocol{margin:10px 0 4px;padding:13px 16px;border-radius:14px;background:var(--warn-soft);border:1px solid var(--border);font-size:.9rem;line-height:1.6}.field{padding:15px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 8px;font-size:.86rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field-body{margin:0;font-size:.98rem;line-height:1.72}.habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:9px;font-size:.96rem;line-height:1.68}.anchor-sentence{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.05rem;line-height:1.55}.extract{padding:14px 16px;margin:12px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.68;font-size:.91rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
+    .mindmap{padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:10px;font-size:1.02rem}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:4px 0 10px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:6px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:3px 0;line-height:1.58}
+    .coach-card{margin-top:16px;padding:18px;border-radius:18px;background:var(--surface);border:1px solid var(--border);display:grid;gap:12px}.coach-card h3{margin:0;font-size:.95rem;letter-spacing:-.01em}.if-then-row{display:grid;gap:8px}.textarea{width:100%;min-height:74px;padding:10px 12px;border-radius:12px;border:1px solid var(--border-strong);background:var(--alt);resize:vertical;font-size:.92rem}.rating-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.rate-btn{min-height:36px;padding:6px 13px;font-size:.8rem}.rate-btn.active{background:var(--accent);color:#fff;border-color:transparent}.journal-list{display:grid;gap:8px;max-height:220px;overflow:auto;margin-top:8px}.journal-item{padding:10px 12px;border-radius:12px;background:var(--alt);border:1px solid var(--border);font-size:.82rem}
+    .controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:270px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf.is-next{border-color:var(--accent);background:var(--soft)}.pdf-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1}.pdf-idx{flex:0 0 auto;min-width:26px;height:22px;padding:0 6px;border-radius:999px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;font-size:.7rem;font-weight:750;font-variant-numeric:tabular-nums;color:var(--muted)}.pdf.is-next .pdf-idx{background:var(--accent);color:#fff;border-color:transparent}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-badges{display:flex;align-items:center;gap:5px;flex:0 0 auto}.pdf-status{padding:3px 7px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:.68rem;font-weight:750}.pdf-status.warn{background:var(--warn-soft);color:var(--warn)}.pdf-status.err{background:rgba(180,35,24,.12);color:var(--danger)}.pdf-next-tag{padding:3px 7px;border-radius:999px;background:var(--accent);color:#fff;font-size:.66rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.6;display:none}
+    @media(max-width:760px){.workspace{grid-template-columns:1fr}}@media(max-width:560px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr 1fr}.topbar .actions button{width:100%;padding-inline:6px;font-size:.78rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:118px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,.calibration-bar,#themeGrid,.section-head,aside,.raw-box,.no-print{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field,.coach-card{break-inside:avoid;background:#fff}}
   </style>
 </head>
 <body>
 <main class="wrap">
   <header class="topbar glass">
-    <div class="brand"><span class="logo" aria-hidden="true">M</span><span>Mindset Commander</span></div>
+    <div class="brand">
+      <span class="logo" aria-hidden="true">M</span>
+      <span>Mindset Commander</span>
+      <span class="tag" id="streakBadge">0-Day Streak</span>
+    </div>
     <div class="actions">
+      <button id="breathBtn" class="secondary" type="button">60s Reset</button>
       <button id="themeBtn" class="secondary" type="button" aria-pressed="false">◐ Appearance</button>
       <button id="printBtn" class="primary" type="button">Print / Save PDF</button>
     </div>
   </header>
 
   <section class="hero glass">
-    <div class="eyebrow">Elite Performance Mentor • Tactical Mindset Conditioning</div>
-    <h1>Clarity under pressure.</h1>
-    <p class="subtitle">An uncompromising mental conditioning system that translates elite military, athletic, and leadership doctrines from your GitHub PDF library into structured daily execution briefings—complete with actionable challenges, habit protocols, diagnostic reflection prompts, and hierarchical mindmaps.</p>
+    <div class="eyebrow">Top-1% Executive Mentor • Human Behavior &amp; Relational Conditioning</div>
+    <h1>State precedes strategy.</h1>
+    <p class="subtitle">An adaptive behavioral conditioning system translating elite military, athletic, and leadership doctrines from your GitHub PDF library in strict round-robin sequence. Calibrate your current mental state and target life arena—career leadership, personal mastery, or family relationships—to convert reading into permanent daily habits.</p>
     <div class="actions">
       <button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button>
       <button id="toggleMdBtn" class="secondary" type="button">Toggle Markdown</button>
     </div>
   </section>
 
+  <!-- Behavioral State & Life-Domain Calibration -->
+  <section class="calibration-bar glass" aria-label="Behavioral Calibration">
+    <div class="cal-group">
+      <span class="cal-label">1. Current Mental &amp; Nervous-System State</span>
+      <div class="segmented" id="stateSeg">
+        <button type="button" class="seg-btn active" data-state="peak">Peak / Ready</button>
+        <button type="button" class="seg-btn" data-state="overloaded">Overloaded / Stressed</button>
+        <button type="button" class="seg-btn" data-state="scattered">Scattered / Distracted</button>
+        <button type="button" class="seg-btn" data-state="conflict">Post-Conflict / Low</button>
+      </div>
+    </div>
+    <div class="cal-group">
+      <span class="cal-label">2. Primary Arena Focus</span>
+      <div class="segmented" id="domainSeg">
+        <button type="button" class="seg-btn active" data-domain="all">All-Domain Balance</button>
+        <button type="button" class="seg-btn" data-domain="career">Career &amp; Leadership</button>
+        <button type="button" class="seg-btn" data-domain="personal">Personal Mastery</button>
+        <button type="button" class="seg-btn" data-domain="family">Family &amp; Relationships</button>
+      </div>
+    </div>
+  </section>
+
   <div class="section-head">
     <h2>Core Operational Matrix — Select or Rotate</h2>
-    <span id="rotationHint">Balanced rotation • tracking recent themes</span>
+    <span id="rotationHint">Balanced theme rotation • Round-robin PDF queue</span>
   </div>
   <section id="themeGrid" class="theme-grid" aria-label="Tactical themes"></section>
 
@@ -55,14 +86,41 @@
       </div>
       <article id="result" class="result" aria-live="polite" aria-atomic="true">
         <h2>Scanning repository PDFs…</h2>
-        <p>Directives unlock automatically once all PDFs in this GitHub repository are discovered and indexed.</p>
+        <p>Deploy unlocks immediately once PDF #1 is indexed while remaining books load cleanly in the background.</p>
       </article>
       <pre id="rawMd" class="raw-box"></pre>
+
+      <!-- Implementation Intention + Evening AAR Coach Card -->
+      <div class="coach-card" id="coachCard" style="display:none">
+        <h3>Behavioral Lock-In &amp; Evening AAR</h3>
+        <div class="if-then-row">
+          <label class="label" for="ifThenInput">If–Then Implementation Intention (edit to personalize today's trigger)</label>
+          <input id="ifThenInput" class="input" type="text">
+        </div>
+        <div>
+          <span class="label" style="display:block;margin-bottom:6px">Execution Score Today (1 = Drifted, 5 = Uncompromising)</span>
+          <div class="rating-row" id="ratingRow">
+            <button type="button" class="rate-btn" data-rate="1">1</button>
+            <button type="button" class="rate-btn" data-rate="2">2</button>
+            <button type="button" class="rate-btn" data-rate="3">3</button>
+            <button type="button" class="rate-btn" data-rate="4">4</button>
+            <button type="button" class="rate-btn" data-rate="5">5</button>
+          </div>
+        </div>
+        <div>
+          <label class="label" for="aarNotes">End-of-Day Reflection Answer</label>
+          <textarea id="aarNotes" class="textarea" placeholder="Write 1 honest win, 1 friction point, and 1 repair or adjustment for tomorrow..."></textarea>
+        </div>
+        <div class="actions no-print">
+          <button id="saveAarBtn" class="primary" type="button">Save Daily AAR &amp; Lock Streak</button>
+        </div>
+        <div id="journalList" class="journal-list"></div>
+      </div>
     </section>
 
     <aside class="panel glass" aria-labelledby="libraryTitle">
       <div class="panel-head">
-        <strong id="libraryTitle">Repository PDF Library</strong>
+        <strong id="libraryTitle">Round-Robin PDF Queue</strong>
         <span id="pdfCount" class="tag">Not scanned</span>
       </div>
       <div class="controls">
@@ -74,13 +132,13 @@
       </div>
       <div id="progress" class="scan-progress" hidden aria-hidden="true"><span></span></div>
       <p class="status" id="scanStatus" aria-live="polite">Starting repository scan…</p>
-      <div id="pdfList" class="pdf-list" aria-label="PDFs discovered in the repository"></div>
+      <div id="pdfList" class="pdf-list" aria-label="Indexed PDFs in round-robin order"></div>
       <div style="margin-top:12px;display:grid;gap:8px">
         <button id="copyBtn" type="button" style="width:100%">Copy Tactical Briefing (MD)</button>
-        <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation Log</button>
+        <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation &amp; PDF Index</button>
       </div>
       <p id="copyStatus" class="copy-status" aria-live="polite"></p>
-      <p class="status">Scans public GitHub repositories recursively. All PDF text extraction runs locally inside your browser with zero external tracking.</p>
+      <p class="status">Every deployment steps strictly from PDF #1 through the last readable PDF in your repository, then wraps back to #1 automatically.</p>
     </aside>
   </section>
 </main>
@@ -88,430 +146,351 @@
 <script>
 'use strict';
 
+const STATE_PROTOCOLS = {
+  peak: {
+    label: 'Peak / Ready',
+    note: 'State Protocol (Peak): Channel high readiness into your hardest, highest-leverage objective first—avoid wasting peak dopamine on easy administrative clutter.'
+  },
+  overloaded: {
+    label: 'Overloaded / Stressed',
+    note: 'State Protocol (Overloaded): Before acting, execute 3 physiological sighs (double inhale through the nose, long slow exhale through the mouth). Drop 50% of non-essential tasks for the next 2 hours to restore executive brain control.'
+  },
+  scattered: {
+    label: 'Scattered / Distracted',
+    note: 'State Protocol (Scattered): Your attention is fragmented. Close every tab except one, set a 25-minute timer, and complete a single microscopic win to rebuild momentum.'
+  },
+  conflict: {
+    label: 'Post-Conflict / Low',
+    note: 'State Protocol (Post-Conflict / Low): Do not try to win arguments from a depleted nervous system. Lower your vocal pace, prioritize repair or rest first, and return to strategic action once grounded.'
+  }
+};
+
 const THEMES = [
   {
     name: 'Discipline',
     icon: '✓',
-    summary: 'The foundation of execution: microscopic standards, methodical checklists, and uncompromising daily effort even when motivation fades.',
-    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution','craft','detail'],
+    summary: 'Microscopic standards, methodical checklists, self-command, and unwavering reliability across work and family.',
+    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution','craft','detail','promise'],
     ops: [
       {
         title: 'OPERATION RINSE: THE DISCIPLINE OF MICROSCOPIC STANDARDS',
-        explanation: 'Elite performers and enduring organizations never separate grand strategy from microscopic execution. As illustrated in Good to Great and Special Operations doctrine, relentless consistency in small, unglamorous details—rinsing away every trace of sloppiness before moving to the next phase—builds an insurmountable standard of reliability. When pressure spikes, you do not rise to your highest ambition; you fall back to the exact level of your daily standards and checklists.',
-        challenge: 'Select your highest-priority technical or leadership deliverable today and subject it to a zero-compromise, 5-point pre-submission audit before considering it complete: verify edge cases, check documentation clarity, eliminate avoidable ambiguity, validate assumptions with objective evidence, and review the final output line by line without skimming.',
-        habits: [
-          'Protect the first 45 minutes of every workday as a non-negotiable deep execution block—close messaging feeds, silence alerts, and focus exclusively on your primary objective.',
-          'Execute an end-of-day shutdown protocol: clear your workspace, log what was completed against plan, and write tomorrow’s single most critical objective on paper before stepping away.'
-        ],
-        sentence: 'Microscopic standards practiced in quiet hours prevent catastrophic failures under fire.',
-        reflection: 'Where did I rationalize a small shortcut or lower my standard today simply because nobody else was watching?',
-        mindmap: {
-          concept: 'Discipline: Microscopic Standards & Execution',
-          subs: [
-            {
-              title: 'Uncompromising Verification Gates',
-              details: [
-                'Replace memory and guesswork with explicit pre-flight checklists for every critical output',
-                'Audit edge cases, assumptions, and failure modes before declaring any task finished'
-              ]
-            },
-            {
-              title: 'Daily Operational Cadence',
-              details: [
-                'Lock the opening 45 minutes of the day for high-value, interruption-free execution',
-                'Close every day with a structured reset and tomorrow’s #1 priority defined in writing'
-              ]
-            }
+        explanation: 'Elite performers and enduring leaders never separate grand vision from microscopic execution. Relentless consistency in small, unglamorous details builds an unbreakable standard of reliability. Under high stress, human beings do not rise to their highest aspirations—they fall back to the exact strength of their daily habits. True character is keeping the same uncompromising standard across your desk, your personal health, and the promises you make at home.',
+        challenges: {
+          all: 'Select one critical professional deliverable and one personal or family commitment today: audit your work output line-by-line against a 5-point quality check before sharing, and honor a specific promise made to a loved one with complete punctuality and zero distraction.',
+          career: 'Take your most important work deliverable today and run a mandatory 5-point pre-release audit: verify edge cases, remove ambiguous wording, validate claims with hard data, clarify next owners, and review every detail line-by-line.',
+          personal: 'Execute your non-negotiable morning anchor—hydration, physical movement, and 45 minutes of focused self-development or core work—before checking a single social or news feed.',
+          family: 'Choose one small promise or daily routine with a loved one today and fulfill it with total presence, punctuality, and zero device checking—proving that home receives your highest standard, not your leftover energy.'
+        },
+        habits: {
+          all: [
+            'Protect the first 45 minutes of your workday as an unbreakable deep-execution block with all messaging feeds closed.',
+            'Run a clean end-of-day transition ritual: write tomorrow’s #1 work priority on paper, shut down intentionally, and step into family time mentally present.'
+          ],
+          career: [
+            'Protect the first 45 minutes of every workday for high-value execution before opening email or chat feeds.',
+            'Audit every critical handoff with an explicit 3-item verification checklist before declaring it complete.'
+          ],
+          personal: [
+            'Keep your evening and morning sleep boundaries consistent within a 30-minute window to stabilize willpower and mood.',
+            'Track your core daily standard visually—never break the chain two days in a row.'
+          ],
+          family: [
+            'Leave work stress outside the door via a 3-minute breathing transition before greeting family.',
+            'Follow through on every small household or relational commitment on time without needing reminders.'
           ]
         },
-        doctrine: 'Jim Collins – Good to Great (The 20-Mile March & Disciplined Thought); Commando Standard Operating Doctrine'
+        ifThen: 'IF I feel tempted to skip a verification step or check work messages during family hours, THEN I will pause, take one breath, and honor the standard I set.',
+        sentence: 'Microscopic standards practiced in quiet hours build unshakable trust under fire.',
+        reflection: 'Where did I lower my standard or rationalize a shortcut today—in my work craft, personal habits, or reliability with family?',
+        mindmap: {
+          concept: 'Discipline: Microscopic Standards & Trust',
+          subs: [
+            { title: 'Verification & Craft', details: ['Replace guesswork with explicit 5-point checklists before shipping work', 'Protect the opening 45 minutes daily for high-value deep execution'] },
+            { title: 'Relational Reliability', details: ['Use a clean work-to-home shutdown ritual to protect family presence', 'Honor small personal promises with the exact rigor of executive commitments'] }
+          ]
+        },
+        doctrine: 'Jim Collins – Good to Great (The 20-Mile March); Commando Standard Operating Doctrine'
       },
       {
         title: 'OPERATION IRON GATE: METHODICAL CHECKLIST EXECUTION',
-        explanation: 'Discipline equals freedom. Under tight deadlines and competing demands, raw willpower is an unreliable fuel source that depletes rapidly. Methodical checklists, repeatable workflows, and disciplined boundaries remove decision fatigue and protect cognitive bandwidth for complex problem-solving.',
-        challenge: 'Identify one recurring task or handoff in your daily workflow that consistently creates friction, rework, or errors, and formalize it today into a clear, repeatable 5-step standard operating checklist that anyone on your team could follow without ambiguity.',
-        habits: [
-          'Document root causes, reproduction steps, and decisions immediately at the point of discovery rather than trusting short-term memory.',
-          'Hold yourself to fixed start and stop boundaries for reactive communication so urgency never hijacks your entire schedule.'
-        ],
-        sentence: 'Methodical systems outlast willpower when operational tempo turns hostile.',
-        reflection: 'Which recurring friction point drained my energy today because I still relied on improvisation instead of a disciplined system?',
+        explanation: 'Discipline is the architecture of freedom. Without repeatable systems, competing career deadlines and personal obligations drain willpower rapidly, leaving you reactive at work and short-tempered at home. Clean checklists eliminate avoidable friction and create steady calm for everyone who depends on you.',
+        challenges: {
+          all: 'Identify one recurring bottleneck in your workweek or home routine that repeatedly causes forgotten details or stress, and formalize it today into a crisp 5-step checklist.',
+          career: 'Document one recurring complex workflow into a clear 5-step SOP today so your future self and teammates execute it with zero rework.',
+          personal: 'Design your evening preparation routine tonight (clothes, priorities, workspace reset) so tomorrow starts on rails without decision fatigue.',
+          family: 'Create one simple shared weekly planning check-in with family to eliminate surprise scheduling clashes and unspoken stress.'
+        },
+        habits: {
+          all: [
+            'Capture work action items and family obligations immediately in one trusted system rather than carrying mental clutter.',
+            'Contain reactive messaging inside scheduled blocks so urgency never hijacks your health or evening relationships.'
+          ],
+          career: [
+            'Write decisions and owners immediately during meetings rather than relying on memory.',
+            'Standardize recurring reviews with a repeatable template.'
+          ],
+          personal: [
+            'Prepare tomorrow’s top 3 priorities the night before in under 3 minutes.',
+            'Keep workspace surfaces clear before ending each session.'
+          ],
+          family: [
+            'Sync family logistics calmly once a week instead of reacting day-by-day under stress.',
+            'Protect shared meal or evening anchor times on your calendar just like key meetings.'
+          ]
+        },
+        ifThen: 'IF a recurring task creates friction twice, THEN I will immediately build a 5-step checklist so it never steals my focus again.',
+        sentence: 'Methodical systems preserve calm strength when operational tempo accelerates.',
+        reflection: 'Which recurring friction drained my energy today because I relied on willpower instead of a clean system?',
         mindmap: {
           concept: 'Discipline: Freedom Through Repeatable Systems',
           subs: [
-            {
-              title: 'Standard Operating Protocols',
-              details: [
-                'Codify repetitive multi-step workflows into deterministic, error-proof checklists',
-                'Capture evidence and decisions immediately in writing to eliminate downstream rework'
-              ]
-            },
-            {
-              title: 'Protected Operational Boundaries',
-              details: [
-                'Contain reactive communication inside scheduled windows instead of constant interruption',
-                'Maintain consistent sleep, preparation, and recovery anchors regardless of workload'
-              ]
-            }
+            { title: 'Operational Order', details: ['Convert repetitive workflows into deterministic 5-step checklists', 'Capture commitments immediately to eliminate cognitive overload'] },
+            { title: 'Protected Life Rhythm', details: ['Contain reactive communication inside scheduled daily windows', 'Guard sleep, movement, and family routines as fixed appointments'] }
           ]
         },
-        doctrine: 'Jocko Willink – Discipline Equals Freedom; Aviation & Special Operations Checklist Protocols'
+        doctrine: 'Jocko Willink – Discipline Equals Freedom; High-Reliability Checklist Doctrine'
       }
     ]
   },
   {
     name: 'Focus',
     icon: '◎',
-    summary: 'Channeling cognitive force into a single target, achieving total present immersion, and ruthlessly eliminating extraneous noise.',
-    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness','deep','singular'],
+    summary: 'Channeling cognitive force into one target, achieving total present immersion, and giving undivided presence to loved ones.',
+    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness','deep','singular','listen'],
     ops: [
       {
         title: 'OPERATION MONOLITH: TOTAL PRESENT IMMERSION',
-        explanation: 'In The Mindful Athlete, championship performance emerges inside the eye of the storm—complete, unfractured absorption in the single repetition directly in front of you. Multitasking is a myth that forces high cognitive switching penalties; every glance at an incoming message fractures deep architectural reasoning and degrades precision.',
-        challenge: 'Execute two uninterrupted 60-minute Monolith Blocks today on your most demanding analytical or creative problem: close every unrelated tab, mute all non-emergency notifications, place your phone out of sight, and work on that single objective until a physical timer concludes.',
-        habits: [
-          'Before starting any complex debugging, analysis, or writing session, define the exact question you are answering in one clear sentence.',
-          'When transitioning to a meeting or conversation, close open screens and commit 100% of your attention to the people and topic in front of you.'
-        ],
-        sentence: 'Where attention locks without fracture, intellectual and leadership force multiplies.',
-        reflection: 'How many times today did I allow low-value notifications or self-inflicted distractions to shatter my deep focus?',
+        explanation: 'Championship performance emerges inside the eye of the storm—complete, unfractured presence in the single moment before you. Divided attention destroys both depth of thought and warmth of relationship: checking messages mid-task fragments reasoning, and glancing at a screen during family conversation quietly erodes emotional safety.',
+        challenges: {
+          all: 'Complete one uninterrupted 60-minute Monolith Block on your hardest work objective with notifications silenced, followed by a completely phone-free 45-minute block of undivided presence with family or personal study tonight.',
+          career: 'Execute two 60-minute deep-focus blocks today on your single most complex deliverable—zero email, zero chat, single active workspace.',
+          personal: 'Spend 30 completely distraction-free minutes today immersed in deliberate skill growth or reflective reading with your phone in another room.',
+          family: 'During dinner or evening conversation tonight, leave your phone out of reach and give 100% eye contact, curiosity, and warmth without multitasking.'
+        },
+        habits: {
+          all: [
+            'Write down the exact single question or outcome you are solving before starting any deep work session.',
+            'Dock your phone in another room during family meals and meaningful conversations.'
+          ],
+          career: [
+            'Define one crisp deliverable target before opening your tools each morning.',
+            'Close messaging tabs completely during 60-minute analytical sprints.'
+          ],
+          personal: [
+            'Read or study one meaningful chapter daily without switching between tabs or feeds.',
+            'Practice single-tasking even during routine daily habits.'
+          ],
+          family: [
+            'Put devices away physically whenever someone you love begins sharing about their day.',
+            'Listen to understand fully before offering advice or solutions.'
+          ]
+        },
+        ifThen: 'IF I feel the urge to check my phone mid-task or mid-conversation, THEN I will place it face-down out of reach and finish the current block.',
+        sentence: 'Wherever your undivided presence goes, mastery and connection grow.',
+        reflection: 'How many times today did divided attention weaken my work or rob someone I love of my true presence?',
         mindmap: {
-          concept: 'Focus: Singular Cognitive Target Lock',
+          concept: 'Focus: Singular Presence Across Work & Home',
           subs: [
-            {
-              title: 'Environmental Noise Elimination',
-              details: [
-                'Silence chats, email popups, and secondary feeds during scheduled deep-execution blocks',
-                'Restrict active workspace to the single tool, document, or problem currently under attack'
-              ]
-            },
-            {
-              title: 'Present-Moment Immersion',
-              details: [
-                'Anchor every work block with a single crisp objective written down before starting',
-                'Give undivided presence during interpersonal discussions instead of splitting attention across screens'
-              ]
-            }
+            { title: 'Deep Professional Immersion', details: ['Mute non-critical alerts during dedicated 60-minute execution blocks', 'Write down one crisp target outcome prior to starting deep work'] },
+            { title: 'Undivided Relational Presence', details: ['Establish device-free meals and conversations at home', 'Listen deeply without formulating premature replies'] }
           ]
         },
         doctrine: 'George Mumford – The Mindful Athlete; Cal Newport – Deep Work Doctrine'
-      },
-      {
-        title: 'OPERATION LASER: STARVING THE NOISE',
-        explanation: 'Cognitive energy is a finite tactical reserve. Every open loop, half-read thread, and reactive interruption consumes mental cycles that should be powering breakthrough execution. True focus is as much about what you aggressively ignore as what you engage.',
-        challenge: 'Audit your open browser tabs, active tasks, and calendar commitments right now: close or defer everything not tied to your top two priorities for today, and complete one high-difficulty task end-to-end before reopening any communication channel.',
-        habits: [
-          'Take 60 seconds of quiet, controlled breathing before entering high-stakes reviews or problem-solving sessions to clear residual mental clutter.',
-          'Read technical specifications, contracts, or complex briefs in single-pass deep focus without skimming or checking parallel feeds.'
-        ],
-        sentence: 'Protect the signal by systematically starving the noise.',
-        reflection: 'What specific distraction stole my sharpest cognitive hours today, and what physical barrier will block it tomorrow?',
-        mindmap: {
-          concept: 'Focus: Signal Preservation Under Load',
-          subs: [
-            {
-              title: 'Ruthless Workspace Hygiene',
-              details: [
-                'Close unessential tabs, background channels, and low-priority open loops before deep work',
-                'Finish one high-value deliverable end-to-end prior to checking reactive message queues'
-              ]
-            },
-            {
-              title: 'Cognitive Reset Rituals',
-              details: [
-                'Use 60-second controlled breathing to clear mental residue between intense sessions',
-                'Engage complex reference material with deliberate, unhurried, single-threaded reading'
-              ]
-            }
-          ]
-        },
-        doctrine: 'The Mindful Athlete; Elite Tactical Marksmanship Concentration Protocols'
       }
     ]
   },
   {
     name: 'Situational Awareness',
     icon: '◉',
-    summary: 'Navigating complex environments with detached peripheral clarity, mental environment control, and emotional poise under fire.',
-    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception','read','context'],
+    summary: 'Reading environments with detached peripheral clarity, mastering emotional temperature, and sensing unspoken needs.',
+    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception','read','context','empathy'],
     ops: [
       {
         title: 'OPERATION OVERWATCH: DETACHED PERIPHERAL CLARITY',
-        explanation: 'Emotional reactivity narrows perception into dangerous tunnel vision, while detached situational awareness grants high-ground clarity. Drawing on The 48 Laws of Power and tactical field doctrine, an elite operator reads stakeholder incentives, unstated constraints, and emerging risks simultaneously—responding with calculated poise rather than defensive impulse.',
-        challenge: 'In your most important meeting or negotiation today, deliberately pause and listen for the first 3 minutes without interrupting: map out each participant’s underlying priority, unspoken concern, and hidden dependency before delivering a concise, high-impact response.',
-        habits: [
-          'Execute a slow 4-second exhale whenever sudden criticism, shifting requirements, or operational friction triggers frustration—never speak from an elevated pulse.',
-          'Actively scan team communications for weak warning signals—vague status updates, silent blockers, or unverified handoffs—before they escalate into crises.'
-        ],
-        sentence: 'He who controls his emotional temperature commands the entire room.',
-        reflection: 'Did I react impulsively to friction today, or did I observe the full terrain from high ground before acting?',
-        mindmap: {
-          concept: 'Situational Awareness: High-Ground Clarity',
-          subs: [
-            {
-              title: 'Emotional Poise & Self-Regulation',
-              details: [
-                'Use a 4-second physiological exhale to neutralize defensiveness before responding under pressure',
-                'Separate objective facts from personal ego when plans or work are challenged'
-              ]
-            },
-            {
-              title: 'Peripheral Terrain Mapping',
-              details: [
-                'Identify hidden stakeholder incentives, constraints, and unspoken risks in group discussions',
-                'Detect weak operational warning signals early before cross-team dependencies break'
-              ]
-            }
+        explanation: 'Emotional reactivity shrinks perception into tunnel vision, while detached situational awareness grants high-ground clarity. A top mentor reads external dynamics and internal triggers simultaneously—sensing unspoken tension in a room or quiet exhaustion in a partner before words turn into avoidable conflict.',
+        challenges: {
+          all: 'In your highest-stakes work conversation or family interaction today, pause for 3 full seconds before answering, breathe out slowly, and name the other person’s real underlying concern before presenting your viewpoint.',
+          career: 'Hold silence for the first 3 minutes of your toughest meeting today while mapping each stakeholder’s unspoken constraint, incentive, and risk before speaking.',
+          personal: 'Notice your physical stress cues (tight jaw, rushed breathing, impatience) three times today and reset with a slow exhale before choosing your next action.',
+          family: 'Notice one quiet sign of fatigue or stress in a family member today and step in proactively with gentle support or attentive listening before being asked.'
+        },
+        habits: {
+          all: [
+            'Trigger a 4-second exhale whenever criticism or friction spikes frustration—never speak from an elevated pulse.',
+            'Scan both your team and family daily for subtle warning signs of overload before small cracks escalate.'
+          ],
+          career: [
+            'Read body language, hesitation, and silence in meetings as critical diagnostic data.',
+            'Separate objective facts from ego whenever your work is challenged.'
+          ],
+          personal: [
+            'Check your personal energy gauge at midday before committing to demanding conversations.',
+            'Pause 3 seconds between stimulus and response when provoked.'
+          ],
+          family: [
+            'Ask "How are you really holding up today?" and listen without rushing to fix.',
+            'Notice when your own tiredness is coloring your tone and name it calmly.'
           ]
         },
-        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Combat Situational Awareness Doctrine'
-      },
-      {
-        title: 'OPERATION RADAR: READING THE UNSPOKEN TERRAIN',
-        explanation: 'Major execution failures rarely happen without warning; they are almost always preceded by subtle social, organizational, or technical signals that rushed operators overlook. Situational awareness means looking two moves ahead and verifying critical assumptions rather than trusting comforting appearances.',
-        challenge: 'Identify one critical assumption in an active project or collaboration today that everyone is taking for granted without hard verification, and validate it directly through objective data, primary documentation, or a candid alignment check.',
-        habits: [
-          'Verify verbal confidence with concrete artifacts—metrics, timelines, written owners, and real test results.',
-          'Assess the energy and stress level of your team early in the day so you can recalibrate expectations and remove hidden friction proactively.'
-        ],
-        sentence: 'Spot the weak signal early before it matures into a loud crisis.',
-        reflection: 'What early warning sign did I notice—or conveniently ignore—in my environment or team today?',
+        ifThen: 'IF tension spikes in a meeting or at home, THEN I will take one 4-second exhale before speaking a single word.',
+        sentence: 'He who governs his emotional temperature brings clarity to every room.',
+        reflection: 'Did I react impulsively under friction today, or did I hold emotional poise and read the full terrain?',
         mindmap: {
-          concept: 'Situational Awareness: Early-Warning Intelligence',
+          concept: 'Situational Awareness: Poise & Perceptive Leadership',
           subs: [
-            {
-              title: 'Assumption Auditing',
-              details: [
-                'Cross-check optimistic verbal updates against primary data and verifiable milestones',
-                'Trace downstream dependencies two steps ahead of the current execution phase'
-              ]
-            },
-            {
-              title: 'Team & Climate Sensing',
-              details: [
-                'Read vocal tone, hesitation, and silence in meetings as meaningful diagnostic data',
-                'Address unspoken misalignment privately and early before friction hardens'
-              ]
-            }
+            { title: 'Emotional Self-Regulation', details: ['Use a 3-second pause and slow exhale to neutralize defensive reactivity', 'Separate facts from ego when ideas or plans are challenged'] },
+            { title: 'Social & Relational Sensing', details: ['Read unspoken incentives and blockers in professional meetings', 'Detect quiet stress or fatigue in loved ones early and respond with steadiness'] }
           ]
         },
-        doctrine: 'The 48 Laws of Power (Law 29: Plan All the Way to the End); Crew Resource Management Doctrine'
+        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Situational Awareness & Emotional Intelligence'
       }
     ]
   },
   {
     name: 'Quick Decision-Making',
     icon: '↗',
-    summary: 'Executing decisively under pressure, establishing adaptive target acquisition, and breaking stalemates without analysis paralysis.',
-    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice','velocity'],
+    summary: 'Executing decisively under uncertainty, breaking stalemates without paralysis, and balancing velocity with judgment.',
+    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice','velocity','courage'],
     ops: [
       {
         title: 'OPERATION OODA STRIKE: BREAKING THE STALEMATE',
-        explanation: 'Analysis paralysis is lethal in fast-moving environments. Colonel John Boyd’s OODA Loop (Observe–Orient–Decide–Act) demonstrates that rapid, disciplined decision cycles driven by 70% certainty consistently outmaneuver slow perfectionism. Waiting indefinitely for 100% information surrenders initiative and stalls entire teams.',
-        challenge: 'Select one decision you or your team have been postponing or over-debating this week, apply a strict 20-minute decision clock, distinguish whether it is reversible or irreversible, and execute the reversible option immediately to gather real-world feedback.',
-        habits: [
-          'Classify every pending choice as Type-1 (irreversible, high-blast-radius) or Type-2 (reversible, low-cost); make Type-2 calls immediately without committee paralysis.',
-          'Close every technical or strategic discussion with three explicit commitments: one clear decision, one named owner, and one fixed verification deadline.'
-        ],
-        sentence: 'Imperfect velocity paired with rapid feedback defeats motionless perfection.',
-        reflection: 'What reversible decision did I delay today out of fear of criticism rather than a genuine lack of information?',
-        mindmap: {
-          concept: 'Quick Decision-Making: OODA Tempo Advantage',
-          subs: [
-            {
-              title: 'Eliminating Analysis Paralysis',
-              details: [
-                'Apply the 70% information threshold for reversible Type-2 operational calls',
-                'Enforce strict time-boxes on design debates so momentum never stalls indefinitely'
-              ]
-            },
-            {
-              title: 'Decisive Accountability Loops',
-              details: [
-                'Run small, fast experiments to convert theoretical arguments into empirical telemetry',
-                'End every decision cycle with a named owner, concrete action, and review checkpoint'
-              ]
-            }
+        explanation: 'Analysis paralysis drains momentum from careers and personal growth. Colonel John Boyd’s OODA Loop (Observe–Orient–Decide–Act) proves that rapid, thoughtful iteration with 70% certainty outperforms delayed perfection. Waiting forever for zero risk surrenders initiative and keeps meaningful progress stalled.',
+        challenges: {
+          all: 'Pick one decision you have postponed this week, set a strict 20-minute decision timer, confirm whether it is reversible, and execute the cleanest forward action today to generate real feedback.',
+          career: 'Take one stalled team or project choice today, time-box evaluation to 20 minutes, assign a clear owner, and launch a reversible test immediately.',
+          personal: 'Stop over-researching one personal growth, fitness, or financial habit today—commit to the simplest version and start within 15 minutes.',
+          family: 'Resolve one lingering household or scheduling decision calmly today with your family so everyone enjoys clear alignment instead of open-ended ambiguity.'
+        },
+        habits: {
+          all: [
+            'Distinguish irreversible Type-1 choices from reversible Type-2 choices; decide Type-2 matters swiftly.',
+            'Close every discussion—at work or home—with one clear decision, one owner, and one timeframe.'
+          ],
+          career: [
+            'Apply the 70% clarity rule on reversible execution calls instead of waiting for 100% certainty.',
+            'End every meeting with explicit ownership and deadlines.'
+          ],
+          personal: [
+            'Favor small real-world experiments over endless passive reading.',
+            'Eliminate trivial daily choices through pre-set defaults.'
+          ],
+          family: [
+            'Make shared logistics decisions swiftly and kindly without dragging out minor trade-offs.',
+            'Communicate schedule changes promptly so loved ones never feel blindsided.'
           ]
         },
-        doctrine: 'Col. John Boyd – OODA Loop Doctrine; High-Tempo Command Decision Protocols'
-      },
-      {
-        title: 'OPERATION BREACH: ADAPTIVE TARGET ACQUISITION',
-        explanation: 'When conditions shift unexpectedly mid-execution, hesitation multiplies risk. Adaptive decision-making means maintaining clear contingency options in advance so that when Plan A encounters resistance, you pivot to Plan B in seconds with zero emotional friction.',
-        challenge: 'Before beginning your next major presentation, release, or high-stakes task today, write down the top two failure scenarios that could occur and pre-commit to the exact 5-minute contingency pivot you will execute if either triggers.',
-        habits: [
-          'When two viable paths appear nearly equal on paper, choose the simpler one immediately and measure real results rather than debating edge aesthetics.',
-          'Communicate decisive pivots clearly and calmly so your team immediately knows the new objective without confusion.'
-        ],
-        sentence: 'Decisive motion generates the clarity that endless hesitation waits for.',
-        reflection: 'Where did I over-analyze a low-risk choice today instead of testing it in reality and adapting from the result?',
+        ifThen: 'IF I catch myself debating a reversible choice for more than 20 minutes, THEN I will choose the simpler option and test it immediately.',
+        sentence: 'Thoughtful velocity paired with real feedback defeats motionless perfection.',
+        reflection: 'What reversible decision did I stall today out of fear of imperfection rather than genuine lack of clarity?',
         mindmap: {
-          concept: 'Quick Decision-Making: Adaptive Pivoting',
+          concept: 'Quick Decision-Making: OODA Tempo & Clarity',
           subs: [
-            {
-              title: 'Pre-Planned Contingencies',
-              details: [
-                'Identify top two failure modes before execution and pre-authorize fallback paths',
-                'Shift from Plan A to Plan B swiftly without sunk-cost regret when facts change'
-              ]
-            },
-            {
-              title: 'Bias Toward Simplicity',
-              details: [
-                'Break deadlocks between equal options by selecting the simpler, faster-to-validate path',
-                'Broadcast clear, unambiguous direction whenever priorities shift under pressure'
-              ]
-            }
+            { title: 'Breaking Analysis Paralysis', details: ['Act at 70% certainty on reversible Type-2 choices', 'Use 20-minute decision clocks to turn circular debates into forward tests'] },
+            { title: 'Decisive Accountability', details: ['Convert theoretical worry into fast real-world feedback', 'Close every conversation with clear ownership and timelines'] }
           ]
         },
-        doctrine: 'Commando Tactical Breach Doctrine; Empirical Leadership Execution'
+        doctrine: 'Col. John Boyd – OODA Loop Doctrine; Executive Decision Velocity'
       }
     ]
   },
   {
     name: 'Quick Reflection / Self-Correction',
     icon: '↻',
-    summary: 'Ego-free adaptation, blameless autopsies, and rapid extraction of actionable intelligence from friction or failure.',
-    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust','audit'],
+    summary: 'Ego-free adaptation, blameless autopsies, rapid learning from failure, and humility to repair relationships.',
+    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust','audit','humility','repair'],
     ops: [
       {
         title: 'OPERATION BLACK BOX: EGO-FREE AUTOPSY',
-        explanation: 'Elite aviation and special operations units conduct ruthless, blameless After-Action Reviews (AARs) immediately after every mission. Ego conceals root causes and perpetuates repeat errors; radical honesty strips away blame and converts setbacks, missed expectations, or friction into immediate operational intelligence.',
-        challenge: 'Conduct a focused 10-minute Black Box autopsy on one mistake, missed target, or communication breakdown from this week: state what was planned, what actually occurred, the exact systemic gap that allowed it, and deploy one concrete structural safeguard today.',
-        habits: [
-          'When an error occurs on your team, ask "What process guardrail or clarity was missing?" before assigning personal blame.',
-          'Run a structured 3-minute evening debrief before ending your day: record 1 clear win, 1 point of friction, and 1 specific adjustment for tomorrow.'
-        ],
-        sentence: 'Extract the intelligence, discard the ego, and upgrade the protocol.',
-        reflection: 'What uncomfortable truth about my own blind spot or execution gap did today’s friction expose?',
-        mindmap: {
-          concept: 'Quick Reflection: Blameless After-Action Review',
-          subs: [
-            {
-              title: 'Root-Cause Extraction',
-              details: [
-                'Compare planned expectations against actual outcomes using objective, non-defensive facts',
-                'Fix the underlying system, checklist, or communication gap rather than blaming individuals'
-              ]
-            },
-            {
-              title: 'Continuous Feedback Cadence',
-              details: [
-                'Complete a 3-minute nightly debrief capturing win, friction, and next-day correction',
-                'Seek blunt, constructive critique early while course correction is still inexpensive'
-              ]
-            }
+        explanation: 'Elite teams and emotionally mature humans run ruthless, ego-free After-Action Reviews. Defensiveness conceals root causes and erodes closeness; fearless honesty strips away blame, extracts the exact lesson from failure or conflict, and upgrades both professional systems and personal character immediately.',
+        challenges: {
+          all: 'Conduct a 10-minute Black Box review on one setback or tense interaction from this week: state objectively what happened, own your share without excuses, and execute one structural fix or sincere relational repair today.',
+          career: 'Run a blameless 10-minute autopsy on one recent project slip: isolate the missing system guardrail and deploy one concrete process fix today.',
+          personal: 'Identify one personal habit that slipped this week, trace the exact cue that triggered the slip, and redesign your environment tonight.',
+          family: 'If you spoke impatiently or missed a cue with a family member recently, offer a clean, zero-excuse apology and a brief repair conversation today.'
+        },
+        habits: {
+          all: [
+            'When mistakes happen on a team, examine missing clarity or process gaps before assigning blame.',
+            'Complete a 3-minute evening debrief: 1 win, 1 friction point, and 1 adjustment for tomorrow.'
+          ],
+          career: [
+            'Ask "What process check was missing?" whenever an execution error occurs.',
+            'Invite candid feedback from peers before finalizing major work.'
+          ],
+          personal: [
+            'Log 1 win, 1 friction, and 1 fix every night in under 3 minutes.',
+            'Treat sharp feedback as objective telemetry rather than a personal attack.'
+          ],
+          family: [
+            'Repair misunderstandings the same day rather than letting pride linger overnight.',
+            'Apologize cleanly without adding "...but you also..." qualifiers.'
           ]
         },
-        doctrine: 'US Special Operations After-Action Review (AAR); Ray Dalio – Principles (Pain + Reflection = Progress)'
-      },
-      {
-        title: 'OPERATION RECALIBRATE: CLOSED-LOOP COURSE CORRECTION',
-        explanation: 'Precision guidance systems do not fly in a straight line by luck—they measure tiny deviations continuously and correct them instantly. Rapid self-correction keeps a difficult morning or an unexpected setback from cascading into a wasted week.',
-        challenge: 'Set a mid-day recalibration checkpoint at 2:00 PM today: pause for 3 minutes, compare what you actually spent the morning doing against your top mission priority, and immediately eliminate any drift.',
-        habits: [
-          'Acknowledge your own missteps openly and concisely the moment you spot them—fast ownership builds immediate credibility.',
-          'Treat every piece of critical feedback as raw tactical telemetry rather than a personal attack.'
-        ],
-        sentence: 'Rapid mid-course correction turns early deviation into pinpoint accuracy.',
-        reflection: 'How quickly did I recognize and correct my own drift off-target today?',
+        ifThen: 'IF I realize I made a mistake or spoke sharply, THEN I will own it within the hour without excuses or defensiveness.',
+        sentence: 'Extract the wisdom, release the ego, and strengthen the relationship.',
+        reflection: 'What honest truth about my own blind spot, habit, or tone did today ask me to confront?',
         mindmap: {
-          concept: 'Quick Reflection: Closed-Loop Self-Correction',
+          concept: 'Quick Reflection: Ego-Free Growth & Repair',
           subs: [
-            {
-              title: 'In-Flight Calibration',
-              details: [
-                'Run a 3-minute mid-day alignment check against the morning’s highest-value objective',
-                'Cut low-impact drift immediately rather than waiting until tomorrow to reset'
-              ]
-            },
-            {
-              title: 'Ego-Free Ownership',
-              details: [
-                'Own errors swiftly and transparently with a clear corrective plan attached',
-                'Convert sharp feedback directly into upgraded habits and sharper execution'
-              ]
-            }
+            { title: 'Blameless Root-Cause Learning', details: ['Compare expectations vs. reality objectively without excuses', 'Fix systemic guardrails and habits rather than nursing blame'] },
+            { title: 'Humility & Rapid Repair', details: ['Apologize promptly and cleanly when wrong at work or home', 'Anchor each night with a 3-minute win, friction, and adjustment review'] }
           ]
         },
-        doctrine: 'Jocko Willink – Extreme Ownership; Closed-Loop Athletic & Control-System Recovery'
+        doctrine: 'Special Operations After-Action Review (AAR); Ray Dalio – Principles'
       }
     ]
   },
   {
     name: 'Efficiency',
     icon: '◇',
-    summary: 'Maximizing operational output, breaking circular activity traps, and concentrating force into high-leverage specifics.',
-    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint','vital','pareto'],
+    summary: 'Maximizing meaningful output, breaking busyness traps, and reclaiming margin for health, growth, and family.',
+    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint','vital','pareto','balance'],
     ops: [
       {
         title: 'OPERATION SCALPEL: HIGH-LEVERAGE CONCENTRATION',
-        explanation: 'Busyness is not progress. Circular activity traps, bloated meetings, and low-value perfectionism burn finite fuel while leaving the core objective untouched. True efficiency—rooted in Theory of Constraints and Essentialism—concentrates decisive force on the single bottleneck governing total output.',
-        challenge: 'Audit your entire task list before noon today and ruthlessly eliminate, defer, or delegate at least 30% of low-leverage items; redirect every recovered minute into the single highest-impact deliverable or bottleneck on your critical path.',
-        habits: [
-          'Use structured isolation (divide-and-conquer diagnostics) whenever solving complex problems instead of random trial-and-error.',
-          'Batch routine messages, administrative approvals, and email replies into two fixed 15-minute windows instead of reacting all day.'
-        ],
-        sentence: 'Cut away the trivial many so decisive force strikes the vital few.',
-        reflection: 'Was I merely occupied with motion today, or did I measurably move the single most important constraint forward?',
+        explanation: 'Motion is not meaning. Endless busyness, bloated meetings, and low-leverage perfectionism exhaust your vitality while starving your highest career goals and closest relationships. True efficiency concentrates decisive effort on the vital few levers that drive disproportionate results—and reclaims margin for life.',
+        challenges: {
+          all: 'Audit your commitments today and eliminate, delegate, or defer at least 30% of low-leverage busywork; reinvest that reclaimed time into your #1 professional breakthrough and unhurried evening connection with family.',
+          career: 'Cut or decline 30% of low-impact meetings or busywork today and redirect that block directly into the single constraint gating your team’s progress.',
+          personal: 'Eliminate one recurring time-sink from your day and reallocate those 30 minutes to sleep, exercise, or deliberate learning.',
+          family: 'Batch household errands or chores into one tight window today so your evening opens up for relaxed, unhurried time together.'
+        },
+        habits: {
+          all: [
+            'Batch routine messages and administrative chores into two fixed 15-minute windows daily.',
+            'Measure your day by high-leverage outcomes completed, not hours spent looking busy.'
+          ],
+          career: [
+            'Attack the single biggest system bottleneck first before polishing peripheral details.',
+            'Require clear agendas and outcomes before accepting meetings.'
+          ],
+          personal: [
+            'Batch errands and low-focus tasks together to protect long recovery blocks.',
+            'Use proven templates and frameworks instead of reinventing solved steps.'
+          ],
+          family: [
+            'Automate or simplify recurring household friction so energy goes toward connection, not logistics.',
+            'Build 15-minute transition buffers between work and family commitments.'
+          ]
+        },
+        ifThen: 'IF a task is urgent-looking but low-leverage, THEN I will defer, delegate, or batch it rather than letting it steal prime focus.',
+        sentence: 'Prune the trivial many so your best energy serves the vital few.',
+        reflection: 'Did my effort today advance what truly matters in my career, growth, and family—or only create motion?',
         mindmap: {
-          concept: 'Efficiency: High-Leverage Force Multiplication',
+          concept: 'Efficiency: Essential Leverage & Life Margin',
           subs: [
-            {
-              title: 'Critical-Path Targeting',
-              details: [
-                'Identify the single bottleneck limiting throughput and focus 80% of energy there',
-                'Apply systematic divide-and-conquer isolation instead of blind trial-and-error'
-              ]
-            },
-            {
-              title: 'Waste & Friction Elimination',
-              details: [
-                'Prune 30% of low-value commitments, redundant meetings, and circular busywork',
-                'Batch routine communication into fixed windows to preserve continuous output'
-              ]
-            }
+            { title: 'Vital-Few Prioritization', details: ['Target the primary bottleneck governing meaningful progress', 'Eliminate or delegate 30% of low-return busywork'] },
+            { title: 'Reclaimed Margin for Life', details: ['Batch shallow communications and errands into fixed windows', 'Reinvest saved hours intentionally into health, growth, and family joy'] }
           ]
         },
         doctrine: 'Eliyahu Goldratt – Theory of Constraints; Greg McKeown – Essentialism'
-      },
-      {
-        title: 'OPERATION LEVER: MULTIPLYING TEAM VELOCITY',
-        explanation: 'High-output leaders do not scale impact merely by working longer hours; they remove systemic bottlenecks that slow down everyone around them. Clarifying ambiguous specifications, automating repetitive setup, and empowering clear ownership generate permanent compound efficiency.',
-        challenge: 'Invest 30 focused minutes today into permanently eliminating one recurring bottleneck or knowledge gap that slows down your collaborators—write the concise guide, build the template, or clarify the decision boundary once for good.',
-        habits: [
-          'Before building something from scratch, verify whether a proven template, tool, or standard already exists to achieve the result in half the time.',
-          'Decline or reshape meetings that lack a written objective, pre-read, or clear decision requirement.'
-        ],
-        sentence: 'Eliminate systemic friction once instead of heroically fighting it every day.',
-        reflection: 'What recurring bottleneck did I permanently remove today to multiply future output?',
-        mindmap: {
-          concept: 'Efficiency: Systemic Leverage & Velocity',
-          subs: [
-            {
-              title: 'Force Multiplication',
-              details: [
-                'Document tribal knowledge and reusable templates to accelerate everyone’s execution',
-                'Resolve ambiguous ownership boundaries early so parallel workstreams never collide'
-              ]
-            },
-            {
-              title: 'Meeting & Process Discipline',
-              details: [
-                'Require clear agendas and decision goals before committing calendar hours',
-                'Reuse proven building blocks rather than reinventing solved components'
-              ]
-            }
-          ]
-        },
-        doctrine: 'Andy Grove – High Output Management; Lean Systems Engineering'
       }
     ]
   }
 ];
 
-const STORAGE_KEY = 'tactical_mindset_matrix_v2';
+const STORAGE_KEY = 'tactical_mindset_coach_v4';
+const TREE_CACHE_KEY = 'tactical_pdf_tree_v2';
 
 function loadRotationState() {
   try {
@@ -519,12 +498,17 @@ function loadRotationState() {
     if (raw && typeof raw === 'object') {
       return {
         directiveCount: Number(raw.directiveCount) || 0,
-        recentThemes: Array.isArray(raw.recentThemes) ? raw.recentThemes.slice(-18) : [],
-        recentPdfKeys: Array.isArray(raw.recentPdfKeys) ? raw.recentPdfKeys.slice(-24) : []
+        pdfCursor: Math.max(0, Number(raw.pdfCursor) || 0),
+        lastPdfPath: typeof raw.lastPdfPath === 'string' ? raw.lastPdfPath : '',
+        recentThemes: Array.isArray(raw.recentThemes) ? raw.recentThemes.slice(-24) : [],
+        recentPdfKeys: Array.isArray(raw.recentPdfKeys) ? raw.recentPdfKeys.slice(-40) : [],
+        journal: Array.isArray(raw.journal) ? raw.journal.slice(-30) : [],
+        streak: Number(raw.streak) || 0,
+        lastLogDate: typeof raw.lastLogDate === 'string' ? raw.lastLogDate : ''
       };
     }
   } catch {}
-  return { directiveCount: 0, recentThemes: [], recentPdfKeys: [] };
+  return { directiveCount: 0, pdfCursor: 0, lastPdfPath: '', recentThemes: [], recentPdfKeys: [], journal: [], streak: 0, lastLogDate: '' };
 }
 
 const persisted = loadRotationState();
@@ -532,24 +516,39 @@ const state = {
   repo: '',
   branch: '',
   files: [],
-  pages: [],
   scanComplete: false,
   controller: null,
   pdfjs: null,
   selected: 0,
   markdown: '',
+  mentalState: 'peak',
+  domain: 'all',
+  rating: 4,
+  currentTheme: '',
+  currentOpTitle: '',
   directiveCount: persisted.directiveCount,
+  pdfCursor: persisted.pdfCursor,
+  lastPdfPath: persisted.lastPdfPath,
   recentThemes: persisted.recentThemes,
   recentPdfKeys: persisted.recentPdfKeys,
-  showRawMd: false
+  journal: persisted.journal,
+  streak: persisted.streak,
+  lastLogDate: persisted.lastLogDate,
+  showRawMd: false,
+  breathTimer: null
 };
 
 function saveRotationState() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
       directiveCount: state.directiveCount,
-      recentThemes: state.recentThemes.slice(-18),
-      recentPdfKeys: state.recentPdfKeys.slice(-24)
+      pdfCursor: state.pdfCursor,
+      lastPdfPath: state.lastPdfPath,
+      recentThemes: state.recentThemes.slice(-24),
+      recentPdfKeys: state.recentPdfKeys.slice(-40),
+      journal: state.journal.slice(-30),
+      streak: state.streak,
+      lastLogDate: state.lastLogDate
     }));
   } catch {}
 }
@@ -569,6 +568,10 @@ function setStatus(text, error = false) {
   $('scanStatus').classList.toggle('error', error);
 }
 
+function updateStreakBadge() {
+  $('streakBadge').textContent = `${state.streak}-Day Streak`;
+}
+
 function repoFromUrl() {
   const host = location.hostname.toLowerCase();
   const parts = location.pathname.split('/').filter(Boolean);
@@ -586,15 +589,30 @@ function validRepo(value) {
   return `${match[1]}/${match[2]}`;
 }
 
+async function fetchWithTimeout(url, options = {}, timeoutMs = 25000) {
+  const controller = new AbortController();
+  const parentSignal = options.signal;
+  if (parentSignal) {
+    if (parentSignal.aborted) controller.abort();
+    else parentSignal.addEventListener('abort', () => controller.abort(), { once: true });
+  }
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 async function githubJson(url, signal) {
-  const response = await fetch(url, {
+  const response = await fetchWithTimeout(url, {
     headers: { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
     credentials: 'omit',
     cache: 'no-store',
     signal
-  });
+  }, 15000);
   if (!response.ok) {
-    if (response.status === 403 || response.status === 429) throw Error('GitHub API rate limit reached. Wait, then rescan.');
+    if (response.status === 403 || response.status === 429) throw Error('GitHub API rate limit reached. Wait a few minutes, then rescan.');
     if (response.status === 404) throw Error('Repository or branch not found, or it is not public.');
     throw Error(`GitHub request failed (${response.status}).`);
   }
@@ -617,7 +635,20 @@ async function walkTrees(repo, rootSha, signal) {
   return entries;
 }
 
-async function discoverPdfs(repo, branch, signal) {
+async function discoverPdfs(repo, branch, signal, forceRefresh = false) {
+  const cacheKey = `${TREE_CACHE_KEY}:${repo}@${branch || 'default'}`;
+  if (!forceRefresh) {
+    try {
+      const cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
+      if (cached && Date.now() - cached.ts < 10 * 60 * 1000 && Array.isArray(cached.paths)) {
+        return {
+          branch: cached.branch,
+          files: cached.paths.map(path => ({ path, pages: [], passages: [], error: 'Pending' }))
+        };
+      }
+    } catch {}
+  }
+
   const info = await githubJson(`https://api.github.com/repos/${repo}`, signal);
   if (info.private) throw Error('This page can scan public repositories only.');
   const chosen = (branch || info.default_branch || '').trim();
@@ -627,12 +658,18 @@ async function discoverPdfs(repo, branch, signal) {
   if (!sha) throw Error('Could not read the selected branch.');
   const tree = await githubJson(`https://api.github.com/repos/${repo}/git/trees/${sha}?recursive=1`, signal);
   const nodes = tree.truncated ? await walkTrees(repo, sha, signal) : (tree.tree || []);
+  const paths = nodes
+    .filter(node => node.type === 'blob' && typeof node.path === 'string' && node.path.toLowerCase().endsWith('.pdf'))
+    .map(node => node.path)
+    .sort((a, b) => a.localeCompare(b));
+
+  try {
+    sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), branch: chosen, paths }));
+  } catch {}
+
   return {
     branch: chosen,
-    files: nodes
-      .filter(node => node.type === 'blob' && typeof node.path === 'string' && node.path.toLowerCase().endsWith('.pdf'))
-      .map(node => ({ path: node.path, sha: node.sha, pages: [], error: 'Pending' }))
-      .sort((a, b) => a.path.localeCompare(b.path))
+    files: paths.map(path => ({ path, pages: [], passages: [], error: 'Pending' }))
   };
 }
 
@@ -654,11 +691,50 @@ async function loadPdfJs() {
   return state.pdfjs;
 }
 
+function makePassages(page, fileName, url) {
+  const sentences = page.text.split(/(?<=[.!?])\s+|\n+/).map(t => t.trim()).filter(Boolean);
+  const passages = [];
+  let current = '';
+  for (const sentence of sentences) {
+    if (current && (current + ' ' + sentence).length > 560) {
+      passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}` });
+      current = sentence;
+    } else {
+      current = (current + ' ' + sentence).trim();
+    }
+  }
+  if (current) passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}` });
+  return passages.length ? passages : [{ fileName, pageNum: page.pageNum, url, text: page.text.slice(0, 560), citKey: `${fileName}:${page.pageNum}` }];
+}
+
+async function fetchPdfBuffer(file, signal) {
+  const encodedPath = file.path.split('/').map(encodeURIComponent).join('/');
+  const candidates = [];
+
+  if (location.hostname.toLowerCase().endsWith('.github.io')) {
+    const [owner, repo] = state.repo.split('/');
+    const isUserSite = repo.toLowerCase() === `${owner.toLowerCase()}.github.io`;
+    const pagesBase = isUserSite ? `${location.origin}/` : `${location.origin}/${repo}/`;
+    candidates.push(`${pagesBase}${encodedPath}`);
+  }
+  candidates.push(`https://raw.githubusercontent.com/${state.repo}/${encodeURIComponent(state.branch)}/${encodedPath}`);
+
+  let lastErr = null;
+  for (const url of candidates) {
+    try {
+      const response = await fetchWithTimeout(url, { credentials: 'omit', cache: 'no-store', signal }, 30000);
+      if (!response.ok) throw Error(`HTTP ${response.status}`);
+      return await response.arrayBuffer();
+    } catch (err) {
+      if (err.name === 'AbortError' && signal.aborted) throw err;
+      lastErr = err;
+    }
+  }
+  throw lastErr || Error('Download failed.');
+}
+
 async function extract(file, signal) {
-  const raw = `https://raw.githubusercontent.com/${state.repo}/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
-  const response = await fetch(raw, { credentials: 'omit', cache: 'no-store', signal });
-  if (!response.ok) throw Error(`Download failed (${response.status}).`);
-  const buffer = await response.arrayBuffer();
+  const buffer = await fetchPdfBuffer(file, signal);
   if (buffer.byteLength < 5 || new TextDecoder().decode(buffer.slice(0, 5)) !== '%PDF-') {
     throw Error('File is not a valid PDF.');
   }
@@ -669,47 +745,102 @@ async function extract(file, signal) {
     isEvalSupported: false,
     useWorkerFetch: false
   }).promise;
+
   const pages = [];
+  const passages = [];
+  const url = fileUrl(file);
   try {
     for (let number = 1; number <= documentPdf.numPages; number++) {
       if (signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
       const page = await documentPdf.getPage(number);
       const content = await page.getTextContent();
       const text = content.items.map(item => (typeof item.str === 'string' ? item.str : '')).join(' ').replace(/\s+/g, ' ').trim();
-      if (text) pages.push({ pageNum: number, text });
+      if (text) {
+        const p = { pageNum: number, text };
+        pages.push(p);
+        for (const seg of makePassages(p, file.path, url)) {
+          if (seg.text.length >= 50) passages.push(seg);
+        }
+      }
       page.cleanup();
+      if (number % 20 === 0) await new Promise(r => setTimeout(r, 0));
     }
   } finally {
     await documentPdf.destroy();
   }
-  return pages;
+  return { pages, passages };
+}
+
+function getReadableFiles() {
+  return state.files.filter(f => f.pages.length > 0);
+}
+
+function getNextRoundRobinInfo() {
+  const readable = getReadableFiles();
+  if (!readable.length) return { readable: [], nextIdx: 0, nextFile: null };
+  const safeCursor = ((state.pdfCursor % readable.length) + readable.length) % readable.length;
+  return { readable, nextIdx: safeCursor, nextFile: readable[safeCursor] };
 }
 
 function renderFiles() {
   const list = $('pdfList');
   list.replaceChildren();
+  const { readable, nextFile } = getNextRoundRobinInfo();
+
+  let rrCounter = 0;
   for (const file of state.files) {
+    const isReadable = file.pages.length > 0;
+    if (isReadable) rrCounter++;
+    const isNext = nextFile && nextFile.path === file.path;
+
     const row = document.createElement('div');
-    row.className = 'pdf';
+    row.className = `pdf${isNext ? ' is-next' : ''}`;
+
+    const left = document.createElement('div');
+    left.className = 'pdf-left';
+    add(left, 'span', isReadable ? `#${rrCounter}` : '—', 'pdf-idx');
+
     const link = document.createElement('a');
     link.href = fileUrl(file);
     link.textContent = file.path;
     link.title = file.path;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    row.appendChild(link);
-    add(row, 'span', file.error === 'Pending' ? 'Pending' : file.error ? 'Unreadable' : `${file.pages.length} pages`, 'pdf-status');
+    left.appendChild(link);
+    row.appendChild(left);
+
+    const badges = document.createElement('div');
+    badges.className = 'pdf-badges';
+    if (isNext) add(badges, 'span', 'NEXT', 'pdf-next-tag');
+
+    let statusText = 'Pending';
+    let statusCls = 'pdf-status';
+    if (file.error === null) {
+      if (file.pages.length === 0) {
+        statusText = 'OCR needed';
+        statusCls = 'pdf-status warn';
+      } else {
+        statusText = `${file.pages.length}p`;
+      }
+    } else if (file.error !== 'Pending') {
+      statusText = 'Unreadable';
+      statusCls = 'pdf-status err';
+    }
+    add(badges, 'span', statusText, statusCls);
+    row.appendChild(badges);
     list.appendChild(row);
   }
-  $('pdfCount').textContent = state.scanComplete ? `${state.files.length} PDFs` : `${state.files.length} found`;
+
+  $('pdfCount').textContent = state.scanComplete
+    ? `${readable.length}/${state.files.length} Ready`
+    : `${readable.length} Ready • Scanning`;
 }
 
-async function scan() {
+async function scan(forceRefresh = false) {
   if (state.controller) state.controller.abort();
   const controller = new AbortController();
   state.controller = controller;
   state.scanComplete = false;
-  state.pages = [];
   state.files = [];
   state.markdown = '';
   $('progress').hidden = false;
@@ -718,13 +849,13 @@ async function scan() {
   $('resultCount').textContent = 'Scanning…';
   $('result').replaceChildren();
   add($('result'), 'h2', 'Scanning repository PDFs…');
-  add($('result'), 'p', 'Briefings unlock as soon as all PDFs in this repository are indexed.');
+  add($('result'), 'p', 'Deploy unlocks immediately as soon as PDF #1 finishes indexing.');
 
   try {
     state.repo = validRepo($('repoInput').value);
     $('repoInput').value = state.repo;
     setStatus('Discovering all PDF files in the selected branch…');
-    const found = await discoverPdfs(state.repo, $('branchInput').value, controller.signal);
+    const found = await discoverPdfs(state.repo, $('branchInput').value, controller.signal, forceRefresh);
     state.branch = found.branch;
     $('branchInput').value = state.branch;
     state.files = found.files;
@@ -741,17 +872,28 @@ async function scan() {
 
     let readable = 0;
     let failed = 0;
+    let unlockedOnce = false;
+
     for (let index = 0; index < state.files.length; index++) {
       if (controller.signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
       const file = state.files[index];
-      setStatus(`Extracting PDF ${index + 1} of ${state.files.length}: ${file.path}`);
+      setStatus(`Indexing PDF ${index + 1} of ${state.files.length}: ${file.path}`);
       try {
-        file.pages = await extract(file, controller.signal);
+        const parsed = await extract(file, controller.signal);
+        file.pages = parsed.pages;
+        file.passages = parsed.passages;
         file.error = null;
-        for (const page of file.pages) {
-          state.pages.push({ ...page, fileName: file.path, url: fileUrl(file) });
+        if (file.pages.length > 0) {
+          readable++;
+          if (!unlockedOnce) {
+            unlockedOnce = true;
+            $('deployBtn').disabled = false;
+            renderThemes();
+            $('result').replaceChildren();
+            add($('result'), 'h2', 'Round-Robin Queue Ready');
+            add($('result'), 'p', `PDF #1 (${file.path}) is indexed. Deploy immediately while remaining books finish loading.`);
+          }
         }
-        readable++;
       } catch (error) {
         if (error.name === 'AbortError') throw error;
         file.error = error.message || 'Unable to extract PDF text';
@@ -762,14 +904,16 @@ async function scan() {
 
     state.scanComplete = true;
     renderFiles();
-    setStatus(`Scan complete: ${state.files.length} PDF(s) discovered; ${readable} indexed.${failed ? ` ${failed} unreadable.` : ''}`);
-    $('result').replaceChildren();
-    if (state.pages.length) {
-      add($('result'), 'h2', 'PDF library indexed');
-      add($('result'), 'p', `Indexed ${readable} repository PDF(s). Touch "Deploy next directive" or select any tactical theme above.`);
-    } else {
+    setStatus(`Scan complete: ${state.files.length} PDF(s) discovered; ${readable} indexed for round-robin.${failed ? ` ${failed} failed.` : ''}`);
+    if (!readable) {
+      $('result').replaceChildren();
       add($('result'), 'h2', 'No readable PDF text');
       add($('result'), 'p', 'Scanned image-only PDFs require OCR before text extraction.');
+    } else if (!state.markdown) {
+      $('result').replaceChildren();
+      add($('result'), 'h2', 'All Repository PDFs Indexed');
+      const info = getNextRoundRobinInfo();
+      add($('result'), 'p', `${readable} PDF(s) indexed in round-robin order (#1 through #${readable}). Next in queue: PDF #${info.nextIdx + 1} (${info.nextFile.path}).`);
     }
   } catch (error) {
     if (error.name === 'AbortError') {
@@ -784,25 +928,10 @@ async function scan() {
     if (state.controller === controller) state.controller = null;
     $('progress').hidden = true;
     $('scanBtn').disabled = false;
-    $('deployBtn').disabled = !state.scanComplete || !state.pages.length;
+    $('deployBtn').disabled = getReadableFiles().length === 0;
     renderThemes();
+    renderFiles();
   }
-}
-
-function makePassages(page) {
-  const sentences = page.text.split(/(?<=[.!?])\s+|\n+/).map(t => t.trim()).filter(Boolean);
-  const passages = [];
-  let current = '';
-  for (const sentence of sentences) {
-    if (current && (current + ' ' + sentence).length > 560) {
-      passages.push(current);
-      current = sentence;
-    } else {
-      current = (current + ' ' + sentence).trim();
-    }
-  }
-  if (current) passages.push(current);
-  return passages.length ? passages : [page.text.slice(0, 560)];
 }
 
 function keywordScore(text, terms) {
@@ -813,44 +942,35 @@ function keywordScore(text, terms) {
   }, 0);
 }
 
-function findBestPdfEvidence(theme) {
-  const readableFiles = state.files.filter(f => f.pages.length > 0);
-  if (!readableFiles.length) return null;
+function pickPassagesFromRoundRobinFile(file, theme, maxHits = 2) {
+  const passages = file.passages && file.passages.length
+    ? file.passages
+    : file.pages.flatMap(p => makePassages(p, file.path, fileUrl(file)));
+
+  if (!passages.length) return [];
 
   const recentSet = new Set(state.recentPdfKeys);
-  const fileMatches = [];
+  const scored = passages.map((p, idx) => {
+    let score = keywordScore(p.text, theme.terms);
+    if (recentSet.has(p.citKey)) score -= 2.5;
+    return { ...p, score, idx };
+  });
 
-  for (const file of readableFiles) {
-    const pages = file.pages.map(p => ({ ...p, fileName: file.path, url: fileUrl(file) }));
-    let bestHit = null;
-    for (const page of pages) {
-      for (const text of makePassages(page)) {
-        if (text.length < 60) continue;
-        let score = keywordScore(text, theme.terms);
-        if (score === 0) continue;
-        const citKey = `${file.path}:${page.pageNum}`;
-        if (recentSet.has(citKey)) score -= 2;
-        if (!bestHit || score > bestHit.score) {
-          bestHit = { fileName: file.path, pageNum: page.pageNum, url: page.url, text, score, citKey };
-        }
-      }
-    }
-    if (bestHit) fileMatches.push(bestHit);
+  scored.sort((a, b) => b.score - a.score || a.pageNum - b.pageNum || a.idx - b.idx);
+
+  const chosen = [];
+  const usedPages = new Set();
+  for (const item of scored) {
+    if (chosen.length >= maxHits) break;
+    if (usedPages.has(item.pageNum) && scored.some(s => !usedPages.has(s.pageNum))) continue;
+    chosen.push(item);
+    usedPages.add(item.pageNum);
   }
 
-  fileMatches.sort((a, b) => b.score - a.score || a.fileName.localeCompare(b.fileName));
-  if (fileMatches.length > 0) return fileMatches[0];
-
-  const fallbackFile = readableFiles[state.directiveCount % readableFiles.length];
-  const fallbackPage = fallbackFile.pages[state.directiveCount % fallbackFile.pages.length];
-  return {
-    fileName: fallbackFile.path,
-    pageNum: fallbackPage.pageNum,
-    url: fileUrl(fallbackFile),
-    text: fallbackPage.text.slice(0, 480) + (fallbackPage.text.length > 480 ? '…' : ''),
-    score: 0,
-    citKey: `${fallbackFile.path}:${fallbackPage.pageNum}`
-  };
+  if (chosen.length && chosen[0].score <= 0) {
+    return [passages[state.directiveCount % passages.length]];
+  }
+  return chosen;
 }
 
 function getNextBalancedTheme() {
@@ -865,7 +985,12 @@ function renderThemes() {
   const grid = $('themeGrid');
   grid.replaceChildren();
   const nextTheme = getNextBalancedTheme();
-  $('rotationHint').textContent = `Targeted today: ${nextTheme.name} • Directives issued: ${state.directiveCount}`;
+  const rr = getNextRoundRobinInfo();
+  const hasReadable = rr.readable.length > 0;
+
+  $('rotationHint').textContent = hasReadable
+    ? `Next Theme: ${nextTheme.name} • Next PDF: #${rr.nextIdx + 1} of ${rr.readable.length} (${rr.nextFile.path})`
+    : `Next Theme: ${nextTheme.name} • Waiting for readable PDFs`;
 
   THEMES.forEach((theme, index) => {
     const isNext = theme.name === nextTheme.name;
@@ -873,7 +998,7 @@ function renderThemes() {
     button.type = 'button';
     button.className = `theme-card glass${index === state.selected && state.directiveCount > 0 ? ' active' : ''}${isNext ? ' next-up' : ''}`;
     button.setAttribute('aria-pressed', String(index === state.selected && state.directiveCount > 0));
-    button.disabled = !state.scanComplete || !state.pages.length;
+    button.disabled = !hasReadable;
 
     const top = document.createElement('span');
     top.className = 'theme-top';
@@ -894,42 +1019,54 @@ function renderThemes() {
 }
 
 function createDirective(theme, isAuto = false) {
-  if (!state.scanComplete || !state.pages.length) {
-    setStatus('Scan readable PDFs before requesting a directive.', true);
+  const { readable, nextIdx, nextFile } = getNextRoundRobinInfo();
+  if (!readable.length || !nextFile) {
+    setStatus('Wait for at least one readable PDF to finish indexing.', true);
     return;
   }
+
+  const usedPdfIndex = nextIdx + 1;
+  const totalPdfs = readable.length;
+  state.pdfCursor = (nextIdx + 1) % totalPdfs;
+  state.lastPdfPath = nextFile.path;
 
   state.selected = THEMES.findIndex(item => item.name === theme.name);
   state.directiveCount++;
   state.recentThemes.push(theme.name);
-  if (state.recentThemes.length > 18) state.recentThemes.shift();
+  if (state.recentThemes.length > 24) state.recentThemes.shift();
 
   const runsForTheme = state.recentThemes.filter(r => r === theme.name).length;
   const op = theme.ops[(runsForTheme - 1) % theme.ops.length];
 
-  const evidence = findBestPdfEvidence(theme);
-  if (evidence && evidence.citKey) {
-    state.recentPdfKeys.push(evidence.citKey);
-    if (state.recentPdfKeys.length > 24) state.recentPdfKeys.shift();
-  }
+  const evidenceList = pickPassagesFromRoundRobinFile(nextFile, theme, 2);
+  for (const ev of evidenceList) state.recentPdfKeys.push(ev.citKey);
+  if (state.recentPdfKeys.length > 40) state.recentPdfKeys = state.recentPdfKeys.slice(-40);
   saveRotationState();
 
-  const explanationFull = evidence
-    ? `${op.explanation} Grounded in ${evidence.fileName} (page ${evidence.pageNum}): "${evidence.text}"`
-    : op.explanation;
+  const domain = state.domain || 'all';
+  const challengeText = op.challenges[domain] || op.challenges.all;
+  const habitsArr = op.habits[domain] || op.habits.all;
+  const stateProto = STATE_PROTOCOLS[state.mentalState] || STATE_PROTOCOLS.peak;
 
-  const sourceText = evidence
-    ? `${evidence.fileName} (page ${evidence.pageNum}) | Foundational Framework: ${op.doctrine}`
-    : op.doctrine;
+  state.currentTheme = theme.name;
+  state.currentOpTitle = op.title;
 
+  const pdfQuoteSummary = evidenceList.length
+    ? ` Grounded in PDF #${usedPdfIndex} of ${totalPdfs} (${nextFile.path}, p.${evidenceList[0].pageNum}): "${evidenceList[0].text}"`
+    : '';
+  const explanationFull = `${op.explanation}${pdfQuoteSummary}`;
+  const pageListStr = evidenceList.length ? evidenceList.map(e => `p.${e.pageNum}`).join(', ') : 'indexed text';
+  const sourceText = `PDF #${usedPdfIndex} of ${totalPdfs}: ${nextFile.path} (${pageListStr}) | Foundational Framework: ${op.doctrine}`;
+
+  // Strict Markdown Format preserved identically
   const mdLines = [
     `Mindset Directive ${state.directiveCount}: ${theme.name}`,
     ` * Mindset title: ${op.title}`,
     ` * Explanation: ${explanationFull}`,
-    ` * Daily challenge: ${op.challenge}`,
+    ` * Daily challenge: ${challengeText}`,
     ` * Habits to inculcate:`,
-    `   * ${op.habits[0]}`,
-    `   * ${op.habits[1]}`,
+    `   * ${habitsArr[0]}`,
+    `   * ${habitsArr[1]}`,
     ` * One sentence to remember: ${op.sentence}`,
     ` * Reflection prompt: ${op.reflection}`,
     ` * Mindmap:`,
@@ -949,10 +1086,9 @@ function createDirective(theme, isAuto = false) {
   result.replaceChildren();
 
   add(result, 'h2', `Mindset Directive ${state.directiveCount}: ${theme.name}`, 'directive-title');
-  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'TACTICAL ROTATION' : 'DIRECT SELECTION'})`, 'source-book');
-  if (evidence) {
-    add(result, 'div', `REPO PDF SOURCE: ${evidence.fileName} — p.${evidence.pageNum}`, 'source-book');
-  }
+  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'ROTATION' : 'MANUAL'})`, 'source-book');
+  add(result, 'div', `ROUND-ROBIN PDF #${usedPdfIndex} OF ${totalPdfs}: ${nextFile.path}`, 'source-book');
+  add(result, 'div', stateProto.note, 'state-protocol');
 
   const titleField = add(result, 'section', '', 'field');
   add(titleField, 'h3', 'Mindset title', 'field-title');
@@ -961,28 +1097,28 @@ function createDirective(theme, isAuto = false) {
   const expField = add(result, 'section', '', 'field');
   add(expField, 'h3', 'Explanation', 'field-title');
   add(expField, 'p', op.explanation, 'field-body');
-  if (evidence) {
+  evidenceList.forEach((ev, idx) => {
     const box = add(expField, 'div', '', 'extract');
-    add(box, 'span', 'Repo PDF Evidence', 'extract-label');
-    add(box, 'blockquote', `“${evidence.text}”`);
+    add(box, 'span', `PDF #${usedPdfIndex} Evidence ${evidenceList.length > 1 ? `(${idx + 1}/${evidenceList.length})` : ''}`, 'extract-label');
+    add(box, 'blockquote', `“${ev.text}”`);
     const cite = add(box, 'div', 'PDF reference: ', 'cite');
     const link = document.createElement('a');
-    link.href = `${evidence.url}#page=${evidence.pageNum}`;
+    link.href = `${ev.url}#page=${ev.pageNum}`;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
-    link.textContent = `${evidence.fileName} — page ${evidence.pageNum}`;
+    link.textContent = `${ev.fileName} — page ${ev.pageNum}`;
     cite.appendChild(link);
-  }
+  });
 
   const chalField = add(result, 'section', '', 'field');
   add(chalField, 'h3', 'Daily challenge', 'field-title');
-  add(chalField, 'p', op.challenge, 'field-body');
+  add(chalField, 'p', challengeText, 'field-body');
 
   const habField = add(result, 'section', '', 'field');
   add(habField, 'h3', 'Habits to inculcate', 'field-title');
   const ulHab = add(habField, 'ul', '', 'habit-list');
-  add(ulHab, 'li', op.habits[0]);
-  add(ulHab, 'li', op.habits[1]);
+  add(ulHab, 'li', habitsArr[0]);
+  add(ulHab, 'li', habitsArr[1]);
 
   const sentField = add(result, 'section', '', 'field');
   add(sentField, 'h3', 'One sentence to remember', 'field-title');
@@ -1007,20 +1143,87 @@ function createDirective(theme, isAuto = false) {
   const srcField = add(result, 'section', '', 'field');
   add(srcField, 'h3', 'Source', 'field-title');
   const srcP = add(srcField, 'p', '', 'field-body');
-  if (evidence) {
-    const sLink = document.createElement('a');
-    sLink.href = `${evidence.url}#page=${evidence.pageNum}`;
-    sLink.target = '_blank';
-    sLink.rel = 'noopener noreferrer';
-    sLink.textContent = `${evidence.fileName} (page ${evidence.pageNum})`;
-    srcP.appendChild(sLink);
-    srcP.appendChild(document.createTextNode(` • ${op.doctrine}`));
-  } else {
-    srcP.textContent = op.doctrine;
+  const sLink = document.createElement('a');
+  sLink.href = `${fileUrl(nextFile)}${evidenceList.length ? `#page=${evidenceList[0].pageNum}` : ''}`;
+  sLink.target = '_blank';
+  sLink.rel = 'noopener noreferrer';
+  sLink.textContent = `PDF #${usedPdfIndex}/${totalPdfs}: ${nextFile.path} (${pageListStr})`;
+  srcP.appendChild(sLink);
+  srcP.appendChild(document.createTextNode(` • ${op.doctrine}`));
+
+  // Activate Behavioral Lock-In Card
+  $('coachCard').style.display = 'grid';
+  $('ifThenInput').value = op.ifThen;
+  renderJournal();
+
+  $('resultCount').textContent = `Directive #${state.directiveCount} • PDF #${usedPdfIndex}/${totalPdfs}`;
+  renderThemes();
+  renderFiles();
+}
+
+function renderJournal() {
+  const box = $('journalList');
+  box.replaceChildren();
+  if (!state.journal.length) return;
+  for (const entry of [...state.journal].reverse().slice(0, 8)) {
+    const item = add(box, 'div', '', 'journal-item');
+    add(item, 'strong', `${entry.date} • ${entry.theme} (Score ${entry.rating}/5)`);
+    if (entry.ifThen) add(item, 'div', `Script: ${entry.ifThen}`);
+    if (entry.notes) add(item, 'div', `AAR: ${entry.notes}`);
+  }
+}
+
+function saveAar() {
+  const today = new Date().toISOString().slice(0, 10);
+  if (state.lastLogDate !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+    state.streak = state.lastLogDate === yesterday ? state.streak + 1 : 1;
+    state.lastLogDate = today;
+  } else if (state.streak === 0) {
+    state.streak = 1;
   }
 
-  $('resultCount').textContent = `Directive #${state.directiveCount} • ${theme.name}`;
-  renderThemes();
+  state.journal.push({
+    date: today,
+    theme: state.currentTheme || 'Mindset',
+    rating: state.rating,
+    ifThen: $('ifThenInput').value.trim(),
+    notes: $('aarNotes').value.trim()
+  });
+  if (state.journal.length > 30) state.journal = state.journal.slice(-30);
+  $('aarNotes').value = '';
+  saveRotationState();
+  updateStreakBadge();
+  renderJournal();
+  $('copyStatus').textContent = `AAR saved. Current streak: ${state.streak} day(s).`;
+}
+
+// 60s Physiological Sigh Reset Timer
+function toggleBreathReset() {
+  const btn = $('breathBtn');
+  if (state.breathTimer) {
+    clearInterval(state.breathTimer);
+    state.breathTimer = null;
+    btn.textContent = '60s Reset';
+    return;
+  }
+  let sec = 60;
+  const updateLabel = () => {
+    const phase = sec % 10 >= 6 ? 'Inhale+Top-Up' : 'Slow Exhale';
+    btn.textContent = `${sec}s • ${phase}`;
+  };
+  updateLabel();
+  state.breathTimer = setInterval(() => {
+    sec--;
+    if (sec <= 0) {
+      clearInterval(state.breathTimer);
+      state.breathTimer = null;
+      btn.textContent = 'Reset Done ✓';
+      setTimeout(() => { btn.textContent = '60s Reset'; }, 2000);
+    } else {
+      updateLabel();
+    }
+  }, 1000);
 }
 
 async function copy() {
@@ -1061,32 +1264,61 @@ function toggleTheme() {
 
 function printDirective() {
   if (!state.markdown) {
-    $('copyStatus').textContent = 'Generate a directive before printing.';
-    return;
+    if (getReadableFiles().length > 0) createDirective(getNextBalancedTheme(), true);
+    else { $('copyStatus').textContent = 'Generate a directive before printing.'; return; }
   }
-  window.print();
+  requestAnimationFrame(() => window.print());
 }
 
 function resetRotation() {
   state.directiveCount = 0;
+  state.pdfCursor = 0;
+  state.lastPdfPath = '';
   state.recentThemes = [];
   state.recentPdfKeys = [];
   saveRotationState();
   renderThemes();
-  $('copyStatus').textContent = 'Rotation history reset.';
+  renderFiles();
+  $('copyStatus').textContent = 'Theme rotation and PDF round-robin index reset to #1.';
 }
 
-$('scanBtn').addEventListener('click', scan);
+// Calibration & Rating Events
+$('stateSeg').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-state]');
+  if (!btn) return;
+  state.mentalState = btn.dataset.state;
+  $('stateSeg').querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
+});
+
+$('domainSeg').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-domain]');
+  if (!btn) return;
+  state.domain = btn.dataset.domain;
+  $('domainSeg').querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
+});
+
+$('ratingRow').addEventListener('click', e => {
+  const btn = e.target.closest('button[data-rate]');
+  if (!btn) return;
+  state.rating = Number(btn.dataset.rate);
+  $('ratingRow').querySelectorAll('.rate-btn').forEach(b => b.classList.toggle('active', b === btn));
+});
+
+$('scanBtn').addEventListener('click', () => scan(true));
 $('deployBtn').addEventListener('click', () => createDirective(getNextBalancedTheme(), true));
 $('copyBtn').addEventListener('click', copy);
 $('resetBtn').addEventListener('click', resetRotation);
 $('toggleMdBtn').addEventListener('click', toggleMarkdown);
 $('themeBtn').addEventListener('click', toggleTheme);
 $('printBtn').addEventListener('click', printDirective);
+$('breathBtn').addEventListener('click', toggleBreathReset);
+$('saveAarBtn').addEventListener('click', saveAar);
 
+$('ratingRow').querySelector('[data-rate="4"]').classList.add('active');
+updateStreakBadge();
 $('repoInput').value = repoFromUrl();
 renderThemes();
-if ($('repoInput').value) scan();
+if ($('repoInput').value) scan(false);
 else setStatus('Enter a public repository in owner/repo format, then scan.');
 </script>
 </body>
