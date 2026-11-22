@@ -1,29 +1,3 @@
-I added a client-side PDF Distillation & Simplification Engine so that
-Explanation, Habits to inculcate, One sentence to remember, and Mindmap are
-clean, concise, and easy to act on—while remaining 100% derived from the actual
-unread PDF page from logmain68/Me (main branch).
-
-How the Simplification Engine Works (Zero Fabrication)
-
-  - Noise & Clutter Removal (cleanPdfSentence): Strips academic citations
-    ([12]), inline footnotes, parenthetical detours, and bloated connectors
-    ("However, it is important to note that...", "in order to" → "to", "due to
-    the fact that" → "because").
-  - Simplified Explanation: Distills the top 2–3 highest-signal sentences on the
-    page into a crisp, readable core takeaway—followed by the exact verbatim
-    Grounded in [PDF] (page N) quote for full transparency.
-  - Actionable Habits (simplifyToHabit): Converts descriptive book sentences
-    ("You should always...", "One must...", "We need to...") into direct,
-    concise habit bullets (~125 chars max) strictly preserving the PDF's own
-    words.
-  - Crisp Anchor (simplifyToRemember): Distills the sharpest standalone clause
-    (target ≤ 115 chars) from the page into a punchy, memorable single sentence.
-  - Scannable Mindmap (simplifyToMindmapNode): Trims supporting leaves to short
-    core clauses (≤ 88 chars) under clean keyword branch labels—turning dense
-    paragraphs into a real mindmap.
-
-Save this as index.html:
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
