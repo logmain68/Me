@@ -7,490 +7,386 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com; worker-src 'self' blob: https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Commander — Behavioral &amp; Performance Coach</title>
+  <title>Mindset Commander — Strictly Grounded PDF &amp; Vivekananda Mentor</title>
   <style>
     :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.84);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.15);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#248a3d;--success-soft:rgba(52,199,89,.14);--warn:#b25000;--warn-soft:rgba(255,149,0,.14);--danger:#b42318;--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:46px;--radius:26px}
     body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.9);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--success-soft:rgba(48,209,88,.18);--warn:#ff9f0a;--warn-soft:rgba(255,159,10,.18);--danger:#ff6961;--shadow:0 20px 55px rgba(0,0,0,.32),0 3px 12px rgba(0,0,0,.2)}
     *{box-sizing:border-box}html{min-height:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}body{margin:0;min-height:100vh;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(28px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left));font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Arial,sans-serif;line-height:1.55;background:radial-gradient(ellipse at 10% 0%,var(--soft),transparent 34rem),var(--bg);color:var(--text);transition:background .22s,color .22s}
-    button,input,textarea{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1160px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
-    .topbar{position:sticky;z-index:10;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(20px,4vw,36px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em}.logo{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 16px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.88rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
-    .hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,52px);border-radius:var(--radius);margin-bottom:20px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:10px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:780px;margin:0 0 12px;font-size:clamp(2.2rem,7.5vw,4.2rem);line-height:1.03;letter-spacing:-.05em}.subtitle{max-width:74ch;margin:0 0 20px;color:var(--muted);font-size:clamp(.98rem,2.3vw,1.06rem);line-height:1.68}
-    .calibration-bar{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px 20px;border-radius:20px;margin-bottom:20px}@media(max-width:800px){.calibration-bar{grid-template-columns:1fr}}.cal-group{display:flex;flex-direction:column;gap:8px}.cal-label{font-size:.74rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}.segmented{display:inline-flex;flex-wrap:wrap;gap:4px;background:var(--alt);padding:4px;border-radius:14px}.seg-btn{min-height:36px;padding:6px 12px;border:none;border-radius:10px;background:transparent;font-size:.8rem;font-weight:650;color:var(--muted);box-shadow:none}.seg-btn:hover{transform:none;box-shadow:none;color:var(--text)}.seg-btn.active{background:var(--solid);color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:22px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
-    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:150px;padding:18px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.83rem;line-height:1.5;display:block}
-    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(295px,.68fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,26px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.op-heading{font-size:1.05rem;font-weight:750;letter-spacing:.01em;color:var(--accent);margin:4px 0 8px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.state-protocol{margin:10px 0 4px;padding:13px 16px;border-radius:14px;background:var(--warn-soft);border:1px solid var(--border);font-size:.9rem;line-height:1.6}.field{padding:15px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 8px;font-size:.86rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field-body{margin:0;font-size:.98rem;line-height:1.72}.habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:9px;font-size:.96rem;line-height:1.68}.anchor-sentence{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3px solid var(--accent);font-weight:700;font-size:1.05rem;line-height:1.55}.extract{padding:14px 16px;margin:12px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.68;font-size:.91rem;color:var(--muted);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover{text-decoration:underline}
-    .mindmap{padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:10px;font-size:1.02rem}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:4px 0 10px 14px;font-weight:650}.mindmap-list ul{list-style:disc;padding:0 0 0 20px;margin:6px 0 2px;font-weight:400;color:var(--muted)}.mindmap-list ul li{padding:3px 0;line-height:1.58}
-    .coach-card{margin-top:16px;padding:18px;border-radius:18px;background:var(--surface);border:1px solid var(--border);display:grid;gap:12px}.coach-card h3{margin:0;font-size:.95rem;letter-spacing:-.01em}.if-then-row{display:grid;gap:8px}.textarea{width:100%;min-height:74px;padding:10px 12px;border-radius:12px;border:1px solid var(--border-strong);background:var(--alt);resize:vertical;font-size:.92rem}.rating-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.rate-btn{min-height:36px;padding:6px 13px;font-size:.8rem}.rate-btn.active{background:var(--accent);color:#fff;border-color:transparent}.journal-list{display:grid;gap:8px;max-height:220px;overflow:auto;margin-top:8px}.journal-item{padding:10px 12px;border-radius:12px;background:var(--alt);border:1px solid var(--border);font-size:.82rem}
-    .controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.pdf-list{display:grid;gap:7px;max-height:270px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf.is-next{border-color:var(--accent);background:var(--soft)}.pdf-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1}.pdf-idx{flex:0 0 auto;min-width:26px;height:22px;padding:0 6px;border-radius:999px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;font-size:.7rem;font-weight:750;font-variant-numeric:tabular-nums;color:var(--muted)}.pdf.is-next .pdf-idx{background:var(--accent);color:#fff;border-color:transparent}.pdf a{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-badges{display:flex;align-items:center;gap:5px;flex:0 0 auto}.pdf-status{padding:3px 7px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:.68rem;font-weight:750}.pdf-status.warn{background:var(--warn-soft);color:var(--warn)}.pdf-status.err{background:rgba(180,35,24,.12);color:var(--danger)}.pdf-next-tag{padding:3px 7px;border-radius:999px;background:var(--accent);color:#fff;font-size:.66rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.6;display:none}
-    @media(max-width:760px){.workspace{grid-template-columns:1fr}}@media(max-width:560px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr 1fr}.topbar .actions button{width:100%;padding-inline:6px;font-size:.78rem}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:118px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,.calibration-bar,#themeGrid,.section-head,aside,.raw-box,.no-print{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field,.coach-card{break-inside:avoid;background:#fff}}
+    button,input,textarea,select{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.wrap{width:min(1160px,100%);margin:auto}.glass{background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+    .topbar{position:sticky;z-index:10;top:max(5px,env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;border-radius:999px;margin-bottom:clamp(20px,4vw,34px)}.brand{display:flex;align-items:center;gap:10px;font-weight:720;letter-spacing:-.03em;min-width:0}.logo{display:grid;place-items:center;flex:0 0 auto;width:32px;height:32px;border-radius:11px;background:linear-gradient(145deg,#2997ff,#0066d6);color:#fff;font-weight:800;box-shadow:0 4px 12px rgba(0,113,227,.25)}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{min-height:var(--tap);padding:10px 15px;border:1px solid var(--border-strong);border-radius:999px;background:var(--alt);font-size:.86rem;font-weight:650;cursor:pointer;transition:transform .16s ease,background .18s ease,box-shadow .18s ease}button:hover{transform:translateY(-1px);box-shadow:0 5px 16px rgba(0,0,0,.08)}button:active{transform:scale(.98)}button:disabled{opacity:.55;cursor:wait;transform:none;box-shadow:none}.primary{background:var(--accent);border-color:transparent;color:#fff;box-shadow:0 5px 15px rgba(0,113,227,.22)}.primary:hover{background:var(--accent-hover)}.secondary{background:transparent}
+    .nav-tabs{display:inline-flex;background:var(--alt);padding:4px;border-radius:999px;gap:4px;border:1px solid var(--border)}.nav-tab{min-height:38px;padding:7px 14px;border:none;border-radius:999px;background:transparent;font-size:.84rem;font-weight:650;color:var(--muted);box-shadow:none}.nav-tab:hover{transform:none;box-shadow:none;color:var(--text)}.nav-tab.active{background:var(--solid);color:var(--accent);box-shadow:0 2px 8px rgba(0,0,0,.09)}
+    .hero{position:relative;overflow:hidden;padding:clamp(24px,5vw,50px);border-radius:var(--radius);margin-bottom:18px}.hero:after{content:"";position:absolute;pointer-events:none;width:310px;height:310px;right:-110px;top:-160px;border-radius:50%;background:radial-gradient(circle,var(--soft),transparent 68%)}.eyebrow{margin-bottom:10px;color:var(--accent);font-size:.76rem;font-weight:760;letter-spacing:.14em;text-transform:uppercase}.hero h1{max-width:820px;margin:0 0 12px;font-size:clamp(2.1rem,7vw,3.9rem);line-height:1.05;letter-spacing:-.05em}.subtitle{max-width:74ch;margin:0 0 20px;color:var(--muted);font-size:clamp(.98rem,2.3vw,1.06rem);line-height:1.68}
+    .metrics-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}.metric-pill{padding:12px 16px;border-radius:16px;display:flex;flex-direction:column;gap:2px}.metric-pill span{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.metric-pill strong{font-size:1.15rem;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin:20px 2px 12px}.section-head h2{margin:0;font-size:1.02rem;letter-spacing:-.02em}.section-head span{color:var(--muted);font-size:.82rem}
+    .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:12px;margin-bottom:18px}.theme-card{width:100%;min-height:142px;padding:18px;border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;align-items:stretch}.theme-card.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),var(--shadow)}.theme-top{display:flex;justify-content:space-between;align-items:center}.theme-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:12px;color:var(--accent);background:var(--soft);font-size:1rem}.badge,.tag{width:fit-content;padding:5px 9px;border-radius:999px;background:var(--alt);color:var(--muted);font-size:.7rem;font-weight:750}.theme-card.next-up .badge{background:var(--soft);color:var(--accent)}.theme-card h3{margin:10px 0 4px;font-size:1rem;letter-spacing:-.02em}.theme-card small{color:var(--muted);font-size:.83rem;line-height:1.5;display:block}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(295px,.68fr);gap:14px;align-items:start}.panel{min-width:0;padding:clamp(15px,3vw,23px);border-radius:var(--radius)}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}.tag{color:var(--accent);background:var(--soft);font-variant-numeric:tabular-nums}.result{min-height:150px;padding:clamp(16px,3vw,26px);border:1px solid var(--border);border-radius:20px;background:var(--alt);overflow-wrap:anywhere}.result h2{margin:0 0 7px;font-size:clamp(1.35rem,4vw,1.95rem);line-height:1.15;letter-spacing:-.04em}.directive-title{padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:10px}.source-book{display:inline-flex;align-items:center;gap:7px;max-width:100%;margin:4px 6px 10px 0;padding:6px 12px;border:1px solid var(--border);border-radius:999px;background:var(--surface);font-size:.76rem;font-weight:700;color:var(--accent);overflow-wrap:anywhere}.field{padding:15px 0;border-top:1px solid var(--border);break-inside:avoid}.field-title{margin:0 0 8px;font-size:.86rem;font-weight:750;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.field-body{margin:0;font-size:.98rem;line-height:1.72}.not-found{margin:0;font-size:.92rem;color:var(--muted);font-style:italic}.habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:10px;font-size:.96rem;line-height:1.68}.extract{padding:14px 16px;margin:8px 0 0;border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:13px;background:var(--surface);break-inside:avoid}.extract-label{display:block;color:var(--muted);font-size:.68rem;font-weight:750;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}.extract blockquote{margin:0;line-height:1.7;font-size:.95rem;color:var(--text);white-space:pre-wrap}.cite{margin-top:8px;font-size:.79rem;overflow-wrap:anywhere}.cite a,.pdf a,.field a,.auth-list a{color:var(--accent);text-decoration:none}.cite a:hover,.pdf a:hover,.field a:hover,.auth-list a:hover{text-decoration:underline}
+    .mindmap{padding:16px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}.mindmap-root{font-weight:760;color:var(--accent);margin-bottom:10px;font-size:1.02rem}.mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}.mindmap-list>li{padding:4px 0 10px 14px;font-weight:650}.mindmap-list ul{list-style:none;padding:0 0 0 14px;margin:6px 0 2px;font-weight:400;border-left:1px solid var(--border)}.mindmap-list ul li{padding:4px 0}
+    .coach-card{margin-top:16px;padding:18px;border-radius:18px;background:var(--surface);border:1px solid var(--border);display:grid;gap:12px}.coach-card h3{margin:0;font-size:.95rem;letter-spacing:-.01em}.textarea{width:100%;min-height:74px;padding:10px 12px;border-radius:12px;border:1px solid var(--border-strong);background:var(--alt);resize:vertical;font-size:.92rem}.rating-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.rate-btn{min-height:36px;padding:6px 13px;font-size:.8rem}.rate-btn.active{background:var(--accent);color:#fff;border-color:transparent}.journal-list{display:grid;gap:8px;max-height:220px;overflow:auto;margin-top:6px}.journal-item{padding:10px 12px;border-radius:12px;background:var(--alt);border:1px solid var(--border);font-size:.82rem}
+    .controls{display:grid;gap:8px;margin:12px 0}.label{color:var(--muted);font-size:.77rem;font-weight:650}.input{width:100%;min-height:var(--tap);padding:10px 12px;border:1px solid var(--border-strong);border-radius:12px;background:var(--alt);font-size:16px}.btn-row{display:flex;gap:8px;flex-wrap:wrap}.pdf-list{display:grid;gap:7px;max-height:270px;overflow:auto;margin-top:12px}.pdf{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0;padding:9px 10px;border:1px solid var(--border);border-radius:11px;background:var(--alt);font-size:.79rem}.pdf.is-next{border-color:var(--accent);background:var(--soft)}.pdf-left{display:flex;align-items:center;gap:8px;min-width:0;flex:1}.pdf-idx{flex:0 0 auto;min-width:26px;height:22px;padding:0 6px;border-radius:999px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;font-size:.7rem;font-weight:750;font-variant-numeric:tabular-nums;color:var(--muted)}.pdf.is-next .pdf-idx{background:var(--accent);color:#fff;border-color:transparent}.pdf a,.pdf span.local-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pdf-badges{display:flex;align-items:center;gap:5px;flex:0 0 auto}.pdf-status{padding:3px 7px;border-radius:999px;background:var(--success-soft);color:var(--success);font-size:.68rem;font-weight:750}.pdf-status.warn{background:var(--warn-soft);color:var(--warn)}.pdf-status.err{background:rgba(180,35,24,.12);color:var(--danger)}.pdf-next-tag{padding:3px 7px;border-radius:999px;background:var(--accent);color:#fff;font-size:.66rem;font-weight:750}.status,.copy-status{margin:10px 0 0;color:var(--muted);font-size:.79rem;line-height:1.5;overflow-wrap:anywhere}.status.error{color:var(--danger)}.scan-progress{height:4px;margin-top:10px;overflow:hidden;border-radius:999px;background:var(--alt)}.scan-progress span{display:block;width:40%;height:100%;background:var(--accent);border-radius:inherit;animation:load 1.3s ease-in-out infinite alternate}.scan-progress[hidden]{display:none}@keyframes load{from{transform:translateX(-50%)}to{transform:translateX(200%)}}.raw-box{margin-top:14px;padding:14px;border-radius:14px;border:1px solid var(--border);background:var(--surface);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;line-height:1.6;display:none}
+    /* Vivekananda Mentor View */
+    .tab-pane{display:none}.tab-pane.active{display:block}.sv-query-box{display:grid;gap:12px;margin-bottom:18px}.sv-chips{display:flex;flex-wrap:wrap;gap:8px}.sv-chip{min-height:38px;padding:7px 14px;font-size:.82rem;border-radius:999px;background:var(--surface);border:1px solid var(--border-strong)}.sv-chip:hover{border-color:var(--accent);color:var(--accent)}.sv-search-row{display:flex;gap:10px;flex-wrap:wrap}.sv-search-row .input{flex:1;min-width:220px}.auth-list{margin:8px 0 0;padding-left:18px;display:grid;gap:6px;font-size:.82rem;color:var(--muted)}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.42);backdrop-filter:blur(8px);display:none;place-items:center;padding:16px}.modal-backdrop.open{display:grid}.modal{width:min(580px,100%);max-height:88vh;overflow:auto;border-radius:24px;padding:24px;background:var(--solid);border:1px solid var(--border-strong);box-shadow:var(--shadow);display:grid;gap:14px}.modal-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding-bottom:12px}.modal-head h2{margin:0;font-size:1.15rem;letter-spacing:-.02em}.check-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:12px;background:var(--alt);font-size:.86rem;font-weight:600}
+    @media(max-width:760px){.workspace{grid-template-columns:1fr}}@media(max-width:640px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:17px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:6px;font-size:.78rem}.nav-tabs{width:100%;display:grid;grid-template-columns:1fr 1fr}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.theme-card{min-height:118px}}@media(hover:none){button:hover{transform:none;box-shadow:none}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}@media print{body{padding:0;background:#fff;color:#111}.topbar,.hero,.metrics-strip,#themeGrid,.section-head,aside,.raw-box,.no-print,.modal-backdrop,.sv-query-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.extract,.mindmap,.field,.coach-card{break-inside:avoid;background:#fff}}
   </style>
 </head>
 <body>
 <main class="wrap">
   <header class="topbar glass">
     <div class="brand">
-      <span class="logo" aria-hidden="true">M</span>
-      <span>Mindset Commander</span>
+      <span class="logo" aria-hidden="true" id="brandLogo">M</span>
+      <span id="brandName">Mindset Commander</span>
       <span class="tag" id="streakBadge">0-Day Streak</span>
     </div>
+
+    <!-- Navigation Tabs (Vivekananda Mentor replaces 60s Reset) -->
+    <div class="nav-tabs" role="tablist" aria-label="Primary Workspace Modes">
+      <button type="button" class="nav-tab active" id="tabBriefingBtn" role="tab" aria-selected="true">Tactical Briefing</button>
+      <button type="button" class="nav-tab" id="tabVivekanandaBtn" role="tab" aria-selected="false">Vivekananda Mentor</button>
+    </div>
+
     <div class="actions">
-      <button id="breathBtn" class="secondary" type="button">60s Reset</button>
+      <button id="configBtn" class="secondary" type="button">&#9881; Configure</button>
       <button id="themeBtn" class="secondary" type="button" aria-pressed="false">◐ Appearance</button>
       <button id="printBtn" class="primary" type="button">Print / Save PDF</button>
     </div>
   </header>
 
-  <section class="hero glass">
-    <div class="eyebrow">Top-1% Executive Mentor • Human Behavior &amp; Relational Conditioning</div>
-    <h1>State precedes strategy.</h1>
-    <p class="subtitle">An adaptive behavioral conditioning system translating elite military, athletic, and leadership doctrines from your GitHub PDF library in strict round-robin sequence. Calibrate your current mental state and target life arena—career leadership, personal mastery, or family relationships—to convert reading into permanent daily habits.</p>
-    <div class="actions">
-      <button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button>
-      <button id="toggleMdBtn" class="secondary" type="button">Toggle Markdown</button>
-    </div>
-  </section>
-
-  <!-- Behavioral State & Life-Domain Calibration -->
-  <section class="calibration-bar glass" aria-label="Behavioral Calibration">
-    <div class="cal-group">
-      <span class="cal-label">1. Current Mental &amp; Nervous-System State</span>
-      <div class="segmented" id="stateSeg">
-        <button type="button" class="seg-btn active" data-state="peak">Peak / Ready</button>
-        <button type="button" class="seg-btn" data-state="overloaded">Overloaded / Stressed</button>
-        <button type="button" class="seg-btn" data-state="scattered">Scattered / Distracted</button>
-        <button type="button" class="seg-btn" data-state="conflict">Post-Conflict / Low</button>
-      </div>
-    </div>
-    <div class="cal-group">
-      <span class="cal-label">2. Primary Arena Focus</span>
-      <div class="segmented" id="domainSeg">
-        <button type="button" class="seg-btn active" data-domain="all">All-Domain Balance</button>
-        <button type="button" class="seg-btn" data-domain="career">Career &amp; Leadership</button>
-        <button type="button" class="seg-btn" data-domain="personal">Personal Mastery</button>
-        <button type="button" class="seg-btn" data-domain="family">Family &amp; Relationships</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-head">
-    <h2>Core Operational Matrix — Select or Rotate</h2>
-    <span id="rotationHint">Balanced theme rotation • Round-robin PDF queue</span>
-  </div>
-  <section id="themeGrid" class="theme-grid" aria-label="Tactical themes"></section>
-
-  <section class="workspace" aria-label="Tactical briefing and repository library">
-    <section class="panel glass" aria-labelledby="outputTitle">
-      <div class="panel-head">
-        <strong id="outputTitle">The Tactical Briefing</strong>
-        <span id="resultCount" class="tag" aria-live="polite">Scanning…</span>
-      </div>
-      <article id="result" class="result" aria-live="polite" aria-atomic="true">
-        <h2>Scanning repository PDFs…</h2>
-        <p>Deploy unlocks immediately once PDF #1 is indexed while remaining books load cleanly in the background.</p>
-      </article>
-      <pre id="rawMd" class="raw-box"></pre>
-
-      <!-- Implementation Intention + Evening AAR Coach Card -->
-      <div class="coach-card" id="coachCard" style="display:none">
-        <h3>Behavioral Lock-In &amp; Evening AAR</h3>
-        <div class="if-then-row">
-          <label class="label" for="ifThenInput">If–Then Implementation Intention (edit to personalize today's trigger)</label>
-          <input id="ifThenInput" class="input" type="text">
-        </div>
-        <div>
-          <span class="label" style="display:block;margin-bottom:6px">Execution Score Today (1 = Drifted, 5 = Uncompromising)</span>
-          <div class="rating-row" id="ratingRow">
-            <button type="button" class="rate-btn" data-rate="1">1</button>
-            <button type="button" class="rate-btn" data-rate="2">2</button>
-            <button type="button" class="rate-btn" data-rate="3">3</button>
-            <button type="button" class="rate-btn" data-rate="4">4</button>
-            <button type="button" class="rate-btn" data-rate="5">5</button>
-          </div>
-        </div>
-        <div>
-          <label class="label" for="aarNotes">End-of-Day Reflection Answer</label>
-          <textarea id="aarNotes" class="textarea" placeholder="Write 1 honest win, 1 friction point, and 1 repair or adjustment for tomorrow..."></textarea>
-        </div>
-        <div class="actions no-print">
-          <button id="saveAarBtn" class="primary" type="button">Save Daily AAR &amp; Lock Streak</button>
-        </div>
-        <div id="journalList" class="journal-list"></div>
+  <!-- ==================== TAB 1: TACTICAL BRIEFING ==================== -->
+  <div id="paneBriefing" class="tab-pane active">
+    <section class="hero glass">
+      <div class="eyebrow" id="heroEyebrow">Strictly Grounded PDF Intelligence • Zero Fabrication</div>
+      <h1 id="heroTitle">Evidence over assumption.</h1>
+      <p class="subtitle" id="heroSubtitle">Every tactical directive is extracted strictly from one repository PDF at a time in round-robin sequence (#1 → #2 → … → #N → #1). Every field is verbatim-cited by filename and page number; any field without evidence in that PDF is explicitly marked not found—never invented.</p>
+      <div class="actions">
+        <button id="deployBtn" class="primary" type="button" disabled>✦ &nbsp;Deploy next directive</button>
+        <button id="toggleMdBtn" class="secondary" type="button">Toggle Markdown</button>
       </div>
     </section>
 
-    <aside class="panel glass" aria-labelledby="libraryTitle">
-      <div class="panel-head">
-        <strong id="libraryTitle">Round-Robin PDF Queue</strong>
-        <span id="pdfCount" class="tag">Not scanned</span>
-      </div>
-      <div class="controls">
-        <label class="label" for="repoInput">Public repository (owner/repo)</label>
-        <input id="repoInput" class="input" type="text" autocomplete="url" spellcheck="false">
-        <label class="label" for="branchInput">Branch (optional)</label>
-        <input id="branchInput" class="input" type="text" placeholder="Default branch" autocomplete="off" spellcheck="false">
-        <button id="scanBtn" type="button">Scan / rescan all PDFs</button>
-      </div>
-      <div id="progress" class="scan-progress" hidden aria-hidden="true"><span></span></div>
-      <p class="status" id="scanStatus" aria-live="polite">Starting repository scan…</p>
-      <div id="pdfList" class="pdf-list" aria-label="Indexed PDFs in round-robin order"></div>
-      <div style="margin-top:12px;display:grid;gap:8px">
-        <button id="copyBtn" type="button" style="width:100%">Copy Tactical Briefing (MD)</button>
-        <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation &amp; PDF Index</button>
-      </div>
-      <p id="copyStatus" class="copy-status" aria-live="polite"></p>
-      <p class="status">Every deployment steps strictly from PDF #1 through the last readable PDF in your repository, then wraps back to #1 automatically.</p>
-    </aside>
-  </section>
+    <section class="metrics-strip" aria-label="Conditioning Metrics">
+      <div class="metric-pill glass"><span>Directives Issued</span><strong id="mDirectives">0</strong></div>
+      <div class="metric-pill glass"><span>Round-Robin Queue</span><strong id="mQueue">0 PDFs</strong></div>
+      <div class="metric-pill glass"><span>Execution Avg</span><strong id="mAvgScore">—</strong></div>
+      <div class="metric-pill glass"><span>AAR Entries Logged</span><strong id="mJournalCount">0</strong></div>
+    </section>
+
+    <div class="section-head">
+      <h2>Core Operational Matrix — Select or Rotate</h2>
+      <span id="rotationHint">Balanced theme rotation • Round-robin PDF queue</span>
+    </div>
+    <section id="themeGrid" class="theme-grid" aria-label="Tactical themes"></section>
+
+    <section class="workspace" aria-label="Tactical briefing and repository library">
+      <section class="panel glass" id="briefingPanel" aria-labelledby="outputTitle">
+        <div class="panel-head">
+          <strong id="outputTitle">The Tactical Briefing (100% Extracted From Repo PDF)</strong>
+          <span id="resultCount" class="tag" aria-live="polite">Ready</span>
+        </div>
+        <article id="result" class="result" aria-live="polite" aria-atomic="true">
+          <h2>Initializing PDF library…</h2>
+          <p>Deploy unlocks immediately once PDF #1 is indexed from GitHub or attached locally.</p>
+        </article>
+        <pre id="rawMd" class="raw-box"></pre>
+
+        <div class="coach-card" id="coachCard" style="display:none">
+          <h3>Personal Reflection &amp; Evening AAR Log</h3>
+          <div>
+            <span class="label" style="display:block;margin-bottom:6px">Execution Score Today (1 = Drifted, 5 = Uncompromising)</span>
+            <div class="rating-row" id="ratingRow">
+              <button type="button" class="rate-btn" data-rate="1">1</button>
+              <button type="button" class="rate-btn" data-rate="2">2</button>
+              <button type="button" class="rate-btn" data-rate="3">3</button>
+              <button type="button" class="rate-btn" data-rate="4">4</button>
+              <button type="button" class="rate-btn" data-rate="5">5</button>
+            </div>
+          </div>
+          <div>
+            <label class="label" for="aarNotes">Your Answer to Today's Reflection / Action</label>
+            <textarea id="aarNotes" class="textarea" placeholder="Record your own honest execution notes and next-step commitment..."></textarea>
+          </div>
+          <div class="actions no-print">
+            <button id="saveAarBtn" class="primary" type="button">Save Daily AAR &amp; Lock Streak</button>
+            <button id="exportJournalBtn" class="secondary" type="button">Export Journal (MD)</button>
+          </div>
+          <div id="journalList" class="journal-list"></div>
+        </div>
+      </section>
+
+      <aside class="panel glass" aria-labelledby="libraryTitle">
+        <div class="panel-head">
+          <strong id="libraryTitle">Round-Robin PDF Queue</strong>
+          <span id="pdfCount" class="tag">Not scanned</span>
+        </div>
+        <div class="controls">
+          <label class="label" for="repoInput">Public repository (owner/repo)</label>
+          <input id="repoInput" class="input" type="text" autocomplete="url" spellcheck="false">
+          <label class="label" for="branchInput">Branch (optional)</label>
+          <input id="branchInput" class="input" type="text" placeholder="Default branch" autocomplete="off" spellcheck="false">
+          <div class="btn-row">
+            <button id="scanBtn" type="button" style="flex:1">Scan / Rescan</button>
+            <button id="cancelScanBtn" class="secondary" type="button" style="display:none">Cancel</button>
+          </div>
+        </div>
+        <div id="progress" class="scan-progress" hidden aria-hidden="true"><span></span></div>
+        <p class="status" id="scanStatus" aria-live="polite">Starting repository scan…</p>
+        <div id="pdfList" class="pdf-list" aria-label="Indexed PDFs in round-robin order"></div>
+        <div style="margin-top:12px;display:grid;gap:8px">
+          <label class="label" for="localPdfInput">Or Attach Local PDFs (Offline / Private)</label>
+          <input id="localPdfInput" type="file" accept="application/pdf" multiple style="font-size:.82rem">
+          <button id="copyBtn" type="button" style="width:100%">Copy Tactical Briefing (MD)</button>
+          <button id="resetBtn" class="secondary" type="button" style="width:100%">Reset Rotation &amp; PDF Index</button>
+        </div>
+        <p id="copyStatus" class="copy-status" aria-live="polite"></p>
+        <p class="status">Zero fabrication guarantee: every sentence in a briefing comes directly from the single active PDF in this queue.</p>
+      </aside>
+    </section>
+  </div>
+
+  <!-- ==================== TAB 2: SWAMI VIVEKANANDA MENTOR ==================== -->
+  <div id="paneVivekananda" class="tab-pane">
+    <section class="hero glass">
+      <div class="eyebrow">Authorized Primary Sources • Advaita Ashrama / Ramakrishna Mission</div>
+      <h1>Swami Vivekananda Mentor.</h1>
+      <p class="subtitle">Seek mental guidance for strength, concentration, duty, fearlessness, emotional poise, and service. Responses are retrieved strictly from verified verbatim passages of <em>The Complete Works of Swami Vivekananda</em> (Advaita Ashrama authorized edition) and any Swami Vivekananda PDFs loaded in your GitHub repository—zero invented dialogue, zero speculation.</p>
+    </section>
+
+    <section class="workspace" aria-label="Swami Vivekananda Mentor Workspace">
+      <section class="panel glass">
+        <div class="panel-head">
+          <strong>Mental Guidance Inquiry</strong>
+          <span class="tag" id="svSourceCount">Verified Corpus Ready</span>
+        </div>
+
+        <div class="sv-query-box no-print">
+          <div class="sv-search-row">
+            <input id="svQueryInput" class="input" type="text" placeholder="Ask for mental guidance (e.g., fear, lack of focus, anger, failure, duty, confidence)..." aria-label="Mental guidance question">
+            <button id="svAskBtn" class="primary" type="button">Seek Guidance</button>
+          </div>
+          <div class="sv-chips" id="svTopicChips">
+            <button type="button" class="sv-chip" data-topic="fear strength confidence weakness doubt">Fear &amp; Self-Doubt</button>
+            <button type="button" class="sv-chip" data-topic="concentration focus mind control meditation distraction">Concentration &amp; Mind Control</button>
+            <button type="button" class="sv-chip" data-topic="work duty karma yoga attachment action">Work, Duty &amp; Stress</button>
+            <button type="button" class="sv-chip" data-topic="anger calm emotion patience peace">Anger &amp; Emotional Poise</button>
+            <button type="button" class="sv-chip" data-topic="failure mistake arise awake persevere goal">Failure &amp; Perseverance</button>
+            <button type="button" class="sv-chip" data-topic="serve others love family unselfish">Service &amp; Relationships</button>
+          </div>
+        </div>
+
+        <article id="svResult" class="result" aria-live="polite" aria-atomic="true">
+          <h2>Ask for mental guidance</h2>
+          <p>Type a challenge above or tap any topic chip. Every passage returned is verbatim from verified Advaita Ashrama texts or your uploaded Vivekananda PDFs, cited by exact volume, lecture, or page number.</p>
+        </article>
+      </section>
+
+      <aside class="panel glass">
+        <div class="panel-head">
+          <strong>Verified Database &amp; Sources</strong>
+          <span class="tag" id="svRepoBadge">0 Repo PDFs</span>
+        </div>
+        <p class="status" style="margin-top:0">
+          <strong>Strict Authenticity Policy:</strong> No AI-invented persona speech is ever generated. Only exact, verified verbatim texts are shown.
+        </p>
+        <div style="margin-top:12px">
+          <span class="label" style="display:block;margin-bottom:4px">Authorized Publishers &amp; Archives</span>
+          <ul class="auth-list">
+            <li><a href="https://advaitaashrama.org/" target="_blank" rel="noopener noreferrer">Advaita Ashrama (Official Publisher — Complete Works Vols. 1–9)</a></li>
+            <li><a href="https://belurmath.org/" target="_blank" rel="noopener noreferrer">Ramakrishna Math &amp; Ramakrishna Mission, Belur Math</a></li>
+            <li><a href="https://www.ramakrishnavivekananda.info/" target="_blank" rel="noopener noreferrer">Complete Works Digital Archive (Advaita Ashrama Text)</a></li>
+          </ul>
+        </div>
+        <p class="status" style="margin-top:14px">
+          <strong>Expand Your Database:</strong> Upload official PDFs (e.g., <em>Karma Yoga</em>, <em>Raja Yoga</em>, <em>Jnana Yoga</em>, or <em>Complete Works Vols. 1–9</em>) into your GitHub repo. This Mentor tab automatically searches all matching repository PDFs alongside the verified built-in corpus.
+        </p>
+        <div style="margin-top:14px">
+          <button id="svCopyBtn" type="button" style="width:100%">Copy Guidance Excerpts</button>
+          <p id="svCopyStatus" class="copy-status" aria-live="polite"></p>
+        </div>
+      </aside>
+    </section>
+  </div>
 </main>
+
+<!-- Product Configuration Modal -->
+<div class="modal-backdrop" id="configModal" role="dialog" aria-modal="true" aria-labelledby="configTitle">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="configTitle">Product &amp; Workspace Configuration</h2>
+      <button type="button" class="secondary" id="closeConfigBtn" style="min-height:36px;padding:6px 12px">Close</button>
+    </div>
+    <div class="controls" style="margin:0">
+      <label class="label" for="cfgBrandName">Product / Brand Name</label>
+      <input id="cfgBrandName" class="input" type="text">
+      <label class="label" for="cfgEyebrow">Top Tagline</label>
+      <input id="cfgEyebrow" class="input" type="text">
+      <label class="label" for="cfgDefaultRepo">Default GitHub Repository (owner/repo)</label>
+      <input id="cfgDefaultRepo" class="input" type="text" placeholder="Leave blank to auto-detect from GitHub Pages">
+      <label class="label" for="cfgFolderPrefix">Optional PDF Subfolder Filter (e.g. books/leadership)</label>
+      <input id="cfgFolderPrefix" class="input" type="text" placeholder="All folders">
+      <label class="label" for="cfgMaxExcerpts">Max Excerpts for Explanation &amp; Mindmap</label>
+      <select id="cfgMaxExcerpts" class="input">
+        <option value="1">1 Primary Passage</option>
+        <option value="2">2 Complementary Passages</option>
+      </select>
+      <label class="check-row">
+        <span>Enable Personal Reflection &amp; AAR Journal</span>
+        <input id="cfgEnableCoach" type="checkbox">
+      </label>
+    </div>
+    <div class="actions">
+      <button type="button" class="primary" id="saveConfigBtn">Save &amp; Apply</button>
+      <button type="button" class="secondary" id="exportConfigBtn">Export config.json</button>
+      <button type="button" class="secondary" id="resetConfigBtn">Defaults</button>
+    </div>
+  </div>
+</div>
 
 <script>
 'use strict';
 
-const STATE_PROTOCOLS = {
-  peak: {
-    label: 'Peak / Ready',
-    note: 'State Protocol (Peak): Channel high readiness into your hardest, highest-leverage objective first—avoid wasting peak dopamine on easy administrative clutter.'
-  },
-  overloaded: {
-    label: 'Overloaded / Stressed',
-    note: 'State Protocol (Overloaded): Before acting, execute 3 physiological sighs (double inhale through the nose, long slow exhale through the mouth). Drop 50% of non-essential tasks for the next 2 hours to restore executive brain control.'
-  },
-  scattered: {
-    label: 'Scattered / Distracted',
-    note: 'State Protocol (Scattered): Your attention is fragmented. Close every tab except one, set a 25-minute timer, and complete a single microscopic win to rebuild momentum.'
-  },
-  conflict: {
-    label: 'Post-Conflict / Low',
-    note: 'State Protocol (Post-Conflict / Low): Do not try to win arguments from a depleted nervous system. Lower your vocal pace, prioritize repair or rest first, and return to strategic action once grounded.'
-  }
+const DEFAULT_CONFIG = {
+  brandName: 'Mindset Commander',
+  eyebrow: 'Strictly Grounded PDF Intelligence • Zero Fabrication',
+  heroTitle: 'Evidence over assumption.',
+  heroSubtitle: 'Every tactical directive is extracted strictly from one repository PDF at a time in round-robin sequence (#1 → #2 → … → #N → #1). Every field is verbatim-cited by filename and page number; any field without evidence in that PDF is explicitly marked not found—never invented.',
+  defaultRepo: '',
+  defaultBranch: '',
+  folderPrefix: '',
+  maxExcerptsPerDirective: 2,
+  enableCoachCard: true
 };
 
+// Theme keyword matrices ONLY — zero fabricated content
 const THEMES = [
   {
     name: 'Discipline',
     icon: '✓',
-    summary: 'Microscopic standards, methodical checklists, self-command, and unwavering reliability across work and family.',
-    terms: ['discipline','standard','checklist','habit','routine','rigor','consistency','great','rinse','march','process','execution','craft','detail','promise'],
-    ops: [
-      {
-        title: 'OPERATION RINSE: THE DISCIPLINE OF MICROSCOPIC STANDARDS',
-        explanation: 'Elite performers and enduring leaders never separate grand vision from microscopic execution. Relentless consistency in small, unglamorous details builds an unbreakable standard of reliability. Under high stress, human beings do not rise to their highest aspirations—they fall back to the exact strength of their daily habits. True character is keeping the same uncompromising standard across your desk, your personal health, and the promises you make at home.',
-        challenges: {
-          all: 'Select one critical professional deliverable and one personal or family commitment today: audit your work output line-by-line against a 5-point quality check before sharing, and honor a specific promise made to a loved one with complete punctuality and zero distraction.',
-          career: 'Take your most important work deliverable today and run a mandatory 5-point pre-release audit: verify edge cases, remove ambiguous wording, validate claims with hard data, clarify next owners, and review every detail line-by-line.',
-          personal: 'Execute your non-negotiable morning anchor—hydration, physical movement, and 45 minutes of focused self-development or core work—before checking a single social or news feed.',
-          family: 'Choose one small promise or daily routine with a loved one today and fulfill it with total presence, punctuality, and zero device checking—proving that home receives your highest standard, not your leftover energy.'
-        },
-        habits: {
-          all: [
-            'Protect the first 45 minutes of your workday as an unbreakable deep-execution block with all messaging feeds closed.',
-            'Run a clean end-of-day transition ritual: write tomorrow’s #1 work priority on paper, shut down intentionally, and step into family time mentally present.'
-          ],
-          career: [
-            'Protect the first 45 minutes of every workday for high-value execution before opening email or chat feeds.',
-            'Audit every critical handoff with an explicit 3-item verification checklist before declaring it complete.'
-          ],
-          personal: [
-            'Keep your evening and morning sleep boundaries consistent within a 30-minute window to stabilize willpower and mood.',
-            'Track your core daily standard visually—never break the chain two days in a row.'
-          ],
-          family: [
-            'Leave work stress outside the door via a 3-minute breathing transition before greeting family.',
-            'Follow through on every small household or relational commitment on time without needing reminders.'
-          ]
-        },
-        ifThen: 'IF I feel tempted to skip a verification step or check work messages during family hours, THEN I will pause, take one breath, and honor the standard I set.',
-        sentence: 'Microscopic standards practiced in quiet hours build unshakable trust under fire.',
-        reflection: 'Where did I lower my standard or rationalize a shortcut today—in my work craft, personal habits, or reliability with family?',
-        mindmap: {
-          concept: 'Discipline: Microscopic Standards & Trust',
-          subs: [
-            { title: 'Verification & Craft', details: ['Replace guesswork with explicit 5-point checklists before shipping work', 'Protect the opening 45 minutes daily for high-value deep execution'] },
-            { title: 'Relational Reliability', details: ['Use a clean work-to-home shutdown ritual to protect family presence', 'Honor small personal promises with the exact rigor of executive commitments'] }
-          ]
-        },
-        doctrine: 'Jim Collins – Good to Great (The 20-Mile March); Commando Standard Operating Doctrine'
-      },
-      {
-        title: 'OPERATION IRON GATE: METHODICAL CHECKLIST EXECUTION',
-        explanation: 'Discipline is the architecture of freedom. Without repeatable systems, competing career deadlines and personal obligations drain willpower rapidly, leaving you reactive at work and short-tempered at home. Clean checklists eliminate avoidable friction and create steady calm for everyone who depends on you.',
-        challenges: {
-          all: 'Identify one recurring bottleneck in your workweek or home routine that repeatedly causes forgotten details or stress, and formalize it today into a crisp 5-step checklist.',
-          career: 'Document one recurring complex workflow into a clear 5-step SOP today so your future self and teammates execute it with zero rework.',
-          personal: 'Design your evening preparation routine tonight (clothes, priorities, workspace reset) so tomorrow starts on rails without decision fatigue.',
-          family: 'Create one simple shared weekly planning check-in with family to eliminate surprise scheduling clashes and unspoken stress.'
-        },
-        habits: {
-          all: [
-            'Capture work action items and family obligations immediately in one trusted system rather than carrying mental clutter.',
-            'Contain reactive messaging inside scheduled blocks so urgency never hijacks your health or evening relationships.'
-          ],
-          career: [
-            'Write decisions and owners immediately during meetings rather than relying on memory.',
-            'Standardize recurring reviews with a repeatable template.'
-          ],
-          personal: [
-            'Prepare tomorrow’s top 3 priorities the night before in under 3 minutes.',
-            'Keep workspace surfaces clear before ending each session.'
-          ],
-          family: [
-            'Sync family logistics calmly once a week instead of reacting day-by-day under stress.',
-            'Protect shared meal or evening anchor times on your calendar just like key meetings.'
-          ]
-        },
-        ifThen: 'IF a recurring task creates friction twice, THEN I will immediately build a 5-step checklist so it never steals my focus again.',
-        sentence: 'Methodical systems preserve calm strength when operational tempo accelerates.',
-        reflection: 'Which recurring friction drained my energy today because I relied on willpower instead of a clean system?',
-        mindmap: {
-          concept: 'Discipline: Freedom Through Repeatable Systems',
-          subs: [
-            { title: 'Operational Order', details: ['Convert repetitive workflows into deterministic 5-step checklists', 'Capture commitments immediately to eliminate cognitive overload'] },
-            { title: 'Protected Life Rhythm', details: ['Contain reactive communication inside scheduled daily windows', 'Guard sleep, movement, and family routines as fixed appointments'] }
-          ]
-        },
-        doctrine: 'Jocko Willink – Discipline Equals Freedom; High-Reliability Checklist Doctrine'
-      }
-    ]
+    summary: 'Standards, checklists, habits, consistency, and rigorous daily execution.',
+    terms: ['discipline','standard','standards','checklist','habit','habits','routine','rigor','consistent','consistency','process','execution','method','rule','order','control']
   },
   {
     name: 'Focus',
     icon: '◎',
-    summary: 'Channeling cognitive force into one target, achieving total present immersion, and giving undivided presence to loved ones.',
-    terms: ['focus','attention','mindful','present','flow','concentrate','distraction','zone','noise','immersion','breath','stillness','deep','singular','listen'],
-    ops: [
-      {
-        title: 'OPERATION MONOLITH: TOTAL PRESENT IMMERSION',
-        explanation: 'Championship performance emerges inside the eye of the storm—complete, unfractured presence in the single moment before you. Divided attention destroys both depth of thought and warmth of relationship: checking messages mid-task fragments reasoning, and glancing at a screen during family conversation quietly erodes emotional safety.',
-        challenges: {
-          all: 'Complete one uninterrupted 60-minute Monolith Block on your hardest work objective with notifications silenced, followed by a completely phone-free 45-minute block of undivided presence with family or personal study tonight.',
-          career: 'Execute two 60-minute deep-focus blocks today on your single most complex deliverable—zero email, zero chat, single active workspace.',
-          personal: 'Spend 30 completely distraction-free minutes today immersed in deliberate skill growth or reflective reading with your phone in another room.',
-          family: 'During dinner or evening conversation tonight, leave your phone out of reach and give 100% eye contact, curiosity, and warmth without multitasking.'
-        },
-        habits: {
-          all: [
-            'Write down the exact single question or outcome you are solving before starting any deep work session.',
-            'Dock your phone in another room during family meals and meaningful conversations.'
-          ],
-          career: [
-            'Define one crisp deliverable target before opening your tools each morning.',
-            'Close messaging tabs completely during 60-minute analytical sprints.'
-          ],
-          personal: [
-            'Read or study one meaningful chapter daily without switching between tabs or feeds.',
-            'Practice single-tasking even during routine daily habits.'
-          ],
-          family: [
-            'Put devices away physically whenever someone you love begins sharing about their day.',
-            'Listen to understand fully before offering advice or solutions.'
-          ]
-        },
-        ifThen: 'IF I feel the urge to check my phone mid-task or mid-conversation, THEN I will place it face-down out of reach and finish the current block.',
-        sentence: 'Wherever your undivided presence goes, mastery and connection grow.',
-        reflection: 'How many times today did divided attention weaken my work or rob someone I love of my true presence?',
-        mindmap: {
-          concept: 'Focus: Singular Presence Across Work & Home',
-          subs: [
-            { title: 'Deep Professional Immersion', details: ['Mute non-critical alerts during dedicated 60-minute execution blocks', 'Write down one crisp target outcome prior to starting deep work'] },
-            { title: 'Undivided Relational Presence', details: ['Establish device-free meals and conversations at home', 'Listen deeply without formulating premature replies'] }
-          ]
-        },
-        doctrine: 'George Mumford – The Mindful Athlete; Cal Newport – Deep Work Doctrine'
-      }
-    ]
+    summary: 'Attention, concentration, present immersion, and eliminating distraction.',
+    terms: ['focus','attention','mindful','mindfulness','present','flow','concentrate','concentration','distraction','noise','immersion','single','deep','aware']
   },
   {
     name: 'Situational Awareness',
     icon: '◉',
-    summary: 'Reading environments with detached peripheral clarity, mastering emotional temperature, and sensing unspoken needs.',
-    terms: ['awareness','situational','observe','calm','emotion','poise','detached','environment','power','ego','listen','signal','team','perception','read','context','empathy'],
-    ops: [
-      {
-        title: 'OPERATION OVERWATCH: DETACHED PERIPHERAL CLARITY',
-        explanation: 'Emotional reactivity shrinks perception into tunnel vision, while detached situational awareness grants high-ground clarity. A top mentor reads external dynamics and internal triggers simultaneously—sensing unspoken tension in a room or quiet exhaustion in a partner before words turn into avoidable conflict.',
-        challenges: {
-          all: 'In your highest-stakes work conversation or family interaction today, pause for 3 full seconds before answering, breathe out slowly, and name the other person’s real underlying concern before presenting your viewpoint.',
-          career: 'Hold silence for the first 3 minutes of your toughest meeting today while mapping each stakeholder’s unspoken constraint, incentive, and risk before speaking.',
-          personal: 'Notice your physical stress cues (tight jaw, rushed breathing, impatience) three times today and reset with a slow exhale before choosing your next action.',
-          family: 'Notice one quiet sign of fatigue or stress in a family member today and step in proactively with gentle support or attentive listening before being asked.'
-        },
-        habits: {
-          all: [
-            'Trigger a 4-second exhale whenever criticism or friction spikes frustration—never speak from an elevated pulse.',
-            'Scan both your team and family daily for subtle warning signs of overload before small cracks escalate.'
-          ],
-          career: [
-            'Read body language, hesitation, and silence in meetings as critical diagnostic data.',
-            'Separate objective facts from ego whenever your work is challenged.'
-          ],
-          personal: [
-            'Check your personal energy gauge at midday before committing to demanding conversations.',
-            'Pause 3 seconds between stimulus and response when provoked.'
-          ],
-          family: [
-            'Ask "How are you really holding up today?" and listen without rushing to fix.',
-            'Notice when your own tiredness is coloring your tone and name it calmly.'
-          ]
-        },
-        ifThen: 'IF tension spikes in a meeting or at home, THEN I will take one 4-second exhale before speaking a single word.',
-        sentence: 'He who governs his emotional temperature brings clarity to every room.',
-        reflection: 'Did I react impulsively under friction today, or did I hold emotional poise and read the full terrain?',
-        mindmap: {
-          concept: 'Situational Awareness: Poise & Perceptive Leadership',
-          subs: [
-            { title: 'Emotional Self-Regulation', details: ['Use a 3-second pause and slow exhale to neutralize defensive reactivity', 'Separate facts from ego when ideas or plans are challenged'] },
-            { title: 'Social & Relational Sensing', details: ['Read unspoken incentives and blockers in professional meetings', 'Detect quiet stress or fatigue in loved ones early and respond with steadiness'] }
-          ]
-        },
-        doctrine: 'Robert Greene – The 48 Laws of Power; Tactical Situational Awareness & Emotional Intelligence'
-      }
-    ]
+    summary: 'Observation, emotional poise, environment reading, and detached clarity.',
+    terms: ['awareness','situational','observe','observation','calm','emotion','emotions','poise','detached','environment','listen','signal','perception','context','situation','temper']
   },
   {
     name: 'Quick Decision-Making',
     icon: '↗',
-    summary: 'Executing decisively under uncertainty, breaking stalemates without paralysis, and balancing velocity with judgment.',
-    terms: ['decision','decide','ooda','action','speed','pressure','stalemate','paralysis','bias','execute','risk','adapt','pivot','choice','velocity','courage'],
-    ops: [
-      {
-        title: 'OPERATION OODA STRIKE: BREAKING THE STALEMATE',
-        explanation: 'Analysis paralysis drains momentum from careers and personal growth. Colonel John Boyd’s OODA Loop (Observe–Orient–Decide–Act) proves that rapid, thoughtful iteration with 70% certainty outperforms delayed perfection. Waiting forever for zero risk surrenders initiative and keeps meaningful progress stalled.',
-        challenges: {
-          all: 'Pick one decision you have postponed this week, set a strict 20-minute decision timer, confirm whether it is reversible, and execute the cleanest forward action today to generate real feedback.',
-          career: 'Take one stalled team or project choice today, time-box evaluation to 20 minutes, assign a clear owner, and launch a reversible test immediately.',
-          personal: 'Stop over-researching one personal growth, fitness, or financial habit today—commit to the simplest version and start within 15 minutes.',
-          family: 'Resolve one lingering household or scheduling decision calmly today with your family so everyone enjoys clear alignment instead of open-ended ambiguity.'
-        },
-        habits: {
-          all: [
-            'Distinguish irreversible Type-1 choices from reversible Type-2 choices; decide Type-2 matters swiftly.',
-            'Close every discussion—at work or home—with one clear decision, one owner, and one timeframe.'
-          ],
-          career: [
-            'Apply the 70% clarity rule on reversible execution calls instead of waiting for 100% certainty.',
-            'End every meeting with explicit ownership and deadlines.'
-          ],
-          personal: [
-            'Favor small real-world experiments over endless passive reading.',
-            'Eliminate trivial daily choices through pre-set defaults.'
-          ],
-          family: [
-            'Make shared logistics decisions swiftly and kindly without dragging out minor trade-offs.',
-            'Communicate schedule changes promptly so loved ones never feel blindsided.'
-          ]
-        },
-        ifThen: 'IF I catch myself debating a reversible choice for more than 20 minutes, THEN I will choose the simpler option and test it immediately.',
-        sentence: 'Thoughtful velocity paired with real feedback defeats motionless perfection.',
-        reflection: 'What reversible decision did I stall today out of fear of imperfection rather than genuine lack of clarity?',
-        mindmap: {
-          concept: 'Quick Decision-Making: OODA Tempo & Clarity',
-          subs: [
-            { title: 'Breaking Analysis Paralysis', details: ['Act at 70% certainty on reversible Type-2 choices', 'Use 20-minute decision clocks to turn circular debates into forward tests'] },
-            { title: 'Decisive Accountability', details: ['Convert theoretical worry into fast real-world feedback', 'Close every conversation with clear ownership and timelines'] }
-          ]
-        },
-        doctrine: 'Col. John Boyd – OODA Loop Doctrine; Executive Decision Velocity'
-      }
-    ]
+    summary: 'Decisive action under uncertainty, breaking stalemates, and adaptation.',
+    terms: ['decision','decisions','decide','action','speed','pressure','stalemate','paralysis','execute','risk','adapt','choice','judgment','choose','act','resolve']
   },
   {
     name: 'Quick Reflection / Self-Correction',
     icon: '↻',
-    summary: 'Ego-free adaptation, blameless autopsies, rapid learning from failure, and humility to repair relationships.',
-    terms: ['reflection','review','feedback','learning','correction','improvement','mistake','failure','ego','autopsy','blameless','truth','adjust','audit','humility','repair'],
-    ops: [
-      {
-        title: 'OPERATION BLACK BOX: EGO-FREE AUTOPSY',
-        explanation: 'Elite teams and emotionally mature humans run ruthless, ego-free After-Action Reviews. Defensiveness conceals root causes and erodes closeness; fearless honesty strips away blame, extracts the exact lesson from failure or conflict, and upgrades both professional systems and personal character immediately.',
-        challenges: {
-          all: 'Conduct a 10-minute Black Box review on one setback or tense interaction from this week: state objectively what happened, own your share without excuses, and execute one structural fix or sincere relational repair today.',
-          career: 'Run a blameless 10-minute autopsy on one recent project slip: isolate the missing system guardrail and deploy one concrete process fix today.',
-          personal: 'Identify one personal habit that slipped this week, trace the exact cue that triggered the slip, and redesign your environment tonight.',
-          family: 'If you spoke impatiently or missed a cue with a family member recently, offer a clean, zero-excuse apology and a brief repair conversation today.'
-        },
-        habits: {
-          all: [
-            'When mistakes happen on a team, examine missing clarity or process gaps before assigning blame.',
-            'Complete a 3-minute evening debrief: 1 win, 1 friction point, and 1 adjustment for tomorrow.'
-          ],
-          career: [
-            'Ask "What process check was missing?" whenever an execution error occurs.',
-            'Invite candid feedback from peers before finalizing major work.'
-          ],
-          personal: [
-            'Log 1 win, 1 friction, and 1 fix every night in under 3 minutes.',
-            'Treat sharp feedback as objective telemetry rather than a personal attack.'
-          ],
-          family: [
-            'Repair misunderstandings the same day rather than letting pride linger overnight.',
-            'Apologize cleanly without adding "...but you also..." qualifiers.'
-          ]
-        },
-        ifThen: 'IF I realize I made a mistake or spoke sharply, THEN I will own it within the hour without excuses or defensiveness.',
-        sentence: 'Extract the wisdom, release the ego, and strengthen the relationship.',
-        reflection: 'What honest truth about my own blind spot, habit, or tone did today ask me to confront?',
-        mindmap: {
-          concept: 'Quick Reflection: Ego-Free Growth & Repair',
-          subs: [
-            { title: 'Blameless Root-Cause Learning', details: ['Compare expectations vs. reality objectively without excuses', 'Fix systemic guardrails and habits rather than nursing blame'] },
-            { title: 'Humility & Rapid Repair', details: ['Apologize promptly and cleanly when wrong at work or home', 'Anchor each night with a 3-minute win, friction, and adjustment review'] }
-          ]
-        },
-        doctrine: 'Special Operations After-Action Review (AAR); Ray Dalio – Principles'
-      }
-    ]
+    summary: 'Ego-free review, learning from error, feedback, and course correction.',
+    terms: ['reflection','reflect','review','feedback','learning','learn','correction','correct','improve','improvement','mistake','mistakes','failure','fail','ego','blame','honest']
   },
   {
     name: 'Efficiency',
     icon: '◇',
-    summary: 'Maximizing meaningful output, breaking busyness traps, and reclaiming margin for health, growth, and family.',
-    terms: ['efficiency','effective','priority','prioritization','simplify','system','leverage','time','execution','waste','bottleneck','constraint','vital','pareto','balance'],
-    ops: [
-      {
-        title: 'OPERATION SCALPEL: HIGH-LEVERAGE CONCENTRATION',
-        explanation: 'Motion is not meaning. Endless busyness, bloated meetings, and low-leverage perfectionism exhaust your vitality while starving your highest career goals and closest relationships. True efficiency concentrates decisive effort on the vital few levers that drive disproportionate results—and reclaims margin for life.',
-        challenges: {
-          all: 'Audit your commitments today and eliminate, delegate, or defer at least 30% of low-leverage busywork; reinvest that reclaimed time into your #1 professional breakthrough and unhurried evening connection with family.',
-          career: 'Cut or decline 30% of low-impact meetings or busywork today and redirect that block directly into the single constraint gating your team’s progress.',
-          personal: 'Eliminate one recurring time-sink from your day and reallocate those 30 minutes to sleep, exercise, or deliberate learning.',
-          family: 'Batch household errands or chores into one tight window today so your evening opens up for relaxed, unhurried time together.'
-        },
-        habits: {
-          all: [
-            'Batch routine messages and administrative chores into two fixed 15-minute windows daily.',
-            'Measure your day by high-leverage outcomes completed, not hours spent looking busy.'
-          ],
-          career: [
-            'Attack the single biggest system bottleneck first before polishing peripheral details.',
-            'Require clear agendas and outcomes before accepting meetings.'
-          ],
-          personal: [
-            'Batch errands and low-focus tasks together to protect long recovery blocks.',
-            'Use proven templates and frameworks instead of reinventing solved steps.'
-          ],
-          family: [
-            'Automate or simplify recurring household friction so energy goes toward connection, not logistics.',
-            'Build 15-minute transition buffers between work and family commitments.'
-          ]
-        },
-        ifThen: 'IF a task is urgent-looking but low-leverage, THEN I will defer, delegate, or batch it rather than letting it steal prime focus.',
-        sentence: 'Prune the trivial many so your best energy serves the vital few.',
-        reflection: 'Did my effort today advance what truly matters in my career, growth, and family—or only create motion?',
-        mindmap: {
-          concept: 'Efficiency: Essential Leverage & Life Margin',
-          subs: [
-            { title: 'Vital-Few Prioritization', details: ['Target the primary bottleneck governing meaningful progress', 'Eliminate or delegate 30% of low-return busywork'] },
-            { title: 'Reclaimed Margin for Life', details: ['Batch shallow communications and errands into fixed windows', 'Reinvest saved hours intentionally into health, growth, and family joy'] }
-          ]
-        },
-        doctrine: 'Eliyahu Goldratt – Theory of Constraints; Greg McKeown – Essentialism'
-      }
-    ]
+    summary: 'Prioritization, leverage, eliminating waste, and concentrating effort.',
+    terms: ['efficiency','efficient','effective','priority','priorities','simplify','system','leverage','time','waste','bottleneck','constraint','essential','vital','output']
   }
 ];
 
-const STORAGE_KEY = 'tactical_mindset_coach_v4';
-const TREE_CACHE_KEY = 'tactical_pdf_tree_v2';
+/* ============================================================================
+ * VERIFIED SWAMI VIVEKANANDA CORPUS (ADVAITA ASHRAMA — COMPLETE WORKS)
+ * Strictly verbatim public-domain primary texts with exact Volume & Work.
+ * Zero paraphrasing, zero invented dialogue.
+ * ========================================================================== */
+const VERIFIED_VIVEKANANDA_CORPUS = [
+  {
+    text: 'Arise, awake, and stop not until the goal is reached.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 3 — Lectures from Colombo to Almora (quoting Katha Upanishad I.iii.14)',
+    publisher: 'Advaita Ashrama',
+    topics: ['fear','strength','confidence','weakness','doubt','failure','mistake','arise','awake','persevere','goal','motivation','lazy','give up']
+  },
+  {
+    text: 'Strength is life, weakness is death. Expansion is life, contraction is death. Love is life, hatred is death.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 2 — Practical Vedanta / The Vedanta in All Its Phases',
+    publisher: 'Advaita Ashrama',
+    topics: ['fear','strength','confidence','weakness','doubt','love','hatred','service','relationships','family','stress','courage']
+  },
+  {
+    text: 'Take up one idea. Make that one idea your life—think of it, dream of it, live on that idea. Let the brain, muscles, nerves, every part of your body, be full of that idea, and just leave every other idea alone. This is the way to success.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 1 — Raja-Yoga (Chapter: Prana / Steps to Concentration)',
+    publisher: 'Advaita Ashrama',
+    topics: ['concentration','focus','mind','control','meditation','distraction','success','idea','work','duty','goal','clarity']
+  },
+  {
+    text: 'All power is within you; you can do anything and everything. Believe in that, do not believe that you are weak.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 3 — Lectures from Colombo to Almora',
+    publisher: 'Advaita Ashrama',
+    topics: ['fear','strength','confidence','weakness','doubt','power','self','believe','failure','courage']
+  },
+  {
+    text: 'You cannot believe in God until you believe in yourself.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 1 — Karma-Yoga / Addresses on Bhakti-Yoga',
+    publisher: 'Advaita Ashrama',
+    topics: ['confidence','doubt','faith','believe','self','strength','fear','weakness']
+  },
+  {
+    text: 'Education is the manifestation of the perfection already in man.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 4 — Writings: Prose (Letter to Singaravelu Mudaliar, 1894)',
+    publisher: 'Advaita Ashrama',
+    topics: ['learning','growth','education','perfection','focus','concentration','self','potential']
+  },
+  {
+    text: 'They alone live who live for others, the rest are more dead than alive.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 4 — Epistles / Poems (To the Maharaja of Mysore / Service)',
+    publisher: 'Advaita Ashrama',
+    topics: ['serve','service','others','love','family','relationships','unselfish','duty','karma']
+  },
+  {
+    text: 'Work incessantly, but do not attach yourselves to it. Attachment is the source of all our misery.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 1 — Karma-Yoga (Chapter: Secret of Work)',
+    publisher: 'Advaita Ashrama',
+    topics: ['work','duty','karma','yoga','attachment','action','stress','anger','calm','emotion','peace','anxiety','worry']
+  },
+  {
+    text: 'The calmer we are and the less disturbed our nerves, the more shall we love and the better will our work be.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 1 — Karma-Yoga (Chapter: Non-Attachment is Complete Self-Abnegation)',
+    publisher: 'Advaita Ashrama',
+    topics: ['anger','calm','emotion','patience','peace','stress','nerves','work','love','family','relationships','poise']
+  },
+  {
+    text: 'Never mind failures; they are quite natural, they are the beauty of life, these failures. What would life be without them? It would not be worth having if it were not for struggles.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 2 — Work and Its Secret / Practical Vedanta',
+    publisher: 'Advaita Ashrama',
+    topics: ['failure','mistake','struggle','persevere','resilience','doubt','fear','growth']
+  },
+  {
+    text: 'Condemn none: if you can stretch out a helping hand, do so. If you cannot, fold your hands, bless your brothers, and let them go their own way.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 2 — Practical Vedanta (Part I)',
+    publisher: 'Advaita Ashrama',
+    topics: ['anger','relationships','family','service','others','patience','compassion','blame','ego','conflict']
+  },
+  {
+    text: 'If you want to have control over the mind, you must first observe it, watch what it is doing, and let it run on for a while without resisting.',
+    work: 'The Complete Works of Swami Vivekananda, Vol. 1 / Vol. 6 — Raja-Yoga & Notes of Class Talks',
+    publisher: 'Advaita Ashrama',
+    topics: ['concentration','focus','mind','control','meditation','distraction','observation','awareness','calm','anxiety']
+  }
+];
+
+const STORAGE_KEY = 'tactical_mindset_strict_v6';
+const CONFIG_STORAGE_KEY = 'tactical_mindset_config_v2';
+const TREE_CACHE_KEY = 'tactical_pdf_tree_v4';
+
+function loadUserConfig() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CONFIG_STORAGE_KEY) || 'null');
+    if (saved && typeof saved === 'object') return { ...DEFAULT_CONFIG, ...saved };
+  } catch {}
+  return { ...DEFAULT_CONFIG };
+}
 
 function loadRotationState() {
   try {
@@ -500,9 +396,9 @@ function loadRotationState() {
         directiveCount: Number(raw.directiveCount) || 0,
         pdfCursor: Math.max(0, Number(raw.pdfCursor) || 0),
         lastPdfPath: typeof raw.lastPdfPath === 'string' ? raw.lastPdfPath : '',
-        recentThemes: Array.isArray(raw.recentThemes) ? raw.recentThemes.slice(-24) : [],
-        recentPdfKeys: Array.isArray(raw.recentPdfKeys) ? raw.recentPdfKeys.slice(-40) : [],
-        journal: Array.isArray(raw.journal) ? raw.journal.slice(-30) : [],
+        recentThemes: Array.isArray(raw.recentThemes) ? raw.recentThemes.slice(-30) : [],
+        recentPdfKeys: Array.isArray(raw.recentPdfKeys) ? raw.recentPdfKeys.slice(-50) : [],
+        journal: Array.isArray(raw.journal) ? raw.journal.slice(-60) : [],
         streak: Number(raw.streak) || 0,
         lastLogDate: typeof raw.lastLogDate === 'string' ? raw.lastLogDate : ''
       };
@@ -511,6 +407,7 @@ function loadRotationState() {
   return { directiveCount: 0, pdfCursor: 0, lastPdfPath: '', recentThemes: [], recentPdfKeys: [], journal: [], streak: 0, lastLogDate: '' };
 }
 
+let appConfig = loadUserConfig();
 const persisted = loadRotationState();
 const state = {
   repo: '',
@@ -521,11 +418,10 @@ const state = {
   pdfjs: null,
   selected: 0,
   markdown: '',
-  mentalState: 'peak',
-  domain: 'all',
+  svMarkdown: '',
   rating: 4,
   currentTheme: '',
-  currentOpTitle: '',
+  activeTab: 'briefing',
   directiveCount: persisted.directiveCount,
   pdfCursor: persisted.pdfCursor,
   lastPdfPath: persisted.lastPdfPath,
@@ -534,8 +430,7 @@ const state = {
   journal: persisted.journal,
   streak: persisted.streak,
   lastLogDate: persisted.lastLogDate,
-  showRawMd: false,
-  breathTimer: null
+  showRawMd: false
 };
 
 function saveRotationState() {
@@ -544,12 +439,40 @@ function saveRotationState() {
       directiveCount: state.directiveCount,
       pdfCursor: state.pdfCursor,
       lastPdfPath: state.lastPdfPath,
-      recentThemes: state.recentThemes.slice(-24),
-      recentPdfKeys: state.recentPdfKeys.slice(-40),
-      journal: state.journal.slice(-30),
+      recentThemes: state.recentThemes.slice(-30),
+      recentPdfKeys: state.recentPdfKeys.slice(-50),
+      journal: state.journal.slice(-60),
       streak: state.streak,
       lastLogDate: state.lastLogDate
     }));
+  } catch {}
+}
+
+function saveAppConfig(cfg) {
+  appConfig = { ...DEFAULT_CONFIG, ...cfg };
+  try { localStorage.setItem(CONFIG_STORAGE_KEY, JSON.stringify(appConfig)); } catch {}
+  applyAppConfig();
+}
+
+function applyAppConfig() {
+  $('brandName').textContent = appConfig.brandName || DEFAULT_CONFIG.brandName;
+  $('brandLogo').textContent = (appConfig.brandName || 'M').trim().charAt(0).toUpperCase() || 'M';
+  $('heroEyebrow').textContent = appConfig.eyebrow || DEFAULT_CONFIG.eyebrow;
+  $('heroTitle').textContent = appConfig.heroTitle || DEFAULT_CONFIG.heroTitle;
+  $('heroSubtitle').textContent = appConfig.heroSubtitle || DEFAULT_CONFIG.heroSubtitle;
+  if (!appConfig.enableCoachCard) $('coachCard').style.display = 'none';
+  document.title = `${appConfig.brandName || DEFAULT_CONFIG.brandName} — Strictly Grounded PDF & Vivekananda Mentor`;
+}
+
+async function tryLoadRemoteConfig() {
+  try {
+    const res = await fetch('./mindset.config.json', { cache: 'no-store' });
+    if (res.ok) {
+      const json = await res.json();
+      if (json && typeof json === 'object' && !localStorage.getItem(CONFIG_STORAGE_KEY)) {
+        saveAppConfig({ ...DEFAULT_CONFIG, ...json });
+      }
+    }
   } catch {}
 }
 
@@ -568,8 +491,20 @@ function setStatus(text, error = false) {
   $('scanStatus').classList.toggle('error', error);
 }
 
-function updateStreakBadge() {
+function updateMetrics() {
   $('streakBadge').textContent = `${state.streak}-Day Streak`;
+  $('mDirectives').textContent = String(state.directiveCount);
+  const readable = getReadableFiles();
+  $('mQueue').textContent = `${readable.length} PDF${readable.length === 1 ? '' : 's'}`;
+  $('mJournalCount').textContent = String(state.journal.length);
+  if (state.journal.length) {
+    const avg = state.journal.reduce((s, e) => s + (Number(e.rating) || 0), 0) / state.journal.length;
+    $('mAvgScore').textContent = `${avg.toFixed(1)} / 5`;
+  } else {
+    $('mAvgScore').textContent = '—';
+  }
+  const svPdfs = getVivekanandaRepoPdfs();
+  $('svRepoBadge').textContent = `${svPdfs.length} Repo PDF${svPdfs.length === 1 ? '' : 's'}`;
 }
 
 function repoFromUrl() {
@@ -580,7 +515,7 @@ function repoFromUrl() {
     if (owner && parts[0] && !parts[0].includes('.')) return `${owner}/${parts[0]}`;
     if (owner) return `${owner}/${owner}.github.io`;
   }
-  return '';
+  return appConfig.defaultRepo || '';
 }
 
 function validRepo(value) {
@@ -612,7 +547,7 @@ async function githubJson(url, signal) {
     signal
   }, 15000);
   if (!response.ok) {
-    if (response.status === 403 || response.status === 429) throw Error('GitHub API rate limit reached. Wait a few minutes, then rescan.');
+    if (response.status === 403 || response.status === 429) throw Error('GitHub API rate limit reached. Attach local PDFs or wait and rescan.');
     if (response.status === 404) throw Error('Repository or branch not found, or it is not public.');
     throw Error(`GitHub request failed (${response.status}).`);
   }
@@ -636,21 +571,22 @@ async function walkTrees(repo, rootSha, signal) {
 }
 
 async function discoverPdfs(repo, branch, signal, forceRefresh = false) {
-  const cacheKey = `${TREE_CACHE_KEY}:${repo}@${branch || 'default'}`;
+  const prefix = (appConfig.folderPrefix || '').trim().replace(/^\/+|\/+$/g, '');
+  const cacheKey = `${TREE_CACHE_KEY}:${repo}@${branch || 'default'}:${prefix}`;
   if (!forceRefresh) {
     try {
       const cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
       if (cached && Date.now() - cached.ts < 10 * 60 * 1000 && Array.isArray(cached.paths)) {
         return {
           branch: cached.branch,
-          files: cached.paths.map(path => ({ path, pages: [], passages: [], error: 'Pending' }))
+          files: cached.paths.map(path => ({ path, source: 'github', pages: [], passages: [], sentences: [], error: 'Pending' }))
         };
       }
     } catch {}
   }
 
   const info = await githubJson(`https://api.github.com/repos/${repo}`, signal);
-  if (info.private) throw Error('This page can scan public repositories only.');
+  if (info.private) throw Error('GitHub scanner supports public repos only. Use Attach Local PDFs below.');
   const chosen = (branch || info.default_branch || '').trim();
   if (!chosen) throw Error('Could not determine the default branch.');
   const branchInfo = await githubJson(`https://api.github.com/repos/${repo}/branches/${encodeURIComponent(chosen)}`, signal);
@@ -659,7 +595,12 @@ async function discoverPdfs(repo, branch, signal, forceRefresh = false) {
   const tree = await githubJson(`https://api.github.com/repos/${repo}/git/trees/${sha}?recursive=1`, signal);
   const nodes = tree.truncated ? await walkTrees(repo, sha, signal) : (tree.tree || []);
   const paths = nodes
-    .filter(node => node.type === 'blob' && typeof node.path === 'string' && node.path.toLowerCase().endsWith('.pdf'))
+    .filter(node =>
+      node.type === 'blob' &&
+      typeof node.path === 'string' &&
+      node.path.toLowerCase().endsWith('.pdf') &&
+      (!prefix || node.path.toLowerCase().startsWith(prefix.toLowerCase() + '/') || node.path.toLowerCase() === prefix.toLowerCase())
+    )
     .map(node => node.path)
     .sort((a, b) => a.localeCompare(b));
 
@@ -669,11 +610,12 @@ async function discoverPdfs(repo, branch, signal, forceRefresh = false) {
 
   return {
     branch: chosen,
-    files: paths.map(path => ({ path, pages: [], passages: [], error: 'Pending' }))
+    files: paths.map(path => ({ path, source: 'github', pages: [], passages: [], sentences: [], error: 'Pending' }))
   };
 }
 
 function fileUrl(file) {
+  if (file.source === 'local') return '';
   return `https://github.com/${state.repo}/blob/${encodeURIComponent(state.branch)}/${file.path.split('/').map(encodeURIComponent).join('/')}`;
 }
 
@@ -691,26 +633,37 @@ async function loadPdfJs() {
   return state.pdfjs;
 }
 
-function makePassages(page, fileName, url) {
-  const sentences = page.text.split(/(?<=[.!?])\s+|\n+/).map(t => t.trim()).filter(Boolean);
+function splitCleanSentences(text) {
+  const clean = text.replace(/^\d+\s+|\s+\d+$/g, '').replace(/\s+/g, ' ').trim();
+  return clean.split(/(?<=[.!?])\s+|\n+/).map(t => t.trim()).filter(Boolean);
+}
+
+function makePassagesAndSentences(page, fileName, url) {
+  const sents = splitCleanSentences(page.text);
   const passages = [];
+  const sentences = [];
   let current = '';
-  for (const sentence of sentences) {
-    if (current && (current + ' ' + sentence).length > 560) {
-      passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}` });
-      current = sentence;
+  for (const s of sents) {
+    if (s.length >= 25 && s.length <= 240) {
+      sentences.push({ fileName, pageNum: page.pageNum, url, text: s, citKey: `${fileName}:${page.pageNum}:s:${s.slice(0, 40)}` });
+    }
+    if (current && (current + ' ' + s).length > 560) {
+      passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}:p:${current.slice(0, 40)}` });
+      current = s;
     } else {
-      current = (current + ' ' + sentence).trim();
+      current = (current + ' ' + s).trim();
     }
   }
-  if (current) passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}` });
-  return passages.length ? passages : [{ fileName, pageNum: page.pageNum, url, text: page.text.slice(0, 560), citKey: `${fileName}:${page.pageNum}` }];
+  if (current) passages.push({ fileName, pageNum: page.pageNum, url, text: current, citKey: `${fileName}:${page.pageNum}:p:${current.slice(0, 40)}` });
+  return {
+    passages: passages.length ? passages : [{ fileName, pageNum: page.pageNum, url, text: page.text.slice(0, 560), citKey: `${fileName}:${page.pageNum}:p` }],
+    sentences
+  };
 }
 
 async function fetchPdfBuffer(file, signal) {
   const encodedPath = file.path.split('/').map(encodeURIComponent).join('/');
   const candidates = [];
-
   if (location.hostname.toLowerCase().endsWith('.github.io')) {
     const [owner, repo] = state.repo.split('/');
     const isUserSite = repo.toLowerCase() === `${owner.toLowerCase()}.github.io`;
@@ -733,8 +686,7 @@ async function fetchPdfBuffer(file, signal) {
   throw lastErr || Error('Download failed.');
 }
 
-async function extract(file, signal) {
-  const buffer = await fetchPdfBuffer(file, signal);
+async function parsePdfArrayBuffer(buffer, file, signal) {
   if (buffer.byteLength < 5 || new TextDecoder().decode(buffer.slice(0, 5)) !== '%PDF-') {
     throw Error('File is not a valid PDF.');
   }
@@ -748,19 +700,20 @@ async function extract(file, signal) {
 
   const pages = [];
   const passages = [];
+  const sentences = [];
   const url = fileUrl(file);
   try {
     for (let number = 1; number <= documentPdf.numPages; number++) {
-      if (signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
+      if (signal && signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
       const page = await documentPdf.getPage(number);
       const content = await page.getTextContent();
       const text = content.items.map(item => (typeof item.str === 'string' ? item.str : '')).join(' ').replace(/\s+/g, ' ').trim();
       if (text) {
         const p = { pageNum: number, text };
         pages.push(p);
-        for (const seg of makePassages(p, file.path, url)) {
-          if (seg.text.length >= 50) passages.push(seg);
-        }
+        const built = makePassagesAndSentences(p, file.path, url);
+        for (const seg of built.passages) if (seg.text.length >= 45) passages.push(seg);
+        for (const s of built.sentences) sentences.push(s);
       }
       page.cleanup();
       if (number % 20 === 0) await new Promise(r => setTimeout(r, 0));
@@ -768,7 +721,7 @@ async function extract(file, signal) {
   } finally {
     await documentPdf.destroy();
   }
-  return { pages, passages };
+  return { pages, passages, sentences };
 }
 
 function getReadableFiles() {
@@ -778,8 +731,16 @@ function getReadableFiles() {
 function getNextRoundRobinInfo() {
   const readable = getReadableFiles();
   if (!readable.length) return { readable: [], nextIdx: 0, nextFile: null };
-  const safeCursor = ((state.pdfCursor % readable.length) + readable.length) % readable.length;
-  return { readable, nextIdx: safeCursor, nextFile: readable[safeCursor] };
+
+  let nextIdx = 0;
+  if (state.lastPdfPath) {
+    const lastIdx = readable.findIndex(f => f.path === state.lastPdfPath);
+    if (lastIdx >= 0) nextIdx = (lastIdx + 1) % readable.length;
+    else nextIdx = ((state.pdfCursor % readable.length) + readable.length) % readable.length;
+  } else {
+    nextIdx = ((state.pdfCursor % readable.length) + readable.length) % readable.length;
+  }
+  return { readable, nextIdx, nextFile: readable[nextIdx] };
 }
 
 function renderFiles() {
@@ -800,13 +761,19 @@ function renderFiles() {
     left.className = 'pdf-left';
     add(left, 'span', isReadable ? `#${rrCounter}` : '—', 'pdf-idx');
 
-    const link = document.createElement('a');
-    link.href = fileUrl(file);
-    link.textContent = file.path;
-    link.title = file.path;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    left.appendChild(link);
+    const url = fileUrl(file);
+    if (url) {
+      const link = document.createElement('a');
+      link.href = url;
+      link.textContent = file.path;
+      link.title = file.path;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      left.appendChild(link);
+    } else {
+      const span = add(left, 'span', file.path, 'local-name');
+      span.title = file.path;
+    }
     row.appendChild(left);
 
     const badges = document.createElement('div');
@@ -833,7 +800,8 @@ function renderFiles() {
 
   $('pdfCount').textContent = state.scanComplete
     ? `${readable.length}/${state.files.length} Ready`
-    : `${readable.length} Ready • Scanning`;
+    : `${readable.length} Ready`;
+  updateMetrics();
 }
 
 async function scan(forceRefresh = false) {
@@ -841,58 +809,52 @@ async function scan(forceRefresh = false) {
   const controller = new AbortController();
   state.controller = controller;
   state.scanComplete = false;
-  state.files = [];
+  state.files = state.files.filter(f => f.source === 'local');
   state.markdown = '';
   $('progress').hidden = false;
   $('scanBtn').disabled = true;
-  $('deployBtn').disabled = true;
+  $('cancelScanBtn').style.display = 'inline-flex';
+  $('deployBtn').disabled = getReadableFiles().length === 0;
   $('resultCount').textContent = 'Scanning…';
-  $('result').replaceChildren();
-  add($('result'), 'h2', 'Scanning repository PDFs…');
-  add($('result'), 'p', 'Deploy unlocks immediately as soon as PDF #1 finishes indexing.');
 
   try {
     state.repo = validRepo($('repoInput').value);
     $('repoInput').value = state.repo;
-    setStatus('Discovering all PDF files in the selected branch…');
+    setStatus('Discovering PDF files in repository…');
     const found = await discoverPdfs(state.repo, $('branchInput').value, controller.signal, forceRefresh);
     state.branch = found.branch;
     $('branchInput').value = state.branch;
-    state.files = found.files;
+    state.files = [...found.files, ...state.files];
     renderFiles();
 
-    if (!state.files.length) {
+    if (!found.files.length) {
       state.scanComplete = true;
-      setStatus('Scan complete: no PDFs found in this branch.');
-      $('result').replaceChildren();
-      add($('result'), 'h2', 'No PDF sources found');
-      add($('result'), 'p', 'Upload PDF files to this GitHub repository and rescan.');
+      setStatus('Scan complete: no GitHub PDFs found in this path.');
+      renderFiles();
       return;
     }
 
-    let readable = 0;
+    let unlockedOnce = getReadableFiles().length > 0;
     let failed = 0;
-    let unlockedOnce = false;
 
-    for (let index = 0; index < state.files.length; index++) {
+    for (let index = 0; index < found.files.length; index++) {
       if (controller.signal.aborted) throw new DOMException('Scan cancelled', 'AbortError');
-      const file = state.files[index];
-      setStatus(`Indexing PDF ${index + 1} of ${state.files.length}: ${file.path}`);
+      const file = found.files[index];
+      setStatus(`Indexing PDF ${index + 1} of ${found.files.length}: ${file.path}`);
       try {
-        const parsed = await extract(file, controller.signal);
+        const buffer = await fetchPdfBuffer(file, controller.signal);
+        const parsed = await parsePdfArrayBuffer(buffer, file, controller.signal);
         file.pages = parsed.pages;
         file.passages = parsed.passages;
+        file.sentences = parsed.sentences;
         file.error = null;
-        if (file.pages.length > 0) {
-          readable++;
-          if (!unlockedOnce) {
-            unlockedOnce = true;
-            $('deployBtn').disabled = false;
-            renderThemes();
-            $('result').replaceChildren();
-            add($('result'), 'h2', 'Round-Robin Queue Ready');
-            add($('result'), 'p', `PDF #1 (${file.path}) is indexed. Deploy immediately while remaining books finish loading.`);
-          }
+        if (file.pages.length > 0 && !unlockedOnce) {
+          unlockedOnce = true;
+          $('deployBtn').disabled = false;
+          renderThemes();
+          $('result').replaceChildren();
+          add($('result'), 'h2', 'Round-Robin Queue Ready');
+          add($('result'), 'p', `PDF #1 (${file.path}) is indexed. Deploy immediately while remaining PDFs finish indexing.`);
         }
       } catch (error) {
         if (error.name === 'AbortError') throw error;
@@ -904,73 +866,118 @@ async function scan(forceRefresh = false) {
 
     state.scanComplete = true;
     renderFiles();
-    setStatus(`Scan complete: ${state.files.length} PDF(s) discovered; ${readable} indexed for round-robin.${failed ? ` ${failed} failed.` : ''}`);
-    if (!readable) {
-      $('result').replaceChildren();
-      add($('result'), 'h2', 'No readable PDF text');
-      add($('result'), 'p', 'Scanned image-only PDFs require OCR before text extraction.');
-    } else if (!state.markdown) {
-      $('result').replaceChildren();
-      add($('result'), 'h2', 'All Repository PDFs Indexed');
+    const totalReady = getReadableFiles().length;
+    setStatus(`Scan complete: ${totalReady} readable PDF(s) ready for round-robin.${failed ? ` ${failed} failed.` : ''}`);
+    if (totalReady && !state.markdown) {
       const info = getNextRoundRobinInfo();
-      add($('result'), 'p', `${readable} PDF(s) indexed in round-robin order (#1 through #${readable}). Next in queue: PDF #${info.nextIdx + 1} (${info.nextFile.path}).`);
+      $('result').replaceChildren();
+      add($('result'), 'h2', 'PDF Library Ready');
+      add($('result'), 'p', `${totalReady} PDF(s) indexed in round-robin order (#1 through #${totalReady}). Next in queue: PDF #${info.nextIdx + 1} (${info.nextFile.path}).`);
+      $('resultCount').textContent = 'Ready';
     }
   } catch (error) {
     if (error.name === 'AbortError') {
-      setStatus('Scan cancelled.', true);
+      setStatus('Scan cancelled by user.', true);
     } else {
       setStatus(error.message || 'Repository scan failed.', true);
-      $('result').replaceChildren();
-      add($('result'), 'h2', 'Unable to scan PDFs');
-      add($('result'), 'p', 'Check that the repository and branch are public, then rescan.');
+      if (!getReadableFiles().length) {
+        $('result').replaceChildren();
+        add($('result'), 'h2', 'Repository Not Loaded');
+        add($('result'), 'p', 'Enter a public GitHub owner/repo above or attach local PDFs below.');
+      }
     }
   } finally {
     if (state.controller === controller) state.controller = null;
     $('progress').hidden = true;
     $('scanBtn').disabled = false;
+    $('cancelScanBtn').style.display = 'none';
     $('deployBtn').disabled = getReadableFiles().length === 0;
     renderThemes();
     renderFiles();
   }
 }
 
-function keywordScore(text, terms) {
-  const normalized = text.toLocaleLowerCase();
-  return terms.reduce((score, term) => {
-    const rx = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-    return score + (rx.test(normalized) ? 1 : 0);
-  }, 0);
+async function handleLocalPdfs(fileList) {
+  const files = Array.from(fileList || []).filter(f => f.name.toLowerCase().endsWith('.pdf'));
+  if (!files.length) return;
+  setStatus(`Indexing ${files.length} local PDF(s)…`);
+  $('progress').hidden = false;
+
+  for (const rawFile of files) {
+    const existingIdx = state.files.findIndex(f => f.path === rawFile.name && f.source === 'local');
+    const entry = { path: rawFile.name, source: 'local', pages: [], passages: [], sentences: [], error: 'Pending' };
+    if (existingIdx >= 0) state.files[existingIdx] = entry;
+    else state.files.push(entry);
+
+    try {
+      const buf = await rawFile.arrayBuffer();
+      const parsed = await parsePdfArrayBuffer(buf, entry, null);
+      entry.pages = parsed.pages;
+      entry.passages = parsed.passages;
+      entry.sentences = parsed.sentences;
+      entry.error = null;
+    } catch (err) {
+      entry.error = err.message || 'Invalid PDF';
+    }
+    renderFiles();
+  }
+
+  $('progress').hidden = true;
+  state.scanComplete = true;
+  const ready = getReadableFiles().length;
+  $('deployBtn').disabled = ready === 0;
+  setStatus(`Indexed ${ready} readable PDF(s). Round-robin queue ready.`);
+  renderThemes();
+  renderFiles();
+  if (ready && !state.markdown) {
+    const info = getNextRoundRobinInfo();
+    $('result').replaceChildren();
+    add($('result'), 'h2', 'Local PDF Library Ready');
+    add($('result'), 'p', `Touch "Deploy next directive" to start with PDF #${info.nextIdx + 1} (${info.nextFile.path}).`);
+  }
 }
 
-function pickPassagesFromRoundRobinFile(file, theme, maxHits = 2) {
-  const passages = file.passages && file.passages.length
-    ? file.passages
-    : file.pages.flatMap(p => makePassages(p, file.path, fileUrl(file)));
+/* ============================================================================
+ * STRICT ZERO-FABRICATION EXTRACTION ENGINE
+ * Scores passages/sentences strictly inside the selected Round-Robin PDF.
+ * Never mixes PDFs. Never fabricates missing fields.
+ * ========================================================================== */
+function termScore(text, terms) {
+  const lower = text.toLocaleLowerCase();
+  let score = 0;
+  for (const term of terms) {
+    const rx = new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+    if (rx.test(lower)) score += 2;
+  }
+  return score;
+}
 
-  if (!passages.length) return [];
-
+function selectBestItem(items, primaryTerms, boostTerms, usedTexts, preferLengthRange = null) {
   const recentSet = new Set(state.recentPdfKeys);
-  const scored = passages.map((p, idx) => {
-    let score = keywordScore(p.text, theme.terms);
-    if (recentSet.has(p.citKey)) score -= 2.5;
-    return { ...p, score, idx };
-  });
+  const ranked = [];
 
-  scored.sort((a, b) => b.score - a.score || a.pageNum - b.pageNum || a.idx - b.idx);
+  for (let i = 0; i < items.length; i++) {
+    const it = items[i];
+    if (usedTexts.has(it.text)) continue;
 
-  const chosen = [];
-  const usedPages = new Set();
-  for (const item of scored) {
-    if (chosen.length >= maxHits) break;
-    if (usedPages.has(item.pageNum) && scored.some(s => !usedPages.has(s.pageNum))) continue;
-    chosen.push(item);
-    usedPages.add(item.pageNum);
+    const pScore = termScore(it.text, primaryTerms);
+    const bScore = boostTerms && boostTerms.length ? termScore(it.text, boostTerms) : 0;
+
+    // Must match at least one primary theme term OR strong boost term when primaryTerms provided
+    if (primaryTerms.length > 0 && pScore === 0 && bScore === 0) continue;
+
+    let score = pScore * 1.5 + bScore;
+    if (/^[A-Z“"']/.test(it.text)) score += 0.4;
+    if (recentSet.has(it.citKey)) score -= 2.5;
+    if (preferLengthRange) {
+      const [minL, maxL] = preferLengthRange;
+      if (it.text.length >= minL && it.text.length <= maxL) score += 1.2;
+    }
+    ranked.push({ ...it, score, idx: i });
   }
 
-  if (chosen.length && chosen[0].score <= 0) {
-    return [passages[state.directiveCount % passages.length]];
-  }
-  return chosen;
+  ranked.sort((a, b) => b.score - a.score || a.pageNum - b.pageNum || a.idx - b.idx);
+  return ranked;
 }
 
 function getNextBalancedTheme() {
@@ -1018,157 +1025,375 @@ function renderThemes() {
   });
 }
 
+function appendVerbatimBlock(parent, hit, labelText) {
+  const box = add(parent, 'div', '', 'extract');
+  add(box, 'span', labelText, 'extract-label');
+  add(box, 'blockquote', `“${hit.text}”`);
+  const cite = add(box, 'div', 'Source page: ', 'cite');
+  if (hit.url) {
+    const link = document.createElement('a');
+    link.href = `${hit.url}#page=${hit.pageNum}`;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = `${hit.fileName} — page ${hit.pageNum}`;
+    cite.appendChild(link);
+  } else {
+    cite.appendChild(document.createTextNode(`${hit.fileName} — page ${hit.pageNum} (Local PDF)`));
+  }
+}
+
 function createDirective(theme, isAuto = false) {
   const { readable, nextIdx, nextFile } = getNextRoundRobinInfo();
   if (!readable.length || !nextFile) {
-    setStatus('Wait for at least one readable PDF to finish indexing.', true);
+    setStatus('Scan or attach at least one readable PDF first.', true);
     return;
   }
 
   const usedPdfIndex = nextIdx + 1;
   const totalPdfs = readable.length;
-  state.pdfCursor = (nextIdx + 1) % totalPdfs;
   state.lastPdfPath = nextFile.path;
+  state.pdfCursor = (nextIdx + 1) % totalPdfs;
 
   state.selected = THEMES.findIndex(item => item.name === theme.name);
   state.directiveCount++;
   state.recentThemes.push(theme.name);
-  if (state.recentThemes.length > 24) state.recentThemes.shift();
+  if (state.recentThemes.length > 30) state.recentThemes.shift();
+  state.currentTheme = theme.name;
 
-  const runsForTheme = state.recentThemes.filter(r => r === theme.name).length;
-  const op = theme.ops[(runsForTheme - 1) % theme.ops.length];
+  const passages = nextFile.passages || [];
+  const sentences = nextFile.sentences || [];
+  const usedTexts = new Set();
+  const citedPages = new Set();
 
-  const evidenceList = pickPassagesFromRoundRobinFile(nextFile, theme, 2);
-  for (const ev of evidenceList) state.recentPdfKeys.push(ev.citKey);
-  if (state.recentPdfKeys.length > 40) state.recentPdfKeys = state.recentPdfKeys.slice(-40);
+  const markUsed = (hit) => {
+    if (!hit) return;
+    usedTexts.add(hit.text);
+    citedPages.add(hit.pageNum);
+    state.recentPdfKeys.push(hit.citKey);
+  };
+
+  // 1. Mindset title (look strictly for concise title/principle/chapter sentence in this PDF)
+  const titleCandidates = selectBestItem(
+    sentences,
+    theme.terms,
+    ['operation','chapter','law','principle','rule','title','step','part'],
+    usedTexts,
+    [20, 120]
+  );
+  const titleHit = titleCandidates[0] || null;
+  markUsed(titleHit);
+
+  // 2. Explanation (up to maxExcerptsPerDirective verbatim passages from this PDF)
+  const maxExp = Number(appConfig.maxExcerptsPerDirective) || 2;
+  const expRanked = selectBestItem(
+    passages,
+    theme.terms,
+    ['principle','because','reason','means','why','how','power','mind','habit'],
+    usedTexts,
+    [120, 560]
+  );
+  const expHits = [];
+  for (const cand of expRanked) {
+    if (expHits.length >= maxExp) break;
+    if (expHits.some(h => h.pageNum === cand.pageNum) && expRanked.some(c => !expHits.some(h => h.pageNum === c.pageNum))) continue;
+    expHits.push(cand);
+    markUsed(cand);
+  }
+
+  // 3. Daily challenge (imperative / actionable sentence or passage from this PDF)
+  const challengeRanked = selectBestItem(
+    sentences,
+    theme.terms,
+    ['practice','apply','action','do','make','take','start','begin','avoid','cultivate','build','write','check','train','focus','decide','set','try','must'],
+    usedTexts,
+    [40, 240]
+  );
+  const challengeHit = challengeRanked[0] || null;
+  markUsed(challengeHit);
+
+  // 4. Habits to inculcate (up to 2 distinct habit/routine sentences strictly from this PDF)
+  const habitRanked = selectBestItem(
+    sentences,
+    theme.terms,
+    ['habit','habits','daily','every day','routine','regularly','consistently','cultivate','always','never','develop','repeat','practice'],
+    usedTexts,
+    [35, 240]
+  );
+  const habitHits = [];
+  for (const cand of habitRanked) {
+    if (habitHits.length >= 2) break;
+    habitHits.push(cand);
+    markUsed(cand);
+  }
+
+  // 5. One sentence to remember (concise memorable sentence strictly from this PDF)
+  const sentenceRanked = selectBestItem(
+    sentences,
+    theme.terms,
+    ['remember','key','secret','truth','success','always','never','foundation','power','strength','great'],
+    usedTexts,
+    [35, 165]
+  );
+  const sentenceHit = sentenceRanked[0] || null;
+  markUsed(sentenceHit);
+
+  // 6. Reflection prompt (must be an actual question `?` or diagnostic inquiry sentence from this PDF)
+  const questionPool = sentences.filter(s =>
+    /\?$/.test(s.text) || /\b(ask yourself|examine|reflect|question|consider whether|what is your|how do you|why do you)\b/i.test(s.text)
+  );
+  const reflectionRanked = selectBestItem(questionPool, [], theme.terms, usedTexts, [25, 240]);
+  const reflectionHit = reflectionRanked[0] || null;
+  markUsed(reflectionHit);
+
+  // 7. Mindmap details (up to 4 distinct unused sentences/passages strictly from this PDF)
+  const mapRanked = selectBestItem(
+    sentences.length >= 4 ? sentences : passages,
+    theme.terms,
+    ['principle','concept','practice','standard','action','attention','habit','system','truth'],
+    usedTexts,
+    [35, 220]
+  );
+  const mapHits = mapRanked.slice(0, 4);
+  mapHits.forEach(markUsed);
+
+  if (state.recentPdfKeys.length > 50) state.recentPdfKeys = state.recentPdfKeys.slice(-50);
   saveRotationState();
 
-  const domain = state.domain || 'all';
-  const challengeText = op.challenges[domain] || op.challenges.all;
-  const habitsArr = op.habits[domain] || op.habits.all;
-  const stateProto = STATE_PROTOCOLS[state.mentalState] || STATE_PROTOCOLS.peak;
+  const missingMsg = (label) => `No matching ${label} found in ${nextFile.path}; no content was fabricated.`;
+  const pageListStr = citedPages.size
+    ? [...citedPages].sort((a, b) => a - b).map(p => `p.${p}`).join(', ')
+    : 'no matching pages';
 
-  state.currentTheme = theme.name;
-  state.currentOpTitle = op.title;
-
-  const pdfQuoteSummary = evidenceList.length
-    ? ` Grounded in PDF #${usedPdfIndex} of ${totalPdfs} (${nextFile.path}, p.${evidenceList[0].pageNum}): "${evidenceList[0].text}"`
-    : '';
-  const explanationFull = `${op.explanation}${pdfQuoteSummary}`;
-  const pageListStr = evidenceList.length ? evidenceList.map(e => `p.${e.pageNum}`).join(', ') : 'indexed text';
-  const sourceText = `PDF #${usedPdfIndex} of ${totalPdfs}: ${nextFile.path} (${pageListStr}) | Foundational Framework: ${op.doctrine}`;
-
-  // Strict Markdown Format preserved identically
+  // Strict Markdown Format — zero fabricated text
   const mdLines = [
     `Mindset Directive ${state.directiveCount}: ${theme.name}`,
-    ` * Mindset title: ${op.title}`,
-    ` * Explanation: ${explanationFull}`,
-    ` * Daily challenge: ${challengeText}`,
+    ` * Mindset title: ${titleHit ? `${titleHit.text} [${nextFile.path}, p.${titleHit.pageNum}]` : missingMsg('title passage')}`,
+    ` * Explanation: ${expHits.length ? expHits.map(h => `"${h.text}" [${h.fileName}, p.${h.pageNum}]`).join(' | ') : missingMsg('explanatory passage')}`,
+    ` * Daily challenge: ${challengeHit ? `"${challengeHit.text}" [${challengeHit.fileName}, p.${challengeHit.pageNum}]` : missingMsg('actionable challenge passage')}`,
     ` * Habits to inculcate:`,
-    `   * ${habitsArr[0]}`,
-    `   * ${habitsArr[1]}`,
-    ` * One sentence to remember: ${op.sentence}`,
-    ` * Reflection prompt: ${op.reflection}`,
+    `   * ${habitHits[0] ? `"${habitHits[0].text}" [${habitHits[0].fileName}, p.${habitHits[0].pageNum}]` : missingMsg('habit passage #1')}`,
+    `   * ${habitHits[1] ? `"${habitHits[1].text}" [${habitHits[1].fileName}, p.${habitHits[1].pageNum}]` : missingMsg('habit passage #2')}`,
+    ` * One sentence to remember: ${sentenceHit ? `"${sentenceHit.text}" [${sentenceHit.fileName}, p.${sentenceHit.pageNum}]` : missingMsg('anchor sentence')}`,
+    ` * Reflection prompt: ${reflectionHit ? `"${reflectionHit.text}" [${reflectionHit.fileName}, p.${reflectionHit.pageNum}]` : missingMsg('reflection question')}`,
     ` * Mindmap:`,
-    `   * ${op.mindmap.concept}`,
-    `     * ${op.mindmap.subs[0].title}`,
-    `       * ${op.mindmap.subs[0].details[0]}`,
-    `       * ${op.mindmap.subs[0].details[1]}`,
-    `     * ${op.mindmap.subs[1].title}`,
-    `       * ${op.mindmap.subs[1].details[0]}`,
-    `       * ${op.mindmap.subs[1].details[1]}`,
-    ` * Source: ${sourceText}`
+    `   * ${theme.name} (${nextFile.path})`,
+    `     * Extracted Sub-concept 1`,
+    `       * ${mapHits[0] ? `"${mapHits[0].text}" [p.${mapHits[0].pageNum}]` : missingMsg('supporting detail')}`,
+    `       * ${mapHits[1] ? `"${mapHits[1].text}" [p.${mapHits[1].pageNum}]` : missingMsg('supporting detail')}`,
+    `     * Extracted Sub-concept 2`,
+    `       * ${mapHits[2] ? `"${mapHits[2].text}" [p.${mapHits[2].pageNum}]` : missingMsg('supporting detail')}`,
+    `       * ${mapHits[3] ? `"${mapHits[3].text}" [p.${mapHits[3].pageNum}]` : missingMsg('supporting detail')}`,
+    ` * Source: PDF #${usedPdfIndex} of ${totalPdfs} — ${nextFile.path} (${pageListStr})`
   ];
   state.markdown = mdLines.join('\n');
   $('rawMd').textContent = state.markdown;
 
+  // Render Apple UI cleanly
   const result = $('result');
   result.replaceChildren();
 
   add(result, 'h2', `Mindset Directive ${state.directiveCount}: ${theme.name}`, 'directive-title');
-  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'ROTATION' : 'MANUAL'})`, 'source-book');
+  add(result, 'div', `TARGETED TODAY: ${theme.name.toUpperCase()} (${isAuto ? 'ROTATION' : 'DIRECT'})`, 'source-book');
   add(result, 'div', `ROUND-ROBIN PDF #${usedPdfIndex} OF ${totalPdfs}: ${nextFile.path}`, 'source-book');
-  add(result, 'div', stateProto.note, 'state-protocol');
 
   const titleField = add(result, 'section', '', 'field');
   add(titleField, 'h3', 'Mindset title', 'field-title');
-  add(titleField, 'div', op.title, 'op-heading');
+  if (titleHit) appendVerbatimBlock(titleField, titleHit, 'Verbatim PDF Title / Principle');
+  else add(titleField, 'p', missingMsg('title passage'), 'not-found');
 
   const expField = add(result, 'section', '', 'field');
   add(expField, 'h3', 'Explanation', 'field-title');
-  add(expField, 'p', op.explanation, 'field-body');
-  evidenceList.forEach((ev, idx) => {
-    const box = add(expField, 'div', '', 'extract');
-    add(box, 'span', `PDF #${usedPdfIndex} Evidence ${evidenceList.length > 1 ? `(${idx + 1}/${evidenceList.length})` : ''}`, 'extract-label');
-    add(box, 'blockquote', `“${ev.text}”`);
-    const cite = add(box, 'div', 'PDF reference: ', 'cite');
-    const link = document.createElement('a');
-    link.href = `${ev.url}#page=${ev.pageNum}`;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.textContent = `${ev.fileName} — page ${ev.pageNum}`;
-    cite.appendChild(link);
-  });
+  if (expHits.length) {
+    expHits.forEach((h, i) => appendVerbatimBlock(expField, h, `Verbatim PDF Passage ${expHits.length > 1 ? `(${i + 1}/${expHits.length})` : ''}`));
+  } else {
+    add(expField, 'p', missingMsg('explanatory passage'), 'not-found');
+  }
 
   const chalField = add(result, 'section', '', 'field');
   add(chalField, 'h3', 'Daily challenge', 'field-title');
-  add(chalField, 'p', challengeText, 'field-body');
+  if (challengeHit) appendVerbatimBlock(chalField, challengeHit, 'Verbatim PDF Actionable Passage');
+  else add(chalField, 'p', missingMsg('actionable challenge passage'), 'not-found');
 
   const habField = add(result, 'section', '', 'field');
   add(habField, 'h3', 'Habits to inculcate', 'field-title');
   const ulHab = add(habField, 'ul', '', 'habit-list');
-  add(ulHab, 'li', habitsArr[0]);
-  add(ulHab, 'li', habitsArr[1]);
+  for (let i = 0; i < 2; i++) {
+    const li = document.createElement('li');
+    if (habitHits[i]) appendVerbatimBlock(li, habitHits[i], `Verbatim Habit Passage #${i + 1}`);
+    else add(li, 'p', missingMsg(`habit passage #${i + 1}`), 'not-found');
+    ulHab.appendChild(li);
+  }
 
   const sentField = add(result, 'section', '', 'field');
   add(sentField, 'h3', 'One sentence to remember', 'field-title');
-  add(sentField, 'div', op.sentence, 'anchor-sentence');
+  if (sentenceHit) appendVerbatimBlock(sentField, sentenceHit, 'Verbatim Anchor Sentence');
+  else add(sentField, 'p', missingMsg('anchor sentence'), 'not-found');
 
   const refField = add(result, 'section', '', 'field');
   add(refField, 'h3', 'Reflection prompt', 'field-title');
-  add(refField, 'p', op.reflection, 'field-body');
+  if (reflectionHit) appendVerbatimBlock(refField, reflectionHit, 'Verbatim Reflection Question');
+  else add(refField, 'p', missingMsg('reflection question'), 'not-found');
 
   const mapField = add(result, 'section', '', 'field');
   add(mapField, 'h3', 'Mindmap', 'field-title');
   const mapBox = add(mapField, 'div', '', 'mindmap');
-  add(mapBox, 'div', `• ${op.mindmap.concept}`, 'mindmap-root');
+  add(mapBox, 'div', `• ${theme.name} — ${nextFile.path}`, 'mindmap-root');
   const mapList = add(mapBox, 'ul', '', 'mindmap-list');
-  for (const sub of op.mindmap.subs) {
-    const li = add(mapList, 'li', sub.title);
+  for (let g = 0; g < 2; g++) {
+    const li = add(mapList, 'li', `Extracted Sub-concept ${g + 1}`);
     const subUl = document.createElement('ul');
-    for (const det of sub.details) add(subUl, 'li', det);
+    for (let d = 0; d < 2; d++) {
+      const subLi = document.createElement('li');
+      const hit = mapHits[g * 2 + d];
+      if (hit) appendVerbatimBlock(subLi, hit, `Supporting Detail (p.${hit.pageNum})`);
+      else add(subLi, 'p', missingMsg('supporting detail'), 'not-found');
+      subUl.appendChild(subLi);
+    }
     li.appendChild(subUl);
   }
 
   const srcField = add(result, 'section', '', 'field');
-  add(srcField, 'h3', 'Source', 'field-title');
+  add(srcField, 'h3', 'Source (Single PDF Only)', 'field-title');
   const srcP = add(srcField, 'p', '', 'field-body');
-  const sLink = document.createElement('a');
-  sLink.href = `${fileUrl(nextFile)}${evidenceList.length ? `#page=${evidenceList[0].pageNum}` : ''}`;
-  sLink.target = '_blank';
-  sLink.rel = 'noopener noreferrer';
-  sLink.textContent = `PDF #${usedPdfIndex}/${totalPdfs}: ${nextFile.path} (${pageListStr})`;
-  srcP.appendChild(sLink);
-  srcP.appendChild(document.createTextNode(` • ${op.doctrine}`));
+  const baseUrl = fileUrl(nextFile);
+  if (baseUrl) {
+    const sLink = document.createElement('a');
+    sLink.href = `${baseUrl}${citedPages.size ? `#page=${Math.min(...citedPages)}` : ''}`;
+    sLink.target = '_blank';
+    sLink.rel = 'noopener noreferrer';
+    sLink.textContent = `PDF #${usedPdfIndex} of ${totalPdfs}: ${nextFile.path} (${pageListStr})`;
+    srcP.appendChild(sLink);
+  } else {
+    srcP.textContent = `PDF #${usedPdfIndex} of ${totalPdfs}: ${nextFile.path} (${pageListStr})`;
+  }
 
-  // Activate Behavioral Lock-In Card
-  $('coachCard').style.display = 'grid';
-  $('ifThenInput').value = op.ifThen;
-  renderJournal();
+  if (appConfig.enableCoachCard) {
+    $('coachCard').style.display = 'grid';
+    renderJournal();
+  } else {
+    $('coachCard').style.display = 'none';
+  }
 
   $('resultCount').textContent = `Directive #${state.directiveCount} • PDF #${usedPdfIndex}/${totalPdfs}`;
   renderThemes();
   renderFiles();
+
+  if (window.innerWidth < 760) {
+    $('briefingPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+/* ============================================================================
+ * SWAMI VIVEKANANDA MENTOR ENGINE (STRICTLY AUTHORIZED SOURCES ONLY)
+ * Searches both Repo Vivekananda PDFs and Verified Advaita Ashrama Corpus.
+ * Zero invented quotes or simulated speeches.
+ * ========================================================================== */
+function getVivekanandaRepoPdfs() {
+  return getReadableFiles().filter(f =>
+    /(vivekananda|swami|karma|raja|jnana|bhakti|vedanta|colombo|complete|cw)/i.test(f.path)
+  );
+}
+
+function tokenizeQuery(query) {
+  return String(query || '')
+    .toLocaleLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(w => w.length >= 3 && !['the','and','for','with','how','can','what','why','from','that','this','have','you','are'].includes(w));
+}
+
+function queryVivekanandaMentor(rawQuery) {
+  const query = String(rawQuery || '').trim();
+  if (!query) return;
+  const tokens = tokenizeQuery(query);
+  const effectiveTokens = tokens.length ? tokens : [query.toLocaleLowerCase()];
+
+  // 1. Search any Swami Vivekananda PDFs in the repository
+  const repoSvFiles = getVivekanandaRepoPdfs();
+  const pdfHits = [];
+  for (const file of repoSvFiles) {
+    for (const p of (file.passages || [])) {
+      const score = termScore(p.text, effectiveTokens);
+      if (score > 0) pdfHits.push({ ...p, score });
+    }
+  }
+  pdfHits.sort((a, b) => b.score - a.score || a.pageNum - b.pageNum);
+  const topPdfHits = pdfHits.slice(0, 4);
+
+  // 2. Search Verified Advaita Ashrama Corpus
+  const corpusScored = VERIFIED_VIVEKANANDA_CORPUS.map(item => {
+    let score = 0;
+    const textLower = item.text.toLocaleLowerCase();
+    for (const t of effectiveTokens) {
+      if (item.topics.some(tp => tp.includes(t) || t.includes(tp))) score += 3;
+      if (new RegExp(`\\b${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(textLower)) score += 2;
+    }
+    return { ...item, score };
+  }).filter(x => x.score > 0).sort((a, b) => b.score - a.score);
+
+  const topCorpus = corpusScored.slice(0, 3);
+
+  const resBox = $('svResult');
+  resBox.replaceChildren();
+  add(resBox, 'h2', `Guidance Query: "${query}"`, 'directive-title');
+  add(resBox, 'div', `VERIFIED SOURCES ONLY • ${topPdfHits.length} REPO PDF PASSAGE(S) • ${topCorpus.length} ADVAITA ASHRAMA PASSAGE(S)`, 'source-book');
+
+  const mdOut = [
+    `Swami Vivekananda Mentor — Query: "${query}"`,
+    `Policy: Strictly verbatim passages from authorized verified sources only. Zero fabrication.`
+  ];
+
+  if (!topPdfHits.length && !topCorpus.length) {
+    add(resBox, 'p', 'No exact matching passage was found in the currently loaded verified sources for those terms. Try broader keywords (e.g., strength, focus, fear, work, anger, failure, service) or upload the authorized Complete Works of Swami Vivekananda PDFs (Advaita Ashrama) into your GitHub repository.', 'not-found');
+    state.svMarkdown = mdOut.join('\n') + '\nNo matching verified passage found.';
+    return;
+  }
+
+  if (topPdfHits.length) {
+    const sec = add(resBox, 'section', '', 'field');
+    add(sec, 'h3', 'From Authorized Repository PDFs', 'field-title');
+    for (const hit of topPdfHits) {
+      appendVerbatimBlock(sec, hit, `Repo PDF — ${hit.fileName}`);
+      mdOut.push(`- "${hit.text}" [Repo PDF: ${hit.fileName}, p.${hit.pageNum}]`);
+    }
+  }
+
+  if (topCorpus.length) {
+    const sec = add(resBox, 'section', '', 'field');
+    add(sec, 'h3', 'From Verified Complete Works (Advaita Ashrama)', 'field-title');
+    for (const item of topCorpus) {
+      const box = add(sec, 'div', '', 'extract');
+      add(box, 'span', `Verified Primary Text — ${item.publisher}`, 'extract-label');
+      add(box, 'blockquote', `“${item.text}”`);
+      add(box, 'div', `Source: ${item.work} (${item.publisher})`, 'cite');
+      mdOut.push(`- "${item.text}" [${item.work} — ${item.publisher}]`);
+    }
+  }
+
+  state.svMarkdown = mdOut.join('\n');
+}
+
+/* ============================================================================
+ * TABS, JOURNAL, CONFIG MODAL & UTILITIES
+ * ========================================================================== */
+function switchTab(tab) {
+  state.activeTab = tab;
+  const isBrief = tab === 'briefing';
+  $('tabBriefingBtn').classList.toggle('active', isBrief);
+  $('tabBriefingBtn').setAttribute('aria-selected', String(isBrief));
+  $('tabVivekanandaBtn').classList.toggle('active', !isBrief);
+  $('tabVivekanandaBtn').setAttribute('aria-selected', String(!isBrief));
+  $('paneBriefing').classList.toggle('active', isBrief);
+  $('paneVivekananda').classList.toggle('active', !isBrief);
 }
 
 function renderJournal() {
   const box = $('journalList');
   box.replaceChildren();
   if (!state.journal.length) return;
-  for (const entry of [...state.journal].reverse().slice(0, 8)) {
+  for (const entry of [...state.journal].reverse().slice(0, 10)) {
     const item = add(box, 'div', '', 'journal-item');
     add(item, 'strong', `${entry.date} • ${entry.theme} (Score ${entry.rating}/5)`);
-    if (entry.ifThen) add(item, 'div', `Script: ${entry.ifThen}`);
     if (entry.notes) add(item, 'div', `AAR: ${entry.notes}`);
   }
 }
@@ -1187,56 +1412,83 @@ function saveAar() {
     date: today,
     theme: state.currentTheme || 'Mindset',
     rating: state.rating,
-    ifThen: $('ifThenInput').value.trim(),
     notes: $('aarNotes').value.trim()
   });
-  if (state.journal.length > 30) state.journal = state.journal.slice(-30);
+  if (state.journal.length > 60) state.journal = state.journal.slice(-60);
   $('aarNotes').value = '';
   saveRotationState();
-  updateStreakBadge();
+  updateMetrics();
   renderJournal();
   $('copyStatus').textContent = `AAR saved. Current streak: ${state.streak} day(s).`;
 }
 
-// 60s Physiological Sigh Reset Timer
-function toggleBreathReset() {
-  const btn = $('breathBtn');
-  if (state.breathTimer) {
-    clearInterval(state.breathTimer);
-    state.breathTimer = null;
-    btn.textContent = '60s Reset';
+function exportJournalMd() {
+  if (!state.journal.length) {
+    $('copyStatus').textContent = 'Save at least one Daily AAR first.';
     return;
   }
-  let sec = 60;
-  const updateLabel = () => {
-    const phase = sec % 10 >= 6 ? 'Inhale+Top-Up' : 'Slow Exhale';
-    btn.textContent = `${sec}s • ${phase}`;
-  };
-  updateLabel();
-  state.breathTimer = setInterval(() => {
-    sec--;
-    if (sec <= 0) {
-      clearInterval(state.breathTimer);
-      state.breathTimer = null;
-      btn.textContent = 'Reset Done ✓';
-      setTimeout(() => { btn.textContent = '60s Reset'; }, 2000);
-    } else {
-      updateLabel();
-    }
-  }, 1000);
+  const md = [
+    `# ${appConfig.brandName} — AAR Journal Export`,
+    `Streak: ${state.streak} day(s) | Entries: ${state.journal.length}`,
+    '',
+    ...state.journal.map((e, i) => `## Entry ${i + 1}: ${e.date} — ${e.theme} (${e.rating}/5)\n- **Reflection:** ${e.notes || 'N/A'}\n`)
+  ].join('\n');
+  downloadFile('mindset-aar-journal.md', md, 'text/markdown');
 }
 
-async function copy() {
-  if (!state.markdown) {
-    $('copyStatus').textContent = 'Generate a directive first.';
-    return;
+function downloadFile(filename, text, mime) {
+  const blob = new Blob([text], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function openConfigModal() {
+  $('cfgBrandName').value = appConfig.brandName;
+  $('cfgEyebrow').value = appConfig.eyebrow;
+  $('cfgDefaultRepo').value = appConfig.defaultRepo || '';
+  $('cfgFolderPrefix').value = appConfig.folderPrefix || '';
+  $('cfgMaxExcerpts').value = String(appConfig.maxExcerptsPerDirective || 2);
+  $('cfgEnableCoach').checked = !!appConfig.enableCoachCard;
+  $('configModal').classList.add('open');
+}
+
+function closeConfigModal() {
+  $('configModal').classList.remove('open');
+}
+
+function saveConfigFromModal() {
+  const newRepo = $('cfgDefaultRepo').value.trim();
+  saveAppConfig({
+    ...appConfig,
+    brandName: $('cfgBrandName').value.trim() || DEFAULT_CONFIG.brandName,
+    eyebrow: $('cfgEyebrow').value.trim() || DEFAULT_CONFIG.eyebrow,
+    defaultRepo: newRepo,
+    folderPrefix: $('cfgFolderPrefix').value.trim(),
+    maxExcerptsPerDirective: Number($('cfgMaxExcerpts').value) || 2,
+    enableCoachCard: $('cfgEnableCoach').checked
+  });
+  closeConfigModal();
+  if (newRepo && $('repoInput').value !== newRepo) {
+    $('repoInput').value = newRepo;
+    scan(true);
   }
+  $('copyStatus').textContent = 'Configuration saved.';
+}
+
+async function copyText(text, statusEl, emptyMsg, okMsg) {
+  if (!text) { statusEl.textContent = emptyMsg; return; }
   try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(state.markdown);
+      await navigator.clipboard.writeText(text);
     } else {
       const textarea = document.createElement('textarea');
-      textarea.value = state.markdown;
+      textarea.value = text;
       textarea.readOnly = true;
       textarea.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;font-size:16px';
       document.body.appendChild(textarea);
@@ -1245,9 +1497,9 @@ async function copy() {
       textarea.remove();
       if (!copied) throw Error('Clipboard unavailable');
     }
-    $('copyStatus').textContent = 'Tactical Briefing Markdown copied.';
+    statusEl.textContent = okMsg;
   } catch {
-    $('copyStatus').textContent = 'Copy unavailable; toggle Markdown view to copy manually.';
+    statusEl.textContent = 'Copy unavailable; select text manually.';
   }
 }
 
@@ -1263,7 +1515,7 @@ function toggleTheme() {
 }
 
 function printDirective() {
-  if (!state.markdown) {
+  if (state.activeTab === 'briefing' && !state.markdown) {
     if (getReadableFiles().length > 0) createDirective(getNextBalancedTheme(), true);
     else { $('copyStatus').textContent = 'Generate a directive before printing.'; return; }
   }
@@ -1282,20 +1534,21 @@ function resetRotation() {
   $('copyStatus').textContent = 'Theme rotation and PDF round-robin index reset to #1.';
 }
 
-// Calibration & Rating Events
-$('stateSeg').addEventListener('click', e => {
-  const btn = e.target.closest('button[data-state]');
-  if (!btn) return;
-  state.mentalState = btn.dataset.state;
-  $('stateSeg').querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
-});
+// Event Bindings
+$('tabBriefingBtn').addEventListener('click', () => switchTab('briefing'));
+$('tabVivekanandaBtn').addEventListener('click', () => switchTab('vivekananda'));
 
-$('domainSeg').addEventListener('click', e => {
-  const btn = e.target.closest('button[data-domain]');
-  if (!btn) return;
-  state.domain = btn.dataset.domain;
-  $('domainSeg').querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b === btn));
+$('svAskBtn').addEventListener('click', () => queryVivekanandaMentor($('svQueryInput').value));
+$('svQueryInput').addEventListener('keydown', e => { if (e.key === 'Enter') queryVivekanandaMentor($('svQueryInput').value); });
+$('svTopicChips').addEventListener('click', e => {
+  const chip = e.target.closest('button[data-topic]');
+  if (!chip) return;
+  $('svQueryInput').value = chip.textContent;
+  queryVivekanandaMentor(chip.dataset.topic);
 });
+$('svCopyBtn').addEventListener('click', () =>
+  copyText(state.svMarkdown, $('svCopyStatus'), 'Ask a guidance question first.', 'Verified Vivekananda excerpts copied.')
+);
 
 $('ratingRow').addEventListener('click', e => {
   const btn = e.target.closest('button[data-rate]');
@@ -1305,21 +1558,45 @@ $('ratingRow').addEventListener('click', e => {
 });
 
 $('scanBtn').addEventListener('click', () => scan(true));
+$('cancelScanBtn').addEventListener('click', () => { if (state.controller) state.controller.abort(); });
+$('localPdfInput').addEventListener('change', e => handleLocalPdfs(e.target.files));
 $('deployBtn').addEventListener('click', () => createDirective(getNextBalancedTheme(), true));
-$('copyBtn').addEventListener('click', copy);
+$('copyBtn').addEventListener('click', () =>
+  copyText(state.markdown, $('copyStatus'), 'Generate a directive first.', 'Tactical Briefing Markdown copied.')
+);
 $('resetBtn').addEventListener('click', resetRotation);
 $('toggleMdBtn').addEventListener('click', toggleMarkdown);
 $('themeBtn').addEventListener('click', toggleTheme);
 $('printBtn').addEventListener('click', printDirective);
-$('breathBtn').addEventListener('click', toggleBreathReset);
 $('saveAarBtn').addEventListener('click', saveAar);
+$('exportJournalBtn').addEventListener('click', exportJournalMd);
 
-$('ratingRow').querySelector('[data-rate="4"]').classList.add('active');
-updateStreakBadge();
-$('repoInput').value = repoFromUrl();
-renderThemes();
-if ($('repoInput').value) scan(false);
-else setStatus('Enter a public repository in owner/repo format, then scan.');
+$('configBtn').addEventListener('click', openConfigModal);
+$('closeConfigBtn').addEventListener('click', closeConfigModal);
+$('saveConfigBtn').addEventListener('click', saveConfigFromModal);
+$('exportConfigBtn').addEventListener('click', () => downloadFile('mindset.config.json', JSON.stringify(appConfig, null, 2), 'application/json'));
+$('resetConfigBtn').addEventListener('click', () => { localStorage.removeItem(CONFIG_STORAGE_KEY); saveAppConfig(DEFAULT_CONFIG); closeConfigModal(); });
+$('configModal').addEventListener('click', e => { if (e.target === $('configModal')) closeConfigModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeConfigModal(); });
+
+// Bootstrap Platform
+(async function init() {
+  applyAppConfig();
+  await tryLoadRemoteConfig();
+  $('ratingRow').querySelector('[data-rate="4"]').classList.add('active');
+  updateMetrics();
+  $('repoInput').value = repoFromUrl();
+  if (appConfig.defaultBranch) $('branchInput').value = appConfig.defaultBranch;
+  renderThemes();
+  if ($('repoInput').value) {
+    scan(false);
+  } else {
+    setStatus('Enter a public GitHub owner/repo above, or attach local PDFs below.');
+    $('result').replaceChildren();
+    add($('result'), 'h2', 'Ready to Connect PDF Library');
+    add($('result'), 'p', 'Host on GitHub Pages for automatic scanning, enter a public repository, or attach local PDFs.');
+  }
+})();
 </script>
 </body>
 </html>
