@@ -1,3 +1,29 @@
+I added a client-side PDF Distillation & Simplification Engine so that
+Explanation, Habits to inculcate, One sentence to remember, and Mindmap are
+clean, concise, and easy to act on—while remaining 100% derived from the actual
+unread PDF page from logmain68/Me (main branch).
+
+How the Simplification Engine Works (Zero Fabrication)
+
+  - Noise & Clutter Removal (cleanPdfSentence): Strips academic citations
+    ([12]), inline footnotes, parenthetical detours, and bloated connectors
+    ("However, it is important to note that...", "in order to" → "to", "due to
+    the fact that" → "because").
+  - Simplified Explanation: Distills the top 2–3 highest-signal sentences on the
+    page into a crisp, readable core takeaway—followed by the exact verbatim
+    Grounded in [PDF] (page N) quote for full transparency.
+  - Actionable Habits (simplifyToHabit): Converts descriptive book sentences
+    ("You should always...", "One must...", "We need to...") into direct,
+    concise habit bullets (~125 chars max) strictly preserving the PDF's own
+    words.
+  - Crisp Anchor (simplifyToRemember): Distills the sharpest standalone clause
+    (target ≤ 115 chars) from the page into a punchy, memorable single sentence.
+  - Scannable Mindmap (simplifyToMindmapNode): Trims supporting leaves to short
+    core clauses (≤ 88 chars) under clean keyword branch labels—turning dense
+    paragraphs into a real mindmap.
+
+Save this as index.html:
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +33,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; worker-src 'self' blob: https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Commander — PDF Tactical Mentor</title>
+  <title>Mindset Commander — Simplified PDF Tactical Mentor</title>
   <style>
     :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.88);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.16);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#1f7a34;--success-soft:rgba(52,199,89,.15);--warn:#a84b00;--warn-soft:rgba(255,149,0,.15);--danger:#b42318;--danger-soft:rgba(180,35,24,.12);--gold:#9a6700;--gold-soft:rgba(212,167,44,.16);--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:44px;--radius:24px}
     body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.92);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--success-soft:rgba(48,209,88,.18);--warn:#ff9f0a;--warn-soft:rgba(255,159,10,.18);--danger:#ff6961;--danger-soft:rgba(255,105,97,.18);--gold:#ffd60a;--gold-soft:rgba(255,214,10,.16);--shadow:0 20px 55px rgba(0,0,0,.35),0 3px 12px rgba(0,0,0,.22)}
@@ -70,18 +96,18 @@
     .meta-pill.gold{color:var(--gold);background:var(--gold-soft);border-color:transparent}
     .field{padding:14px 0;border-top:1px solid var(--border);break-inside:avoid}
     .field-label{margin:0 0 6px;font-size:.82rem;font-weight:780;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-    .field-body{margin:0;font-size:.97rem;line-height:1.72}
-    .grounded-quote{display:block;margin-top:10px;padding:12px 15px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);font-size:.93rem;line-height:1.68;color:var(--text)}
+    .field-body{margin:0;font-size:.98rem;line-height:1.72}
+    .grounded-quote{display:block;margin-top:10px;padding:12px 15px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);font-size:.9rem;line-height:1.65;color:var(--muted)}
     .grounded-quote strong{color:var(--accent);font-weight:720}
     .habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:8px;font-size:.96rem;line-height:1.68}
-    .anchor-box{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3.5px solid var(--accent);font-weight:720;font-size:1.03rem;line-height:1.58}
+    .anchor-box{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3.5px solid var(--accent);font-weight:720;font-size:1.05rem;line-height:1.58}
     .reflect-box{padding:13px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--border);font-size:.97rem;font-style:italic;line-height:1.64}
     .mindmap{padding:15px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
-    .mindmap-root{font-weight:760;color:var(--accent);margin-bottom:8px;font-size:.99rem}
+    .mindmap-root{font-weight:760;color:var(--accent);margin-bottom:8px;font-size:1rem}
     .mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}
-    .mindmap-list>li{padding:4px 0 9px 14px;font-weight:680;font-size:.93rem}
-    .mindmap-list ul{list-style:disc;padding:0 0 0 18px;margin:5px 0 2px;font-weight:400;color:var(--muted);font-size:.9rem}
-    .mindmap-list ul li{padding:2px 0;line-height:1.56}
+    .mindmap-list>li{padding:4px 0 9px 14px;font-weight:680;font-size:.94rem}
+    .mindmap-list ul{list-style:disc;padding:0 0 0 18px;margin:5px 0 2px;font-weight:400;color:var(--muted);font-size:.91rem}
+    .mindmap-list ul li{padding:2px 0;line-height:1.55}
     .source-bar{padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:.84rem;line-height:1.55;color:var(--muted)}
     .source-bar strong{color:var(--text)}
     .source-bar a,.auth-list a{color:var(--accent);text-decoration:none}
@@ -170,9 +196,9 @@
   <!-- ==================== TAB 1: TACTICAL BRIEFING ==================== -->
   <div id="paneBriefing" class="tab-pane active" role="tabpanel" aria-labelledby="tabBriefingBtn">
     <section class="hero glass">
-      <div class="eyebrow">Strictly PDF-Sourced Mentor &bull; Auto Chapter-1 Start &bull; Zero-Repeat Page Cursor</div>
+      <div class="eyebrow">Simplified PDF Intelligence &bull; Auto Chapter-1 Start &bull; Zero-Repeat Page Cursor</div>
       <h1>Peak Mind. Peak Body. Durable Abundance.</h1>
-      <p class="subtitle">Automatically scans <strong>logmain68/Me</strong> (<code>main</code> branch). Every field of your Tactical Briefing—Title, Explanation, Daily Challenge, Habits, Anchor Sentence, Reflection Prompt, and Mindmap—is extracted strictly from the next unread page of your PDF library, calibrated to your current Mental State with zero repetition.</p>
+      <p class="subtitle">Automatically scans <strong>logmain68/Me</strong> (<code>main</code> branch). Every section—Explanation, Daily Challenge, Habits to Inculcate, One Sentence to Remember, Reflection Prompt, and Mindmap—is <strong>simplified and distilled strictly from the next unread page of your PDF</strong> with zero fabrication and zero repetition.</p>
       <div class="actions">
         <button id="deployBtn" class="primary" type="button" disabled>&#10022;&nbsp;Deploy Next Unread PDF Page</button>
         <button id="toggleMdBtn" class="secondary" type="button">Toggle Plain Markdown</button>
@@ -189,19 +215,19 @@
 
     <div class="section-head">
       <h2>1. Declare Your Current Mental State</h2>
-      <span>Calibrates extraction &amp; framing strictly from the active unread PDF page</span>
+      <span>Selects &amp; simplifies the most relevant thoughts directly from the active unread PDF page</span>
     </div>
     <section id="stateGrid" class="state-grid" aria-label="Current Mental State Selector"></section>
 
     <section class="workspace" aria-label="Tactical briefing and PDF progression queue">
       <section class="panel glass" id="briefingPanel" aria-labelledby="outputTitle">
         <div class="panel-head">
-          <strong id="outputTitle">Tactical Briefing Output (100% From Active PDF Page)</strong>
+          <strong id="outputTitle">Tactical Briefing Output (Simplified Strictly From Active PDF Page)</strong>
           <span id="resultCount" class="tag" aria-live="polite">Scanning…</span>
         </div>
         <article id="result" class="result" aria-live="polite" aria-atomic="true">
           <h2 class="directive-title">Scanning logmain68/Me (main)…</h2>
-          <p class="field-body">Once repository PDFs are indexed, select your current mental state and press <strong>Deploy Next Unread PDF Page</strong>—the engine will automatically locate <strong>Chapter 1</strong> and deliver your briefing strictly from that page.</p>
+          <p class="field-body">Once repository PDFs are indexed, select your current mental state and press <strong>Deploy Next Unread PDF Page</strong>—the engine will automatically locate <strong>Chapter 1</strong> and simplify that page into your briefing.</p>
         </article>
         <pre id="rawMd" class="raw-box"></pre>
       </section>
@@ -249,7 +275,7 @@
           <button id="resetCursorsBtn" class="secondary" type="button" style="width:100%">Reset Cursors to Chapter 1 (Cycle 2)</button>
         </div>
         <p id="copyStatus" class="copy-status" aria-live="polite"></p>
-        <p class="status">Zero-Fabrication Rule: Every briefing extracts strictly from the active unread PDF page. Click any PDF above to activate it.</p>
+        <p class="status">Zero-Fabrication Rule: Every simplified point comes directly from the active unread PDF page. Click any PDF above to activate it.</p>
       </aside>
     </section>
   </div>
@@ -340,7 +366,7 @@
    * ========================================================================= */
   const REPO_SLUG = 'logmain68/Me';
   const REPO_BRANCH = 'main';
-  const STORAGE_KEY = 'mc_logmain68_me_v5';
+  const STORAGE_KEY = 'mc_logmain68_me_v6';
   const MIN_PAGE_CHARS = 120;
   const MAX_PDF_BYTES = 50 * 1024 * 1024;
   const MAX_SEEN_HASHES = 6000;
@@ -369,8 +395,8 @@
       tag: 'Decision & Focus',
       summary: 'Analysis paralysis, open loops, fragmented attention.',
       focusLabel: 'Quick Decision-Making & Focus',
-      actionCue: 'Cut noise, set a strict 20-minute execution clock, and apply this exact insight from the page today',
-      reflectionCue: 'Where did scattered attention or hesitation stop you from living out this exact principle today?',
+      actionCue: 'Cut noise, set a strict 20-minute clock, and execute this today',
+      reflectionCue: 'Where did scattered attention stop you from applying this lesson today?',
       keywords: ['focus', 'attention', 'clarity', 'decision', 'choice', 'simple', 'one', 'priority', 'noise', 'mind', 'concentrate', 'decide', 'order', 'action']
     },
     {
@@ -380,8 +406,8 @@
       tag: 'Energy & Ignition',
       summary: 'Low vitality, sluggish start, temptation to delay or coast.',
       focusLabel: 'Vitality & Kinetic Discipline',
-      actionCue: 'Reset physiology first (hydration + 5 minutes of crisp movement), then immediately execute this lesson from the page',
-      reflectionCue: 'Did you lead your body and energy with discipline today around this principle, or let fatigue dictate your pace?',
+      actionCue: 'Hydrate, move for 5 minutes to break inertia, and act on this immediately',
+      reflectionCue: 'Did you lead your energy with discipline around this principle today?',
       keywords: ['energy', 'action', 'move', 'start', 'habit', 'discipline', 'body', 'strength', 'health', 'sleep', 'vitality', 'momentum', 'work', 'effort', 'will']
     },
     {
@@ -391,8 +417,8 @@
       tag: 'Courage & Poise',
       summary: 'Overthinking outcomes, hesitation, fear of failure or judgment.',
       focusLabel: 'Fearless Courage & Self-Trust',
-      actionCue: 'Take 3 slow extended exhales to steady your nervous system, then take one courageous step grounded in this lesson from the page',
-      reflectionCue: 'Where did fear or overthinking pull you away from acting on this truth today?',
+      actionCue: 'Take 3 slow exhales to steady your nerves, then take one bold step on this',
+      reflectionCue: 'Where did fear or overthinking keep you from acting on this truth today?',
       keywords: ['fear', 'courage', 'doubt', 'confidence', 'control', 'calm', 'faith', 'trust', 'risk', 'bold', 'strong', 'worry', 'uncertain', 'peace', 'freedom']
     },
     {
@@ -402,8 +428,8 @@
       tag: 'Standards & Ownership',
       summary: 'Comfortable routine, operating below your true ceiling.',
       focusLabel: 'Extreme Standards & Mastery',
-      actionCue: 'Raise your personal floor by one measurable notch today—physically and mentally—by executing this principle from the page',
-      reflectionCue: 'Where did you negotiate with comfort today instead of upholding the standard stated on this page?',
+      actionCue: 'Raise your personal standard by one measurable notch today using this lesson',
+      reflectionCue: 'Where did you negotiate with comfort instead of honoring this standard today?',
       keywords: ['standard', 'excellence', 'great', 'ownership', 'responsibility', 'discipline', 'growth', 'challenge', 'comfort', 'hard', 'mastery', 'character', 'purpose', 'goal']
     },
     {
@@ -413,8 +439,8 @@
       tag: 'Abundance & Leverage',
       summary: 'High clarity and drive—ready to build asymmetric leverage.',
       focusLabel: 'Abundance & Compounding Leverage',
-      actionCue: 'Channel today’s peak clarity into a high-leverage asset or deep-work block directly applying this concept from the page',
-      reflectionCue: 'How did you compound long-term mastery, health, or abundance today using this exact insight?',
+      actionCue: 'Channel today’s peak clarity into a high-leverage asset applying this lesson',
+      reflectionCue: 'How did you compound long-term mastery, health, or abundance using this insight today?',
       keywords: ['system', 'leverage', 'wealth', 'value', 'create', 'strategy', 'compound', 'scale', 'vision', 'build', 'master', 'lead', 'long', 'future', 'abundance']
     },
     {
@@ -424,8 +450,8 @@
       tag: 'Stoic Command',
       summary: 'Irritation, interpersonal friction, setbacks, rising ego.',
       focusLabel: 'Emotional Composure & Poise',
-      actionCue: 'Enforce a calm 10-minute pause before reacting to friction today, and guide your response strictly by this lesson from the page',
-      reflectionCue: 'When friction struck today, did you hold emotional composure and embody this principle?',
+      actionCue: 'Pause for 10 calm minutes before reacting to friction, guided by this lesson',
+      reflectionCue: 'When friction appeared today, did you keep composure and embody this principle?',
       keywords: ['anger', 'patience', 'calm', 'ego', 'respond', 'control', 'emotion', 'forgive', 'understand', 'compose', 'quiet', 'still', 'temper', 'respect', 'wise']
     }
   ]);
@@ -661,11 +687,11 @@
   }
 
   /* =========================================================================
-   * 3. PERSISTENT STATE STORE (CLEAN & PROTOTYPE-SAFE)
+   * 3. PERSISTENT STATE STORE
    * ========================================================================= */
   function createDefaultState() {
     return {
-      version: 5,
+      version: 6,
       theme: 'light',
       progressionMode: 'round-robin-pdf',
       activeStateId: MENTAL_STATES[0].id,
@@ -1100,7 +1126,9 @@
   }
 
   /* =========================================================================
-   * 5. STRICTLY PDF-SOURCED TACTICAL BRIEFING SYNTHESIZER
+   * 5. PDF DISTILLATION & SIMPLIFICATION ENGINE (STRICTLY FROM PDF DATA)
+   * Cleans academic clutter, parentheticals, and dense book prose into crisp,
+   * readable Explanation, Habits, Remember anchor, and Mindmap points.
    * ========================================================================= */
   function splitSentences(text) {
     const cleaned = text.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -1115,7 +1143,100 @@
         merged.push(s);
       }
     }
-    return merged.filter((s) => s.length >= 25 && !/^(https?:\/\/|www\.|isbn)/i.test(s));
+    return merged.filter((s) => s.length >= 22 && !/^(https?:\/\/|www\.|isbn)/i.test(s));
+  }
+
+  function cleanPdfSentence(raw) {
+    let s = String(raw || '')
+      .replace(/\[[^\]]{1,45}\]/g, '')               // Remove [12], [see ch. 3]
+      .replace(/\([^)]{15,180}\)/g, '')              // Remove long parenthetical detours
+      .replace(/([a-z.,;!?])\d{1,3}(?=\s|$)/g, '$1') // Remove attached footnote numbers
+      .replace(/^[“"'\s—–-]+|[”"'\s]+$/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    // Strip verbose discourse openers while keeping core meaning intact
+    s = s.replace(/^(?:however|furthermore|moreover|nevertheless|consequently|therefore|additionally|interestingly|meanwhile|nonetheless|similarly|accordingly|specifically|essentially|basically|actually|indeed|in other words|for example|for instance|on the other hand|in addition|as a result|as a matter of fact|it is important to note that|it should be noted that|the truth is that|the fact is that|remember that)\s*,?\s+/i, '');
+
+    // Tighten common wordy book phrases
+    s = s
+      .replace(/\bin order to\b/gi, 'to')
+      .replace(/\bdue to the fact that\b/gi, 'because')
+      .replace(/\bfor the reason that\b/gi, 'because')
+      .replace(/\bis able to\b/gi, 'can')
+      .replace(/\bare able to\b/gi, 'can')
+      .replace(/\bthe fact that\b/gi, 'that')
+      .replace(/\s+([,.;:!?])/g, '$1')
+      .replace(/\s+/g, ' ')
+      .trim();
+
+    if (s) s = s.charAt(0).toUpperCase() + s.slice(1);
+    return s;
+  }
+
+  function ensurePeriod(text) {
+    const t = String(text || '').trim().replace(/[,;:\-–—]+$/, '').trim();
+    if (!t) return '';
+    return /[.!?]$/.test(t) ? t : `${t}.`;
+  }
+
+  function trimCleanClause(text, maxChars) {
+    let s = String(text || '').trim();
+    if (s.length <= maxChars) return s;
+
+    // Try breaking cleanly on clause separators first (semicolon, em-dash, subordinate clause)
+    const parts = s.split(/(?:\s*[;—–]\s*|,\s+(?:which|although|whereas|while|because|since|though|where)\s+)/i)
+      .map((p) => p.trim())
+      .filter((p) => p.length >= 28);
+
+    if (parts.length > 1) {
+      const fitting = parts.find((p) => p.length <= maxChars);
+      if (fitting) return fitting;
+      s = parts[0];
+    }
+
+    if (s.length <= maxChars) return s;
+
+    // Word-boundary trim avoiding dangling stop words
+    let cut = s.slice(0, maxChars).replace(/\s+\S*$/, '').trim();
+    const dangling = /\b(a|an|the|and|or|but|of|to|in|on|at|by|for|with|from|as|into|that|this|these|those|is|are|was|were|be|your|our|their)$/i;
+    while (dangling.test(cut) && cut.length > 25) {
+      cut = cut.replace(dangling, '').trim();
+    }
+    return cut.replace(/[,;:\-–—]+$/, '').trim();
+  }
+
+  function simplifyToCoreIdea(rawSentence, maxChars = 145) {
+    const cleaned = cleanPdfSentence(rawSentence);
+    return ensurePeriod(trimCleanClause(cleaned, maxChars));
+  }
+
+  function simplifyToHabit(rawSentence, pageNum) {
+    let s = cleanPdfSentence(rawSentence);
+    // Turn prescriptive book prose into crisp direct habits using the PDF's own words
+    s = s.replace(/^(?:you\s+(?:must|should|need\s+to|ought\s+to|have\s+to)|we\s+(?:must|should|need\s+to|ought\s+to|have\s+to)|one\s+(?:must|should|ought\s+to)|people\s+(?:must|should)|it\s+is\s+(?:essential|necessary|important|wise)\s+to)\s+/i, '');
+    s = trimCleanClause(s, 118);
+    if (!s) return '';
+    s = s.charAt(0).toUpperCase() + s.slice(1);
+    return `${ensurePeriod(s)} (p.${pageNum})`;
+  }
+
+  function simplifyToRemember(rawSentence, pageNum) {
+    let s = cleanPdfSentence(rawSentence);
+    s = s.replace(/^(?:always\s+remember\s+that|never\s+forget\s+that|the\s+key\s+is\s+that|the\s+secret\s+is\s+that)\s+/i, '');
+    s = trimCleanClause(s, 112);
+    if (!s) return '';
+    s = s.charAt(0).toUpperCase() + s.slice(1);
+    return `${ensurePeriod(s)} (p.${pageNum})`;
+  }
+
+  function simplifyToMindmapNode(rawSentence, pageNum) {
+    let s = cleanPdfSentence(rawSentence);
+    s = s.replace(/^(?:you\s+(?:must|should|need\s+to)|we\s+(?:must|should|need\s+to)|one\s+(?:must|should))\s+/i, '');
+    s = trimCleanClause(s, 84);
+    if (!s) return '';
+    s = s.charAt(0).toUpperCase() + s.slice(1).replace(/[.!?]+$/, '');
+    return `${s} [p.${pageNum}]`;
   }
 
   function extractConceptPhrase(text, fallback) {
@@ -1175,73 +1296,86 @@
         const s = sentences[i];
         if (used.has(s)) continue;
         let sc = scoreSentence(s, mentalState.keywords, boostWords);
-        if (preferShort && s.length <= 165) sc += 2.5;
+        if (preferShort && s.length <= 160) sc += 2.5;
         if (sc > bestScore) { bestScore = sc; best = s; }
       }
       return best;
     };
 
-    const leadSentence = pickBest(['principle', 'because', 'truth', 'means', 'power', 'mind', 'life', 'habit', 'order', 'reason']) || sentences[0] || pageText.slice(0, 320);
-    const leadIdx = sentences.indexOf(leadSentence);
-    let verbatimQuote = leadSentence;
-    if (leadIdx >= 0) {
-      used.add(sentences[leadIdx]);
-      let k = leadIdx + 1;
-      while (k < sentences.length && verbatimQuote.length < 340) {
-        if (verbatimQuote.length + sentences[k].length + 1 > 520) break;
-        verbatimQuote += ' ' + sentences[k];
-        used.add(sentences[k]);
-        k++;
-      }
+    // 1. Explanation: Simplified Core Distillate + Exact Verbatim Source Quote
+    const exp1 = pickBest(['principle', 'because', 'truth', 'means', 'power', 'mind', 'life', 'habit', 'order', 'reason']) || sentences[0] || pageText.slice(0, 260);
+    used.add(exp1);
+    const exp2 = pickBest(['result', 'effect', 'change', 'strength', 'growth', 'focus', 'action', 'better', 'control']) || sentences.find((s) => !used.has(s));
+    if (exp2) used.add(exp2);
+
+    const simplifiedExplanation = [
+      simplifyToCoreIdea(exp1, 155),
+      exp2 ? simplifyToCoreIdea(exp2, 145) : ''
+    ].filter(Boolean).join(' ');
+
+    // Keep exact verbatim excerpt from the page for complete source transparency
+    const leadIdx = sentences.indexOf(exp1);
+    let verbatimQuote = exp1;
+    if (leadIdx >= 0 && leadIdx + 1 < sentences.length && (verbatimQuote.length + sentences[leadIdx + 1].length) <= 440) {
+      verbatimQuote += ' ' + sentences[leadIdx + 1];
     }
     verbatimQuote = verbatimQuote.replace(/^["“]+|["”]+$/g, '').trim();
 
+    // 2. Mindset Title derived directly from page heading or core concept
     const pageHeading = detectPageHeading(lines, medianFont);
-    const conceptPhrase = pageHeading || extractConceptPhrase(leadSentence, mentalState.focusLabel);
-    const opKeyword = extractConceptPhrase(leadSentence, mentalState.tag).split(' · ')[0].toUpperCase();
+    const conceptPhrase = pageHeading || extractConceptPhrase(exp1, mentalState.focusLabel);
+    const opKeyword = extractConceptPhrase(exp1, mentalState.tag).split(' · ')[0].toUpperCase();
     const mindsetTitle = `OPERATION ${opKeyword}: ${conceptPhrase.toUpperCase()}`;
 
-    const actionSentence = pickBest(['must', 'should', 'practice', 'apply', 'do', 'make', 'take', 'start', 'begin', 'avoid', 'build', 'train', 'act', 'choose', 'keep', 'focus', 'decide', 'create', 'learn'])
+    // 3. Daily Challenge: Simplified actionable step from this page
+    const actionRaw = pickBest(['must', 'should', 'practice', 'apply', 'do', 'make', 'take', 'start', 'begin', 'avoid', 'build', 'train', 'act', 'choose', 'keep', 'focus', 'decide', 'create', 'learn'])
       || sentences.find((s) => !used.has(s))
-      || leadSentence;
-    used.add(actionSentence);
-    const dailyChallenge = `${mentalState.actionCue}: “${actionSentence}” (${pdfLabel}, p.${pageNum})`;
+      || exp1;
+    used.add(actionRaw);
+    const dailyChallenge = `${mentalState.actionCue}: ${simplifyToCoreIdea(actionRaw, 140)} (${pdfLabel}, p.${pageNum})`;
 
+    // 4. Habits to Inculcate: 2-3 simplified, crisp habits directly from this page
     const habits = [];
     const habitBoost = ['habit', 'daily', 'always', 'never', 'every', 'routine', 'practice', 'consistently', 'discipline', 'repeat', 'keep', 'train', 'work', 'body', 'mind'];
     for (let i = 0; i < 3; i++) {
-      const h = pickBest(habitBoost);
-      if (h) {
-        used.add(h);
-        habits.push(`Apply consistently (p.${pageNum}): “${h}”`);
+      const hRaw = pickBest(habitBoost);
+      if (hRaw) {
+        used.add(hRaw);
+        const hClean = simplifyToHabit(hRaw, pageNum);
+        if (hClean && !habits.includes(hClean)) habits.push(hClean);
       }
     }
     if (!habits.length) {
-      habits.push(`Practice today’s core principle from ${pdfLabel} (p.${pageNum}): “${leadSentence}”`);
+      habits.push(simplifyToHabit(exp1, pageNum));
     }
 
-    const anchorPool = sentences.filter((s) => s.length >= 30 && s.length <= 185);
-    let anchorSentence = pickBest(['remember', 'truth', 'secret', 'key', 'strength', 'success', 'power', 'life', 'always', 'never'], true);
-    if (!anchorSentence) {
-      anchorSentence = anchorPool.sort((a, b) => scoreSentence(b, mentalState.keywords, ['truth', 'life', 'power', 'strength']) - scoreSentence(a, mentalState.keywords, ['truth', 'life', 'power', 'strength']))[0] || leadSentence;
-    } else {
-      used.add(anchorSentence);
-    }
+    // 5. One Sentence to Remember: Short, punchy simplified core sentence from this page
+    const anchorRaw = pickBest(['remember', 'truth', 'secret', 'key', 'strength', 'success', 'power', 'life', 'always', 'never'], true)
+      || sentences.find((s) => s.length >= 30 && s.length <= 150)
+      || exp1;
+    used.add(anchorRaw);
+    const oneSentence = simplifyToRemember(anchorRaw, pageNum);
 
-    const pdfQuestion = sentences.find((s) => /\?$/.test(s) && s.length >= 25 && s.length <= 220);
+    // 6. Reflection Prompt: Verbatim page question if present, else concise inquiry on the simplified core takeaway
+    const pdfQuestion = sentences.find((s) => /\?$/.test(s) && s.length >= 22 && s.length <= 190);
     const reflectionPrompt = pdfQuestion
-      ? `From ${pdfLabel} (p.${pageNum}): “${pdfQuestion}”`
-      : `${mentalState.reflectionCue} (Reference p.${pageNum}: “${anchorSentence}”)`;
+      ? `${cleanPdfSentence(pdfQuestion)} (${pdfLabel}, p.${pageNum})`
+      : `${mentalState.reflectionCue} (Key point p.${pageNum}: ${simplifyToCoreIdea(anchorRaw, 105)})`;
 
+    // 7. Mindmap: Short, scannable simplified points strictly derived from this page
     const remaining = sentences.filter((s) => !used.has(s));
-    const mapPoints = [...remaining, ...sentences.filter((s) => s !== leadSentence)].slice(0, 4);
-    const sub1Title = mapPoints[0] ? `${extractConceptPhrase(mapPoints[0], 'Core Principle')} (p.${pageNum})` : `Primary Insight (p.${pageNum})`;
-    const sub2Title = mapPoints[2] ? `${extractConceptPhrase(mapPoints[2], 'Applied Practice')} (p.${pageNum})` : `Practical Execution (p.${pageNum})`;
-    const b1Items = [mapPoints[0] || leadSentence, mapPoints[1] || actionSentence].filter(Boolean);
-    const b2Items = [mapPoints[2] || anchorSentence, mapPoints[3] || habits[0].replace(/^Apply consistently \(p\.\d+\):\s*/, '')].filter(Boolean);
+    const mapPool = [...remaining, exp1, actionRaw, anchorRaw, ...(exp2 ? [exp2] : [])];
+    const uniqueRawMap = [];
+    for (const m of mapPool) {
+      if (m && !uniqueRawMap.includes(m)) uniqueRawMap.push(m);
+      if (uniqueRawMap.length >= 4) break;
+    }
 
-    const explanationLead = `Mental State Lens (${mentalState.title} → ${mentalState.focusLabel}) applied strictly to ${pdfLabel}, page ${pageNum}.`;
-    const groundedSentence = `Grounded in ${pdfLabel} (page ${pageNum}): "${verbatimQuote}"`;
+    const sub1Title = uniqueRawMap[0] ? extractConceptPhrase(uniqueRawMap[0], 'Core Idea') : 'Core Idea';
+    const sub2Title = uniqueRawMap[2] ? extractConceptPhrase(uniqueRawMap[2], 'Daily Execution') : 'Daily Execution';
+    const b1Items = [uniqueRawMap[0], uniqueRawMap[1]].filter(Boolean).map((s) => simplifyToMindmapNode(s, pageNum));
+    const b2Items = [uniqueRawMap[2], uniqueRawMap[3]].filter(Boolean).map((s) => simplifyToMindmapNode(s, pageNum));
+
     const sourceLine = `${pdfLabel} (page ${pageNum} of ${totalPages} • Auto Ch.1: p.${chapter1Page})`;
 
     const mdLines = [
@@ -1249,7 +1383,7 @@
       '',
       ` * Mindset title: ${mindsetTitle}`,
       '',
-      ` * Explanation: ${explanationLead} ${groundedSentence}`,
+      ` * Explanation: ${simplifiedExplanation} Grounded in ${pdfLabel} (page ${pageNum}): "${verbatimQuote}"`,
       '',
       ` * Daily challenge: ${dailyChallenge}`,
       '',
@@ -1257,7 +1391,7 @@
       '',
       ...habits.map((h) => `   * ${h}`),
       '',
-      ` * One sentence to remember: ${anchorSentence} (${pdfLabel}, p.${pageNum})`,
+      ` * One sentence to remember: ${oneSentence}`,
       '',
       ` * Reflection prompt: ${reflectionPrompt}`,
       '',
@@ -1283,11 +1417,11 @@
       chapter1Source,
       mentalState,
       mindsetTitle,
-      explanationLead,
+      simplifiedExplanation,
       verbatimQuote,
       dailyChallenge,
       habits,
-      oneSentence: `${anchorSentence} (${pdfLabel}, p.${pageNum})`,
+      oneSentence,
       reflectionPrompt,
       mindmap: {
         root: `${mentalState.focusLabel}: ${conceptPhrase}`,
@@ -1316,7 +1450,7 @@
     const deployBtn = $('deployBtn');
     deployBtn.disabled = true;
     const origText = deployBtn.textContent;
-    deployBtn.textContent = 'Locating Chapter 1 & next unread page…';
+    deployBtn.textContent = 'Locating Chapter 1 & simplifying next page…';
     $('progress').hidden = false;
 
     const mentalState = MENTAL_STATES.find((s) => s.id === state.activeStateId) || MENTAL_STATES[0];
@@ -1414,7 +1548,7 @@
         renderBriefing(delivered);
         renderPdfList();
         updateMetrics();
-        setStatus(`Issued Mindset Directive ${delivered.directiveNum} from ${delivered.pdfName} (Page ${delivered.pageNum}/${delivered.totalPages} • Ch.1 p.${delivered.chapter1Page}).`, false);
+        setStatus(`Issued Mindset Directive ${delivered.directiveNum} simplified from ${delivered.pdfName} (Page ${delivered.pageNum}/${delivered.totalPages}).`, false);
       } else {
         renderLibraryExhausted();
         renderPdfList();
@@ -1641,7 +1775,7 @@
     const container = $('result');
     clearNode(container);
 
-    $('resultCount').textContent = `Page ${b.pageNum} of ${b.totalPages} • 100% PDF-Sourced`;
+    $('resultCount').textContent = `Page ${b.pageNum} of ${b.totalPages} • Simplified From PDF`;
     $('resultCount').className = 'tag ok';
     $('rawMd').textContent = b.markdown;
 
@@ -1656,8 +1790,8 @@
     ]));
 
     container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Explanation' }),
-      el('p', { class: 'field-body', text: b.explanationLead }),
+      el('h3', { class: 'field-label', text: 'Explanation (Simplified)' }),
+      el('p', { class: 'field-body', text: b.simplifiedExplanation }),
       el('span', { class: 'grounded-quote' }, [
         el('strong', { text: `Grounded in ${b.pdfName} (page ${b.pageNum}): ` }),
         `“${b.verbatimQuote}”`
@@ -1826,7 +1960,7 @@
   }
 
   /* =========================================================================
-   * 9. TAB 2: SWAMI VIVEKANANDA MENTOR (PDF-FIRST + SAVE PDF)
+   * 9. TAB 2: SWAMI VIVEKANANDA MENTOR (PDF-FIRST + SIMPLIFIED + SAVE PDF)
    * ========================================================================= */
   function getMatchingVivekanandaPdfs() {
     return pdfLibrary.filter((p) => /vivekananda|swami|karma.?yoga|raja.?yoga|jnana.?yoga|bhakti.?yoga|vedanta|complete.?works|colombo/i.test(p.path));
@@ -1865,7 +1999,7 @@
 
             const hitId = `pdf:${entry.id}:p${p}:i${i}`;
             if (recentSet.has(hitId)) sc -= 6;
-            const excerpt = (i + 1 < sents.length && (s.length + sents[i + 1].length) <= 460)
+            const excerpt = (i + 1 < sents.length && (s.length + sents[i + 1].length) <= 440)
               ? `${s} ${sents[i + 1]}`
               : s;
             hits.push({
@@ -1875,6 +2009,7 @@
               pageNum: p,
               totalPages: total,
               quote: excerpt,
+              simplified: simplifyToCoreIdea(excerpt, 155),
               score: sc
             });
           }
@@ -1960,12 +2095,13 @@
 
         pdfHits.forEach((h, idx) => {
           const concept = extractConceptPhrase(h.quote, 'Practical Mastery');
-          const mindAction = `Anchor your thinking today on this exact passage from ${h.pdfName} (p.${h.pageNum}) before key decisions.`;
-          const bodyAction = `Match mental clarity with physical vigor today—upright posture, calm breath, and scheduled training.`;
-          const abundAction = `Apply "${concept}" in one high-leverage task today with full effort and zero distraction.`;
+          const mindAction = `Anchor your mindset today on: ${h.simplified}`;
+          const bodyAction = `Pair this insight with calm breath, upright posture, and scheduled physical training today.`;
+          const abundAction = `Apply "${concept}" directly in one high-leverage work block with zero distraction.`;
 
           container.appendChild(el('div', { class: 'sv-card' }, [
             el('span', { class: 'extract-label', text: `PDF Extract #${idx + 1} • ${h.pdfName} (Page ${h.pageNum} of ${h.totalPages})` }),
+            el('p', { class: 'sv-explain', text: `Simplified Takeaway: ${h.simplified}` }),
             el('blockquote', { class: 'sv-quote', text: `“${h.quote}”` }),
             el('div', { class: 'source-bar' }, [
               el('strong', { text: 'PDF Source: ' }),
@@ -1982,7 +2118,7 @@
             ])
           ]));
 
-          mdBlocks.push(`## PDF Extract ${idx + 1} — ${h.pdfName} (p.${h.pageNum})`, `> "${h.quote}"`, `- **Mental:** ${mindAction}`, `- **Physical:** ${bodyAction}`, `- **Abundance:** ${abundAction}`, '');
+          mdBlocks.push(`## PDF Extract ${idx + 1} — ${h.pdfName} (p.${h.pageNum})`, `**Simplified:** ${h.simplified}`, `> "${h.quote}"`, `- **Mental:** ${mindAction}`, `- **Physical:** ${bodyAction}`, `- **Abundance:** ${abundAction}`, '');
         });
       }
 
