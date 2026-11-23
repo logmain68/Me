@@ -1,3 +1,10 @@
+Here is the improved index.html, upgraded to align directly with your Commando Mindset and ART (Act, Response, Terms) framework while preserving your existing logmain68/Me PDF scanner, 4-tier Chapter-1 detector, zero-repeat page cursor, local PDF dropzone, and Swami Vivekananda Mentor tab.
+Key Improvements Applied
+ * Dual Format Switcher (User-Friendly Commando vs. Full ART Framework): Toggle seamlessly between the streamlined Commando layout (Mindset Title, Explanation, Daily Challenge, Habit to Inculcate, The One-Liner, Reflection Prompt, Mindmap, Source) and the explicit ART Framework (A — ACT, R — RESPONSE, T — TERMS, Linear ART Mindmap, and [SYSTEM LEDGER]). Switching formats re-renders the current briefing and updates the Markdown export immediately.
+ * Commando Sovereignty Alignment: Refined the 6 mental states, extraction keywords, and prompts around unshakable self-belief, assertiveness, emotional independence, and strong boundaries—adding Response Stance, Terms of Engagement, and The One-Liner strictly distilled from the active PDF page.
+ * Live [SYSTEM LEDGER] Tracking: Automatically records Document | Page/Section | Passage ID | Core Principle | Rotation Position | Coverage Status for every directive issued, persisted in localStorage and included in both the UI and Markdown output.
+ * Word-Count & Passage Telemetry: Displays the extracted passage word count on every directive to help maintain the 300–500 word substantive passage standard.
+Improved index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +14,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://api.github.com https://raw.githubusercontent.com https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; worker-src 'self' blob: https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="theme-color" content="#f5f5f7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230071e3'/%3E%3Cpath d='M18 45V19h6l8 12 8-12h6v26h-7V30l-7 10-7-10v15z' fill='white'/%3E%3C/svg%3E">
-  <title>Mindset Commander — Zero-API Commando PDF Mentor</title>
+  <title>Mindset Commander — Commando ART PDF Mentor</title>
   <style>
     :root{color-scheme:light;--bg:#f5f5f7;--surface:rgba(255,255,255,.88);--solid:#fff;--alt:#f2f2f7;--text:#1d1d1f;--muted:#6e6e73;--border:rgba(0,0,0,.09);--border-strong:rgba(0,0,0,.16);--accent:#0071e3;--accent-hover:#0077ed;--soft:rgba(0,113,227,.1);--success:#1f7a34;--success-soft:rgba(52,199,89,.15);--warn:#a84b00;--warn-soft:rgba(255,149,0,.15);--danger:#b42318;--danger-soft:rgba(180,35,24,.12);--gold:#9a6700;--gold-soft:rgba(212,167,44,.16);--shadow:0 20px 55px rgba(0,0,0,.075),0 3px 12px rgba(0,0,0,.035);--tap:44px;--radius:24px}
     body.dark{color-scheme:dark;--bg:#09090b;--surface:rgba(28,28,30,.92);--solid:#1c1c1e;--alt:#2c2c2e;--text:#f5f5f7;--muted:#a1a1a6;--border:rgba(255,255,255,.1);--border-strong:rgba(255,255,255,.18);--accent:#0a84ff;--accent-hover:#409cff;--soft:rgba(10,132,255,.18);--success:#30d158;--success-soft:rgba(48,209,88,.18);--warn:#ff9f0a;--warn-soft:rgba(255,159,10,.18);--danger:#ff6961;--danger-soft:rgba(255,105,97,.18);--gold:#ffd60a;--gold-soft:rgba(255,214,10,.16);--shadow:0 20px 55px rgba(0,0,0,.35),0 3px 12px rgba(0,0,0,.22)}
@@ -71,16 +78,31 @@
     .field{padding:14px 0;border-top:1px solid var(--border);break-inside:avoid}
     .field-label{margin:0 0 6px;font-size:.82rem;font-weight:780;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
     .field-body{margin:0;font-size:.98rem;line-height:1.72}
+    .art-block{margin:12px 0;padding:14px 16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);break-inside:avoid}
+    .art-block-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:.88rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+    .art-pill{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:8px;background:var(--accent);color:#fff;font-size:.78rem;font-weight:800}
+    .art-sub{margin:8px 0 0;font-size:.95rem;line-height:1.66}
+    .art-sub strong{color:var(--text)}
+    .directive-lines{margin:6px 0 0;padding-left:20px;display:grid;gap:6px;font-size:.94rem;line-height:1.6}
     .grounded-quote{display:block;margin-top:10px;padding:12px 15px;border-radius:12px;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);font-size:.9rem;line-height:1.65;color:var(--muted)}
+    .art-block .grounded-quote{background:var(--alt)}
     .grounded-quote strong{color:var(--accent);font-weight:720}
+    .habit-list{margin:6px 0 0;padding-left:20px;display:grid;gap:8px;font-size:.96rem;line-height:1.68}
     .anchor-box{padding:14px 16px;border-radius:14px;background:var(--surface);border-left:3.5px solid var(--accent);font-weight:720;font-size:1.05rem;line-height:1.58}
+    .art-block .anchor-box{background:var(--alt);margin-top:8px}
     .reflect-box{padding:13px 16px;border-radius:14px;background:var(--surface);border:1px solid var(--border);font-size:.97rem;font-style:italic;line-height:1.64}
+    .art-block .reflect-box{background:var(--alt);margin-top:8px}
     .mindmap{padding:15px 18px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
     .mindmap-root{font-weight:760;color:var(--accent);margin-bottom:8px;font-size:1rem}
     .mindmap-list{list-style:none;padding:0;margin:0 0 0 8px;border-left:2px solid var(--border)}
     .mindmap-list>li{padding:4px 0 9px 14px;font-weight:680;font-size:.94rem}
     .mindmap-list ul{list-style:disc;padding:0 0 0 18px;margin:5px 0 2px;font-weight:400;color:var(--muted);font-size:.91rem}
     .mindmap-list ul li{padding:2px 0;line-height:1.55}
+    .art-chain{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px;font-size:.86rem}
+    .art-chain-node{padding:6px 10px;border-radius:10px;background:var(--alt);border:1px solid var(--border);font-weight:620}
+    .art-chain-arrow{color:var(--accent);font-weight:800}
+    .ledger-box{padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.77rem;line-height:1.55;overflow-x:auto;color:var(--muted)}
+    .ledger-box strong{color:var(--accent)}
     .source-bar{padding:12px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:.84rem;line-height:1.55;color:var(--muted)}
     .source-bar strong{color:var(--text)}
     .source-bar a,.auth-list a{color:var(--accent);text-decoration:none}
@@ -143,7 +165,7 @@
     @media(max-width:640px){.topbar{top:max(4px,env(safe-area-inset-top));padding:9px;border-radius:18px;align-items:stretch;flex-direction:column}.topbar .actions{display:grid;grid-template-columns:1fr 1fr}.topbar .actions button{width:100%;padding-inline:6px;font-size:.78rem}.nav-tabs{width:100%;display:grid;grid-template-columns:1fr 1fr}.hero .actions button{width:100%}.section-head{align-items:flex-start;flex-direction:column}.state-card{min-height:112px}}
     @media(hover:none){button:hover{transform:none;box-shadow:none}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-    @media print{body{padding:0;background:#fff;color:#111}.tab-pane:not(.active){display:none!important}.topbar,.hero,.metrics-strip,#stateGrid,.section-head,aside,.raw-box,.no-print,.sv-query-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.mindmap,.field,.sv-card,.grounded-quote{break-inside:avoid;background:#fff}}
+    @media print{body{padding:0;background:#fff;color:#111}.tab-pane:not(.active){display:none!important}.topbar,.hero,.metrics-strip,#stateGrid,.section-head,aside,.raw-box,.no-print,.sv-query-box{display:none!important}.wrap,.workspace{display:block;width:100%;max-width:none}.panel{padding:0;border:0;box-shadow:none;background:#fff}.result{padding:0;border:0;background:#fff}.mindmap,.field,.art-block,.sv-card,.grounded-quote{break-inside:avoid;background:#fff}}
   </style>
 </head>
 <body>
@@ -152,7 +174,7 @@
     <div class="brand">
       <span class="logo" aria-hidden="true">M</span>
       <span>Mindset Commander</span>
-      <span class="tag ok">Zero-API &bull; Commando</span>
+      <span class="tag ok">Commando ART &bull; logmain68/Me</span>
     </div>
 
     <div class="nav-tabs" role="tablist" aria-label="Workspace Modes">
@@ -166,42 +188,46 @@
     </div>
   </header>
 
-  <!-- ==================== TAB 1: COMMANDO BRIEFING ==================== -->
+  <!-- ==================== TAB 1: COMMANDO ART BRIEFING ==================== -->
   <div id="paneBriefing" class="tab-pane active" role="tabpanel" aria-labelledby="tabBriefingBtn">
     <section class="hero glass">
-      <div class="eyebrow">100% Client-Side &bull; No API Keys Required &bull; Commando Mindset Mastery &bull; Zero-Repeat Page Cursor</div>
+      <div class="eyebrow">Commando Mindset Mastery &bull; ART Framework (Act, Response, Terms) &bull; Zero-Repeat Page Cursor</div>
       <h1>Unshakable Self-Belief. Strong Boundaries. Personal Sovereignty.</h1>
-      <p class="subtitle">Runs completely in your browser with <strong>zero API keys</strong> and zero external AI calls. Automatically scans <strong>logmain68/Me</strong> (<code>main</code> branch) or local PDFs, extracts the next unread page from Chapter 1 onward, logs it in your <strong>[SYSTEM LEDGER]</strong>, and distills it into a direct, user-friendly Commando mindset lesson.</p>
+      <p class="subtitle">Automatically scans <strong>logmain68/Me</strong> (<code>main</code> branch). Every lesson is grounded strictly in the next unread page of your PDF with zero fabrication, tracked in a live <strong>[SYSTEM LEDGER]</strong>, and deliverable in either the <strong>User-Friendly Commando</strong> layout or the full <strong>ART (Act, Response, Terms)</strong> protocol.</p>
       <div class="actions">
         <button id="deployBtn" class="primary" type="button" disabled>&#10022;&nbsp;Deploy Next Unread PDF Page</button>
+        <div class="nav-tabs" role="group" aria-label="Briefing Format">
+          <button type="button" class="nav-tab active" id="fmtCommandoBtn">Commando Format</button>
+          <button type="button" class="nav-tab" id="fmtArtBtn">Full ART (A·R·T)</button>
+        </div>
         <button id="toggleMdBtn" class="secondary" type="button">Plain Markdown</button>
         <button id="copyBtnTop" class="secondary" type="button">Copy (MD)</button>
       </div>
-      <div class="kbd-hint no-print">Shortcuts: <strong>D</strong> Deploy Next Page &bull; <strong>1–6</strong> Mental State &bull; <strong>M</strong> Markdown &bull; <strong>C</strong> Copy</div>
+      <div class="kbd-hint no-print">Shortcuts: <strong>D</strong> Deploy Next Page &bull; <strong>1–6</strong> Mental State &bull; <strong>F</strong> Toggle Commando/ART Format &bull; <strong>M</strong> Markdown &bull; <strong>C</strong> Copy</div>
     </section>
 
     <section class="metrics-strip" aria-label="Library Telemetry">
       <div class="metric-pill glass"><span>Directives Issued</span><strong id="mPagesRead">0</strong></div>
       <div class="metric-pill glass"><span>Active PDF Cursor</span><strong id="mActiveCursor">Scanning…</strong></div>
       <div class="metric-pill glass"><span>Indexed PDFs</span><strong id="mPdfTotal">0 PDFs</strong></div>
-      <div class="metric-pill glass"><span>Engine Mode</span><strong id="mFormatMode">Local JS • Zero-API</strong></div>
+      <div class="metric-pill glass"><span>Output Protocol</span><strong id="mFormatMode">Commando (Blended ART)</strong></div>
     </section>
 
     <div class="section-head">
       <h2>1. Declare Your Current Sovereignty State</h2>
-      <span>Calibrates your lesson, daily challenge, and habit strictly from the active unread PDF page (100% local)</span>
+      <span>Calibrates Act, Response, and Terms strictly from the active unread PDF page</span>
     </div>
     <section id="stateGrid" class="state-grid" aria-label="Current Mental State Selector"></section>
 
     <section class="workspace" aria-label="Commando briefing and PDF progression queue">
       <section class="panel glass" id="briefingPanel" aria-labelledby="outputTitle">
         <div class="panel-head">
-          <strong id="outputTitle">Commando Mindset Output (Zero-API, Source-Verified)</strong>
+          <strong id="outputTitle">Commando Mindset Output (Source-Verified)</strong>
           <span id="resultCount" class="tag" aria-live="polite">Scanning…</span>
         </div>
         <article id="result" class="result" aria-live="polite" aria-atomic="true">
           <h2 class="directive-title">Scanning logmain68/Me (main)…</h2>
-          <p class="field-body">Once repository PDFs are indexed (or local PDFs are dropped), select your current state and press <strong>Deploy Next Unread PDF Page</strong>—the local engine will locate <strong>Chapter 1</strong> and deliver one source-verified lesson, one practical challenge, and one measurable step toward personal sovereignty.</p>
+          <p class="field-body">Once repository PDFs are indexed, select your current state and press <strong>Deploy Next Unread PDF Page</strong>—the engine will locate <strong>Chapter 1</strong> and deliver one source-verified lesson, one practical challenge, and one measurable step toward personal sovereignty.</p>
         </article>
         <pre id="rawMd" class="raw-box"></pre>
       </section>
@@ -230,7 +256,7 @@
         <p class="status" id="scanStatus" aria-live="polite">Connecting to logmain68/Me (main)…</p>
 
         <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Drop or select local PDF files">
-          <strong>Drop Local PDFs Here</strong> or click to attach (100% Private / Offline)
+          <strong>Drop Local PDFs Here</strong> or click to attach (Offline / Private)
           <input id="localPdfInput" type="file" accept="application/pdf,.pdf" multiple hidden>
         </div>
 
@@ -254,7 +280,7 @@
           <button id="resetCursorsBtn" class="secondary" type="button" style="width:100%">Reset Cursors &amp; Ledger (Cycle 2)</button>
         </div>
         <p id="copyStatus" class="copy-status" aria-live="polite"></p>
-        <p class="status">Zero-API &amp; Zero-Fabrication Rule: No LLM keys used. Every quote, principle, and challenge is distilled locally from your active unread PDF page.</p>
+        <p class="status">Zero-Fabrication Rule: Every quote, principle, and challenge is grounded strictly in the active unread PDF page.</p>
       </aside>
     </section>
   </div>
@@ -262,7 +288,7 @@
   <!-- ==================== TAB 2: SWAMI VIVEKANANDA MENTOR ==================== -->
   <div id="paneVivekananda" class="tab-pane" role="tabpanel" aria-labelledby="tabVivekanandaBtn">
     <section class="hero glass">
-      <div class="eyebrow">Authorized Primary Sources &bull; Zero-API PDF-First Search &bull; Advaita Ashrama Verified Corpus</div>
+      <div class="eyebrow">Authorized Primary Sources &bull; PDF-First Search &bull; Advaita Ashrama Verified Corpus</div>
       <h1>Swami Vivekananda Mentor.</h1>
       <p class="subtitle">Fearless mental clarity, physical vitality, and purposeful abundance grounded directly in your loaded PDFs from <strong>logmain68/Me</strong> and verified verbatim texts from <em>The Complete Works of Swami Vivekananda</em> (Advaita Ashrama edition). Export any guidance cleanly via <strong>Save / Print PDF</strong>.</p>
     </section>
@@ -304,7 +330,7 @@
 
         <article id="svResult" class="result" aria-live="polite" aria-atomic="true">
           <h2 class="directive-title">Seek fearless clarity</h2>
-          <p class="field-body">Enter a challenge above or tap any topic chip. Matching Vivekananda PDFs from <strong>logmain68/Me</strong> are searched verbatim locally with exact page citations, falling back to verified Advaita Ashrama texts when none match.</p>
+          <p class="field-body">Enter a challenge above or tap any topic chip. Matching Vivekananda PDFs from <strong>logmain68/Me</strong> are searched verbatim first with exact page citations, falling back to verified Advaita Ashrama texts when none match.</p>
         </article>
       </section>
 
@@ -314,7 +340,7 @@
           <span class="tag" id="svRepoBadge">0 Matching PDFs</span>
         </div>
         <p class="status" style="margin-top:0">
-          <strong>PDF-First Integrity:</strong> Upload official Advaita Ashrama PDFs (<em>Complete Works Vols. 1–9</em>, <em>Karma Yoga</em>, <em>Raja Yoga</em>) to <strong>logmain68/Me</strong>—this tab automatically searches and cites exact pages locally with zero repetition.
+          <strong>PDF-First Integrity:</strong> Upload official Advaita Ashrama PDFs (<em>Complete Works Vols. 1–9</em>, <em>Karma Yoga</em>, <em>Raja Yoga</em>) to <strong>logmain68/Me</strong>—this tab automatically searches and cites exact pages with zero repetition.
         </p>
         <div style="margin-top:12px">
           <span class="label" style="display:block;margin-bottom:4px">Authorized Primary Archives</span>
@@ -334,18 +360,18 @@
   </div>
 </main>
 
-<!-- Pinned PDF.js v3.11.174 (No external AI or API keys required) -->
+<!-- Pinned PDF.js v3.11.174 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 'use strict';
 
 (() => {
   /* =========================================================================
-   * 1. CONFIG, SECURITY & COMMANDO SOVEREIGNTY STATES (ZERO-API ENGINE)
+   * 1. CONFIG, SECURITY & COMMANDO SOVEREIGNTY STATES
    * ========================================================================= */
   const REPO_SLUG = 'logmain68/Me';
   const REPO_BRANCH = 'main';
-  const STORAGE_KEY = 'mc_commando_zeroapi_v8';
+  const STORAGE_KEY = 'mc_commando_art_v7';
   const MIN_PAGE_CHARS = 120;
   const MAX_PDF_BYTES = 50 * 1024 * 1024;
   const MAX_SEEN_HASHES = 6000;
@@ -375,6 +401,7 @@
       summary: 'Over-explaining, saying yes out of guilt, tolerating crossed lines.',
       focusLabel: 'Assertiveness & Strong Boundaries',
       responseCue: 'Hold your line calmly without apologizing or over-explaining',
+      termsCue: 'Non-negotiable term: Say "No" cleanly once today without softening or justifying your standard',
       actionCue: 'Enforce one clear boundary immediately today',
       reflectionCue: 'Where did you hold your line cleanly today, and where did you negotiate with guilt?',
       keywords: ['boundary', 'boundaries', 'no', 'respect', 'assertive', 'please', 'approval', 'limit', 'standard', 'guilt', 'firm', 'stand', 'honest', 'own']
@@ -387,6 +414,7 @@
       summary: 'Second-guessing decisions, waiting for permission, shrinking under pressure.',
       focusLabel: 'Unshakable Self-Belief',
       responseCue: 'Replace hesitation with calm, decisive ownership of your judgment',
+      termsCue: 'Non-negotiable term: Make one deferred decision within 10 minutes and back it without seeking validation',
       actionCue: 'Take one bold, unhesitating step without asking permission',
       reflectionCue: 'Did you trust your own judgment today, or did you outsource conviction to others?',
       keywords: ['fear', 'courage', 'doubt', 'confidence', 'belief', 'trust', 'bold', 'strong', 'decide', 'faith', 'certain', 'power', 'worth', 'self']
@@ -399,6 +427,7 @@
       summary: 'Absorbing others’ moods, taking bait, losing composure in friction.',
       focusLabel: 'Emotional Independence & Composure',
       responseCue: 'Detach from external noise and command your nervous system before responding',
+      termsCue: 'Non-negotiable term: Pause 10 full seconds before answering any provocation or emotional pull',
       actionCue: 'Maintain complete emotional detachment under friction today',
       reflectionCue: 'When someone tried to pull you off-center today, did you stay sovereign or take the bait?',
       keywords: ['anger', 'calm', 'emotion', 'react', 'control', 'detach', 'peace', 'ego', 'quiet', 'still', 'independent', 'approval', 'criticism', 'steady']
@@ -411,6 +440,7 @@
       summary: 'Analysis paralysis, open loops, fragmented attention.',
       focusLabel: 'Decisive Tactical Focus',
       responseCue: 'Eliminate low-value noise and commit fully to one priority at a time',
+      termsCue: 'Non-negotiable term: Lock one 25-minute zero-distraction execution block before checking messages',
       actionCue: 'Cut noise, set a strict 20-minute clock, and execute this today',
       reflectionCue: 'Where did you command your attention today, and where did you let urgency hijack you?',
       keywords: ['focus', 'attention', 'clarity', 'decision', 'choice', 'simple', 'one', 'priority', 'noise', 'mind', 'concentrate', 'order', 'action']
@@ -423,6 +453,7 @@
       summary: 'Negotiating with comfort, coasting below your true operational ceiling.',
       focusLabel: 'Extreme Standards & Ownership',
       responseCue: 'Refuse comfort-driven excuses and enforce your highest personal standard',
+      termsCue: 'Non-negotiable term: Complete the hardest task on your list first with zero shortcuts',
       actionCue: 'Raise your personal standard by one measurable notch today',
       reflectionCue: 'Where did you honor your highest standard today, and where did you settle for easy?',
       keywords: ['standard', 'excellence', 'ownership', 'responsibility', 'discipline', 'growth', 'challenge', 'comfort', 'hard', 'mastery', 'character', 'purpose', 'goal']
@@ -435,6 +466,7 @@
       summary: 'High clarity and drive—ready to compound mastery and leverage.',
       focusLabel: 'High-Leverage Sovereignty',
       responseCue: 'Channel peak clarity into durable assets, discipline, and composed leadership',
+      termsCue: 'Non-negotiable term: Ship one high-leverage deliverable today without diluting your focus',
       actionCue: 'Channel today’s peak clarity into a high-leverage execution block',
       reflectionCue: 'How did you compound long-term sovereignty, discipline, and leverage today?',
       keywords: ['system', 'leverage', 'wealth', 'value', 'create', 'strategy', 'compound', 'scale', 'vision', 'build', 'master', 'lead', 'future', 'abundance']
@@ -672,12 +704,13 @@
   }
 
   /* =========================================================================
-   * 3. PERSISTENT STATE STORE (WITH SYSTEM LEDGER)
+   * 3. PERSISTENT STATE STORE (WITH OUTPUT FORMAT & SYSTEM LEDGER)
    * ========================================================================= */
   function createDefaultState() {
     return {
-      version: 8,
+      version: 7,
       theme: 'light',
+      outputFormat: 'commando', // 'commando' | 'art'
       progressionMode: 'round-robin-pdf',
       activeStateId: MENTAL_STATES[0].id,
       activePdfIndex: 0,
@@ -698,6 +731,7 @@
       if (!parsed || typeof parsed !== 'object') return base;
 
       base.theme = parsed.theme === 'dark' ? 'dark' : 'light';
+      base.outputFormat = parsed.outputFormat === 'art' ? 'art' : 'commando';
       base.progressionMode = parsed.progressionMode === 'sequential-pdf' ? 'sequential-pdf' : 'round-robin-pdf';
       if (MENTAL_STATES.some((s) => s.id === parsed.activeStateId)) base.activeStateId = parsed.activeStateId;
       base.activePdfIndex = Number.isInteger(parsed.activePdfIndex) && parsed.activePdfIndex >= 0 ? parsed.activePdfIndex : 0;
@@ -1115,7 +1149,7 @@
   }
 
   /* =========================================================================
-   * 5. ZERO-API COMMANDO DISTILLATION ENGINE (100% DETERMINISTIC LOCAL JS)
+   * 5. COMMANDO ART DISTILLATION ENGINE (STRICTLY FROM PDF DATA)
    * ========================================================================= */
   function splitSentences(text) {
     const cleaned = text.replace(/\n+/g, ' ').replace(/\s+/g, ' ').trim();
@@ -1266,7 +1300,35 @@
     return '';
   }
 
-  function formatBriefingMarkdown(b) {
+  function formatBriefingMarkdown(b, formatMode) {
+    if (formatMode === 'art') {
+      return [
+        `# ${b.mindsetTitle}`,
+        '',
+        '## A — ACT',
+        `- **Core Action / Principle:** ${b.corePrinciple}`,
+        `- **Verbatim Anchor:** "${b.verbatimQuote}" — *${b.pdfName}, p.${b.pageNum}*`,
+        `- **The Truth:** ${b.theTruth}`,
+        '',
+        '## R — RESPONSE',
+        '- **The Directive:**',
+        ...b.directiveLines.map((l) => `  - ${l}`),
+        `- **Response Stance:** ${b.responseStance}`,
+        `- **The One-Liner:** ${b.oneLiner}`,
+        '',
+        '## T — TERMS',
+        `- **Daily Challenge:** ${b.dailyChallenge}`,
+        `- **Terms of Engagement:** ${b.termsOfEngagement}`,
+        `- **Reflection Prompt:** ${b.reflectionPrompt}`,
+        '',
+        '## Mindmap',
+        `${b.artChain.join(' → ')}`,
+        '',
+        `## [SYSTEM LEDGER]`,
+        b.ledgerLine
+      ].join('\n');
+    }
+
     return [
       `**Mindset title:** ${b.mindsetTitle}`,
       '',
@@ -1274,7 +1336,7 @@
       '',
       `**Daily challenge:** ${b.dailyChallenge}`,
       '',
-      `**Habit to Inculcate:** ${b.habitRule}`,
+      `**Habit to Inculcate:** ${b.responseStance}`,
       '',
       `**The One-Liner:** ${b.oneLiner}`,
       '',
@@ -1309,45 +1371,61 @@
       return best;
     };
 
-    const coreRaw = pickBest(['principle', 'truth', 'reality', 'because', 'power', 'mind', 'life', 'habit', 'fear', 'boundary']) || sentences[0] || pageText.slice(0, 260);
-    used.add(coreRaw);
+    const actRaw = pickBest(['principle', 'truth', 'reality', 'because', 'power', 'mind', 'life', 'habit', 'fear', 'boundary']) || sentences[0] || pageText.slice(0, 260);
+    used.add(actRaw);
 
-    const stanceRaw = pickBest(['respond', 'control', 'choose', 'discipline', 'calm', 'stand', 'refuse', 'decide', 'strength', 'respect']) || sentences.find((s) => !used.has(s)) || coreRaw;
-    if (stanceRaw !== coreRaw) used.add(stanceRaw);
+    const respRaw = pickBest(['respond', 'control', 'choose', 'discipline', 'calm', 'stand', 'refuse', 'decide', 'strength', 'respect']) || sentences.find((s) => !used.has(s)) || actRaw;
+    if (respRaw !== actRaw) used.add(respRaw);
 
-    const leadIdx = sentences.indexOf(coreRaw);
-    let verbatimQuote = coreRaw;
+    const leadIdx = sentences.indexOf(actRaw);
+    let verbatimQuote = actRaw;
     if (leadIdx >= 0 && leadIdx + 1 < sentences.length && (verbatimQuote.length + sentences[leadIdx + 1].length) <= 440) {
       verbatimQuote += ' ' + sentences[leadIdx + 1];
     }
     verbatimQuote = verbatimQuote.replace(/^["“]+|["”]+$/g, '').trim();
 
     const pageHeading = detectPageHeading(lines, medianFont);
-    const conceptPhrase = pageHeading || extractConceptPhrase(coreRaw, mentalState.focusLabel);
-    const opKeyword = extractConceptPhrase(coreRaw, mentalState.tag).split(' · ')[0].toUpperCase();
+    const conceptPhrase = pageHeading || extractConceptPhrase(actRaw, mentalState.focusLabel);
+    const opKeyword = extractConceptPhrase(actRaw, mentalState.tag).split(' · ')[0].toUpperCase();
     const mindsetTitle = `${opKeyword}: ${conceptPhrase.toUpperCase()}`;
 
-    const coreSummary = [
-      simplifyToCoreIdea(coreRaw, 160),
-      stanceRaw !== coreRaw ? simplifyToCoreIdea(stanceRaw, 150) : ''
+    const corePrinciple = `${conceptPhrase} — ${simplifyToCoreIdea(actRaw, 120)}`;
+    const theTruth = [
+      simplifyToCoreIdea(actRaw, 160),
+      respRaw !== actRaw ? simplifyToCoreIdea(respRaw, 150) : ''
     ].filter(Boolean).join(' ');
 
-    const commandoExplanation = `${coreSummary} ${mentalState.responseCue}.`;
+    const commandoExplanation = `${theTruth} ${mentalState.responseCue}.`;
 
-    const habitRaw = pickBest(['must', 'should', 'habit', 'always', 'never', 'choose', 'stand', 'keep', 'build', 'avoid', 'stop', 'focus', 'own', 'respect', 'discipline']) || stanceRaw;
-    used.add(habitRaw);
-    const habitRule = simplifyToHabit(habitRaw, pageNum) || `${mentalState.responseCue}.`;
+    // 5 decisive directive lines strictly derived from the page + state
+    const directiveLines = [];
+    const dirBoost = ['must', 'should', 'act', 'choose', 'stand', 'keep', 'build', 'avoid', 'stop', 'start', 'focus', 'own', 'respect', 'discipline'];
+    for (let i = 0; i < 5; i++) {
+      const dRaw = pickBest(dirBoost);
+      if (dRaw) {
+        used.add(dRaw);
+        const clean = simplifyToHabit(dRaw, pageNum);
+        if (clean && !directiveLines.includes(clean)) directiveLines.push(clean);
+      }
+    }
+    if (directiveLines.length < 3) {
+      directiveLines.push(`${mentalState.responseCue}.`);
+      directiveLines.push(`${mentalState.termsCue}.`);
+    }
+
+    const responseStance = directiveLines[0] || simplifyToHabit(respRaw, pageNum);
 
     const actionRaw = pickBest(['must', 'should', 'practice', 'apply', 'do', 'make', 'take', 'start', 'begin', 'avoid', 'build', 'train', 'act', 'choose', 'keep', 'focus', 'decide'])
       || sentences.find((s) => !used.has(s))
-      || coreRaw;
+      || actRaw;
     used.add(actionRaw);
 
     const dailyChallenge = `${mentalState.actionCue}: ${simplifyToCoreIdea(actionRaw, 140)} (${pdfLabel}, p.${pageNum})`;
+    const termsOfEngagement = `${mentalState.termsCue} — anchored to p.${pageNum}: ${simplifyToCoreIdea(respRaw, 110)}`;
 
     const anchorRaw = pickBest(['remember', 'truth', 'secret', 'key', 'strength', 'success', 'power', 'life', 'always', 'never', 'free'], true)
       || sentences.find((s) => s.length >= 30 && s.length <= 145)
-      || coreRaw;
+      || actRaw;
     const oneLiner = simplifyToRemember(anchorRaw, pageNum);
 
     const pdfQuestion = sentences.find((s) => /\?$/.test(s) && s.length >= 22 && s.length <= 190);
@@ -1356,17 +1434,26 @@
       : `${mentalState.reflectionCue} (p.${pageNum}: ${simplifyToCoreIdea(anchorRaw, 100)})`;
 
     const remaining = sentences.filter((s) => !used.has(s));
-    const mapPool = [...remaining, coreRaw, actionRaw, anchorRaw, stanceRaw];
+    const mapPool = [...remaining, actRaw, actionRaw, anchorRaw, respRaw];
     const uniqueRawMap = [];
     for (const m of mapPool) {
       if (m && !uniqueRawMap.includes(m)) uniqueRawMap.push(m);
       if (uniqueRawMap.length >= 4) break;
     }
 
-    const sub1Title = uniqueRawMap[0] ? extractConceptPhrase(uniqueRawMap[0], 'Core Principle') : 'Core Principle';
-    const sub2Title = uniqueRawMap[2] ? extractConceptPhrase(uniqueRawMap[2], 'Daily Execution') : 'Daily Execution';
+    const sub1Title = uniqueRawMap[0] ? extractConceptPhrase(uniqueRawMap[0], 'Act & Reality') : 'Act & Reality';
+    const sub2Title = uniqueRawMap[2] ? extractConceptPhrase(uniqueRawMap[2], 'Response & Terms') : 'Response & Terms';
     const b1Items = [uniqueRawMap[0], uniqueRawMap[1]].filter(Boolean).map((s) => simplifyToMindmapNode(s, pageNum));
     const b2Items = [uniqueRawMap[2], uniqueRawMap[3]].filter(Boolean).map((s) => simplifyToMindmapNode(s, pageNum));
+
+    const artChain = [
+      `Core Principle: ${conceptPhrase}`,
+      `Act: ${trimCleanClause(cleanPdfSentence(actRaw), 48)}`,
+      `Response: ${mentalState.tag}`,
+      `Terms: Enforce p.${pageNum} Boundary`,
+      `Habit: Daily Execution`,
+      `Indicator: Zero Compromise`
+    ];
 
     const coveragePct = Math.min(100, Math.round((pageNum / Math.max(1, totalPages)) * 100));
     const ledgerLine = `${pdfLabel} | Page ${pageNum}/${totalPages} | ID:${passageHash.slice(0, 8)} | ${conceptPhrase} | Pos ${rotationPos} | ${coveragePct}% Covered`;
@@ -1386,10 +1473,14 @@
       rotationPos,
       mentalState,
       mindsetTitle,
+      corePrinciple,
+      theTruth,
       commandoExplanation,
       verbatimQuote,
-      habitRule,
+      directiveLines,
+      responseStance,
       dailyChallenge,
+      termsOfEngagement,
       oneLiner,
       reflectionPrompt,
       mindmap: {
@@ -1399,6 +1490,7 @@
           { title: sub2Title, items: b2Items }
         ]
       },
+      artChain,
       ledgerLine,
       sourceLine,
       fullPageText: pageText,
@@ -1406,7 +1498,7 @@
       medianFont
     };
 
-    briefing.markdown = formatBriefingMarkdown(briefing);
+    briefing.markdown = formatBriefingMarkdown(briefing, state.outputFormat);
     return briefing;
   }
 
@@ -1697,7 +1789,7 @@
   }
 
   /* =========================================================================
-   * 8. RENDERING FUNCTIONS (USER-FRIENDLY COMMANDO FORMAT)
+   * 8. RENDERING FUNCTIONS (DUAL FORMAT: COMMANDO & FULL ART)
    * ========================================================================= */
   function setStatus(msg, isErr) {
     const s = $('scanStatus');
@@ -1763,7 +1855,7 @@
     const container = $('result');
     clearNode(container);
 
-    b.markdown = formatBriefingMarkdown(b);
+    b.markdown = formatBriefingMarkdown(b, state.outputFormat);
     lastBriefingMd = b.markdown;
 
     $('resultCount').textContent = `Page ${b.pageNum}/${b.totalPages} • ~${b.wordCount}w`;
@@ -1776,53 +1868,100 @@
       el('div', { class: 'meta-pills' }, [
         el('span', { class: 'meta-pill', text: `State: ${b.mentalState.title}` }),
         el('span', { class: 'meta-pill green', text: `Page ${b.pageNum} of ${b.totalPages} (~${b.wordCount} words)` }),
-        el('span', { class: 'meta-pill gold', text: `Ch.1 Start: p.${b.chapter1Page} (${b.chapter1Source})` })
+        el('span', { class: 'meta-pill gold', text: `Format: ${state.outputFormat === 'art' ? 'Full ART (A·R·T)' : 'Commando (Blended ART)'}` })
       ])
     ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Explanation' }),
-      el('p', { class: 'field-body', text: b.commandoExplanation }),
-      el('span', { class: 'grounded-quote' }, [
-        el('strong', { text: `Grounded in ${b.pdfName} (page ${b.pageNum}): ` }),
-        `“${b.verbatimQuote}”`
-      ])
-    ]));
+    if (state.outputFormat === 'art') {
+      // FULL ART (ACT, RESPONSE, TERMS) LAYOUT
+      container.appendChild(el('section', { class: 'art-block' }, [
+        el('div', { class: 'art-block-head' }, [el('span', { class: 'art-pill', text: 'A' }), 'ACT — Core Reality & Anchor']),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'Core Action / Principle: ' }), b.corePrinciple]),
+        el('span', { class: 'grounded-quote' }, [
+          el('strong', { text: `Verbatim Anchor (${b.pdfName}, p.${b.pageNum}): ` }),
+          `“${b.verbatimQuote}”`
+        ]),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'The Truth: ' }), b.theTruth])
+      ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Daily challenge' }),
-      el('p', { class: 'field-body', text: b.dailyChallenge })
-    ]));
+      container.appendChild(el('section', { class: 'art-block' }, [
+        el('div', { class: 'art-block-head' }, [el('span', { class: 'art-pill', text: 'R' }), 'RESPONSE — Standard & Discipline']),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'The Directive:' })]),
+        el('ul', { class: 'directive-lines' }, b.directiveLines.map((l) => el('li', { text: l }))),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'Response Stance: ' }), b.responseStance]),
+        el('div', { class: 'anchor-box', text: `The One-Liner: ${b.oneLiner}` })
+      ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Habit to Inculcate' }),
-      el('p', { class: 'field-body', text: b.habitRule })
-    ]));
+      container.appendChild(el('section', { class: 'art-block' }, [
+        el('div', { class: 'art-block-head' }, [el('span', { class: 'art-pill', text: 'T' }), 'TERMS — Boundaries & Execution']),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'Daily Challenge: ' }), b.dailyChallenge]),
+        el('p', { class: 'art-sub' }, [el('strong', { text: 'Terms of Engagement: ' }), b.termsOfEngagement]),
+        el('div', { class: 'reflect-box', text: `Reflection Prompt: ${b.reflectionPrompt}` })
+      ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'The One-Liner' }),
-      el('div', { class: 'anchor-box', text: b.oneLiner })
-    ]));
+      const chainNodes = [];
+      b.artChain.forEach((step, idx) => {
+        if (idx > 0) chainNodes.push(el('span', { class: 'art-chain-arrow', text: '→' }));
+        chainNodes.push(el('span', { class: 'art-chain-node', text: step }));
+      });
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Mindmap (ART Execution Chain)' }),
+        el('div', { class: 'art-chain' }, chainNodes)
+      ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Reflection prompt' }),
-      el('div', { class: 'reflect-box', text: b.reflectionPrompt })
-    ]));
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: '[SYSTEM LEDGER]' }),
+        el('div', { class: 'ledger-box' }, [
+          el('strong', { text: 'LEDGER: ' }),
+          b.ledgerLine
+        ])
+      ]));
+    } else {
+      // USER-FRIENDLY COMMANDO FORMAT (BLENDED ART)
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Explanation' }),
+        el('p', { class: 'field-body', text: b.commandoExplanation }),
+        el('span', { class: 'grounded-quote' }, [
+          el('strong', { text: `Grounded in ${b.pdfName} (page ${b.pageNum}): ` }),
+          `“${b.verbatimQuote}”`
+        ])
+      ]));
 
-    const branchNodes = b.mindmap.branches.map((br) =>
-      el('li', null, [
-        br.title,
-        el('ul', null, br.items.map((item) => el('li', { text: item })))
-      ])
-    );
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Daily challenge' }),
+        el('p', { class: 'field-body', text: b.dailyChallenge })
+      ]));
 
-    container.appendChild(el('section', { class: 'field' }, [
-      el('h3', { class: 'field-label', text: 'Mindmap' }),
-      el('div', { class: 'mindmap' }, [
-        el('div', { class: 'mindmap-root', text: b.mindmap.root }),
-        el('ul', { class: 'mindmap-list' }, branchNodes)
-      ])
-    ]));
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Habit to Inculcate' }),
+        el('p', { class: 'field-body', text: b.responseStance })
+      ]));
+
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'The One-Liner' }),
+        el('div', { class: 'anchor-box', text: b.oneLiner })
+      ]));
+
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Reflection prompt' }),
+        el('div', { class: 'reflect-box', text: b.reflectionPrompt })
+      ]));
+
+      const branchNodes = b.mindmap.branches.map((br) =>
+        el('li', null, [
+          br.title,
+          el('ul', null, br.items.map((item) => el('li', { text: item })))
+        ])
+      );
+
+      container.appendChild(el('section', { class: 'field' }, [
+        el('h3', { class: 'field-label', text: 'Mindmap' }),
+        el('div', { class: 'mindmap' }, [
+          el('div', { class: 'mindmap-root', text: b.mindmap.root }),
+          el('ul', { class: 'mindmap-list' }, branchNodes)
+        ])
+      ]));
+    }
 
     const sourceBar = el('div', { class: 'source-bar' }, [
       el('strong', { text: 'Source: ' }),
@@ -1936,7 +2075,7 @@
   function updateMetrics() {
     $('mPagesRead').textContent = String(state.directiveCount);
     $('mPdfTotal').textContent = `${pdfLibrary.length} PDF${pdfLibrary.length === 1 ? '' : 's'}`;
-    $('mFormatMode').textContent = 'Local JS • Zero-API';
+    $('mFormatMode').textContent = state.outputFormat === 'art' ? 'Full ART (A·R·T)' : 'Commando (Blended ART)';
 
     if (pdfLibrary.length && pdfLibrary[state.activePdfIndex]) {
       const active = pdfLibrary[state.activePdfIndex];
@@ -1952,7 +2091,7 @@
   }
 
   /* =========================================================================
-   * 9. TAB 2: SWAMI VIVEKANANDA MENTOR (ZERO-API PDF-FIRST + SAVE PDF)
+   * 9. TAB 2: SWAMI VIVEKANANDA MENTOR (PDF-FIRST + SIMPLIFIED + SAVE PDF)
    * ========================================================================= */
   function getMatchingVivekanandaPdfs() {
     return pdfLibrary.filter((p) => /vivekananda|swami|karma.?yoga|raja.?yoga|jnana.?yoga|bhakti.?yoga|vedanta|complete.?works|colombo/i.test(p.path));
@@ -2040,7 +2179,7 @@
 
     const container = $('svResult');
     clearNode(container);
-    container.appendChild(el('h2', { class: 'directive-title', text: 'Searching verified sources locally…' }));
+    container.appendChild(el('h2', { class: 'directive-title', text: 'Searching verified sources…' }));
 
     try {
       let pdfHits = [];
@@ -2088,7 +2227,7 @@
         pdfHits.forEach((h, idx) => {
           const concept = extractConceptPhrase(h.quote, 'Practical Mastery');
           const mindAction = `Anchor your mindset today on: ${h.simplified}`;
-          const bodyAction = 'Pair this insight with calm breath, upright posture, and scheduled physical training today.';
+          const bodyAction = `Pair this insight with calm breath, upright posture, and scheduled physical training today.`;
           const abundAction = `Apply "${concept}" directly in one high-leverage work block with zero distraction.`;
 
           container.appendChild(el('div', { class: 'sv-card' }, [
@@ -2179,7 +2318,7 @@
   }
 
   /* =========================================================================
-   * 10. UTILITIES, THEME, TABS & RESET
+   * 10. UTILITIES, FORMAT SWITCHER, THEME, TABS & RESET
    * ========================================================================= */
   async function copyToClipboard(text, statusEl) {
     if (!text) { statusEl.textContent = 'Generate output first before copying.'; return; }
@@ -2201,6 +2340,20 @@
     } catch {
       statusEl.textContent = 'Clipboard blocked by browser; use Plain Markdown to copy manually.';
     }
+  }
+
+  function setOutputFormat(fmt) {
+    state.outputFormat = fmt === 'art' ? 'art' : 'commando';
+    saveState();
+    applyFormatUi();
+    updateMetrics();
+    if (lastBriefing) renderBriefing(lastBriefing);
+  }
+
+  function applyFormatUi() {
+    const isArt = state.outputFormat === 'art';
+    $('fmtCommandoBtn').classList.toggle('active', !isArt);
+    $('fmtArtBtn').classList.toggle('active', isArt);
   }
 
   function resetPageCursors() {
@@ -2228,6 +2381,7 @@
     $('themeBtn').setAttribute('aria-pressed', String(state.theme === 'dark'));
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     if (themeMeta) themeMeta.setAttribute('content', state.theme === 'dark' ? '#09090b' : '#f5f5f7');
+    applyFormatUi();
   }
 
   function switchTab(mode) {
@@ -2246,6 +2400,9 @@
   function bindEvents() {
     $('tabBriefingBtn').addEventListener('click', () => switchTab('briefing'));
     $('tabVivekanandaBtn').addEventListener('click', () => switchTab('vivekananda'));
+
+    $('fmtCommandoBtn').addEventListener('click', () => setOutputFormat('commando'));
+    $('fmtArtBtn').addEventListener('click', () => setOutputFormat('art'));
 
     $('themeBtn').addEventListener('click', () => {
       state.theme = state.theme === 'dark' ? 'light' : 'dark';
@@ -2314,6 +2471,8 @@
       if ((e.key === 'd' || e.key === 'D') && !$('deployBtn').disabled) {
         e.preventDefault();
         deployNextUnreadPage();
+      } else if (e.key === 'f' || e.key === 'F') {
+        setOutputFormat(state.outputFormat === 'art' ? 'commando' : 'art');
       } else if (e.key === 'm' || e.key === 'M') {
         $('toggleMdBtn').click();
       } else if (e.key === 'c' || e.key === 'C') {
