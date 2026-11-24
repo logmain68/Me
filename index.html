@@ -1,0 +1,2140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Mindset Commander" />
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+  <title>Mindset Commander — PDF-Driven Tactical System</title>
+
+  <!-- Primary PDF.js (with automatic jsDelivr fallback in script) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --surface-secondary: #f2f2f7;
+      --glass: rgba(255, 255, 255, 0.8);
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.14);
+      --text-primary: #1d1d1f;
+      --text-secondary: #6e6e73;
+      --text-tertiary: #86868b;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-soft: rgba(0, 113, 227, 0.1);
+      --green: #248a3d;
+      --green-soft: rgba(52, 199, 89, 0.14);
+      --orange: #c96408;
+      --orange-soft: rgba(255, 149, 0, 0.14);
+      --red: #d70015;
+      --red-soft: rgba(215, 0, 21, 0.12);
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.03);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.06);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --font-mono: "SF Mono", SFMono-Regular, ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #000000;
+      --surface: #1c1c1e;
+      --surface-secondary: #2c2c2e;
+      --glass: rgba(28, 28, 30, 0.8);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text-primary: #f5f5f7;
+      --text-secondary: #a1a1a6;
+      --text-tertiary: #8e8e93;
+      --accent: #0a84ff;
+      --accent-hover: #409cff;
+      --accent-soft: rgba(10, 132, 255, 0.18);
+      --green: #30d158;
+      --green-soft: rgba(48, 209, 88, 0.16);
+      --orange: #ff9f0a;
+      --orange-soft: rgba(255, 159, 10, 0.18);
+      --red: #ff453a;
+      --red-soft: rgba(255, 69, 58, 0.18);
+      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overflow-x: clip;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      min-height: 100dvh;
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Sticky Frosted Nav */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      padding-top: env(safe-area-inset-top, 0px);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px max(24px, env(safe-area-inset-right, 0px)) 12px max(24px, env(safe-area-inset-left, 0px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill-status {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--surface-secondary);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-variant-numeric: tabular-nums;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot-live {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .dot-live.syncing {
+      background: var(--orange);
+      animation: pulse 1.1s infinite ease-in-out;
+    }
+
+    .dot-live.error {
+      background: var(--red);
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    /* Main Container */
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px max(24px, env(safe-area-inset-right, 0px)) calc(72px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner { padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
+      .page { padding: 22px max(16px, env(safe-area-inset-right, 0px)) calc(64px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1.04rem;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+      margin-bottom: 22px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      appearance: none;
+      border: none;
+      cursor: pointer;
+      touch-action: manipulation;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 999px;
+      padding: 12px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, opacity 0.2s ease;
+      text-decoration: none;
+      min-height: 44px;
+    }
+
+    .btn:active { transform: scale(0.965); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 113, 227, 0.28);
+    }
+
+    .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-secondary:hover:not(:disabled) { background: var(--surface-secondary); }
+
+    .btn-sm {
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      min-height: 34px;
+    }
+
+    /* Section Header */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* 6-Theme Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 860px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .bento-grid { grid-template-columns: 1fr; } }
+
+    .theme-card {
+      touch-action: manipulation;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (hover: hover) {
+      .theme-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--border-strong);
+      }
+    }
+
+    .theme-card:active { transform: scale(0.98); }
+
+    .theme-card.is-next {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), var(--shadow-sm);
+    }
+
+    .theme-card.is-active {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--accent-soft) 100%);
+      border-color: var(--accent);
+    }
+
+    .theme-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .theme-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--surface-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+
+    .theme-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--surface-secondary);
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .theme-card.is-next .theme-badge {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .theme-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+    }
+
+    .theme-sub {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* Workspace Split */
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .workspace > * { min-width: 0; }
+
+    @media (max-width: 940px) { .workspace { grid-template-columns: 1fr; } }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .segmented {
+      display: inline-flex;
+      background: var(--surface-secondary);
+      padding: 3px;
+      border-radius: 999px;
+    }
+
+    .seg-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .seg-btn.active {
+      background: var(--surface);
+      color: var(--text-primary);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .rotation-strip {
+      padding: 12px 24px;
+      background: var(--accent-soft);
+      color: var(--text-primary);
+      font-size: 0.83rem;
+      display: none;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .briefing-body {
+      padding: 28px 30px;
+    }
+
+    @media (max-width: 600px) { .briefing-body { padding: 20px 18px; } }
+
+    .directive-title {
+      font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+
+    .operation-subtitle {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .directive-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .d-block {
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      break-inside: avoid;
+    }
+
+    .d-block:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .d-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+
+    .d-content {
+      font-size: 0.98rem;
+      color: var(--text-primary);
+    }
+
+    .anchor-quote {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      color: var(--text-primary);
+      padding: 14px 18px;
+      background: var(--surface-secondary);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+    }
+
+    .pdf-intel-card {
+      margin-top: 10px;
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+    }
+
+    .pdf-intel-card:first-of-type { margin-top: 0; }
+
+    .pdf-intel-meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pdf-intel-quote {
+      font-size: 0.94rem;
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    /* Checkable PDF Action Directives */
+    .action-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .action-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .action-item:hover { border-color: var(--border-strong); }
+
+    .action-item.checked {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
+
+    .action-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--green);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .action-item.checked .action-text {
+      text-decoration: line-through;
+      color: var(--text-secondary);
+    }
+
+    .action-source-tag {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-tertiary);
+    }
+
+    /* Extracted Concept Map */
+    .mindmap-box ul {
+      list-style: none;
+      padding-left: 18px;
+      margin-top: 6px;
+      border-left: 1.5px solid var(--border-strong);
+    }
+
+    .mindmap-box > ul {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    .mindmap-box li {
+      margin: 5px 0;
+      font-size: 0.92rem;
+    }
+
+    .mindmap-root-label {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .concept-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .concept-pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+
+    .raw-md {
+      display: none;
+      padding: 22px;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      background: var(--surface-secondary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+
+    .empty-briefing {
+      text-align: center;
+      padding: 52px 24px;
+      color: var(--text-secondary);
+    }
+
+    .empty-briefing h3 {
+      font-size: 1.18rem;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.015em;
+    }
+
+    .empty-briefing p {
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 0.92rem;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      padding: 20px;
+    }
+
+    .sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sidebar-desc {
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    .repo-pill-box {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--surface-secondary);
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .field-group { margin-bottom: 12px; }
+
+    .field-group label {
+      display: block;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface-secondary);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 5px;
+      border-radius: 999px;
+      background: var(--surface-secondary);
+      overflow: hidden;
+      margin: 10px 0;
+      display: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .scan-log {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin: 8px 0 10px;
+      word-break: break-word;
+    }
+
+    .pdf-chips {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 240px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-strong) transparent;
+    }
+
+    .pdf-chips::-webkit-scrollbar { width: 6px; }
+    .pdf-chips::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
+
+    .pdf-chip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: var(--surface-secondary);
+      font-size: 0.78rem;
+    }
+
+    .pdf-chip-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .chip-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .chip-tag.ok { background: var(--green-soft); color: var(--green); }
+    .chip-tag.warn { background: var(--orange-soft); color: var(--orange); }
+    .chip-tag.err { background: var(--red-soft); color: var(--red); }
+
+    details.advanced-box {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    details.advanced-box summary {
+      cursor: pointer;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      max-width: calc(100vw - 32px);
+      text-align: center;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(29, 29, 31, 0.92);
+      color: #ffffff;
+      backdrop-filter: blur(12px);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 999;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (pointer: coarse) {
+      .input { font-size: 16px; min-height: 44px; }
+      .btn-sm { min-height: 40px; padding: 8px 14px; }
+      .seg-btn { min-height: 36px; padding: 7px 14px; }
+      .action-item input[type="checkbox"] { width: 22px; height: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    .print-only-meta { display: none; }
+
+    @media print {
+      @page { margin: 16mm; }
+      body, [data-theme="dark"] body {
+        background: #ffffff !important;
+        color: #111111 !important;
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --surface-secondary: #f5f5f7;
+        --text-primary: #111111;
+        --text-secondary: #444444;
+        --text-tertiary: #666666;
+        --border: #dddddd;
+        --accent: #005bb5;
+      }
+      .navbar, .hero, .section-label, .bento-grid, .sidebar-wrap, .card-header, .raw-md, .toast {
+        display: none !important;
+      }
+      .page { padding: 0 !important; max-width: 100% !important; }
+      .workspace { display: block !important; }
+      .card { border: none !important; box-shadow: none !important; }
+      .briefing-body { padding: 0 !important; }
+      .print-only-meta {
+        display: flex !important;
+        justify-content: space-between;
+        font-size: 10pt;
+        color: #555555;
+        border-bottom: 1px solid #cccccc;
+        padding-bottom: 8px;
+        margin-bottom: 16px;
+      }
+      .rotation-strip {
+        display: block !important;
+        background: #f5f5f7 !important;
+        border: 1px solid #dddddd !important;
+        border-radius: 8px;
+        margin-bottom: 16px;
+      }
+      .pdf-intel-card, .anchor-quote, .action-item {
+        background: #f8f8fa !important;
+        border-color: #cccccc !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky Navigation -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="nav-brand">
+        <span class="brand-dot"></span>
+        <span>Mindset Commander</span>
+      </div>
+      <div class="nav-actions">
+        <span class="pill-status" id="navSyncPill">
+          <span class="dot-live" id="syncDot"></span>
+          <span id="navSyncText">Connecting to logmain68/me...</span>
+        </span>
+        <button class="btn btn-secondary btn-sm" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle Appearance">
+          &#9790; Dark
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">
+          Export PDF
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Live PDF Extraction • logmain68/me (main)</div>
+      <h1>Daily mindset, straight from your PDFs.</h1>
+      <p>
+        Every directive is extracted directly from the PDF books and notes in
+        <code>logmain68/me</code> (<code>main</code> branch) — zero hardcoded output.
+      </p>
+      <div class="hero-cta-row">
+        <button class="btn btn-primary" id="primaryDeployBtn" onclick="deployNextRotation()">
+          &#9889; Deploy Mindset
+        </button>
+        <button class="btn btn-secondary" onclick="printBriefingPdf()">
+          &#128424; Print / Save as PDF
+        </button>
+      </div>
+    </section>
+
+    <!-- 6 Operational Themes -->
+    <div class="section-label">
+      <span>Select Theme to Extract from PDFs</span>
+      <span id="directiveCounterLabel">0 Directives Issued</span>
+    </div>
+    <section class="bento-grid" id="themeBentoGrid"></section>
+
+    <!-- Main Workspace -->
+    <section class="workspace">
+      <!-- Briefing Output Card -->
+      <div class="card" id="briefingCard">
+        <div class="card-header">
+          <div class="segmented" role="tablist">
+            <button class="seg-btn active" id="segFormatted" onclick="setViewMode('formatted')">Briefing</button>
+            <button class="seg-btn" id="segMarkdown" onclick="setViewMode('markdown')">Markdown</button>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="copyMarkdown()">Copy Markdown</button>
+            <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">Print PDF</button>
+          </div>
+        </div>
+
+        <div class="rotation-strip" id="rotationStrip"></div>
+
+        <div class="briefing-body" id="briefingBody">
+          <div class="print-only-meta" id="printMeta"></div>
+          <div id="briefingContent">
+            <div class="empty-briefing">
+              <h3>Ready to Extract Daily Mindset</h3>
+              <p>
+                Click <strong>Deploy Mindset</strong> or choose any theme above.<br/>
+                Your briefing will be synthesized live from the indexed PDFs in <code>logmain68/me</code> (<code>main</code>).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <pre class="raw-md" id="rawMarkdownBox"></pre>
+      </div>
+
+      <!-- Repo Source Sidebar -->
+      <aside class="sidebar-wrap">
+        <div class="card sidebar-card">
+          <div class="sidebar-title">
+            <span>PDF Source Library</span>
+            <span class="chip-tag ok" id="pdfCountBadge">0 Indexed</span>
+          </div>
+          <p class="sidebar-desc">
+            Fixed to your GitHub repository below. All <code>.pdf</code> files on <code>main</code> are indexed automatically.
+          </p>
+
+          <div class="repo-pill-box">
+            <span>logmain68/me</span>
+            <span class="chip-tag ok">main</span>
+          </div>
+
+          <button class="btn btn-secondary" style="width: 100%;" onclick="scanGithubRepoPdfs({ forceRefresh: true })">
+            Rescan logmain68/me
+          </button>
+
+          <div class="progress-track" id="scanProgressWrap">
+            <div class="progress-fill" id="scanProgressFill"></div>
+          </div>
+
+          <div class="scan-log" id="pdfStatusLog">Initializing PDF scanner...</div>
+          <div class="pdf-chips" id="pdfList"></div>
+
+          <details class="advanced-box">
+            <summary>Private Repo Token / Local PDFs</summary>
+            <div class="field-group">
+              <label for="githubToken">GitHub Token (session-only, for private repos or rate limits)</label>
+              <input class="input" type="password" id="githubToken" placeholder="ghp_..." onchange="scanGithubRepoPdfs({ forceRefresh: true })" />
+            </div>
+            <div class="field-group">
+              <label for="localPdfInput">Attach Local PDFs (optional fallback)</label>
+              <input type="file" id="localPdfInput" accept="application/pdf" multiple onchange="handleLocalPdfs(this.files)" style="font-size: 0.78rem; width: 100%;" />
+            </div>
+            <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 6px;" onclick="resetRotation()">
+              Reset Rotation History
+            </button>
+          </details>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ---------------- FIXED GITHUB REPOSITORY TARGET ----------------
+    const REPO_OWNER = "logmain68";
+    const REPO_NAME = "me";
+    const REPO_BRANCH = "main";
+
+    // ---------------- THEME SEARCH PROFILES (NO HARDCODED OUTPUT) ----------------
+    const THEME_ORDER = [
+      "Discipline",
+      "Focus",
+      "Situational Awareness",
+      "Quick Decision-Making",
+      "Quick Reflection / Self-Correction",
+      "Efficiency"
+    ];
+
+    const THEME_CONFIG = {
+      "Discipline": {
+        icon: "&#9875;",
+        short: "Standards, habits & execution",
+        keywords: ["discipline", "standard", "standards", "checklist", "habit", "habits", "routine", "rigor", "consistency", "consistent", "process", "execution", "execute", "detail", "ownership", "march", "method", "craft", "willpower", "commit", "commitment", "daily", "practice", "system", "systems", "rule", "rules", "training"]
+      },
+      "Focus": {
+        icon: "&#127919;",
+        short: "Attention, presence & deep work",
+        keywords: ["focus", "focused", "attention", "mindful", "mindfulness", "present", "presence", "flow", "concentrate", "concentration", "distraction", "distractions", "zone", "noise", "immersion", "meditate", "deep", "breath", "breathing", "stillness", "clarity", "single", "calm", "quiet"]
+      },
+      "Situational Awareness": {
+        icon: "&#128065;",
+        short: "Observation, poise & reading terrain",
+        keywords: ["awareness", "aware", "situational", "observe", "observation", "calm", "emotion", "emotional", "poise", "detached", "environment", "power", "ego", "listen", "listening", "signal", "signals", "team", "perception", "control", "read", "terrain", "anticipate", "people", "reaction", "respond"]
+      },
+      "Quick Decision-Making": {
+        icon: "&#9889;",
+        short: "Decisive action & OODA tempo",
+        keywords: ["decision", "decisions", "decide", "decisive", "ooda", "action", "speed", "pressure", "stalemate", "paralysis", "bias", "execute", "risk", "adapt", "pivot", "act", "choose", "choice", "velocity", "bold", "judgment", "options", "uncertain", "uncertainty", "move", "fast"]
+      },
+      "Quick Reflection / Self-Correction": {
+        icon: "&#128269;",
+        short: "Feedback, accountability & adaptation",
+        keywords: ["reflection", "reflect", "correct", "correction", "ego", "mistake", "mistakes", "failure", "fail", "autopsy", "blameless", "learn", "learning", "feedback", "review", "adjust", "adjustment", "truth", "improve", "improvement", "fault", "honest", "honesty", "weakness", "accountability", "lesson", "lessons"]
+      },
+      "Efficiency": {
+        icon: "&#9881;",
+        short: "Leverage, priority & eliminating waste",
+        keywords: ["efficiency", "efficient", "leverage", "output", "waste", "vital", "essential", "bottleneck", "priority", "priorities", "simplify", "simple", "pareto", "automate", "constraint", "energy", "time", "effective", "effectiveness", "result", "results", "impact", "eliminate", "less", "smart"]
+      }
+    };
+
+    const ACTION_CUE_RX = /\b(must|should|never|always|practice|focus|build|train|decide|observe|check|avoid|start|stop|keep|make|take|commit|review|learn|control|choose|act|create|develop|maintain|eliminate|protect|prepare|execute|remember|listen|pause|ask|measure|simplify|embrace|accept|refuse|set|define|identify|write|plan|do not|don't)\b/i;
+
+    const BOILERPLATE_RX = /\b(all rights reserved|isbn|library of congress|printed in|table of contents|copyright|published by|first edition|acknowledgments|bibliography|index|www\.|http:\/\/|https:\/\/)\b/i;
+
+    const STOPWORDS = new Set([
+      "about","above","after","again","against","almost","alone","along","already","also","although","always","among","another","anyone","anything","around","because","become","becomes","before","behind","being","below","between","beyond","bring","cannot","could","course","different","doing","during","either","enough","every","everyone","everything","example","first","found","further","getting","given","going","great","having","however","important","instead","itself","large","later","least","level","likely","little","making","matter","might","never","nothing","number","often","order","other","others","outside","people","perhaps","person","place","point","possible","rather","really","right","second","seems","several","should","since","small","someone","something","sometimes","still","study","system","taking","their","there","these","thing","things","think","those","though","three","through","times","today","together","toward","under","until","using","usually","water","where","whether","which","while","whole","whose","within","without","world","would","years","young"
+    ]);
+
+    const STORAGE_KEY = "tactical_mindset_pdf_only_v1";
+    const IDB_NAME = "mindset_commander_pdf_cache";
+    const IDB_STORE = "pdf_pages_v1";
+
+    function loadSafeState() {
+      const defaults = {
+        directiveCount: 0,
+        themeCounts: Object.fromEntries(THEME_ORDER.map(t => [t, 0])),
+        recentThemes: [],
+        recentCitations: []
+      };
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaults;
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== "object" || !parsed.themeCounts) return defaults;
+        return {
+          directiveCount: Number(parsed.directiveCount) || 0,
+          themeCounts: { ...defaults.themeCounts, ...parsed.themeCounts },
+          recentThemes: Array.isArray(parsed.recentThemes) ? parsed.recentThemes.slice(-12) : [],
+          recentCitations: Array.isArray(parsed.recentCitations) ? parsed.recentCitations.slice(-40) : []
+        };
+      } catch {
+        return defaults;
+      }
+    }
+
+    let state = loadSafeState();
+    let loadedPdfs = []; // [{ name, sha, url, totalPages, pages: [{ pageNum, text, sentences }] }]
+    let currentMarkdownText = "";
+    let currentViewMode = "formatted";
+    let activeTheme = null;
+    let activeScanPromise = null;
+    let activeScanAbort = null;
+    let lastScanError = null;
+
+    function saveState() {
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+      updateDashboardUI();
+    }
+
+    // ---------------- INDEXEDDB CACHE FOR FAST ROBUST RELOADS ----------------
+    function openCacheDb() {
+      return new Promise((resolve) => {
+        let settled = false;
+        const done = (val) => { if (!settled) { settled = true; clearTimeout(guard); resolve(val); } };
+        const guard = setTimeout(() => done(null), 1500);
+        try {
+          if (!window.indexedDB) return done(null);
+          const req = indexedDB.open(IDB_NAME, 1);
+          req.onupgradeneeded = () => {
+            const db = req.result;
+            if (!db.objectStoreNames.contains(IDB_STORE)) {
+              db.createObjectStore(IDB_STORE, { keyPath: "cacheKey" });
+            }
+          };
+          req.onsuccess = () => done(req.result);
+          req.onerror = () => done(null);
+          req.onblocked = () => done(null);
+        } catch {
+          done(null);
+        }
+      });
+    }
+
+    async function getCachedPdf(cacheKey) {
+      const db = await openCacheDb();
+      if (!db) return null;
+      return new Promise((resolve) => {
+        try {
+          const tx = db.transaction(IDB_STORE, "readonly");
+          const req = tx.objectStore(IDB_STORE).get(cacheKey);
+          req.onsuccess = () => resolve(req.result || null);
+          req.onerror = () => resolve(null);
+        } catch {
+          resolve(null);
+        }
+      });
+    }
+
+    async function setCachedPdf(cacheKey, record) {
+      const db = await openCacheDb();
+      if (!db) return;
+      return new Promise((resolve) => {
+        try {
+          const tx = db.transaction(IDB_STORE, "readwrite");
+          tx.objectStore(IDB_STORE).put({ cacheKey, ...record });
+          tx.oncomplete = () => resolve();
+          tx.onerror = () => resolve();
+        } catch {
+          resolve();
+        }
+      });
+    }
+
+    // ---------------- PDF.JS LOADER & FALLBACK ----------------
+    function configurePdfWorker() {
+      if (window.pdfjsLib) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+          "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+        return true;
+      }
+      return false;
+    }
+
+    function ensurePdfJsLoaded() {
+      if (configurePdfWorker()) return Promise.resolve(true);
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
+        script.onload = () => {
+          if (window.pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+              "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        };
+        script.onerror = () => resolve(false);
+        document.head.appendChild(script);
+      });
+    }
+
+    // ---------------- PDF TEXT CLEANING & NLP EXTRACTION ENGINE ----------------
+    function cleanPageText(raw) {
+      return String(raw || "")
+        .replace(/\u00ad/g, "") // soft hyphens
+        .replace(/([A-Za-z]{2,})-\s+([a-z]{2,})/g, "$1$2") // rejoin hyphenated wraps
+        .replace(/\.{4,}/g, " ") // TOC dot leaders
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function splitCleanSentences(text) {
+      if (!text || text.length < 40) return [];
+      // Protect common abbreviations before splitting
+      const protectedText = text.replace(
+        /\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|Col|Gen|Lt|Capt|Sgt|vs|etc|e\.g|i\.e|Fig|No|Vol|Ch|p|pp)\./gi,
+        "$1<DOT>"
+      );
+      const rawParts = protectedText.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [protectedText];
+      const clean = [];
+      for (const part of rawParts) {
+        const s = part.replace(/<DOT>/g, ".").replace(/\s+/g, " ").trim();
+        if (s.length < 38 || s.length > 420) continue;
+        if (BOILERPLATE_RX.test(s)) continue;
+        const letters = (s.match(/[A-Za-z]/g) || []).length;
+        if (letters / s.length < 0.65) continue; // skip numeric tables / garbage
+        const uppers = (s.match(/[A-Z]/g) || []).length;
+        if (uppers / letters > 0.65) continue; // skip ALL-CAPS headers
+        clean.push(s);
+      }
+      return clean;
+    }
+
+    function formatBookTitle(filePath) {
+      const base = String(filePath || "").split("/").pop() || "PDF Source";
+      return base
+        .replace(/\.pdf$/i, "")
+        .replace(/[_-]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function extractTopConcepts(texts, limit = 6) {
+      const freq = new Map();
+      for (const txt of texts) {
+        const words = String(txt || "").toLowerCase().match(/\b[a-z]{5,}\b/g) || [];
+        for (const w of words) {
+          if (STOPWORDS.has(w)) continue;
+          freq.set(w, (freq.get(w) || 0) + 1);
+        }
+      }
+      return Array.from(freq.entries())
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .slice(0, limit)
+        .map(([w]) => w.charAt(0).toUpperCase() + w.slice(1));
+    }
+
+    function extractBriefingFromPdfs(theme, pdfs, recentCitations, directiveSeed) {
+      const searchablePdfs = pdfs.filter(p => p.pages && p.pages.length > 0);
+      if (!searchablePdfs.length) return null;
+
+      const config = THEME_CONFIG[theme] || THEME_CONFIG["Discipline"];
+      const kwRegexes = config.keywords.map(kw => new RegExp(`\\b${kw}\\b`, "i"));
+      const recentSet = new Set(recentCitations || []);
+
+      const passageCandidates = [];
+      const actionCandidates = [];
+      const anchorCandidates = [];
+
+      for (const pdf of searchablePdfs) {
+        const bookTitle = formatBookTitle(pdf.name);
+        for (const page of pdf.pages) {
+          const sentences = page.sentences && page.sentences.length
+            ? page.sentences
+            : splitCleanSentences(page.text);
+          if (!sentences.length) continue;
+
+          const citKey = `${pdf.name}#${page.pageNum}`;
+          const recencyPenalty = recentSet.has(citKey) ? -4 : 0;
+
+          // Score 2-sentence windows for coherent passages
+          for (let i = 0; i < sentences.length; i++) {
+            const win = sentences.slice(i, i + 2).join(" ");
+            if (win.length < 70) continue;
+
+            let kwHits = 0;
+            for (const rx of kwRegexes) {
+              if (rx.test(win)) kwHits += 1;
+            }
+
+            if (kwHits > 0) {
+              const lenBonus = (win.length >= 120 && win.length <= 420) ? 1.5 : 0;
+              const score = kwHits * 3 + lenBonus + recencyPenalty;
+              passageCandidates.push({
+                fileName: pdf.name,
+                bookTitle,
+                url: pdf.url,
+                pageNum: page.pageNum,
+                citKey,
+                text: win.length > 460 ? win.slice(0, 457) + "..." : win,
+                score
+              });
+            }
+
+            // Evaluate individual sentence for Actionable Directives & Anchor Sentence
+            const s = sentences[i];
+            let sKwHits = 0;
+            for (const rx of kwRegexes) {
+              if (rx.test(s)) sKwHits += 1;
+            }
+            const hasAction = ACTION_CUE_RX.test(s);
+            if (sKwHits > 0 && hasAction && s.length >= 45 && s.length <= 280) {
+              actionCandidates.push({
+                fileName: pdf.name,
+                bookTitle,
+                url: pdf.url,
+                pageNum: page.pageNum,
+                citKey,
+                text: s,
+                score: sKwHits * 3 + 2 + recencyPenalty
+              });
+            }
+            if (sKwHits > 0 && s.length >= 45 && s.length <= 185) {
+              anchorCandidates.push({
+                fileName: pdf.name,
+                bookTitle,
+                url: pdf.url,
+                pageNum: page.pageNum,
+                citKey,
+                text: s,
+                score: sKwHits * 3 + (hasAction ? 1.5 : 0) + recencyPenalty
+              });
+            }
+          }
+        }
+      }
+
+      // Sort descending by score
+      passageCandidates.sort((a, b) => b.score - a.score);
+      actionCandidates.sort((a, b) => b.score - a.score);
+      anchorCandidates.sort((a, b) => b.score - a.score);
+
+      // Select diverse passages (prefer distinct PDFs / pages)
+      const selectedPassages = [];
+      const usedPages = new Set();
+      const usedFiles = new Set();
+
+      // First pass: prefer distinct files
+      for (const p of passageCandidates) {
+        if (selectedPassages.length >= 3) break;
+        if (!usedFiles.has(p.fileName) && !usedPages.has(p.citKey)) {
+          selectedPassages.push(p);
+          usedFiles.add(p.fileName);
+          usedPages.add(p.citKey);
+        }
+      }
+      // Second pass: fill up to 3 from distinct pages
+      for (const p of passageCandidates) {
+        if (selectedPassages.length >= 3) break;
+        if (!usedPages.has(p.citKey)) {
+          selectedPassages.push(p);
+          usedPages.add(p.citKey);
+        }
+      }
+
+      // Deterministic PDF-only fallback if no theme keywords matched any page
+      if (selectedPassages.length === 0) {
+        const total = searchablePdfs.length;
+        for (let offset = 0; offset < Math.min(3, total * 2); offset++) {
+          const pdf = searchablePdfs[(directiveSeed + offset) % total];
+          const page = pdf.pages[(directiveSeed + offset * 3) % pdf.pages.length];
+          const citKey = `${pdf.name}#${page.pageNum}`;
+          if (usedPages.has(citKey)) continue;
+          const sentences = page.sentences && page.sentences.length ? page.sentences : splitCleanSentences(page.text);
+          const snippet = sentences.length ? sentences.slice(0, 2).join(" ") : page.text.slice(0, 360);
+          if (snippet.length < 30) continue;
+          selectedPassages.push({
+            fileName: pdf.name,
+            bookTitle: formatBookTitle(pdf.name),
+            url: pdf.url,
+            pageNum: page.pageNum,
+            citKey,
+            text: snippet.length > 460 ? snippet.slice(0, 457) + "..." : snippet,
+            score: 0
+          });
+          usedPages.add(citKey);
+          if (selectedPassages.length >= 3) break;
+        }
+      }
+
+      if (selectedPassages.length === 0) return null;
+
+      // Select up to 3 distinct actionable directives strictly from PDF sentences
+      const selectedActions = [];
+      const usedActionTexts = new Set();
+      for (const a of actionCandidates) {
+        if (selectedActions.length >= 3) break;
+        const norm = a.text.toLowerCase();
+        if (usedActionTexts.has(norm)) continue;
+        selectedActions.push(a);
+        usedActionTexts.add(norm);
+      }
+      // If fewer than 2 action-cue sentences matched, pull top sentences from selected passages' pages
+      if (selectedActions.length < 2) {
+        for (const p of selectedPassages) {
+          const pdf = searchablePdfs.find(f => f.name === p.fileName);
+          const page = pdf && pdf.pages.find(pg => pg.pageNum === p.pageNum);
+          const sents = page ? (page.sentences || splitCleanSentences(page.text)) : [];
+          for (const s of sents) {
+            if (selectedActions.length >= 2) break;
+            const norm = s.toLowerCase();
+            if (usedActionTexts.has(norm) || s.length < 45) continue;
+            selectedActions.push({
+              fileName: p.fileName,
+              bookTitle: p.bookTitle,
+              url: p.url,
+              pageNum: p.pageNum,
+              citKey: p.citKey,
+              text: s
+            });
+            usedActionTexts.add(norm);
+          }
+        }
+      }
+
+      // Pick best Anchor Sentence (prefer one not identical to action items)
+      let anchor = anchorCandidates.find(a => !usedActionTexts.has(a.text.toLowerCase())) || anchorCandidates[0];
+      if (!anchor) {
+        const primarySents = splitCleanSentences(selectedPassages[0].text);
+        anchor = {
+          fileName: selectedPassages[0].fileName,
+          bookTitle: selectedPassages[0].bookTitle,
+          pageNum: selectedPassages[0].pageNum,
+          text: primarySents[0] || selectedPassages[0].text.slice(0, 180)
+        };
+      }
+
+      // Extract dynamic concepts from all selected PDF passages
+      const allExtractedTexts = [
+        ...selectedPassages.map(p => p.text),
+        ...selectedActions.map(a => a.text)
+      ];
+      const concepts = extractTopConcepts(allExtractedTexts, 6);
+
+      // Unique source list
+      const sourceMap = new Map();
+      [...selectedPassages, ...selectedActions].forEach(item => {
+        const key = `${item.fileName}#${item.pageNum}`;
+        if (!sourceMap.has(key)) {
+          sourceMap.set(key, {
+            fileName: item.fileName,
+            bookTitle: item.bookTitle,
+            pageNum: item.pageNum,
+            url: item.url
+          });
+        }
+      });
+
+      const primary = selectedPassages[0];
+      const supporting = selectedPassages.slice(1);
+      const conceptTag = concepts.slice(0, 2).join(" & ");
+
+      return {
+        theme,
+        subtitle: conceptTag
+          ? `${primary.bookTitle} • ${conceptTag}`
+          : `${primary.bookTitle} (Page ${primary.pageNum})`,
+        primary,
+        supporting,
+        actions: selectedActions,
+        anchor,
+        concepts,
+        sources: Array.from(sourceMap.values())
+      };
+    }
+
+    // ---------------- APPEARANCE ----------------
+    function initAppearance() {
+      let saved = null;
+      try { saved = localStorage.getItem("tactical_appearance"); } catch {}
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      applyAppearance(saved || (prefersDark ? "dark" : "light"));
+    }
+
+    function applyAppearance(mode) {
+      document.documentElement.setAttribute("data-theme", mode);
+      const btn = document.getElementById("themeToggleBtn");
+      if (btn) btn.innerHTML = mode === "dark" ? "&#9728; Light" : "&#9790; Dark";
+    }
+
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme") || "light";
+      const next = current === "dark" ? "light" : "dark";
+      try { localStorage.setItem("tactical_appearance", next); } catch {}
+      applyAppearance(next);
+    }
+
+    // ---------------- TOAST ----------------
+    let toastTimer = null;
+    function showToast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
+    }
+
+    // ---------------- DASHBOARD & BENTO GRID ----------------
+    function getNextBalancedTheme() {
+      let minCount = Infinity;
+      for (const t of THEME_ORDER) {
+        const c = state.themeCounts[t] || 0;
+        if (c < minCount) minCount = c;
+      }
+      const candidates = THEME_ORDER.filter(t => (state.themeCounts[t] || 0) === minCount);
+      const lastTheme = state.recentThemes[state.recentThemes.length - 1];
+      const nonRecent = candidates.filter(t => t !== lastTheme);
+      return nonRecent.length > 0 ? nonRecent[0] : candidates[0];
+    }
+
+    function updateDashboardUI() {
+      const readableCount = loadedPdfs.filter(p => p.pages && p.pages.length > 0).length;
+      document.getElementById("directiveCounterLabel").textContent =
+        `${state.directiveCount} Directive${state.directiveCount === 1 ? "" : "s"} Issued`;
+      document.getElementById("pdfCountBadge").textContent = `${readableCount} Indexed`;
+
+      if (!activeScanPromise) {
+        setSyncState(
+          lastScanError && readableCount === 0 ? "error" : "ready",
+          `${REPO_OWNER}/${REPO_NAME} • ${readableCount} PDF${readableCount === 1 ? "" : "s"}`
+        );
+      }
+
+      const grid = document.getElementById("themeBentoGrid");
+      grid.innerHTML = "";
+      const nextTheme = getNextBalancedTheme();
+
+      THEME_ORDER.forEach((theme, idx) => {
+        const meta = THEME_CONFIG[theme];
+        const isNext = theme === nextTheme;
+        const isActive = activeTheme === theme;
+        const runs = state.themeCounts[theme] || 0;
+
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "theme-card" + (isNext ? " is-next" : "") + (isActive ? " is-active" : "");
+        card.onclick = () => deployMindset(theme, false);
+        card.innerHTML = `
+          <div class="theme-card-top">
+            <span class="theme-icon">${meta.icon}</span>
+            <span class="theme-badge">${isNext ? "NEXT • " : ""}${runs} RUNS</span>
+          </div>
+          <div>
+            <div class="theme-title">${idx + 1}. ${escapeHtml(theme)}</div>
+            <div class="theme-sub">${escapeHtml(meta.short)}</div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function resetRotation() {
+      state = {
+        directiveCount: 0,
+        themeCounts: Object.fromEntries(THEME_ORDER.map(t => [t, 0])),
+        recentThemes: [],
+        recentCitations: []
+      };
+      activeTheme = null;
+      currentMarkdownText = "";
+      document.getElementById("rotationStrip").style.display = "none";
+      document.getElementById("rawMarkdownBox").textContent = "";
+      document.getElementById("briefingContent").innerHTML = `
+        <div class="empty-briefing">
+          <h3>Ready to Extract Daily Mindset</h3>
+          <p>
+            Click <strong>Deploy Mindset</strong> or choose any theme above.<br/>
+            Your briefing will be synthesized live from the indexed PDFs in <code>${REPO_OWNER}/${REPO_NAME}</code> (<code>${REPO_BRANCH}</code>).
+          </p>
+        </div>
+      `;
+      saveState();
+      showToast("Rotation history reset");
+    }
+
+    // ---------------- GITHUB SCANNER (LOCKED TO logmain68/me @ main) ----------------
+    function encodeRepoPath(path) {
+      return path.split("/").map(seg => encodeURIComponent(seg)).join("/");
+    }
+
+    function getToken() {
+      const el = document.getElementById("githubToken");
+      let token = el && el.value.trim();
+      try {
+        if (token) sessionStorage.setItem("tactical_gh_token", token);
+        else token = sessionStorage.getItem("tactical_gh_token") || "";
+      } catch {}
+      return token;
+    }
+
+    function getAuthHeaders() {
+      const token = getToken();
+      return token ? { Authorization: `Bearer ${token}` } : {};
+    }
+
+    async function fetchWithTimeout(url, options = {}, timeoutMs = 25000) {
+      const controller = new AbortController();
+      const parentSignal = options.signal;
+      if (parentSignal) {
+        if (parentSignal.aborted) controller.abort();
+        else parentSignal.addEventListener("abort", () => controller.abort(), { once: true });
+      }
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
+      try {
+        return await fetch(url, { ...options, signal: controller.signal });
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function getRepoPdfNodes(signal) {
+      const headers = getAuthHeaders();
+      const treeUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/git/trees/${encodeURIComponent(REPO_BRANCH)}?recursive=1`;
+      const res = await fetchWithTimeout(treeUrl, { headers, signal }, 15000);
+      if (!res.ok) {
+        if (res.status === 403) throw new Error("GitHub API rate limit reached (403). Add a GitHub token below or attach local PDFs.");
+        if (res.status === 404) throw new Error(`Repository ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}) is private or not found. Add a token below if private.`);
+        throw new Error(`GitHub API error (HTTP ${res.status}).`);
+      }
+      const data = await res.json();
+      return (data.tree || [])
+        .filter(item => item.type === "blob" && item.path.toLowerCase().endsWith(".pdf"))
+        .map(item => ({ path: item.path, sha: item.sha || "", size: item.size || 0 }));
+    }
+
+    async function extractPdfFromArrayBuffer(arrayBuffer, fileName, sourceUrl = null, sha = "") {
+      const ok = await ensurePdfJsLoaded();
+      if (!ok) throw new Error("PDF.js engine failed to load.");
+
+      let pdf;
+      try {
+        pdf = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
+      } catch {
+        pdf = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0), disableWorker: true }).promise;
+      }
+      const pages = [];
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const content = await page.getTextContent();
+        const rawText = content.items.map(item => item.str).join(" ");
+        const text = cleanPageText(rawText);
+        if (text.length > 25) {
+          const sentences = splitCleanSentences(text);
+          pages.push({ pageNum: i, text, sentences });
+        }
+        if (i % 15 === 0) {
+          await new Promise(r => setTimeout(r, 0));
+        }
+      }
+      return { name: fileName, sha, url: sourceUrl, totalPages: pdf.numPages, pages };
+    }
+
+    function setSyncState(mode, navLabel) {
+      const dot = document.getElementById("syncDot");
+      const text = document.getElementById("navSyncText");
+      dot.classList.remove("syncing", "error");
+      if (mode === "syncing") dot.classList.add("syncing");
+      if (mode === "error") dot.classList.add("error");
+      if (navLabel) text.textContent = navLabel;
+    }
+
+    function scanGithubRepoPdfs(opts = {}) {
+      if (activeScanAbort) activeScanAbort.abort();
+      activeScanAbort = new AbortController();
+      const signal = activeScanAbort.signal;
+      const forceRefresh = !!opts.forceRefresh;
+
+      const run = (async () => {
+        const log = document.getElementById("pdfStatusLog");
+        const listEl = document.getElementById("pdfList");
+        const progressWrap = document.getElementById("scanProgressWrap");
+        const progressFill = document.getElementById("scanProgressFill");
+
+        lastScanError = null;
+        setSyncState("syncing", `Scanning ${REPO_OWNER}/${REPO_NAME}...`);
+        listEl.innerHTML = "";
+        loadedPdfs = [];
+        progressWrap.style.display = "block";
+        progressFill.style.width = "10%";
+        log.textContent = `Fetching file tree from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH})...`;
+
+        try {
+          const pdfNodes = await getRepoPdfNodes(signal);
+          if (!pdfNodes.length) {
+            log.textContent = `No .pdf files found in ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}).`;
+            setSyncState("error", "0 Repo PDFs");
+            return;
+          }
+
+          progressFill.style.width = "22%";
+          log.textContent = `Found ${pdfNodes.length} PDF(s). Indexing text...`;
+          setSyncState("syncing", `Indexing 0/${pdfNodes.length}`);
+
+          const token = getToken();
+          const isHostedOnTargetPages =
+            window.location.hostname.toLowerCase() === `${REPO_OWNER.toLowerCase()}.github.io`;
+
+          for (let i = 0; i < pdfNodes.length; i++) {
+            if (signal.aborted) return;
+            const node = pdfNodes[i];
+            const encodedPath = encodeRepoPath(node.path);
+            const rawUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${encodeURIComponent(REPO_BRANCH)}/${encodedPath}`;
+            const githubBlobUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/${encodeURIComponent(REPO_BRANCH)}/${encodedPath}`;
+            const cacheKey = `${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}:${node.path}:${node.sha}`;
+
+            let parsed = null;
+            let fromCache = false;
+
+            if (!forceRefresh && node.sha) {
+              const cached = await getCachedPdf(cacheKey);
+              if (cached && Array.isArray(cached.pages)) {
+                parsed = {
+                  name: node.path,
+                  sha: node.sha,
+                  url: cached.url || rawUrl,
+                  totalPages: cached.totalPages || cached.pages.length,
+                  pages: cached.pages
+                };
+                fromCache = true;
+              }
+            }
+
+            let lastErr = null;
+            if (!parsed) {
+              const fetchPlan = [];
+              if (isHostedOnTargetPages) {
+                fetchPlan.push({ url: `${window.location.origin}/${REPO_NAME}/${encodedPath}`, headers: {} });
+              }
+              fetchPlan.push({ url: rawUrl, headers: {} });
+              if (token) {
+                fetchPlan.push({
+                  url: `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodedPath}?ref=${encodeURIComponent(REPO_BRANCH)}`,
+                  headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github.raw" }
+                });
+              }
+
+              for (const attempt of fetchPlan) {
+                try {
+                  const pdfRes = await fetchWithTimeout(attempt.url, { headers: attempt.headers, signal }, 30000);
+                  if (!pdfRes.ok) throw new Error(`HTTP ${pdfRes.status}`);
+                  const buf = await pdfRes.arrayBuffer();
+                  const viewUrl = isHostedOnTargetPages
+                    ? `${window.location.origin}/${REPO_NAME}/${encodedPath}`
+                    : githubBlobUrl;
+                  parsed = await extractPdfFromArrayBuffer(buf, node.path, viewUrl, node.sha);
+                  if (node.sha) {
+                    await setCachedPdf(cacheKey, {
+                      url: parsed.url,
+                      totalPages: parsed.totalPages,
+                      pages: parsed.pages
+                    });
+                  }
+                  break;
+                } catch (err) {
+                  lastErr = err;
+                }
+              }
+            }
+
+            if (parsed) {
+              upsertLoadedPdf(parsed);
+              if (parsed.pages.length === 0) {
+                renderPdfChip(node.path, "warn", "Image-only");
+              } else {
+                renderPdfChip(node.path, "ok", `${parsed.pages.length} pgs${fromCache ? " • cached" : ""}`);
+              }
+            } else {
+              renderPdfChip(node.path, "err", lastErr ? lastErr.message : "Failed");
+            }
+
+            const pct = 22 + Math.round(((i + 1) / pdfNodes.length) * 78);
+            progressFill.style.width = `${pct}%`;
+            setSyncState("syncing", `Indexing ${i + 1}/${pdfNodes.length}`);
+            updateDashboardUI();
+          }
+
+          const readableCount = loadedPdfs.filter(p => p.pages.length > 0).length;
+          log.textContent = `Ready — indexed ${readableCount} readable PDF(s) from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}).`;
+          setSyncState("ready", `${REPO_OWNER}/${REPO_NAME} • ${readableCount} PDF${readableCount === 1 ? "" : "s"}`);
+        } catch (err) {
+          if (err.name === "AbortError") return;
+          lastScanError = err.message;
+          log.textContent = err.message;
+          setSyncState("error", "Sync Failed");
+        } finally {
+          if (activeScanAbort && activeScanAbort.signal === signal) {
+            activeScanPromise = null;
+          }
+          setTimeout(() => { progressWrap.style.display = "none"; }, 600);
+          updateDashboardUI();
+        }
+      })();
+
+      activeScanPromise = run;
+      return run;
+    }
+
+    async function handleLocalPdfs(fileList) {
+      const log = document.getElementById("pdfStatusLog");
+      const files = Array.from(fileList).filter(f => f.name.toLowerCase().endsWith(".pdf"));
+      if (!files.length) return;
+
+      lastScanError = null;
+      setSyncState("syncing", `Parsing ${files.length} local PDF(s)...`);
+      log.textContent = `Indexing ${files.length} local PDF(s)...`;
+      for (const file of files) {
+        try {
+          const buf = await file.arrayBuffer();
+          const parsed = await extractPdfFromArrayBuffer(buf, file.name, null, "");
+          upsertLoadedPdf(parsed);
+          renderPdfChip(
+            parsed.name,
+            parsed.pages.length ? "ok" : "warn",
+            parsed.pages.length ? `${parsed.pages.length} pgs` : "Image-only"
+          );
+        } catch (err) {
+          renderPdfChip(file.name, "err", err.message);
+        }
+      }
+      const readableCount = loadedPdfs.filter(p => p.pages.length > 0).length;
+      log.textContent = `Ready — ${readableCount} readable PDF(s) indexed.`;
+      setSyncState("ready", `${readableCount} PDF${readableCount === 1 ? "" : "s"} Ready`);
+      updateDashboardUI();
+    }
+
+    function upsertLoadedPdf(parsed) {
+      const idx = loadedPdfs.findIndex(p => p.name === parsed.name);
+      if (idx >= 0) loadedPdfs[idx] = parsed;
+      else loadedPdfs.push(parsed);
+    }
+
+    function renderPdfChip(name, statusType, note) {
+      const list = document.getElementById("pdfList");
+      const div = document.createElement("div");
+      div.className = "pdf-chip";
+      div.innerHTML = `
+        <span class="pdf-chip-name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
+        <span class="chip-tag ${statusType}">${escapeHtml(note)}</span>
+      `;
+      list.appendChild(div);
+    }
+
+    // ---------------- DEPLOY MINDSET (100% PDF-EXTRACTED) ----------------
+    async function deployNextRotation() {
+      await deployMindset(getNextBalancedTheme(), true);
+    }
+
+    async function deployMindset(theme, isAutoRotation) {
+      if (!THEME_CONFIG[theme]) return;
+
+      // If repo scan is running, wait for it so extraction uses live PDFs
+      if (activeScanPromise) {
+        showToast(`Indexing PDFs from ${REPO_OWNER}/${REPO_NAME}...`);
+        try {
+          await activeScanPromise;
+        } catch {}
+      }
+
+      const briefing = extractBriefingFromPdfs(theme, loadedPdfs, state.recentCitations, state.directiveCount);
+
+      if (!briefing) {
+        activeTheme = null;
+        currentMarkdownText = "";
+        document.getElementById("rotationStrip").style.display = "none";
+        document.getElementById("rawMarkdownBox").textContent = "";
+        document.getElementById("briefingContent").innerHTML = `
+          <div class="empty-briefing">
+            <h3>No Readable PDF Text Indexed Yet</h3>
+            <p style="margin-bottom: 16px;">
+              ${escapeHtml(lastScanError || `No readable text pages were extracted from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}). Because hardcoded output is disabled, at least one readable PDF is required.`)}
+            </p>
+            <button class="btn btn-primary btn-sm" onclick="scanGithubRepoPdfs({ forceRefresh: true })">
+              Retry Scan (${REPO_OWNER}/${REPO_NAME})
+            </button>
+          </div>
+        `;
+        showToast("No readable PDF text available yet");
+        return;
+      }
+
+      state.directiveCount += 1;
+      state.themeCounts[theme] = (state.themeCounts[theme] || 0) + 1;
+      state.recentThemes.push(theme);
+      if (state.recentThemes.length > 10) state.recentThemes.shift();
+
+      briefing.sources.forEach(s => {
+        state.recentCitations.push(`${s.fileName}#${s.pageNum}`);
+      });
+      if (state.recentCitations.length > 40) {
+        state.recentCitations = state.recentCitations.slice(-40);
+      }
+
+      activeTheme = theme;
+      saveState();
+
+      const recentStr = state.recentThemes.slice(-4).join(" → ");
+      const nextUp = getNextBalancedTheme();
+      const strip = document.getElementById("rotationStrip");
+      strip.style.display = "block";
+      strip.innerHTML = `
+        <strong>Tactical Rotation:</strong> <strong>${escapeHtml(theme)}</strong>
+        (${isAutoRotation ? "Auto-Balanced" : "Direct Selection"})
+        &nbsp;•&nbsp; Recent: ${escapeHtml(recentStr)}
+        &nbsp;•&nbsp; Next: <strong>${escapeHtml(nextUp)}</strong>
+      `;
+
+      document.getElementById("printMeta").innerHTML = `
+        <span>Mindset Commander (${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}) • Directive #${state.directiveCount}</span>
+        <span>${new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}</span>
+      `;
+
+      const sourceLine = briefing.sources
+        .map(s => `${s.fileName} [p.${s.pageNum}]`)
+        .join(" | ");
+
+      // Pure PDF-extracted Markdown
+      const mdLines = [
+        `# Mindset Directive ${state.directiveCount}: ${theme}`,
+        `Source Focus: ${briefing.subtitle}`,
+        ``,
+        `## Core Insight (Extracted from ${briefing.primary.fileName}, p.${briefing.primary.pageNum})`,
+        `> "${briefing.primary.text}"`,
+        ``,
+        ...(briefing.supporting.length ? [
+          `## Supporting PDF Intelligence`,
+          ...briefing.supporting.map(s => `- **${s.fileName} (p.${s.pageNum})**: "${s.text}"`),
+          ``
+        ] : []),
+        `## Actionable Directives (From Your PDFs)`,
+        ...briefing.actions.map(a => `- [ ] ${a.text} *(${a.fileName}, p.${a.pageNum})*`),
+        ``,
+        `## One Sentence to Remember`,
+        `> "${briefing.anchor.text}" — ${briefing.anchor.bookTitle}, p.${briefing.anchor.pageNum}`,
+        ``,
+        ...(briefing.concepts.length ? [
+          `## Extracted Key Concepts`,
+          `- ${briefing.concepts.join(" • ")}`,
+          ``
+        ] : []),
+        `## Source`,
+        `- GitHub Repository: ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}) — ${sourceLine}`
+      ];
+
+      currentMarkdownText = mdLines.join("\n");
+      document.getElementById("rawMarkdownBox").textContent = currentMarkdownText;
+
+      document.getElementById("briefingContent").innerHTML = `
+        <h2 class="directive-title">Mindset Directive ${state.directiveCount}: ${escapeHtml(theme)}</h2>
+        <div class="operation-subtitle">${escapeHtml(briefing.subtitle)}</div>
+
+        <div class="directive-sections">
+          <div class="d-block">
+            <div class="d-label">Core Insight — Extracted from PDF</div>
+            <div class="pdf-intel-card">
+              <div class="pdf-intel-meta">
+                <span>${escapeHtml(briefing.primary.fileName)} • Page ${briefing.primary.pageNum}</span>
+                ${briefing.primary.url ? `<a href="${escapeHtml(briefing.primary.url)}#page=${briefing.primary.pageNum}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">Open PDF &#8599;</a>` : ""}
+              </div>
+              <div class="pdf-intel-quote">"${escapeHtml(briefing.primary.text)}"</div>
+            </div>
+          </div>
+
+          ${briefing.supporting.length ? `
+            <div class="d-block">
+              <div class="d-label">Supporting Intelligence</div>
+              ${briefing.supporting.map(s => `
+                <div class="pdf-intel-card">
+                  <div class="pdf-intel-meta">
+                    <span>${escapeHtml(s.fileName)} • Page ${s.pageNum}</span>
+                    ${s.url ? `<a href="${escapeHtml(s.url)}#page=${s.pageNum}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">Open PDF &#8599;</a>` : ""}
+                  </div>
+                  <div class="pdf-intel-quote">"${escapeHtml(s.text)}"</div>
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+
+          <div class="d-block">
+            <div class="d-label">Daily Action Directives (Check as Executed)</div>
+            <div class="action-list">
+              ${briefing.actions.map((a, idx) => `
+                <label class="action-item" id="actionItem_${idx}">
+                  <input type="checkbox" onchange="toggleActionItem(${idx}, this.checked)" />
+                  <div>
+                    <div class="action-text d-content">${escapeHtml(a.text)}</div>
+                    <span class="action-source-tag">${escapeHtml(a.bookTitle)} • p.${a.pageNum}</span>
+                  </div>
+                </label>
+              `).join("")}
+            </div>
+          </div>
+
+          <div class="d-block">
+            <div class="d-label">One Sentence to Remember</div>
+            <div class="anchor-quote">
+              "${escapeHtml(briefing.anchor.text)}"
+              <div style="font-size: 0.78rem; font-weight: 500; color: var(--text-secondary); margin-top: 6px;">
+                — ${escapeHtml(briefing.anchor.bookTitle)}, Page ${briefing.anchor.pageNum}
+              </div>
+            </div>
+          </div>
+
+          ${briefing.concepts.length ? `
+            <div class="d-block">
+              <div class="d-label">Extracted Concept Map</div>
+              <div class="mindmap-box">
+                <ul>
+                  <li>
+                    <span class="mindmap-root-label">${escapeHtml(theme)}</span>
+                    <ul>
+                      <li>
+                        <strong>Matched Sources</strong>
+                        <ul>
+                          ${briefing.sources.map(s => `<li>${escapeHtml(s.bookTitle)} (p.${s.pageNum})</li>`).join("")}
+                        </ul>
+                      </li>
+                      <li>
+                        <strong>Key Terms in Passage</strong>
+                        <div class="concept-pills">
+                          ${briefing.concepts.map(c => `<span class="concept-pill">${escapeHtml(c)}</span>`).join("")}
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ` : ""}
+
+          <div class="d-block">
+            <div class="d-label">Source</div>
+            <div class="d-content" style="font-size: 0.88rem; color: var(--text-secondary);">
+              Repository: <code>${REPO_OWNER}/${REPO_NAME}</code> (<code>${REPO_BRANCH}</code>) —
+              ${briefing.sources.map(s =>
+                s.url
+                  ? `<a href="${escapeHtml(s.url)}#page=${s.pageNum}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">${escapeHtml(s.fileName)} [p.${s.pageNum}]</a>`
+                  : `${escapeHtml(s.fileName)} [p.${s.pageNum}]`
+              ).join(" • ")}
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (window.innerWidth < 940) {
+        document.getElementById("briefingCard").scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function toggleActionItem(idx, checked) {
+      const el = document.getElementById(`actionItem_${idx}`);
+      if (el) el.classList.toggle("checked", checked);
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      document.getElementById("segFormatted").classList.toggle("active", mode === "formatted");
+      document.getElementById("segMarkdown").classList.toggle("active", mode === "markdown");
+      document.getElementById("briefingBody").style.display = mode === "formatted" ? "block" : "none";
+      document.getElementById("rawMarkdownBox").style.display = mode === "markdown" ? "block" : "none";
+    }
+
+    async function printBriefingPdf() {
+      if (!currentMarkdownText) {
+        await deployNextRotation();
+        if (!currentMarkdownText) return;
+      }
+      if (currentViewMode !== "formatted") setViewMode("formatted");
+      requestAnimationFrame(() => window.print());
+    }
+
+    function copyMarkdown() {
+      if (!currentMarkdownText) {
+        showToast("Click Deploy Mindset first");
+        return;
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentMarkdownText)
+          .then(() => showToast("Markdown copied to clipboard"))
+          .catch(() => fallbackCopyText(currentMarkdownText));
+      } else {
+        fallbackCopyText(currentMarkdownText);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.left = "-9999px";
+      ta.style.fontSize = "16px";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      try {
+        document.execCommand("copy");
+        showToast("Markdown copied to clipboard");
+      } catch {
+        showToast("Copy failed — switch to Markdown view");
+      }
+      document.body.removeChild(ta);
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // ---------------- INITIALIZATION ----------------
+    window.addEventListener("DOMContentLoaded", () => {
+      initAppearance();
+      configurePdfWorker();
+      updateDashboardUI();
+      scanGithubRepoPdfs();
+    });
+  </script>
+</body>
+</html>
