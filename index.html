@@ -78,7 +78,9 @@
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overflow-x: clip;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
     body {
@@ -86,8 +88,10 @@
       color: var(--text-primary);
       font-family: var(--font-sans);
       line-height: 1.55;
+      width: 100%;
+      max-width: 100%;
       min-height: 100dvh;
-      overflow-x: clip;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       transition: background 0.25s ease, color 0.25s ease;
@@ -184,14 +188,22 @@
 
     /* Main Container */
     .page {
+      width: 100%;
       max-width: 1100px;
       margin: 0 auto;
+      overflow-x: hidden;
       padding: 32px max(24px, env(safe-area-inset-right, 0px)) calc(72px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
     }
 
     @media (max-width: 600px) {
-      .nav-inner { padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); }
-      .page { padding: 22px max(16px, env(safe-area-inset-right, 0px)) calc(64px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+      .nav-inner { padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); gap: 8px; }
+      .nav-actions { width: 100%; justify-content: space-between; }
+      .page { padding: 20px max(16px, env(safe-area-inset-right, 0px)) calc(64px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+      .hero { margin-bottom: 24px; }
+      .hero-cta-row { flex-direction: column; align-items: stretch; }
+      .hero-cta-row .btn { width: 100%; }
+      .card-header { padding: 14px 16px; }
+      .sidebar-card { padding: 16px; }
     }
 
     /* Hero */
@@ -297,13 +309,14 @@
     /* 6-Theme Bento Grid */
     .bento-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-bottom: 24px;
+      width: 100%;
     }
 
-    @media (max-width: 860px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 540px) { .bento-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 860px) { .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 540px) { .bento-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
 
     .theme-card {
       touch-action: manipulation;
@@ -390,16 +403,20 @@
     /* Workspace Split */
     .workspace {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 330px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 330px);
       gap: 20px;
       align-items: start;
+      width: 100%;
     }
 
-    .workspace > * { min-width: 0; }
+    .workspace > * { min-width: 0; max-width: 100%; width: 100%; }
 
-    @media (max-width: 940px) { .workspace { grid-template-columns: 1fr; } }
+    @media (max-width: 940px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
 
     .card {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -503,6 +520,8 @@
     .d-content {
       font-size: 0.98rem;
       color: var(--text-primary);
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .anchor-quote {
@@ -535,6 +554,8 @@
       justify-content: space-between;
       gap: 8px;
       flex-wrap: wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .pdf-intel-quote {
@@ -633,10 +654,14 @@
 
     .raw-md {
       display: none;
-      padding: 22px;
+      padding: 20px;
       font-family: var(--font-mono);
       font-size: 0.8rem;
       white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      max-width: 100%;
+      overflow-x: auto;
       background: var(--surface-secondary);
       color: var(--text-primary);
       line-height: 1.6;
@@ -766,6 +791,10 @@
       justify-content: space-between;
       align-items: center;
       gap: 8px;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
       padding: 8px 10px;
       border-radius: 10px;
       background: var(--surface-secondary);
@@ -773,6 +802,9 @@
     }
 
     .pdf-chip-name {
+      flex: 1 1 0%;
+      min-width: 0;
+      display: block;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
