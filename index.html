@@ -1,2144 +1,850 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="apple-mobile-web-app-title" content="Mindset Commander" />
-  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
-  <title>Mindset Commander — PDF-Driven Tactical System</title>
-
-  <!-- Primary PDF.js (with automatic jsDelivr fallback in script) -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta id="themeColorMeta" name="theme-color" content="#000000" />
+  <title>Commando Mindset</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = { darkMode: "class" };
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f5f5f7;
-      --surface: #ffffff;
-      --surface-secondary: #f2f2f7;
-      --glass: rgba(255, 255, 255, 0.8);
-      --border: rgba(0, 0, 0, 0.08);
-      --border-strong: rgba(0, 0, 0, 0.14);
-      --text-primary: #1d1d1f;
-      --text-secondary: #6e6e73;
-      --text-tertiary: #86868b;
-      --accent: #0071e3;
-      --accent-hover: #0077ed;
-      --accent-soft: rgba(0, 113, 227, 0.1);
-      --green: #248a3d;
-      --green-soft: rgba(52, 199, 89, 0.14);
-      --orange: #c96408;
-      --orange-soft: rgba(255, 149, 0, 0.14);
-      --red: #d70015;
-      --red-soft: rgba(215, 0, 21, 0.12);
-      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.03);
-      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.06);
-      --radius-lg: 20px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-      --font-mono: "SF Mono", SFMono-Regular, ui-monospace, "Cascadia Code", Consolas, Menlo, monospace;
+      --ios-bg: #f2f2f7;
+      --ios-surface: #ffffff;
+      --ios-elevated: #e5e5ea;
+      --ios-nav-bg: rgba(249, 249, 249, 0.82);
+      --ios-separator: rgba(60, 60, 67, 0.16);
+      --ios-card-border: rgba(60, 60, 67, 0.10);
+      --ios-amber: #c96d00;
+      --ios-blue: #007aff;
+      --ios-label: #000000;
+      --ios-secondary: rgba(60, 60, 67, 0.72);
+      --ios-sheet-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
     }
 
-    [data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #000000;
-      --surface: #1c1c1e;
-      --surface-secondary: #2c2c2e;
-      --glass: rgba(28, 28, 30, 0.8);
-      --border: rgba(255, 255, 255, 0.1);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --text-primary: #f5f5f7;
-      --text-secondary: #a1a1a6;
-      --text-tertiary: #8e8e93;
-      --accent: #0a84ff;
-      --accent-hover: #409cff;
-      --accent-soft: rgba(10, 132, 255, 0.18);
-      --green: #30d158;
-      --green-soft: rgba(48, 209, 88, 0.16);
-      --orange: #ff9f0a;
-      --orange-soft: rgba(255, 159, 10, 0.18);
-      --red: #ff453a;
-      --red-soft: rgba(255, 69, 58, 0.18);
-      --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.35);
-      --shadow-md: 0 12px 36px rgba(0, 0, 0, 0.5);
+    html.dark {
+      --ios-bg: #000000;
+      --ios-surface: #1c1c1e;
+      --ios-elevated: #2c2c2e;
+      --ios-nav-bg: rgba(28, 28, 30, 0.72);
+      --ios-separator: rgba(255, 255, 255, 0.12);
+      --ios-card-border: rgba(255, 255, 255, 0.08);
+      --ios-amber: #ff9f0a;
+      --ios-blue: #0a84ff;
+      --ios-label: #ffffff;
+      --ios-secondary: rgba(235, 235, 245, 0.65);
+      --ios-sheet-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
     }
 
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
 
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-      width: 100%;
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
     body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      line-height: 1.55;
-      width: 100%;
-      max-width: 100%;
-      min-height: 100dvh;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      transition: background 0.25s ease, color 0.25s ease;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      background-color: var(--ios-bg);
+      color: var(--ios-label);
+      padding-bottom: env(safe-area-inset-bottom);
+      transition: background-color 0.2s ease, color 0.2s ease;
     }
 
-    :focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-
-    /* Sticky Frosted Nav */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: saturate(180%) blur(20px);
+    .ios-nav {
+      background-color: var(--ios-nav-bg);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
-      background: var(--glass);
-      border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 0.5px solid var(--ios-separator);
+      padding-top: env(safe-area-inset-top);
     }
 
-    .navbar {
-      padding-top: env(safe-area-inset-top, 0px);
+    .ios-grouped-card {
+      background-color: var(--ios-surface);
+      border-radius: 16px;
+      border: 0.5px solid var(--ios-card-border);
+      transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 12px max(24px, env(safe-area-inset-right, 0px)) 12px max(24px, env(safe-area-inset-left, 0px));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
+    .ios-elevated {
+      background-color: var(--ios-elevated);
     }
 
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 1.02rem;
-      letter-spacing: -0.02em;
+    .ios-hairline {
+      border-color: var(--ios-separator);
     }
 
-    .brand-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px var(--accent-soft);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .pill-status {
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      background: var(--surface-secondary);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-variant-numeric: tabular-nums;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dot-live {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--green);
-    }
-
-    .dot-live.syncing {
-      background: var(--orange);
-      animation: pulse 1.1s infinite ease-in-out;
-    }
-
-    .dot-live.error {
-      background: var(--red);
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Main Container */
-    .page {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      overflow-x: hidden;
-      padding: 32px max(24px, env(safe-area-inset-right, 0px)) calc(72px + env(safe-area-inset-bottom, 0px)) max(24px, env(safe-area-inset-left, 0px));
-    }
-
-    @media (max-width: 600px) {
-      .nav-inner { padding: 10px max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px)); gap: 8px; }
-      .nav-actions { width: 100%; justify-content: space-between; }
-      .page { padding: 20px max(16px, env(safe-area-inset-right, 0px)) calc(64px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
-      .hero { margin-bottom: 24px; }
-      .hero-cta-row { flex-direction: column; align-items: stretch; }
-      .hero-cta-row .btn { width: 100%; }
-      .card-header { padding: 14px 16px; }
-      .sidebar-card { padding: 16px; }
-    }
-
-    /* Hero */
-    .hero {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 32px;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      font-size: 1.04rem;
-      color: var(--text-secondary);
-      letter-spacing: -0.01em;
-      margin-bottom: 22px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* Buttons */
-    .btn {
-      appearance: none;
-      border: none;
-      cursor: pointer;
-      touch-action: manipulation;
-      font-family: var(--font-sans);
-      font-size: 0.92rem;
-      font-weight: 600;
-      border-radius: 999px;
-      padding: 12px 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: transform 0.16s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, opacity 0.2s ease;
-      text-decoration: none;
-      min-height: 44px;
-    }
-
-    .btn:active { transform: scale(0.965); }
-    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-      box-shadow: 0 4px 14px rgba(0, 113, 227, 0.28);
-    }
-
-    .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
-
-    .btn-secondary {
-      background: var(--surface);
-      color: var(--text-primary);
-      border: 1px solid var(--border-strong);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .btn-secondary:hover:not(:disabled) { background: var(--surface-secondary); }
-
-    .btn-sm {
-      padding: 7px 14px;
-      font-size: 0.8rem;
-      min-height: 34px;
-    }
-
-    /* Section Header */
-    .section-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-secondary);
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    /* 6-Theme Bento Grid */
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
-      width: 100%;
-    }
-
-    @media (max-width: 860px) { .bento-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 540px) { .bento-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; } }
-
-    .theme-card {
-      touch-action: manipulation;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      text-align: left;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, border-color 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    @media (hover: hover) {
-      .theme-card:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        border-color: var(--border-strong);
-      }
-    }
-
-    .theme-card:active { transform: scale(0.98); }
-
-    .theme-card.is-next {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px var(--accent), var(--shadow-sm);
-    }
-
-    .theme-card.is-active {
-      background: linear-gradient(180deg, var(--surface) 0%, var(--accent-soft) 100%);
-      border-color: var(--accent);
-    }
-
-    .theme-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-    }
-
-    .theme-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
-      background: var(--surface-secondary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    .theme-badge {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 3px 9px;
-      border-radius: 999px;
-      background: var(--surface-secondary);
-      color: var(--text-secondary);
-      font-variant-numeric: tabular-nums;
-    }
-
-    .theme-card.is-next .theme-badge {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .theme-title {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--text-primary);
-    }
-
-    .theme-sub {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      line-height: 1.4;
-    }
-
-    /* Workspace Split */
-    .workspace {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 330px);
-      gap: 20px;
-      align-items: start;
-      width: 100%;
-    }
-
-    .workspace > * { min-width: 0; max-width: 100%; width: 100%; }
-
-    @media (max-width: 940px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
-
-    .card {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-
-    .card-header {
-      padding: 16px 24px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .segmented {
-      display: inline-flex;
-      background: var(--surface-secondary);
-      padding: 3px;
-      border-radius: 999px;
-    }
-
-    .seg-btn {
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 6px 13px;
-      border-radius: 999px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .seg-btn.active {
-      background: var(--surface);
-      color: var(--text-primary);
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .rotation-strip {
-      padding: 12px 24px;
-      background: var(--accent-soft);
-      color: var(--text-primary);
-      font-size: 0.83rem;
-      display: none;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .briefing-body {
-      padding: 28px 30px;
-    }
-
-    @media (max-width: 600px) { .briefing-body { padding: 20px 18px; } }
-
-    .directive-title {
-      font-size: clamp(1.35rem, 2.5vw, 1.7rem);
-      font-weight: 700;
-      letter-spacing: -0.025em;
-      margin-bottom: 6px;
-    }
-
-    .operation-subtitle {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.02em;
-      margin-bottom: 22px;
-      text-transform: uppercase;
-    }
-
-    .directive-sections {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .d-block {
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--border);
-      break-inside: avoid;
-    }
-
-    .d-block:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    .d-label {
-      font-size: 0.74rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-tertiary);
-      margin-bottom: 8px;
-    }
-
-    .d-content {
-      font-size: 0.98rem;
-      color: var(--text-primary);
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .anchor-quote {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: -0.015em;
-      color: var(--text-primary);
-      padding: 14px 18px;
-      background: var(--surface-secondary);
-      border-radius: var(--radius-sm);
-      border-left: 3px solid var(--accent);
-    }
-
-    .pdf-intel-card {
-      margin-top: 10px;
-      padding: 14px 16px;
-      border-radius: var(--radius-sm);
-      background: var(--surface-secondary);
-      border: 1px solid var(--border);
-    }
-
-    .pdf-intel-card:first-of-type { margin-top: 0; }
-
-    .pdf-intel-meta {
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--accent);
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-    }
-
-    .pdf-intel-quote {
-      font-size: 0.94rem;
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    /* Checkable PDF Action Directives */
-    .action-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .action-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: var(--radius-sm);
-      background: var(--surface-secondary);
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: border-color 0.15s ease, background 0.15s ease;
-    }
-
-    .action-item:hover { border-color: var(--border-strong); }
-
-    .action-item.checked {
-      background: var(--green-soft);
-      border-color: var(--green);
-    }
-
-    .action-item input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      margin-top: 3px;
-      accent-color: var(--green);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-
-    .action-item.checked .action-text {
-      text-decoration: line-through;
-      color: var(--text-secondary);
-    }
-
-    .action-source-tag {
-      display: inline-block;
-      margin-top: 4px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-    }
-
-    /* Extracted Concept Map */
-    .mindmap-box ul {
-      list-style: none;
-      padding-left: 18px;
-      margin-top: 6px;
-      border-left: 1.5px solid var(--border-strong);
-    }
-
-    .mindmap-box > ul {
-      padding-left: 0;
-      border-left: none;
-    }
-
-    .mindmap-box li {
-      margin: 5px 0;
-      font-size: 0.92rem;
-    }
-
-    .mindmap-root-label {
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    .concept-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .concept-pill {
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: var(--surface-secondary);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-    }
-
-    .raw-md {
-      display: none;
-      padding: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      max-width: 100%;
-      overflow-x: auto;
-      background: var(--surface-secondary);
-      color: var(--text-primary);
-      line-height: 1.6;
-    }
-
-    .empty-briefing {
-      text-align: center;
-      padding: 52px 24px;
-      color: var(--text-secondary);
-    }
+    .ios-text-primary { color: var(--ios-label); }
+    .ios-text-secondary { color: var(--ios-secondary); }
+    .ios-text-amber { color: var(--ios-amber); }
+    .ios-text-blue { color: var(--ios-blue); }
 
-    .empty-briefing h3 {
-      font-size: 1.18rem;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-      letter-spacing: -0.015em;
+    .ios-pill-btn {
+      transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.15s ease;
     }
-
-    .empty-briefing p {
-      max-width: 500px;
-      margin: 0 auto;
-      font-size: 0.92rem;
-    }
-
-    /* Sidebar */
-    .sidebar-card {
-      padding: 20px;
-    }
-
-    .sidebar-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .sidebar-desc {
-      font-size: 0.81rem;
-      color: var(--text-secondary);
-      margin-bottom: 14px;
-    }
-
-    .repo-pill-box {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: var(--surface-secondary);
-      border: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .field-group { margin-bottom: 12px; }
-
-    .field-group label {
-      display: block;
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      margin-bottom: 5px;
-    }
-
-    .input {
-      width: 100%;
-      padding: 9px 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border-strong);
-      background: var(--surface-secondary);
-      color: var(--text-primary);
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      outline: none;
-    }
-
-    .input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 5px;
-      border-radius: 999px;
-      background: var(--surface-secondary);
-      overflow: hidden;
-      margin: 10px 0;
-      display: none;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: var(--accent);
-      transition: width 0.25s ease;
-    }
-
-    .scan-log {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      margin: 8px 0 10px;
-      word-break: break-word;
+    .ios-pill-btn:active {
+      transform: scale(0.96);
+      opacity: 0.85;
     }
-
-    .pdf-chips {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      max-height: 240px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: var(--border-strong) transparent;
-    }
-
-    .pdf-chips::-webkit-scrollbar { width: 6px; }
-    .pdf-chips::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
-
-    .pdf-chip {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
-      overflow: hidden;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: var(--surface-secondary);
-      font-size: 0.78rem;
-    }
-
-    .pdf-chip-name {
-      flex: 1 1 0%;
-      min-width: 0;
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      font-weight: 500;
-    }
-
-    .chip-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 999px;
-      flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .chip-tag.ok { background: var(--green-soft); color: var(--green); }
-    .chip-tag.warn { background: var(--orange-soft); color: var(--orange); }
-    .chip-tag.err { background: var(--red-soft); color: var(--red); }
-
-    details.advanced-box {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    details.advanced-box summary {
-      cursor: pointer;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-      max-width: calc(100vw - 32px);
-      text-align: center;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: rgba(29, 29, 31, 0.92);
-      color: #ffffff;
-      backdrop-filter: blur(12px);
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      font-weight: 500;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-      z-index: 999;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (pointer: coarse) {
-      .input { font-size: 16px; min-height: 44px; }
-      .btn-sm { min-height: 40px; padding: 8px 14px; }
-      .seg-btn { min-height: 36px; padding: 7px 14px; }
-      .action-item input[type="checkbox"] { width: 22px; height: 22px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    .print-only-meta { display: none; }
 
-    @media print {
-      @page { margin: 16mm; }
-      body, [data-theme="dark"] body {
-        background: #ffffff !important;
-        color: #111111 !important;
-        --bg: #ffffff;
-        --surface: #ffffff;
-        --surface-secondary: #f5f5f7;
-        --text-primary: #111111;
-        --text-secondary: #444444;
-        --text-tertiary: #666666;
-        --border: #dddddd;
-        --accent: #005bb5;
-      }
-      .navbar, .hero, .section-label, .bento-grid, .sidebar-wrap, .card-header, .raw-md, .toast {
-        display: none !important;
-      }
-      .page { padding: 0 !important; max-width: 100% !important; }
-      .workspace { display: block !important; }
-      .card { border: none !important; box-shadow: none !important; }
-      .briefing-body { padding: 0 !important; }
-      .print-only-meta {
-        display: flex !important;
-        justify-content: space-between;
-        font-size: 10pt;
-        color: #555555;
-        border-bottom: 1px solid #cccccc;
-        padding-bottom: 8px;
-        margin-bottom: 16px;
-      }
-      .rotation-strip {
-        display: block !important;
-        background: #f5f5f7 !important;
-        border: 1px solid #dddddd !important;
-        border-radius: 8px;
-        margin-bottom: 16px;
-      }
-      .pdf-intel-card, .anchor-quote, .action-item {
-        background: #f8f8fa !important;
-        border-color: #cccccc !important;
-      }
+    .ios-sheet {
+      background-color: var(--ios-surface);
+      border: 0.5px solid var(--ios-separator);
+      box-shadow: var(--ios-sheet-shadow);
     }
   </style>
 </head>
-<body>
-  <!-- Sticky Navigation -->
-  <nav class="navbar">
-    <div class="nav-inner">
-      <div class="nav-brand">
-        <span class="brand-dot"></span>
-        <span>Mindset Commander</span>
+<body class="min-h-screen antialiased selection:bg-amber-500/30">
+  <!-- iOS Frosted Translucent Navigation Bar -->
+  <nav class="ios-nav sticky top-0 z-40">
+    <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 min-w-0">
+        <div class="w-7 h-7 rounded-lg bg-[#ff9f0a]/15 border border-[#ff9f0a]/30 flex items-center justify-center shrink-0">
+          <svg class="w-4 h-4 text-[#ff9f0a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5"></path>
+            <path d="M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <h1 class="text-[17px] font-semibold tracking-tight ios-text-primary truncate">Commando Mindset</h1>
       </div>
-      <div class="nav-actions">
-        <span class="pill-status" id="navSyncPill">
-          <span class="dot-live" id="syncDot"></span>
-          <span id="navSyncText">Connecting to logmain68/me...</span>
-        </span>
-        <button class="btn btn-secondary btn-sm" onclick="toggleTheme()" id="themeToggleBtn" aria-label="Toggle Appearance">
-          &#9790; Dark
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="themeToggleBtn" type="button" aria-label="Toggle Light or Dark Mode" class="ios-pill-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium ios-elevated ios-text-primary">
+          <span id="themeIcon">☀️</span>
+          <span id="themeLabel">Light</span>
         </button>
-        <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">
-          Export PDF
+
+        <label for="localPdfInput" class="ios-pill-btn cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium ios-elevated ios-text-blue">
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>
+          <span>PDF</span>
+        </label>
+        <input id="localPdfInput" type="file" accept=".pdf,application/pdf" multiple class="hidden" />
+
+        <button id="historyBtn" type="button" class="ios-pill-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[13px] font-medium ios-elevated ios-text-primary">
+          <span>Rotation</span>
+          <span id="historyCountBadge" class="px-1.5 py-0.5 rounded-full bg-[#ff9f0a] text-black font-bold text-[11px] leading-none">0</span>
         </button>
       </div>
     </div>
   </nav>
 
-  <main class="page">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-eyebrow">Live PDF Extraction • logmain68/me (main)</div>
-      <h1>Daily mindset, straight from your PDFs.</h1>
-      <p>
-        Every directive is extracted directly from the PDF books and notes in
-        <code>logmain68/me</code> (<code>main</code> branch) — zero hardcoded output.
+  <!-- iOS Floating Toast -->
+  <div id="toastBanner" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-[#2c2c2e]/95 border border-white/15 text-[13px] font-medium text-white shadow-xl backdrop-blur-md"></div>
+
+  <main class="max-w-2xl mx-auto px-4 pt-5 pb-12 space-y-5">
+    <!-- Large Title Header -->
+    <header class="px-1">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#ff9f0a]">Daily Sovereignty</p>
+      <h2 class="text-[28px] sm:text-[32px] font-bold tracking-tight ios-text-primary leading-tight">Briefing</h2>
+    </header>
+
+    <!-- iOS Command Search Bar -->
+    <section class="ios-grouped-card p-3.5 space-y-2.5">
+      <form id="commandForm" class="flex items-center gap-2">
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 text-[#8e8e93] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+          <input
+            id="commandInput"
+            type="text"
+            autocomplete="off"
+            autocapitalize="none"
+            spellcheck="false"
+            placeholder="Type 'mindset'"
+            class="w-full pl-9 pr-3 py-2.5 rounded-xl ios-elevated text-[15px] ios-text-primary placeholder-[#8e8e93] focus:outline-none focus:ring-2 focus:ring-[#ff9f0a]/60"
+          />
+        </div>
+        <button
+          id="executeBtn"
+          type="submit"
+          class="ios-pill-btn px-4 py-2.5 rounded-xl bg-[#ff9f0a] text-black font-semibold text-[15px] tracking-tight shrink-0 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          MINDSET
+        </button>
+      </form>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 px-1 text-[12px] text-[#8e8e93]">
+        <span id="statusText">Ready. Tap MINDSET to pull from logmain68/me.</span>
+        <span id="sourceCountText" class="font-medium text-[#ff9f0a]"></span>
+      </div>
+
+      <div id="errorBanner" class="hidden rounded-xl bg-[#ff453a]/15 border border-[#ff453a]/30 px-3.5 py-2.5 text-[13px] text-[#ff6961]"></div>
+    </section>
+
+    <!-- Empty State -->
+    <section id="emptyState" class="ios-grouped-card p-5 space-y-2">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[#30d158]"></span>
+        <h3 class="text-[15px] font-semibold ios-text-primary">Source-Locked Protocol</h3>
+      </div>
+      <p class="text-[14px] ios-text-secondary leading-relaxed">
+        Pulls an unused 300–500 word passage from PDFs in <code class="text-[#ff9f0a] font-mono text-[13px]">logmain68/me</code> (<code class="text-[#ff9f0a] font-mono text-[13px]">main</code>) or your imported PDFs and renders the 8-section briefing on-device.
       </p>
-      <div class="hero-cta-row">
-        <button class="btn btn-primary" id="primaryDeployBtn" onclick="deployNextRotation()">
-          &#9889; Deploy Mindset
-        </button>
-        <button class="btn btn-secondary" onclick="printBriefingPdf()">
-          &#128424; Print / Save as PDF
-        </button>
-      </div>
     </section>
 
-    <!-- 6 Operational Themes -->
-    <div class="section-label">
-      <span>Select Theme to Extract from PDFs</span>
-      <span id="directiveCounterLabel">0 Directives Issued</span>
-    </div>
-    <section class="bento-grid" id="themeBentoGrid"></section>
-
-    <!-- Main Workspace -->
-    <section class="workspace">
-      <!-- Briefing Output Card -->
-      <div class="card" id="briefingCard">
-        <div class="card-header">
-          <div class="segmented" role="tablist">
-            <button class="seg-btn active" id="segFormatted" onclick="setViewMode('formatted')">Briefing</button>
-            <button class="seg-btn" id="segMarkdown" onclick="setViewMode('markdown')">Markdown</button>
-          </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button class="btn btn-secondary btn-sm" onclick="copyMarkdown()">Copy Markdown</button>
-            <button class="btn btn-primary btn-sm" onclick="printBriefingPdf()">Print PDF</button>
-          </div>
+    <!-- Lesson Inset Grouped Sections -->
+    <article id="lessonCard" class="hidden space-y-4">
+      <!-- Title & Actions Card -->
+      <div class="ios-grouped-card p-5 space-y-4">
+        <div class="space-y-1">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#ff9f0a]">Mindset Title</p>
+          <h2 id="lessonTitle" class="text-[22px] sm:text-[24px] font-bold ios-text-primary leading-snug tracking-tight"></h2>
         </div>
 
-        <div class="rotation-strip" id="rotationStrip"></div>
-
-        <div class="briefing-body" id="briefingBody">
-          <div class="print-only-meta" id="printMeta"></div>
-          <div id="briefingContent">
-            <div class="empty-briefing">
-              <h3>Ready to Extract Daily Mindset</h3>
-              <p>
-                Click <strong>Deploy Mindset</strong> or choose any theme above.<br/>
-                Your briefing will be synthesized live from the indexed PDFs in <code>logmain68/me</code> (<code>main</code>).
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <pre class="raw-md" id="rawMarkdownBox"></pre>
-      </div>
-
-      <!-- Repo Source Sidebar -->
-      <aside class="sidebar-wrap">
-        <div class="card sidebar-card">
-          <div class="sidebar-title">
-            <span>PDF Source Library</span>
-            <span class="chip-tag ok" id="pdfCountBadge">0 Indexed</span>
-          </div>
-          <p class="sidebar-desc">
-            Fixed to your GitHub repository below. All <code>.pdf</code> files on <code>main</code> are indexed automatically.
-          </p>
-
-          <div class="repo-pill-box">
-            <span>logmain68/me</span>
-            <span class="chip-tag ok">main</span>
-          </div>
-
-          <button class="btn btn-secondary" style="width: 100%;" onclick="scanGithubRepoPdfs({ forceRefresh: true })">
-            Rescan logmain68/me
+        <div class="flex flex-wrap items-center gap-2 pt-1">
+          <button id="copyMarkdownBtn" type="button" class="ios-pill-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-semibold bg-[#ff9f0a]/15 text-[#ff9f0a] border border-[#ff9f0a]/25">
+            Copy Markdown
           </button>
-
-          <div class="progress-track" id="scanProgressWrap">
-            <div class="progress-fill" id="scanProgressFill"></div>
-          </div>
-
-          <div class="scan-log" id="pdfStatusLog">Initializing PDF scanner...</div>
-          <div class="pdf-chips" id="pdfList"></div>
-
-          <details class="advanced-box">
-            <summary>Private Repo Token / Local PDFs</summary>
-            <div class="field-group">
-              <label for="githubToken">GitHub Token (session-only, for private repos or rate limits)</label>
-              <input class="input" type="password" id="githubToken" placeholder="ghp_..." onchange="scanGithubRepoPdfs({ forceRefresh: true })" />
-            </div>
-            <div class="field-group">
-              <label for="localPdfInput">Attach Local PDFs (optional fallback)</label>
-              <input type="file" id="localPdfInput" accept="application/pdf" multiple onchange="handleLocalPdfs(this.files)" style="font-size: 0.78rem; width: 100%;" />
-            </div>
-            <button class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 6px;" onclick="resetRotation()">
-              Reset Rotation History
-            </button>
-          </details>
+          <button id="downloadMarkdownBtn" type="button" class="ios-pill-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-semibold ios-elevated ios-text-blue">
+            Export .md
+          </button>
         </div>
-      </aside>
-    </section>
+      </div>
+
+      <!-- Explanation & Anchor Quote -->
+      <div class="ios-grouped-card overflow-hidden">
+        <div class="p-5 space-y-3">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Explanation</h3>
+          <p id="lessonExplanation" class="text-[15px] ios-text-primary leading-[1.55]"></p>
+          <blockquote id="lessonQuote" class="border-l-[3px] border-[#ff9f0a] pl-3.5 py-1.5 text-[14px] italic ios-text-primary bg-black/[0.04] dark:bg-white/[0.04] rounded-r-lg"></blockquote>
+        </div>
+
+        <div class="border-t ios-hairline bg-[#ff9f0a]/[0.08] p-5 space-y-1.5">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Daily challenge</h3>
+          <p id="lessonChallenge" class="text-[15px] font-medium ios-text-primary leading-[1.5]"></p>
+        </div>
+
+        <div class="border-t ios-hairline p-5 space-y-1.5">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Habit to Inculcate</h3>
+          <p id="lessonHabit" class="text-[15px] ios-text-primary leading-[1.5]"></p>
+        </div>
+
+        <div class="border-t ios-hairline p-5 space-y-1.5">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">The One-Liner</h3>
+          <p id="lessonOneLiner" class="text-[17px] font-semibold ios-text-primary leading-snug"></p>
+        </div>
+
+        <div class="border-t ios-hairline p-5 space-y-1.5">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Reflection prompt</h3>
+          <p id="lessonReflection" class="text-[15px] ios-text-primary leading-[1.5]"></p>
+        </div>
+      </div>
+
+      <!-- Mindmap & Source Card -->
+      <div class="ios-grouped-card overflow-hidden">
+        <div class="p-5 space-y-2.5">
+          <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Mindmap</h3>
+          <div id="lessonMindmap" class="text-[14px] ios-text-primary space-y-1.5"></div>
+        </div>
+        <div class="border-t ios-hairline px-5 py-3.5 bg-black/[0.03] dark:bg-black/20 flex flex-col gap-0.5">
+          <h3 class="text-[11px] font-semibold uppercase tracking-wider text-[#8e8e93]">Source</h3>
+          <p id="lessonSource" class="text-[13px] ios-text-secondary"></p>
+        </div>
+      </div>
+    </article>
   </main>
 
-  <div class="toast" id="toast"></div>
+  <!-- iOS Sheet Modal for Rotation History -->
+  <div id="historyModal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center sm:p-4">
+    <div class="ios-sheet w-full sm:max-w-lg rounded-t-[24px] sm:rounded-[20px] max-h-[82vh] flex flex-col overflow-hidden">
+      <div class="sm:hidden flex justify-center pt-2.5 pb-1">
+        <div class="w-9 h-1 rounded-full bg-white/25"></div>
+      </div>
+      <div class="flex items-center justify-between px-5 py-3.5 border-b ios-hairline">
+        <button id="resetHistoryBtn" type="button" class="text-[15px] font-medium text-[#ff453a] hover:opacity-80">
+          Reset
+        </button>
+        <h2 class="text-[16px] font-semibold ios-text-primary">Source Rotation</h2>
+        <button id="closeHistoryBtn" type="button" class="text-[15px] font-semibold text-[#0a84ff] hover:opacity-80">
+          Done
+        </button>
+      </div>
+      <div id="historyList" class="p-4 overflow-y-auto space-y-2.5 text-[14px]"></div>
+    </div>
+  </div>
 
   <script>
-    // ---------------- FIXED GITHUB REPOSITORY TARGET ----------------
-    const REPO_OWNER = "logmain68";
-    const REPO_NAME = "me";
-    const REPO_BRANCH = "main";
+    (function () {
+      const REPO_OWNER = "logmain68";
+      const REPO_NAME = "me";
+      const BRANCH = "main";
+      const HISTORY_KEY = "commando_mindset_rotation_v1";
+      const THEME_KEY = "commando_mindset_theme_v1";
 
-    // ---------------- THEME SEARCH PROFILES (NO HARDCODED OUTPUT) ----------------
-    const THEME_ORDER = [
-      "Discipline",
-      "Focus",
-      "Situational Awareness",
-      "Quick Decision-Making",
-      "Quick Reflection / Self-Correction",
-      "Efficiency"
-    ];
-
-    const THEME_CONFIG = {
-      "Discipline": {
-        icon: "&#9875;",
-        short: "Standards, habits & execution",
-        keywords: ["discipline", "standard", "standards", "checklist", "habit", "habits", "routine", "rigor", "consistency", "consistent", "process", "execution", "execute", "detail", "ownership", "march", "method", "craft", "willpower", "commit", "commitment", "daily", "practice", "system", "systems", "rule", "rules", "training"]
-      },
-      "Focus": {
-        icon: "&#127919;",
-        short: "Attention, presence & deep work",
-        keywords: ["focus", "focused", "attention", "mindful", "mindfulness", "present", "presence", "flow", "concentrate", "concentration", "distraction", "distractions", "zone", "noise", "immersion", "meditate", "deep", "breath", "breathing", "stillness", "clarity", "single", "calm", "quiet"]
-      },
-      "Situational Awareness": {
-        icon: "&#128065;",
-        short: "Observation, poise & reading terrain",
-        keywords: ["awareness", "aware", "situational", "observe", "observation", "calm", "emotion", "emotional", "poise", "detached", "environment", "power", "ego", "listen", "listening", "signal", "signals", "team", "perception", "control", "read", "terrain", "anticipate", "people", "reaction", "respond"]
-      },
-      "Quick Decision-Making": {
-        icon: "&#9889;",
-        short: "Decisive action & OODA tempo",
-        keywords: ["decision", "decisions", "decide", "decisive", "ooda", "action", "speed", "pressure", "stalemate", "paralysis", "bias", "execute", "risk", "adapt", "pivot", "act", "choose", "choice", "velocity", "bold", "judgment", "options", "uncertain", "uncertainty", "move", "fast"]
-      },
-      "Quick Reflection / Self-Correction": {
-        icon: "&#128269;",
-        short: "Feedback, accountability & adaptation",
-        keywords: ["reflection", "reflect", "correct", "correction", "ego", "mistake", "mistakes", "failure", "fail", "autopsy", "blameless", "learn", "learning", "feedback", "review", "adjust", "adjustment", "truth", "improve", "improvement", "fault", "honest", "honesty", "weakness", "accountability", "lesson", "lessons"]
-      },
-      "Efficiency": {
-        icon: "&#9881;",
-        short: "Leverage, priority & eliminating waste",
-        keywords: ["efficiency", "efficient", "leverage", "output", "waste", "vital", "essential", "bottleneck", "priority", "priorities", "simplify", "simple", "pareto", "automate", "constraint", "energy", "time", "effective", "effectiveness", "result", "results", "impact", "eliminate", "less", "smart"]
-      }
-    };
-
-    const ACTION_CUE_RX = /\b(must|should|never|always|practice|focus|build|train|decide|observe|check|avoid|start|stop|keep|make|take|commit|review|learn|control|choose|act|create|develop|maintain|eliminate|protect|prepare|execute|remember|listen|pause|ask|measure|simplify|embrace|accept|refuse|set|define|identify|write|plan|do not|don't)\b/i;
-
-    const BOILERPLATE_RX = /\b(all rights reserved|isbn|library of congress|printed in|table of contents|copyright|published by|first edition|acknowledgments|bibliography|index|www\.|http:\/\/|https:\/\/)\b/i;
-
-    const STOPWORDS = new Set([
-      "about","above","after","again","against","almost","alone","along","already","also","although","always","among","another","anyone","anything","around","because","become","becomes","before","behind","being","below","between","beyond","bring","cannot","could","course","different","doing","during","either","enough","every","everyone","everything","example","first","found","further","getting","given","going","great","having","however","important","instead","itself","large","later","least","level","likely","little","making","matter","might","never","nothing","number","often","order","other","others","outside","people","perhaps","person","place","point","possible","rather","really","right","second","seems","several","should","since","small","someone","something","sometimes","still","study","system","taking","their","there","these","thing","things","think","those","though","three","through","times","today","together","toward","under","until","using","usually","water","where","whether","which","while","whole","whose","within","without","world","would","years","young"
-    ]);
-
-    const STORAGE_KEY = "tactical_mindset_pdf_only_v1";
-    const IDB_NAME = "mindset_commander_pdf_cache";
-    const IDB_STORE = "pdf_pages_v1";
-
-    function loadSafeState() {
-      const defaults = {
-        directiveCount: 0,
-        themeCounts: Object.fromEntries(THEME_ORDER.map(t => [t, 0])),
-        recentThemes: [],
-        recentCitations: []
-      };
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return defaults;
-        const parsed = JSON.parse(raw);
-        if (!parsed || typeof parsed !== "object" || !parsed.themeCounts) return defaults;
-        return {
-          directiveCount: Number(parsed.directiveCount) || 0,
-          themeCounts: { ...defaults.themeCounts, ...parsed.themeCounts },
-          recentThemes: Array.isArray(parsed.recentThemes) ? parsed.recentThemes.slice(-12) : [],
-          recentCitations: Array.isArray(parsed.recentCitations) ? parsed.recentCitations.slice(-40) : []
-        };
-      } catch {
-        return defaults;
-      }
-    }
-
-    let state = loadSafeState();
-    let loadedPdfs = []; // [{ name, sha, url, totalPages, pages: [{ pageNum, text, sentences }] }]
-    let currentMarkdownText = "";
-    let currentViewMode = "formatted";
-    let activeTheme = null;
-    let activeScanPromise = null;
-    let activeScanAbort = null;
-    let lastScanError = null;
-
-    function saveState() {
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
-      updateDashboardUI();
-    }
-
-    // ---------------- INDEXEDDB CACHE FOR FAST ROBUST RELOADS ----------------
-    function openCacheDb() {
-      return new Promise((resolve) => {
-        let settled = false;
-        const done = (val) => { if (!settled) { settled = true; clearTimeout(guard); resolve(val); } };
-        const guard = setTimeout(() => done(null), 1500);
-        try {
-          if (!window.indexedDB) return done(null);
-          const req = indexedDB.open(IDB_NAME, 1);
-          req.onupgradeneeded = () => {
-            const db = req.result;
-            if (!db.objectStoreNames.contains(IDB_STORE)) {
-              db.createObjectStore(IDB_STORE, { keyPath: "cacheKey" });
-            }
-          };
-          req.onsuccess = () => done(req.result);
-          req.onerror = () => done(null);
-          req.onblocked = () => done(null);
-        } catch {
-          done(null);
-        }
-      });
-    }
-
-    async function getCachedPdf(cacheKey) {
-      const db = await openCacheDb();
-      if (!db) return null;
-      return new Promise((resolve) => {
-        try {
-          const tx = db.transaction(IDB_STORE, "readonly");
-          const req = tx.objectStore(IDB_STORE).get(cacheKey);
-          req.onsuccess = () => resolve(req.result || null);
-          req.onerror = () => resolve(null);
-        } catch {
-          resolve(null);
-        }
-      });
-    }
-
-    async function setCachedPdf(cacheKey, record) {
-      const db = await openCacheDb();
-      if (!db) return;
-      return new Promise((resolve) => {
-        try {
-          const tx = db.transaction(IDB_STORE, "readwrite");
-          tx.objectStore(IDB_STORE).put({ cacheKey, ...record });
-          tx.oncomplete = () => resolve();
-          tx.onerror = () => resolve();
-        } catch {
-          resolve();
-        }
-      });
-    }
-
-    // ---------------- PDF.JS LOADER & FALLBACK ----------------
-    function configurePdfWorker() {
       if (window.pdfjsLib) {
-        pdfjsLib.GlobalWorkerOptions.workerSrc =
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc =
           "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
-        return true;
       }
-      return false;
-    }
 
-    function ensurePdfJsLoaded() {
-      if (configurePdfWorker()) return Promise.resolve(true);
-      return new Promise((resolve) => {
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
-        script.onload = () => {
-          if (window.pdfjsLib) {
-            pdfjsLib.GlobalWorkerOptions.workerSrc =
-              "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        };
-        script.onerror = () => resolve(false);
-        document.head.appendChild(script);
-      });
-    }
+      const state = {
+        localFiles: [],
+        remoteSourcesCache: null,
+        passageCache: new Map(),
+        currentLesson: null,
+        isLoading: false
+      };
 
-    // ---------------- PDF TEXT CLEANING & NLP EXTRACTION ENGINE ----------------
-    function cleanPageText(raw) {
-      return String(raw || "")
-        .replace(/\u00ad/g, "") // soft hyphens
-        .replace(/([A-Za-z]{2,})-\s+([a-z]{2,})/g, "$1$2") // rejoin hyphenated wraps
-        .replace(/\.{4,}/g, " ") // TOC dot leaders
-        .replace(/\s+/g, " ")
-        .trim();
-    }
+      const el = {
+        form: document.getElementById("commandForm"),
+        input: document.getElementById("commandInput"),
+        executeBtn: document.getElementById("executeBtn"),
+        localPdfInput: document.getElementById("localPdfInput"),
+        statusText: document.getElementById("statusText"),
+        sourceCountText: document.getElementById("sourceCountText"),
+        errorBanner: document.getElementById("errorBanner"),
+        toastBanner: document.getElementById("toastBanner"),
+        emptyState: document.getElementById("emptyState"),
+        lessonCard: document.getElementById("lessonCard"),
+        lessonTitle: document.getElementById("lessonTitle"),
+        lessonExplanation: document.getElementById("lessonExplanation"),
+        lessonQuote: document.getElementById("lessonQuote"),
+        lessonChallenge: document.getElementById("lessonChallenge"),
+        lessonHabit: document.getElementById("lessonHabit"),
+        lessonOneLiner: document.getElementById("lessonOneLiner"),
+        lessonReflection: document.getElementById("lessonReflection"),
+        lessonMindmap: document.getElementById("lessonMindmap"),
+        lessonSource: document.getElementById("lessonSource"),
+        copyMarkdownBtn: document.getElementById("copyMarkdownBtn"),
+        downloadMarkdownBtn: document.getElementById("downloadMarkdownBtn"),
+        historyBtn: document.getElementById("historyBtn"),
+        historyCountBadge: document.getElementById("historyCountBadge"),
+        historyModal: document.getElementById("historyModal"),
+        historyList: document.getElementById("historyList"),
+        resetHistoryBtn: document.getElementById("resetHistoryBtn"),
+        closeHistoryBtn: document.getElementById("closeHistoryBtn"),
+        themeToggleBtn: document.getElementById("themeToggleBtn"),
+        themeIcon: document.getElementById("themeIcon"),
+        themeLabel: document.getElementById("themeLabel"),
+        themeColorMeta: document.getElementById("themeColorMeta")
+      };
 
-    function splitCleanSentences(text) {
-      if (!text || text.length < 40) return [];
-      // Protect common abbreviations before splitting
-      const protectedText = text.replace(
-        /\b(Mr|Mrs|Ms|Dr|Prof|St|Jr|Sr|Col|Gen|Lt|Capt|Sgt|vs|etc|e\.g|i\.e|Fig|No|Vol|Ch|p|pp)\./gi,
-        "$1<DOT>"
-      );
-      const rawParts = protectedText.match(/[^.!?]+[.!?]+(?:\s|$)/g) || [protectedText];
-      const clean = [];
-      for (const part of rawParts) {
-        const s = part.replace(/<DOT>/g, ".").replace(/\s+/g, " ").trim();
-        if (s.length < 38 || s.length > 420) continue;
-        if (BOILERPLATE_RX.test(s)) continue;
-        const letters = (s.match(/[A-Za-z]/g) || []).length;
-        if (letters / s.length < 0.65) continue; // skip numeric tables / garbage
-        const uppers = (s.match(/[A-Z]/g) || []).length;
-        if (uppers / letters > 0.65) continue; // skip ALL-CAPS headers
-        clean.push(s);
+      let toastTimer = null;
+      function showToast(msg) {
+        el.toastBanner.textContent = msg;
+        el.toastBanner.classList.remove("hidden");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.toastBanner.classList.add("hidden");
+        }, 2000);
       }
-      return clean;
-    }
 
-    function formatBookTitle(filePath) {
-      const base = String(filePath || "").split("/").pop() || "PDF Source";
-      return base
-        .replace(/\.pdf$/i, "")
-        .replace(/\s*\([^)]*(?:z-lib|1lib|z-library|zlib|edition|updated|revised)[^)]*\)/gi, "")
-        .replace(/\s*\([^)]+\)\s*$/g, "")
-        .replace(/_by_[A-Za-z0-9_]+$/i, "")
-        .replace(/[_]+/g, " ")
-        .replace(/\s+/g, " ")
-        .trim() || "PDF Source";
-    }
-
-    function detectChapterForPage(pdf, targetPageNum) {
-      if (!pdf || !Array.isArray(pdf.pages)) return "";
-      const chapterRx = /\b((?:Chapter|CHAPTER|Part|PART|Rule|RULE|Law|LAW)\s+(?:\d+|[IVXLCDM]+)(?:\s*[:\-–—]\s*[A-Za-z0-9'",&\- ]{3,60})?)/;
-      const idx = pdf.pages.findIndex(p => p.pageNum === targetPageNum);
-      const startIdx = idx >= 0 ? idx : pdf.pages.length - 1;
-      for (let i = startIdx; i >= Math.max(0, startIdx - 25); i--) {
-        const text = pdf.pages[i].text || "";
-        const m = text.match(chapterRx);
-        if (m && m[1]) {
-          return m[1].replace(/\s+/g, " ").replace(/[.,;:\-]+$/, "").trim();
+      function loadHistory() {
+        try {
+          const raw = localStorage.getItem(HISTORY_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
         }
       }
-      return "";
-    }
 
-    function extractTopConcepts(texts, limit = 6) {
-      const freq = new Map();
-      for (const txt of texts) {
-        const words = String(txt || "").toLowerCase().match(/\b[a-z]{5,}\b/g) || [];
+      function saveHistory(records) {
+        try {
+          localStorage.setItem(HISTORY_KEY, JSON.stringify(records));
+        } catch (e) {}
+        updateHistoryBadge();
+      }
+
+      function updateHistoryBadge() {
+        el.historyCountBadge.textContent = String(loadHistory().length);
+      }
+
+      function showError(msg) {
+        if (!msg) {
+          el.errorBanner.classList.add("hidden");
+          el.errorBanner.textContent = "";
+          return;
+        }
+        el.errorBanner.textContent = msg;
+        el.errorBanner.classList.remove("hidden");
+      }
+
+      function setLoading(loading, status) {
+        state.isLoading = loading;
+        el.executeBtn.disabled = loading;
+        el.executeBtn.textContent = loading ? "Running..." : "MINDSET";
+        if (status) el.statusText.textContent = status;
+      }
+
+      async function fetchGitHubPDFs(path = "") {
+        if (path === "" && Array.isArray(state.remoteSourcesCache)) {
+          return state.remoteSourcesCache;
+        }
+        const encoded = encodeURIComponent(path).replace(/%2F/g, "/");
+        const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encoded}?ref=${BRANCH}`;
+        const res = await fetch(url, { headers: { Accept: "application/vnd.github.v3+json" } });
+        if (!res.ok) {
+          if (res.status === 403) {
+            throw new Error("GitHub API rate limit reached. Add local PDFs or try again shortly.");
+          }
+          throw new Error(`GitHub API returned HTTP ${res.status}`);
+        }
+        const entries = await res.json();
+        const found = [];
+        for (const entry of entries) {
+          if (entry.type === "file" && entry.name.toLowerCase().endsWith(".pdf") && entry.download_url) {
+            found.push({
+              id: `gh:${entry.path}`,
+              name: entry.name.replace(/\.pdf$/i, ""),
+              url: entry.download_url,
+              file: null
+            });
+          } else if (entry.type === "dir") {
+            const nested = await fetchGitHubPDFs(entry.path);
+            found.push(...nested);
+          }
+        }
+        if (path === "") {
+          state.remoteSourcesCache = found;
+        }
+        return found;
+      }
+
+      function detectChapterHeading(text) {
+        const lines = text.split("\n").slice(0, 6);
+        for (const raw of lines) {
+          const line = raw.trim();
+          if (line.length >= 4 && line.length <= 72) {
+            const lower = line.toLowerCase();
+            if (lower.startsWith("chapter ") || lower.startsWith("part ") || lower.startsWith("section ")) {
+              return line;
+            }
+            if (line === line.toUpperCase() && /[A-Z]/.test(line) && line.split(/\s+/).length <= 8) {
+              return line.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+            }
+          }
+        }
+        return null;
+      }
+
+      function splitCleanSentences(text) {
+        const normalized = text
+          .replace(/-\s+/g, "")
+          .replace(/\s+/g, " ")
+          .trim();
+        const protectedText = normalized
+          .replace(/\b(Mr|Mrs|Ms|Dr|Prof|Sr|Jr|vs|etc|e\.g|i\.e)\./gi, "$1<DOT>");
+        const raw = protectedText.match(/[^.!?]+[.!?]+/g) || [protectedText];
+        return raw
+          .map((s) => s.replace(/<DOT>/g, ".").trim())
+          .filter((s) => s.split(/\s+/).filter(Boolean).length >= 5);
+      }
+
+      async function extractPassagesFromSource(source) {
+        if (state.passageCache.has(source.id)) {
+          return state.passageCache.get(source.id);
+        }
+        if (!window.pdfjsLib) throw new Error("PDF engine failed to load.");
+        const buffer = source.file
+          ? await source.file.arrayBuffer()
+          : await (await fetch(source.url)).arrayBuffer();
+
+        const pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
+        let currentChapter = "Core Principles";
+        const pageTexts = [];
+
+        for (let p = 1; p <= pdf.numPages; p++) {
+          const page = await pdf.getPage(p);
+          const content = await page.getTextContent();
+          const rawWithBreaks = content.items.map((i) => i.str).join("\n");
+          const flatText = content.items.map((item) => item.str).join(" ").replace(/\s+/g, " ").trim();
+          if (!flatText) continue;
+          const detected = detectChapterHeading(rawWithBreaks);
+          if (detected) currentChapter = detected;
+          pageTexts.push({ pageNumber: p, text: flatText, chapter: currentChapter });
+        }
+
+        const candidates = [];
+        let bufText = "";
+        let bufWords = 0;
+        let startPage = 1;
+        let endPage = 1;
+        let activeChapter = "Core Principles";
+
+        for (const entry of pageTexts) {
+          const sentences = splitCleanSentences(entry.text);
+          for (const trimmed of sentences) {
+            const words = trimmed.split(/\s+/).filter(Boolean).length;
+            if (bufWords === 0) {
+              startPage = entry.pageNumber;
+              activeChapter = entry.chapter;
+            }
+            bufText += (bufText ? " " : "") + trimmed;
+            bufWords += words;
+            endPage = entry.pageNumber;
+
+            if (bufWords >= 340) {
+              candidates.push({
+                id: `${source.name}#p${startPage}-${endPage}#${candidates.length}`,
+                documentName: source.name,
+                chapter: activeChapter,
+                pageRange: startPage === endPage ? `Page ${startPage}` : `Pages ${startPage}–${endPage}`,
+                text: bufText,
+                wordCount: bufWords
+              });
+              bufText = "";
+              bufWords = 0;
+            }
+          }
+        }
+        if (bufWords >= 220) {
+          candidates.push({
+            id: `${source.name}#p${startPage}-${endPage}#${candidates.length}`,
+            documentName: source.name,
+            chapter: activeChapter,
+            pageRange: startPage === endPage ? `Page ${startPage}` : `Pages ${startPage}–${endPage}`,
+            text: bufText,
+            wordCount: bufWords
+          });
+        }
+        state.passageCache.set(source.id, candidates);
+        return candidates;
+      }
+
+      function extractKeywords(text, limit = 5) {
+        const stop = new Set([
+          "that", "this", "with", "from", "your", "have", "they", "will", "what", "when",
+          "where", "which", "there", "their", "about", "would", "could", "should", "into",
+          "more", "than", "then", "them", "these", "those", "some", "only", "very", "just",
+          "most", "other", "such", "even", "much", "also", "been", "being", "because", "people",
+          "person", "thing", "things", "time", "life", "world", "make", "made", "know", "take"
+        ]);
+        const counts = {};
+        const words = text.toLowerCase().match(/\b[a-z]{5,}\b/g) || [];
         for (const w of words) {
-          if (STOPWORDS.has(w)) continue;
-          freq.set(w, (freq.get(w) || 0) + 1);
+          if (!stop.has(w)) counts[w] = (counts[w] || 0) + 1;
         }
+        return Object.entries(counts)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, limit)
+          .map(([w]) => w.charAt(0).toUpperCase() + w.slice(1));
       }
-      return Array.from(freq.entries())
-        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-        .slice(0, limit)
-        .map(([w]) => w.charAt(0).toUpperCase() + w.slice(1));
-    }
 
-    function shortenBullet(sentence, maxLen = 115) {
-      const clean = String(sentence || "").replace(/\s+/g, " ").trim();
-      if (clean.length <= maxLen) return clean;
-      const cut = clean.slice(0, maxLen).replace(/\s+\S*$/, "");
-      return (cut || clean.slice(0, maxLen)).replace(/[,;:\-]+$/, "") + "...";
-    }
+      function pickAnchorQuote(sentences) {
+        const markers = ["never", "must", "always", "boundary", "respect", "control", "fear", "truth", "action", "decision", "strength", "self", "power", "choose", "standard"];
+        let best = sentences[0] || "";
+        let bestScore = -1;
+        for (const s of sentences) {
+          const wc = s.split(/\s+/).length;
+          let score = wc >= 9 && wc <= 32 ? 3 : 0;
+          const lower = s.toLowerCase();
+          for (const m of markers) {
+            if (lower.includes(m)) score += 2;
+          }
+          if (score > bestScore) {
+            bestScore = score;
+            best = s;
+          }
+        }
+        return best.trim();
+      }
 
-    function extractBriefingFromPdfs(theme, pdfs, recentCitations, directiveSeed) {
-      const searchablePdfs = pdfs.filter(p => p.pages && p.pages.length > 0);
-      if (!searchablePdfs.length) return null;
+      function buildLesson(passage) {
+        const sentences = splitCleanSentences(passage.text);
+        const quote = pickAnchorQuote(sentences);
+        const terms = extractKeywords(passage.text, 5);
+        const t1 = terms[0] || "Self-Belief";
+        const t2 = terms[1] || "Boundaries";
+        const t3 = terms[2] || "Execution";
+        const t4 = terms[3] || "Composure";
 
-      const config = THEME_CONFIG[theme] || THEME_CONFIG["Discipline"];
-      const kwRegexes = config.keywords.map(kw => new RegExp(`\\b${kw}\\b`, "i"));
-      const recentSet = new Set(recentCitations || []);
+        const title = `Command Your ${t1} Through ${t2}`;
+        const lead = sentences.slice(0, 2).join(" ");
+        const follow = sentences.slice(2, 4).join(" ");
+        const explanation = `${lead}${follow ? " " + follow : ""}`;
+        const challenge = `Identify one situation today where your ${t1.toLowerCase()} is tested, state your boundary once in plain terms without over-explaining, and hold that line for 24 hours.`;
+        const habit = `Pause for three seconds before responding to pressure, anchor on ${t2.toLowerCase()}, and act on principle rather than seeking approval.`;
+        const oneLiner = quote.split(/\s+/).length <= 18 && quote
+          ? quote
+          : `Unshakable ${t1.toLowerCase()} begins the moment you stop negotiating your standards.`;
+        const reflection = `Where today did I compromise my ${t1.toLowerCase()} for comfort or approval, and what exact response will I execute next time?`;
+        const mindmap = [
+          {
+            title: `Core Principle: ${t1}`,
+            children: [
+              { title: `Anchor in ${passage.chapter}`, children: [] },
+              {
+                title: "Internal Response",
+                children: [
+                  { title: "Eliminate emotional reactivity", children: [] },
+                  { title: `Hold ${t4.toLowerCase()} under pressure`, children: [] }
+                ]
+              }
+            ]
+          },
+          {
+            title: `Operational ${t2}`,
+            children: [
+              { title: `Direct ${t3.toLowerCase()} without apology`, children: [] },
+              {
+                title: "Daily Enforcement",
+                children: [
+                  { title: "State standard once", children: [] },
+                  { title: "Audit outcome at night", children: [] }
+                ]
+              }
+            ]
+          }
+        ];
+        const source = `${passage.documentName}, ${passage.chapter}, ${passage.pageRange} (${passage.wordCount} words)`;
 
-      // Score every page & sentence window across all indexed PDFs
-      const pageMatches = [];
-      for (const pdf of searchablePdfs) {
-        const bookTitle = formatBookTitle(pdf.name);
-        for (const page of pdf.pages) {
-          const sentences = page.sentences && page.sentences.length
-            ? page.sentences
-            : splitCleanSentences(page.text);
-          if (sentences.length < 2) continue;
+        return { title, explanation, quote, challenge, habit, oneLiner, reflection, mindmap, source };
+      }
 
-          const citKey = `${pdf.name}#${page.pageNum}`;
-          const recencyPenalty = recentSet.has(citKey) ? -6 : 0;
+      function renderMindmap(nodes, depth = 0) {
+        return nodes
+          .map((node) => {
+            const pad = depth * 18;
+            const bullet = depth === 0 ? "◆" : "•";
+            const color = depth === 0 ? "ios-text-amber font-semibold" : "ios-text-primary";
+            const childrenHtml = node.children && node.children.length ? renderMindmap(node.children, depth + 1) : "";
+            return `<div style="padding-left:${pad}px" class="flex items-start gap-2"><span class="text-[12px] text-[#ff9f0a] mt-0.5">${bullet}</span><span class="${color}">${escapeHtml(node.title)}</span></div>${childrenHtml}`;
+          })
+          .join("");
+      }
 
-          let bestWinScore = -Infinity;
-          let bestStart = 0;
-          for (let i = 0; i < sentences.length; i++) {
-            const win = sentences.slice(i, Math.min(sentences.length, i + 4)).join(" ");
-            let kwHits = 0;
-            for (const rx of kwRegexes) {
-              if (rx.test(win)) kwHits += 1;
-            }
-            if (kwHits === 0) continue;
-            const lenBonus = (win.length >= 220 && win.length <= 750) ? 2 : 0;
-            const score = kwHits * 3 + lenBonus + recencyPenalty;
-            if (score > bestWinScore) {
-              bestWinScore = score;
-              bestStart = i;
-            }
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function lessonToMarkdown(lesson) {
+        const lines = [
+          `**Mindset title:** ${lesson.title}`,
+          "",
+          `**Explanation:** ${lesson.explanation} "${lesson.quote}"`,
+          "",
+          `**Daily challenge:** ${lesson.challenge}`,
+          "",
+          `**Habit to Inculcate:** ${lesson.habit}`,
+          "",
+          `**The One-Liner:** ${lesson.oneLiner}`,
+          "",
+          `**Reflection prompt:** ${lesson.reflection}`,
+          "",
+          "**Mindmap:**",
+          ""
+        ];
+        function walk(nodes, depth) {
+          const indent = "  ".repeat(depth);
+          for (const n of nodes) {
+            lines.push(`${indent}* ${n.title}`);
+            if (n.children && n.children.length) walk(n.children, depth + 1);
+          }
+        }
+        walk(lesson.mindmap, 0);
+        lines.push("", `**Source:** ${lesson.source}`);
+        return lines.join("\n");
+      }
+
+      function renderLesson(lesson) {
+        state.currentLesson = lesson;
+        el.emptyState.classList.add("hidden");
+        el.lessonCard.classList.remove("hidden");
+        el.lessonTitle.textContent = lesson.title;
+        el.lessonExplanation.textContent = lesson.explanation;
+        el.lessonQuote.textContent = `"${lesson.quote}"`;
+        el.lessonChallenge.textContent = lesson.challenge;
+        el.lessonHabit.textContent = lesson.habit;
+        el.lessonOneLiner.textContent = lesson.oneLiner;
+        el.lessonReflection.textContent = lesson.reflection;
+        el.lessonMindmap.innerHTML = renderMindmap(lesson.mindmap);
+        el.lessonSource.textContent = lesson.source;
+      }
+
+      async function runProtocol() {
+        showError("");
+        setLoading(true, "Syncing PDFs from logmain68/me...");
+
+        try {
+          let sources = [...state.localFiles];
+          try {
+            const remote = await fetchGitHubPDFs();
+            sources = sources.concat(remote);
+          } catch (netErr) {
+            if (sources.length === 0) throw netErr;
           }
 
-          if (bestWinScore > -Infinity) {
-            pageMatches.push({
-              pdf,
-              fileName: pdf.name,
-              bookTitle,
-              url: pdf.url,
-              pageNum: page.pageNum,
-              citKey,
-              sentences,
-              bestStart,
-              score: bestWinScore
+          if (sources.length === 0) {
+            throw new Error("No PDFs found in logmain68/me (main) or local uploads.");
+          }
+          el.sourceCountText.textContent = `${sources.length} PDF${sources.length === 1 ? "" : "s"}`;
+
+          const shuffled = [...sources].sort(() => Math.random() - 0.5);
+          let allPassages = [];
+          for (const src of shuffled) {
+            setLoading(true, `Reading ${src.name}...`);
+            try {
+              const extracted = await extractPassagesFromSource(src);
+              allPassages = allPassages.concat(extracted);
+              if (allPassages.length >= 12) break;
+            } catch (e) {}
+          }
+
+          if (allPassages.length === 0) {
+            throw new Error("Could not extract a 300–500 word passage from the available PDFs.");
+          }
+
+          const history = loadHistory();
+          const usedIds = new Set(history.map((h) => h.id));
+          const unused = allPassages.filter((p) => !usedIds.has(p.id));
+          const pool = unused.length > 0 ? unused : allPassages;
+          const chosen = pool[Math.floor(Math.random() * pool.length)];
+
+          const lesson = buildLesson(chosen);
+          renderLesson(lesson);
+
+          history.unshift({
+            id: chosen.id,
+            title: lesson.title,
+            documentName: chosen.documentName,
+            chapter: chosen.chapter,
+            pageRange: chosen.pageRange,
+            timestamp: new Date().toISOString()
+          });
+          saveHistory(history);
+          setLoading(false, `Delivered from ${chosen.documentName} (${chosen.pageRange}).`);
+        } catch (err) {
+          setLoading(false, "Protocol halted.");
+          showError(err.message || "Failed to generate briefing.");
+        }
+      }
+
+      el.form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const val = el.input.value.trim();
+        if (val && val !== "mindset") {
+          showError("Trigger protocol requires exact command: mindset");
+          return;
+        }
+        el.input.value = "mindset";
+        runProtocol();
+      });
+
+      el.localPdfInput.addEventListener("change", (e) => {
+        const files = Array.from(e.target.files || []);
+        for (const f of files) {
+          if (!state.localFiles.some((x) => x.name === f.name.replace(/\.pdf$/i, ""))) {
+            state.localFiles.push({
+              id: `local:${f.name}:${f.size}`,
+              name: f.name.replace(/\.pdf$/i, ""),
+              url: null,
+              file: f
             });
           }
         }
-      }
-
-      pageMatches.sort((a, b) => b.score - a.score);
-
-      // Primary matched page (or deterministic PDF-only fallback if zero keyword matches)
-      let primary = pageMatches[0] || null;
-      if (!primary) {
-        const pdf = searchablePdfs[directiveSeed % searchablePdfs.length];
-        const page = pdf.pages[directiveSeed % pdf.pages.length];
-        const sentences = page.sentences && page.sentences.length
-          ? page.sentences
-          : splitCleanSentences(page.text);
-        if (!sentences.length) return null;
-        primary = {
-          pdf,
-          fileName: pdf.name,
-          bookTitle: formatBookTitle(pdf.name),
-          url: pdf.url,
-          pageNum: page.pageNum,
-          citKey: `${pdf.name}#${page.pageNum}`,
-          sentences,
-          bestStart: 0,
-          score: 0
-        };
-      }
-
-      // Collect a rich pool of sentences from primary page (+ neighboring page in same PDF if needed)
-      const primaryIdx = primary.pdf.pages.findIndex(p => p.pageNum === primary.pageNum);
-      const neighborPage = primaryIdx >= 0 && primary.pdf.pages[primaryIdx + 1]
-        ? primary.pdf.pages[primaryIdx + 1]
-        : null;
-      const neighborSents = neighborPage
-        ? (neighborPage.sentences && neighborPage.sentences.length ? neighborPage.sentences : splitCleanSentences(neighborPage.text))
-        : [];
-      const poolSentences = [...primary.sentences, ...neighborSents];
-
-      // 1. Explanation: cohesive 3-4 sentence passage directly from the matched PDF page
-      const explanationSlice = primary.sentences.slice(primary.bestStart, primary.bestStart + 4);
-      let explanation = explanationSlice.join(" ");
-      if (explanation.length < 240 && poolSentences.length > explanationSlice.length) {
-        for (const s of poolSentences) {
-          if (!explanationSlice.includes(s)) {
-            explanation += " " + s;
-            if (explanation.length >= 340) break;
-          }
-        }
-      }
-
-      // Score individual sentences in the pool for actionable challenge, habit, and one-liner
-      const scoredSents = poolSentences.map((s) => {
-        let kwHits = 0;
-        for (const rx of kwRegexes) {
-          if (rx.test(s)) kwHits += 1;
-        }
-        const hasAction = ACTION_CUE_RX.test(s);
-        return {
-          text: s,
-          kwHits,
-          hasAction,
-          actionScore: kwHits * 3 + (hasAction ? 4 : 0) + (s.length >= 55 && s.length <= 240 ? 2 : 0),
-          oneLinerScore: kwHits * 3 + (hasAction ? 1.5 : 0) + (s.length >= 45 && s.length <= 165 ? 3 : -2)
-        };
+        el.sourceCountText.textContent = `${state.localFiles.length} local PDF(s)`;
+        el.statusText.textContent = "Local PDF(s) ready. Tap MINDSET.";
+        showToast(`Added ${files.length} PDF(s)`);
       });
 
-      const byAction = [...scoredSents].sort((a, b) => b.actionScore - a.actionScore);
-      const byOneLiner = [...scoredSents].sort((a, b) => b.oneLinerScore - a.oneLinerScore);
-
-      // 2. The One-Liner (single crispest sentence verbatim from PDF)
-      const oneLiner = (byOneLiner[0] && byOneLiner[0].text) || primary.sentences[primary.bestStart] || explanation.slice(0, 160);
-
-      // 3. Daily challenge (derived from top actionable PDF sentence)
-      const challengeSentObj = byAction.find(x => x.text !== oneLiner) || byAction[0];
-      const dailyChallenge = challengeSentObj
-        ? `Put this principle from ${primary.bookTitle} (Page ${primary.pageNum}) into action today: ${challengeSentObj.text}`
-        : `Apply the core passage from ${primary.bookTitle} (Page ${primary.pageNum}) to one real decision on your schedule today.`;
-
-      // 4. Habit to Inculcate (derived from second distinct actionable PDF sentence)
-      const habitSentObj = byAction.find(x => x.text !== oneLiner && (!challengeSentObj || x.text !== challengeSentObj.text))
-        || poolSentences.find(s => s !== oneLiner && (!challengeSentObj || s !== challengeSentObj.text))
-        || null;
-      const habitToInculcate = habitSentObj
-        ? (typeof habitSentObj === "string" ? habitSentObj : habitSentObj.text)
-        : oneLiner;
-
-      // 5. Extracted Concepts for Title, Reflection Prompt & 3-Branch Mindmap
-      const concepts = extractTopConcepts([explanation, dailyChallenge, habitToInculcate, oneLiner], 9);
-      const chapter = detectChapterForPage(primary.pdf, primary.pageNum);
-
-      // Mindset title (strictly derived from PDF concepts / chapter + theme)
-      const titleCore = concepts.length >= 2
-        ? `${concepts[0]} & ${concepts[1]}`
-        : (concepts[0] || primary.bookTitle);
-      const mindsetTitle = `${titleCore.toUpperCase()}: ${theme.toUpperCase()}`;
-
-      // 6. Reflection prompt (strictly anchored to extracted PDF concepts & book)
-      const focusPhrase = concepts.length >= 2
-        ? `${concepts[0].toLowerCase()} and ${concepts[1].toLowerCase()}`
-        : (concepts[0] ? concepts[0].toLowerCase() : theme.toLowerCase());
-      const reflectionPrompt = `Looking back on today, where did I actively practice ${focusPhrase} as outlined in ${primary.bookTitle} (Page ${primary.pageNum}), and where did I slip back into old habits?`;
-
-      // 7. Mindmap (Root -> up to 3 Branches named by extracted concepts -> 2 PDF-extracted bullets each)
-      const branchConcepts = concepts.slice(0, 3);
-      if (branchConcepts.length === 0) branchConcepts.push(theme);
-      const usedMindmapSents = new Set();
-      const branches = branchConcepts.map((concept) => {
-        const cRx = new RegExp(`\\b${concept}\\b`, "i");
-        const matching = poolSentences.filter(s => cRx.test(s) && !usedMindmapSents.has(s));
-        const items = [];
-        for (const m of matching) {
-          if (items.length >= 2) break;
-          usedMindmapSents.add(m);
-          items.push(shortenBullet(m, 115));
-        }
-        // Fill remaining slot up to 2 from unused pool sentences
-        if (items.length < 2) {
-          for (const s of poolSentences) {
-            if (items.length >= 2) break;
-            if (!usedMindmapSents.has(s)) {
-              usedMindmapSents.add(s);
-              items.push(shortenBullet(s, 115));
-            }
-          }
-        }
-        if (items.length === 0) items.push(shortenBullet(oneLiner, 115));
-        return { title: concept, items };
-      });
-
-      const mindmap = {
-        root: concepts.length >= 2 ? `${concepts[0]} & ${concepts[1]}` : `${theme} (${primary.bookTitle})`,
-        branches
-      };
-
-      // 8. Source line matching: "<Book Title>, <Chapter>, Page <N>."
-      const sourceText = chapter
-        ? `${primary.bookTitle}, ${chapter}, Page ${primary.pageNum}.`
-        : `${primary.bookTitle}, Page ${primary.pageNum}.`;
-
-      return {
-        theme,
-        mindsetTitle,
-        explanation,
-        dailyChallenge,
-        habitToInculcate,
-        oneLiner,
-        reflectionPrompt,
-        mindmap,
-        sourceText,
-        primary: {
-          fileName: primary.fileName,
-          bookTitle: primary.bookTitle,
-          pageNum: primary.pageNum,
-          url: primary.url
-        }
-      };
-    }
-
-    // ---------------- APPEARANCE ----------------
-    function initAppearance() {
-      let saved = null;
-      try { saved = localStorage.getItem("tactical_appearance"); } catch {}
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      applyAppearance(saved || (prefersDark ? "dark" : "light"));
-    }
-
-    function applyAppearance(mode) {
-      document.documentElement.setAttribute("data-theme", mode);
-      const btn = document.getElementById("themeToggleBtn");
-      if (btn) btn.innerHTML = mode === "dark" ? "&#9728; Light" : "&#9790; Dark";
-    }
-
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute("data-theme") || "light";
-      const next = current === "dark" ? "light" : "dark";
-      try { localStorage.setItem("tactical_appearance", next); } catch {}
-      applyAppearance(next);
-    }
-
-    // ---------------- TOAST ----------------
-    let toastTimer = null;
-    function showToast(msg) {
-      const el = document.getElementById("toast");
-      el.textContent = msg;
-      el.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
-    }
-
-    // ---------------- DASHBOARD & BENTO GRID ----------------
-    function getNextBalancedTheme() {
-      let minCount = Infinity;
-      for (const t of THEME_ORDER) {
-        const c = state.themeCounts[t] || 0;
-        if (c < minCount) minCount = c;
-      }
-      const candidates = THEME_ORDER.filter(t => (state.themeCounts[t] || 0) === minCount);
-      const lastTheme = state.recentThemes[state.recentThemes.length - 1];
-      const nonRecent = candidates.filter(t => t !== lastTheme);
-      return nonRecent.length > 0 ? nonRecent[0] : candidates[0];
-    }
-
-    function updateDashboardUI() {
-      const readableCount = loadedPdfs.filter(p => p.pages && p.pages.length > 0).length;
-      document.getElementById("directiveCounterLabel").textContent =
-        `${state.directiveCount} Directive${state.directiveCount === 1 ? "" : "s"} Issued`;
-      document.getElementById("pdfCountBadge").textContent = `${readableCount} Indexed`;
-
-      if (!activeScanPromise) {
-        setSyncState(
-          lastScanError && readableCount === 0 ? "error" : "ready",
-          `${REPO_OWNER}/${REPO_NAME} • ${readableCount} PDF${readableCount === 1 ? "" : "s"}`
-        );
-      }
-
-      const grid = document.getElementById("themeBentoGrid");
-      grid.innerHTML = "";
-      const nextTheme = getNextBalancedTheme();
-
-      THEME_ORDER.forEach((theme, idx) => {
-        const meta = THEME_CONFIG[theme];
-        const isNext = theme === nextTheme;
-        const isActive = activeTheme === theme;
-        const runs = state.themeCounts[theme] || 0;
-
-        const card = document.createElement("button");
-        card.type = "button";
-        card.className = "theme-card" + (isNext ? " is-next" : "") + (isActive ? " is-active" : "");
-        card.onclick = () => deployMindset(theme, false);
-        card.innerHTML = `
-          <div class="theme-card-top">
-            <span class="theme-icon">${meta.icon}</span>
-            <span class="theme-badge">${isNext ? "NEXT • " : ""}${runs} RUNS</span>
-          </div>
-          <div>
-            <div class="theme-title">${idx + 1}. ${escapeHtml(theme)}</div>
-            <div class="theme-sub">${escapeHtml(meta.short)}</div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function resetRotation() {
-      state = {
-        directiveCount: 0,
-        themeCounts: Object.fromEntries(THEME_ORDER.map(t => [t, 0])),
-        recentThemes: [],
-        recentCitations: []
-      };
-      activeTheme = null;
-      currentMarkdownText = "";
-      document.getElementById("rotationStrip").style.display = "none";
-      document.getElementById("rawMarkdownBox").textContent = "";
-      document.getElementById("briefingContent").innerHTML = `
-        <div class="empty-briefing">
-          <h3>Ready to Extract Daily Mindset</h3>
-          <p>
-            Click <strong>Deploy Mindset</strong> or choose any theme above.<br/>
-            Your briefing will be synthesized live from the indexed PDFs in <code>${REPO_OWNER}/${REPO_NAME}</code> (<code>${REPO_BRANCH}</code>).
-          </p>
-        </div>
-      `;
-      saveState();
-      showToast("Rotation history reset");
-    }
-
-    // ---------------- GITHUB SCANNER (LOCKED TO logmain68/me @ main) ----------------
-    function encodeRepoPath(path) {
-      return path.split("/").map(seg => encodeURIComponent(seg)).join("/");
-    }
-
-    function getToken() {
-      const el = document.getElementById("githubToken");
-      let token = el && el.value.trim();
-      try {
-        if (token) sessionStorage.setItem("tactical_gh_token", token);
-        else token = sessionStorage.getItem("tactical_gh_token") || "";
-      } catch {}
-      return token;
-    }
-
-    function getAuthHeaders() {
-      const token = getToken();
-      return token ? { Authorization: `Bearer ${token}` } : {};
-    }
-
-    async function fetchWithTimeout(url, options = {}, timeoutMs = 25000) {
-      const controller = new AbortController();
-      const parentSignal = options.signal;
-      if (parentSignal) {
-        if (parentSignal.aborted) controller.abort();
-        else parentSignal.addEventListener("abort", () => controller.abort(), { once: true });
-      }
-      const timer = setTimeout(() => controller.abort(), timeoutMs);
-      try {
-        return await fetch(url, { ...options, signal: controller.signal });
-      } finally {
-        clearTimeout(timer);
-      }
-    }
-
-    async function getRepoPdfNodes(signal) {
-      const headers = getAuthHeaders();
-      const treeUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/git/trees/${encodeURIComponent(REPO_BRANCH)}?recursive=1`;
-      const res = await fetchWithTimeout(treeUrl, { headers, signal }, 15000);
-      if (!res.ok) {
-        if (res.status === 403) throw new Error("GitHub API rate limit reached (403). Add a GitHub token below or attach local PDFs.");
-        if (res.status === 404) throw new Error(`Repository ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}) is private or not found. Add a token below if private.`);
-        throw new Error(`GitHub API error (HTTP ${res.status}).`);
-      }
-      const data = await res.json();
-      return (data.tree || [])
-        .filter(item => item.type === "blob" && item.path.toLowerCase().endsWith(".pdf"))
-        .map(item => ({ path: item.path, sha: item.sha || "", size: item.size || 0 }));
-    }
-
-    async function extractPdfFromArrayBuffer(arrayBuffer, fileName, sourceUrl = null, sha = "") {
-      const ok = await ensurePdfJsLoaded();
-      if (!ok) throw new Error("PDF.js engine failed to load.");
-
-      let pdf;
-      try {
-        pdf = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0) }).promise;
-      } catch {
-        pdf = await pdfjsLib.getDocument({ data: arrayBuffer.slice(0), disableWorker: true }).promise;
-      }
-      const pages = [];
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        const rawText = content.items.map(item => item.str).join(" ");
-        const text = cleanPageText(rawText);
-        if (text.length > 25) {
-          const sentences = splitCleanSentences(text);
-          pages.push({ pageNum: i, text, sentences });
-        }
-        if (i % 15 === 0) {
-          await new Promise(r => setTimeout(r, 0));
-        }
-      }
-      return { name: fileName, sha, url: sourceUrl, totalPages: pdf.numPages, pages };
-    }
-
-    function setSyncState(mode, navLabel) {
-      const dot = document.getElementById("syncDot");
-      const text = document.getElementById("navSyncText");
-      dot.classList.remove("syncing", "error");
-      if (mode === "syncing") dot.classList.add("syncing");
-      if (mode === "error") dot.classList.add("error");
-      if (navLabel) text.textContent = navLabel;
-    }
-
-    function scanGithubRepoPdfs(opts = {}) {
-      if (activeScanAbort) activeScanAbort.abort();
-      activeScanAbort = new AbortController();
-      const signal = activeScanAbort.signal;
-      const forceRefresh = !!opts.forceRefresh;
-
-      const run = (async () => {
-        const log = document.getElementById("pdfStatusLog");
-        const listEl = document.getElementById("pdfList");
-        const progressWrap = document.getElementById("scanProgressWrap");
-        const progressFill = document.getElementById("scanProgressFill");
-
-        lastScanError = null;
-        setSyncState("syncing", `Scanning ${REPO_OWNER}/${REPO_NAME}...`);
-        listEl.innerHTML = "";
-        loadedPdfs = [];
-        progressWrap.style.display = "block";
-        progressFill.style.width = "10%";
-        log.textContent = `Fetching file tree from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH})...`;
-
+      el.copyMarkdownBtn.addEventListener("click", async () => {
+        if (!state.currentLesson) return;
+        const md = lessonToMarkdown(state.currentLesson);
         try {
-          const pdfNodes = await getRepoPdfNodes(signal);
-          if (!pdfNodes.length) {
-            log.textContent = `No .pdf files found in ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}).`;
-            setSyncState("error", "0 Repo PDFs");
-            return;
-          }
-
-          progressFill.style.width = "22%";
-          log.textContent = `Found ${pdfNodes.length} PDF(s). Indexing text...`;
-          setSyncState("syncing", `Indexing 0/${pdfNodes.length}`);
-
-          const token = getToken();
-          const isHostedOnTargetPages =
-            window.location.hostname.toLowerCase() === `${REPO_OWNER.toLowerCase()}.github.io`;
-
-          for (let i = 0; i < pdfNodes.length; i++) {
-            if (signal.aborted) return;
-            const node = pdfNodes[i];
-            const encodedPath = encodeRepoPath(node.path);
-            const rawUrl = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${encodeURIComponent(REPO_BRANCH)}/${encodedPath}`;
-            const githubBlobUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/${encodeURIComponent(REPO_BRANCH)}/${encodedPath}`;
-            const cacheKey = `${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}:${node.path}:${node.sha}`;
-
-            let parsed = null;
-            let fromCache = false;
-
-            if (!forceRefresh && node.sha) {
-              const cached = await getCachedPdf(cacheKey);
-              if (cached && Array.isArray(cached.pages)) {
-                parsed = {
-                  name: node.path,
-                  sha: node.sha,
-                  url: cached.url || rawUrl,
-                  totalPages: cached.totalPages || cached.pages.length,
-                  pages: cached.pages
-                };
-                fromCache = true;
-              }
-            }
-
-            let lastErr = null;
-            if (!parsed) {
-              const fetchPlan = [];
-              if (isHostedOnTargetPages) {
-                fetchPlan.push({ url: `${window.location.origin}/${REPO_NAME}/${encodedPath}`, headers: {} });
-              }
-              fetchPlan.push({ url: rawUrl, headers: {} });
-              if (token) {
-                fetchPlan.push({
-                  url: `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${encodedPath}?ref=${encodeURIComponent(REPO_BRANCH)}`,
-                  headers: { Authorization: `Bearer ${token}`, Accept: "application/vnd.github.raw" }
-                });
-              }
-
-              for (const attempt of fetchPlan) {
-                try {
-                  const pdfRes = await fetchWithTimeout(attempt.url, { headers: attempt.headers, signal }, 30000);
-                  if (!pdfRes.ok) throw new Error(`HTTP ${pdfRes.status}`);
-                  const buf = await pdfRes.arrayBuffer();
-                  const viewUrl = isHostedOnTargetPages
-                    ? `${window.location.origin}/${REPO_NAME}/${encodedPath}`
-                    : githubBlobUrl;
-                  parsed = await extractPdfFromArrayBuffer(buf, node.path, viewUrl, node.sha);
-                  if (node.sha) {
-                    await setCachedPdf(cacheKey, {
-                      url: parsed.url,
-                      totalPages: parsed.totalPages,
-                      pages: parsed.pages
-                    });
-                  }
-                  break;
-                } catch (err) {
-                  lastErr = err;
-                }
-              }
-            }
-
-            if (parsed) {
-              upsertLoadedPdf(parsed);
-              if (parsed.pages.length === 0) {
-                renderPdfChip(node.path, "warn", "Image-only");
-              } else {
-                renderPdfChip(node.path, "ok", `${parsed.pages.length} pgs${fromCache ? " • cached" : ""}`);
-              }
-            } else {
-              renderPdfChip(node.path, "err", lastErr ? lastErr.message : "Failed");
-            }
-
-            const pct = 22 + Math.round(((i + 1) / pdfNodes.length) * 78);
-            progressFill.style.width = `${pct}%`;
-            setSyncState("syncing", `Indexing ${i + 1}/${pdfNodes.length}`);
-            updateDashboardUI();
-          }
-
-          const readableCount = loadedPdfs.filter(p => p.pages.length > 0).length;
-          log.textContent = `Ready — indexed ${readableCount} readable PDF(s) from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}).`;
-          setSyncState("ready", `${REPO_OWNER}/${REPO_NAME} • ${readableCount} PDF${readableCount === 1 ? "" : "s"}`);
-        } catch (err) {
-          if (err.name === "AbortError") return;
-          lastScanError = err.message;
-          log.textContent = err.message;
-          setSyncState("error", "Sync Failed");
-        } finally {
-          if (activeScanAbort && activeScanAbort.signal === signal) {
-            activeScanPromise = null;
-          }
-          setTimeout(() => { progressWrap.style.display = "none"; }, 600);
-          updateDashboardUI();
+          await navigator.clipboard.writeText(md);
+        } catch (e) {
+          const ta = document.createElement("textarea");
+          ta.value = md;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
         }
+        showToast("Copied Markdown to Clipboard");
+      });
+
+      el.downloadMarkdownBtn.addEventListener("click", () => {
+        if (!state.currentLesson) return;
+        const md = lessonToMarkdown(state.currentLesson);
+        const blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "commando-mindset-briefing.md";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Exported commando-mindset-briefing.md");
+      });
+
+      function renderHistoryModal() {
+        const records = loadHistory();
+        if (records.length === 0) {
+          el.historyList.innerHTML = `<p class="text-[#8e8e93] text-center py-6">No sessions recorded yet. Run <code class="text-[#ff9f0a]">mindset</code> to start tracking rotation.</p>`;
+          return;
+        }
+        el.historyList.innerHTML = records
+          .map((r) => `
+            <div class="rounded-xl ios-elevated border ios-hairline p-3.5 space-y-1">
+              <p class="font-semibold ios-text-primary">${escapeHtml(r.title)}</p>
+              <p class="text-[12px] ios-text-secondary">${escapeHtml(r.documentName)} • ${escapeHtml(r.chapter)} • ${escapeHtml(r.pageRange)}</p>
+              <p class="text-[11px] text-[#8e8e93]">${new Date(r.timestamp).toLocaleString()}</p>
+            </div>
+          `)
+          .join("");
+      }
+
+      el.historyBtn.addEventListener("click", () => {
+        renderHistoryModal();
+        el.historyModal.classList.remove("hidden");
+      });
+
+      el.closeHistoryBtn.addEventListener("click", () => {
+        el.historyModal.classList.add("hidden");
+      });
+
+      el.historyModal.addEventListener("click", (e) => {
+        if (e.target === el.historyModal) {
+          el.historyModal.classList.add("hidden");
+        }
+      });
+
+      el.resetHistoryBtn.addEventListener("click", () => {
+        saveHistory([]);
+        renderHistoryModal();
+        showToast("Rotation history reset");
+      });
+
+      function applyTheme(mode) {
+        const isDark = mode === "dark";
+        document.documentElement.classList.toggle("dark", isDark);
+        el.themeIcon.textContent = isDark ? "☀️" : "🌙";
+        el.themeLabel.textContent = isDark ? "Light" : "Dark";
+        if (el.themeColorMeta) {
+          el.themeColorMeta.setAttribute("content", isDark ? "#000000" : "#f2f2f7");
+        }
+        try {
+          localStorage.setItem(THEME_KEY, mode);
+        } catch (e) {}
+      }
+
+      el.themeToggleBtn.addEventListener("click", () => {
+        const next = document.documentElement.classList.contains("dark") ? "light" : "dark";
+        applyTheme(next);
+      });
+
+      (function initTheme() {
+        let saved = "dark";
+        try {
+          const stored = localStorage.getItem(THEME_KEY);
+          if (stored === "light" || stored === "dark") saved = stored;
+        } catch (e) {}
+        applyTheme(saved);
       })();
 
-      activeScanPromise = run;
-      return run;
-    }
-
-    async function handleLocalPdfs(fileList) {
-      const log = document.getElementById("pdfStatusLog");
-      const files = Array.from(fileList).filter(f => f.name.toLowerCase().endsWith(".pdf"));
-      if (!files.length) return;
-
-      lastScanError = null;
-      setSyncState("syncing", `Parsing ${files.length} local PDF(s)...`);
-      log.textContent = `Indexing ${files.length} local PDF(s)...`;
-      for (const file of files) {
-        try {
-          const buf = await file.arrayBuffer();
-          const parsed = await extractPdfFromArrayBuffer(buf, file.name, null, "");
-          upsertLoadedPdf(parsed);
-          renderPdfChip(
-            parsed.name,
-            parsed.pages.length ? "ok" : "warn",
-            parsed.pages.length ? `${parsed.pages.length} pgs` : "Image-only"
-          );
-        } catch (err) {
-          renderPdfChip(file.name, "err", err.message);
-        }
-      }
-      const readableCount = loadedPdfs.filter(p => p.pages.length > 0).length;
-      log.textContent = `Ready — ${readableCount} readable PDF(s) indexed.`;
-      setSyncState("ready", `${readableCount} PDF${readableCount === 1 ? "" : "s"} Ready`);
-      updateDashboardUI();
-    }
-
-    function upsertLoadedPdf(parsed) {
-      const idx = loadedPdfs.findIndex(p => p.name === parsed.name);
-      if (idx >= 0) loadedPdfs[idx] = parsed;
-      else loadedPdfs.push(parsed);
-    }
-
-    function renderPdfChip(name, statusType, note) {
-      const list = document.getElementById("pdfList");
-      const div = document.createElement("div");
-      div.className = "pdf-chip";
-      div.innerHTML = `
-        <span class="pdf-chip-name" title="${escapeHtml(name)}">${escapeHtml(name)}</span>
-        <span class="chip-tag ${statusType}">${escapeHtml(note)}</span>
-      `;
-      list.appendChild(div);
-    }
-
-    // ---------------- DEPLOY MINDSET (100% PDF-EXTRACTED) ----------------
-    async function deployNextRotation() {
-      await deployMindset(getNextBalancedTheme(), true);
-    }
-
-    async function deployMindset(theme, isAutoRotation) {
-      if (!THEME_CONFIG[theme]) return;
-
-      // If repo scan is running, wait for it so extraction uses live PDFs
-      if (activeScanPromise) {
-        showToast(`Indexing PDFs from ${REPO_OWNER}/${REPO_NAME}...`);
-        try {
-          await activeScanPromise;
-        } catch {}
-      }
-
-      const briefing = extractBriefingFromPdfs(theme, loadedPdfs, state.recentCitations, state.directiveCount);
-
-      if (!briefing) {
-        activeTheme = null;
-        currentMarkdownText = "";
-        document.getElementById("rotationStrip").style.display = "none";
-        document.getElementById("rawMarkdownBox").textContent = "";
-        document.getElementById("briefingContent").innerHTML = `
-          <div class="empty-briefing">
-            <h3>No Readable PDF Text Indexed Yet</h3>
-            <p style="margin-bottom: 16px;">
-              ${escapeHtml(lastScanError || `No readable text pages were extracted from ${REPO_OWNER}/${REPO_NAME} (${REPO_BRANCH}). Because hardcoded output is disabled, at least one readable PDF is required.`)}
-            </p>
-            <button class="btn btn-primary btn-sm" onclick="scanGithubRepoPdfs({ forceRefresh: true })">
-              Retry Scan (${REPO_OWNER}/${REPO_NAME})
-            </button>
-          </div>
-        `;
-        showToast("No readable PDF text available yet");
-        return;
-      }
-
-      state.directiveCount += 1;
-      state.themeCounts[theme] = (state.themeCounts[theme] || 0) + 1;
-      state.recentThemes.push(theme);
-      if (state.recentThemes.length > 10) state.recentThemes.shift();
-
-      state.recentCitations.push(`${briefing.primary.fileName}#${briefing.primary.pageNum}`);
-      if (state.recentCitations.length > 40) {
-        state.recentCitations = state.recentCitations.slice(-40);
-      }
-
-      activeTheme = theme;
-      saveState();
-
-      const recentStr = state.recentThemes.slice(-4).join(" → ");
-      const nextUp = getNextBalancedTheme();
-      const strip = document.getElementById("rotationStrip");
-      strip.style.display = "block";
-      strip.innerHTML = `
-        <strong>Tactical Rotation:</strong> <strong>${escapeHtml(theme)}</strong>
-        (${isAutoRotation ? "Auto-Balanced" : "Direct Selection"})
-        &nbsp;•&nbsp; Recent: ${escapeHtml(recentStr)}
-        &nbsp;•&nbsp; Next: <strong>${escapeHtml(nextUp)}</strong>
-      `;
-
-      document.getElementById("printMeta").innerHTML = `
-        <span>Mindset Commander (${REPO_OWNER}/${REPO_NAME}@${REPO_BRANCH}) • Directive #${state.directiveCount}</span>
-        <span>${new Date().toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" })}</span>
-      `;
-
-      // Exact requested output format in Markdown
-      const mindmapMdLines = [
-        `* ${briefing.mindmap.root}`,
-        ...briefing.mindmap.branches.flatMap(b => [
-          `    * ${b.title}`,
-          ...b.items.map(it => `        * ${it}`)
-        ])
-      ];
-
-      currentMarkdownText = [
-        `Mindset title: ${briefing.mindsetTitle}`,
-        `Explanation: ${briefing.explanation}`,
-        `Daily challenge: ${briefing.dailyChallenge}`,
-        `Habit to Inculcate: ${briefing.habitToInculcate}`,
-        `The One-Liner: ${briefing.oneLiner}`,
-        `Reflection prompt: ${briefing.reflectionPrompt}`,
-        `Mindmap:`,
-        ...mindmapMdLines,
-        `Source: ${briefing.sourceText}`
-      ].join("\n");
-
-      document.getElementById("rawMarkdownBox").textContent = currentMarkdownText;
-
-      document.getElementById("briefingContent").innerHTML = `
-        <div class="directive-sections">
-          <div class="d-block">
-            <div class="d-label">Mindset title</div>
-            <h2 class="directive-title" style="margin-bottom: 0;">${escapeHtml(briefing.mindsetTitle)}</h2>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Explanation</div>
-            <div class="d-content">${escapeHtml(briefing.explanation)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Daily challenge</div>
-            <label class="action-item" id="actionItem_0">
-              <input type="checkbox" onchange="toggleActionItem(0, this.checked)" />
-              <div class="action-text d-content">${escapeHtml(briefing.dailyChallenge)}</div>
-            </label>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Habit to Inculcate</div>
-            <label class="action-item" id="actionItem_1">
-              <input type="checkbox" onchange="toggleActionItem(1, this.checked)" />
-              <div class="action-text d-content">${escapeHtml(briefing.habitToInculcate)}</div>
-            </label>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">The One-Liner</div>
-            <div class="anchor-quote">${escapeHtml(briefing.oneLiner)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Reflection prompt</div>
-            <div class="d-content">${escapeHtml(briefing.reflectionPrompt)}</div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Mindmap</div>
-            <div class="mindmap-box">
-              <ul>
-                <li>
-                  <span class="mindmap-root-label">${escapeHtml(briefing.mindmap.root)}</span>
-                  <ul>
-                    ${briefing.mindmap.branches.map(b => `
-                      <li>
-                        <strong>${escapeHtml(b.title)}</strong>
-                        <ul>
-                          ${b.items.map(it => `<li>${escapeHtml(it)}</li>`).join("")}
-                        </ul>
-                      </li>
-                    `).join("")}
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="d-block">
-            <div class="d-label">Source</div>
-            <div class="d-content" style="font-size: 0.92rem; color: var(--text-secondary);">
-              ${escapeHtml(briefing.sourceText)}
-              ${briefing.primary.url ? ` &nbsp;<a href="${escapeHtml(briefing.primary.url)}#page=${briefing.primary.pageNum}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none; font-weight: 600;">Open PDF &#8599;</a>` : ""}
-            </div>
-          </div>
-        </div>
-      `;
-
-      if (window.innerWidth < 940) {
-        document.getElementById("briefingCard").scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-
-    function toggleActionItem(idx, checked) {
-      const el = document.getElementById(`actionItem_${idx}`);
-      if (el) el.classList.toggle("checked", checked);
-    }
-
-    function setViewMode(mode) {
-      currentViewMode = mode;
-      document.getElementById("segFormatted").classList.toggle("active", mode === "formatted");
-      document.getElementById("segMarkdown").classList.toggle("active", mode === "markdown");
-      document.getElementById("briefingBody").style.display = mode === "formatted" ? "block" : "none";
-      document.getElementById("rawMarkdownBox").style.display = mode === "markdown" ? "block" : "none";
-    }
-
-    async function printBriefingPdf() {
-      if (!currentMarkdownText) {
-        await deployNextRotation();
-        if (!currentMarkdownText) return;
-      }
-      if (currentViewMode !== "formatted") setViewMode("formatted");
-      requestAnimationFrame(() => window.print());
-    }
-
-    function copyMarkdown() {
-      if (!currentMarkdownText) {
-        showToast("Click Deploy Mindset first");
-        return;
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(currentMarkdownText)
-          .then(() => showToast("Markdown copied to clipboard"))
-          .catch(() => fallbackCopyText(currentMarkdownText));
-      } else {
-        fallbackCopyText(currentMarkdownText);
-      }
-    }
-
-    function fallbackCopyText(text) {
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.top = "0";
-      ta.style.left = "-9999px";
-      ta.style.fontSize = "16px";
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      ta.setSelectionRange(0, text.length);
-      try {
-        document.execCommand("copy");
-        showToast("Markdown copied to clipboard");
-      } catch {
-        showToast("Copy failed — switch to Markdown view");
-      }
-      document.body.removeChild(ta);
-    }
-
-    function escapeHtml(str) {
-      return String(str)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    // ---------------- INITIALIZATION ----------------
-    window.addEventListener("DOMContentLoaded", () => {
-      initAppearance();
-      configurePdfWorker();
-      updateDashboardUI();
-      scanGithubRepoPdfs();
-    });
+      updateHistoryBadge();
+    })();
   </script>
 </body>
 </html>
