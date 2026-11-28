@@ -185,7 +185,7 @@
         <h3 class="text-[15px] font-semibold ios-text-primary">Source-Locked Protocol</h3>
       </div>
       <p class="text-[14px] ios-text-secondary leading-relaxed">
-        Pulls an unused 300–500 word passage from PDFs in <code class="text-[#ff9f0a] font-mono text-[13px]">logmain68/me</code> (<code class="text-[#ff9f0a] font-mono text-[13px]">main</code>) or your imported PDFs and renders the 8-section briefing on-device.
+        Samples body chapters across PDFs in <code class="text-[#ff9f0a] font-mono text-[13px]">logmain68/me</code> (<code class="text-[#ff9f0a] font-mono text-[13px]">main</code>) or your imported PDFs, skips front/back matter, and extracts a passage-grounded 8-section briefing directly from the text.
       </p>
     </section>
 
@@ -205,6 +205,14 @@
           <button id="downloadMarkdownBtn" type="button" class="ios-pill-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-semibold ios-elevated ios-text-blue">
             Export .md
           </button>
+          <button id="togglePassageBtn" type="button" class="ios-pill-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-[13px] font-medium ios-elevated ios-text-secondary">
+            View Source Passage
+          </button>
+        </div>
+
+        <div id="rawPassageBox" class="hidden rounded-xl ios-elevated p-4 space-y-2 border ios-hairline">
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Verified Source Passage (300–500 Words)</p>
+          <p id="rawPassageText" class="text-[13px] ios-text-secondary leading-relaxed whitespace-pre-line"></p>
         </div>
       </div>
 
@@ -212,18 +220,18 @@
       <div class="ios-grouped-card overflow-hidden">
         <div class="p-5 space-y-3">
           <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Explanation</h3>
-          <p id="lessonExplanation" class="text-[15px] ios-text-primary leading-[1.55]"></p>
-          <blockquote id="lessonQuote" class="border-l-[3px] border-[#ff9f0a] pl-3.5 py-1.5 text-[14px] italic ios-text-primary bg-black/[0.04] dark:bg-white/[0.04] rounded-r-lg"></blockquote>
+          <p id="lessonExplanation" class="text-[15px] ios-text-primary leading-[1.6]"></p>
+          <blockquote id="lessonQuote" class="border-l-[3px] border-[#ff9f0a] pl-3.5 py-2 text-[14px] italic ios-text-primary bg-black/[0.04] dark:bg-white/[0.04] rounded-r-lg"></blockquote>
         </div>
 
         <div class="border-t ios-hairline bg-[#ff9f0a]/[0.08] p-5 space-y-1.5">
           <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Daily challenge</h3>
-          <p id="lessonChallenge" class="text-[15px] font-medium ios-text-primary leading-[1.5]"></p>
+          <p id="lessonChallenge" class="text-[15px] font-medium ios-text-primary leading-[1.55]"></p>
         </div>
 
         <div class="border-t ios-hairline p-5 space-y-1.5">
           <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Habit to Inculcate</h3>
-          <p id="lessonHabit" class="text-[15px] ios-text-primary leading-[1.5]"></p>
+          <p id="lessonHabit" class="text-[15px] ios-text-primary leading-[1.55]"></p>
         </div>
 
         <div class="border-t ios-hairline p-5 space-y-1.5">
@@ -233,7 +241,7 @@
 
         <div class="border-t ios-hairline p-5 space-y-1.5">
           <h3 class="text-[12px] font-semibold uppercase tracking-wider text-[#ff9f0a]">Reflection prompt</h3>
-          <p id="lessonReflection" class="text-[15px] ios-text-primary leading-[1.5]"></p>
+          <p id="lessonReflection" class="text-[15px] ios-text-primary leading-[1.55]"></p>
         </div>
       </div>
 
@@ -275,7 +283,7 @@
       const REPO_OWNER = "logmain68";
       const REPO_NAME = "me";
       const BRANCH = "main";
-      const HISTORY_KEY = "commando_mindset_rotation_v1";
+      const HISTORY_KEY = "commando_mindset_rotation_v2";
       const THEME_KEY = "commando_mindset_theme_v1";
 
       if (window.pdfjsLib) {
@@ -283,10 +291,26 @@
           "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
       }
 
+      const STOP_WORDS = new Set([
+        "about", "above", "after", "again", "against", "almost", "alone", "along", "already", "also",
+        "although", "always", "among", "another", "anyone", "anything", "around", "because", "become",
+        "becomes", "before", "being", "below", "between", "beyond", "cannot", "chapter", "could",
+        "course", "doing", "during", "either", "enough", "every", "everyone", "everything", "example",
+        "first", "found", "going", "great", "having", "hence", "however", "inside", "instead", "itself",
+        "known", "later", "least", "makes", "making", "maybe", "means", "might", "never", "nothing",
+        "often", "order", "other", "others", "otherwise", "outside", "people", "person", "place",
+        "point", "quite", "rather", "really", "reason", "right", "second", "seems", "several", "should",
+        "since", "small", "someone", "something", "sometimes", "still", "taking", "their", "theirs",
+        "there", "therefore", "these", "thing", "things", "think", "thinking", "those", "though",
+        "three", "through", "times", "today", "together", "toward", "towards", "under", "until",
+        "using", "usually", "various", "water", "where", "whether", "which", "while", "whose",
+        "within", "without", "would", "years", "young", "yours", "yourself", "world", "state", "given"
+      ]);
+
       const state = {
         localFiles: [],
         remoteSourcesCache: null,
-        passageCache: new Map(),
+        pdfDocCache: new Map(), // sourceId -> { pdf, outlineMap, numPages }
         currentLesson: null,
         isLoading: false
       };
@@ -311,6 +335,9 @@
         lessonReflection: document.getElementById("lessonReflection"),
         lessonMindmap: document.getElementById("lessonMindmap"),
         lessonSource: document.getElementById("lessonSource"),
+        rawPassageBox: document.getElementById("rawPassageBox"),
+        rawPassageText: document.getElementById("rawPassageText"),
+        togglePassageBtn: document.getElementById("togglePassageBtn"),
         copyMarkdownBtn: document.getElementById("copyMarkdownBtn"),
         downloadMarkdownBtn: document.getElementById("downloadMarkdownBtn"),
         historyBtn: document.getElementById("historyBtn"),
@@ -406,39 +433,9 @@
         return found;
       }
 
-      function detectChapterHeading(text) {
-        const lines = text.split("\n").slice(0, 6);
-        for (const raw of lines) {
-          const line = raw.trim();
-          if (line.length >= 4 && line.length <= 72) {
-            const lower = line.toLowerCase();
-            if (lower.startsWith("chapter ") || lower.startsWith("part ") || lower.startsWith("section ")) {
-              return line;
-            }
-            if (line === line.toUpperCase() && /[A-Z]/.test(line) && line.split(/\s+/).length <= 8) {
-              return line.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
-            }
-          }
-        }
-        return null;
-      }
-
-      function splitCleanSentences(text) {
-        const normalized = text
-          .replace(/-\s+/g, "")
-          .replace(/\s+/g, " ")
-          .trim();
-        const protectedText = normalized
-          .replace(/\b(Mr|Mrs|Ms|Dr|Prof|Sr|Jr|vs|etc|e\.g|i\.e)\./gi, "$1<DOT>");
-        const raw = protectedText.match(/[^.!?]+[.!?]+/g) || [protectedText];
-        return raw
-          .map((s) => s.replace(/<DOT>/g, ".").trim())
-          .filter((s) => s.split(/\s+/).filter(Boolean).length >= 5);
-      }
-
-      async function extractPassagesFromSource(source) {
-        if (state.passageCache.has(source.id)) {
-          return state.passageCache.get(source.id);
+      async function loadPDFDocument(source) {
+        if (state.pdfDocCache.has(source.id)) {
+          return state.pdfDocCache.get(source.id);
         }
         if (!window.pdfjsLib) throw new Error("PDF engine failed to load.");
         const buffer = source.file
@@ -446,165 +443,491 @@
           : await (await fetch(source.url)).arrayBuffer();
 
         const pdf = await window.pdfjsLib.getDocument({ data: buffer }).promise;
-        let currentChapter = "Core Principles";
-        const pageTexts = [];
+        const outlineEntries = [];
 
-        for (let p = 1; p <= pdf.numPages; p++) {
-          const page = await pdf.getPage(p);
-          const content = await page.getTextContent();
-          const rawWithBreaks = content.items.map((i) => i.str).join("\n");
-          const flatText = content.items.map((item) => item.str).join(" ").replace(/\s+/g, " ").trim();
-          if (!flatText) continue;
-          const detected = detectChapterHeading(rawWithBreaks);
-          if (detected) currentChapter = detected;
-          pageTexts.push({ pageNumber: p, text: flatText, chapter: currentChapter });
-        }
-
-        const candidates = [];
-        let bufText = "";
-        let bufWords = 0;
-        let startPage = 1;
-        let endPage = 1;
-        let activeChapter = "Core Principles";
-
-        for (const entry of pageTexts) {
-          const sentences = splitCleanSentences(entry.text);
-          for (const trimmed of sentences) {
-            const words = trimmed.split(/\s+/).filter(Boolean).length;
-            if (bufWords === 0) {
-              startPage = entry.pageNumber;
-              activeChapter = entry.chapter;
+        try {
+          const outline = await pdf.getOutline();
+          if (Array.isArray(outline)) {
+            async function walkOutline(items) {
+              for (const item of items) {
+                if (item.title && item.dest) {
+                  try {
+                    const dest = typeof item.dest === "string"
+                      ? await pdf.getDestination(item.dest)
+                      : item.dest;
+                    if (Array.isArray(dest) && dest[0]) {
+                      const pageIndex = await pdf.getPageIndex(dest[0]);
+                      outlineEntries.push({
+                        page: pageIndex + 1,
+                        title: item.title.replace(/\s+/g, " ").trim()
+                      });
+                    }
+                  } catch (e) {}
+                }
+                if (Array.isArray(item.items) && item.items.length) {
+                  await walkOutline(item.items);
+                }
+              }
             }
-            bufText += (bufText ? " " : "") + trimmed;
-            bufWords += words;
-            endPage = entry.pageNumber;
+            await walkOutline(outline);
+          }
+        } catch (e) {}
 
-            if (bufWords >= 340) {
-              candidates.push({
-                id: `${source.name}#p${startPage}-${endPage}#${candidates.length}`,
-                documentName: source.name,
-                chapter: activeChapter,
-                pageRange: startPage === endPage ? `Page ${startPage}` : `Pages ${startPage}–${endPage}`,
-                text: bufText,
-                wordCount: bufWords
-              });
-              bufText = "";
-              bufWords = 0;
+        outlineEntries.sort((a, b) => a.page - b.page);
+        const record = { pdf, outlineEntries, numPages: pdf.numPages };
+        state.pdfDocCache.set(source.id, record);
+        return record;
+      }
+
+      function lookupOutlineChapter(outlineEntries, pageNumber) {
+        if (!outlineEntries || outlineEntries.length === 0) return null;
+        let match = null;
+        for (const entry of outlineEntries) {
+          if (entry.page <= pageNumber) {
+            if (!/^(cover|title page|copyright|contents|table of contents|dedication|acknowledgments|index|notes|bibliography|about the author)$/i.test(entry.title)) {
+              match = entry.title;
             }
+          } else {
+            break;
           }
         }
-        if (bufWords >= 220) {
-          candidates.push({
-            id: `${source.name}#p${startPage}-${endPage}#${candidates.length}`,
-            documentName: source.name,
-            chapter: activeChapter,
-            pageRange: startPage === endPage ? `Page ${startPage}` : `Pages ${startPage}–${endPage}`,
-            text: bufText,
-            wordCount: bufWords
+        return match;
+      }
+
+      function isFrontOrBackMatter(text) {
+        const lower = text.toLowerCase();
+        const markers = [
+          "all rights reserved",
+          "isbn ",
+          "isbn:",
+          "library of congress",
+          "cataloging-in-publication",
+          "printed in the united states",
+          "table of contents",
+          "copyright ©",
+          "published by ",
+          "acknowledgments",
+          "bibliography",
+          "further reading"
+        ];
+        for (const m of markers) {
+          if (lower.includes(m)) return true;
+        }
+        // Detect dotted TOC lines or index-like heavy page number lists
+        const dotLeaders = (text.match(/\.{4,}\s*\d+/g) || []).length;
+        if (dotLeaders >= 3) return true;
+        const numbersRatio = (text.match(/\b\d{1,4}\b/g) || []).length / Math.max(1, text.split(/\s+/).length);
+        if (numbersRatio > 0.22) return true;
+        return false;
+      }
+
+      function cleanPageLines(items) {
+        // Reconstruct lines using y-coordinate grouping to strip running headers/footers & lone page numbers
+        const lineMap = new Map();
+        for (const item of items) {
+          const str = (item.str || "").trim();
+          if (!str) continue;
+          const y = item.transform ? Math.round(item.transform[5] / 4) * 4 : 0;
+          if (!lineMap.has(y)) lineMap.set(y, []);
+          lineMap.get(y).push(str);
+        }
+        const sortedYs = Array.from(lineMap.keys()).sort((a, b) => b - a);
+        const lines = sortedYs.map((y) => lineMap.get(y).join(" ").replace(/\s+/g, " ").trim());
+
+        // Drop top/bottom lone page numbers or short running headers
+        const filtered = lines.filter((line, idx) => {
+          if (/^\d{1,4}$/.test(line)) return false;
+          if ((idx === 0 || idx === lines.length - 1) && line.length < 40 && !/[.!?]$/.test(line)) {
+            return false;
+          }
+          return true;
+        });
+
+        return {
+          rawLines: lines,
+          bodyText: filtered.join(" ").replace(/-\s+/g, "").replace(/\s+/g, " ").trim()
+        };
+      }
+
+      function detectHeadingFromLines(lines) {
+        for (const raw of lines.slice(0, 6)) {
+          const line = raw.trim();
+          if (line.length < 4 || line.length > 78) continue;
+          if (/^\d+$/.test(line)) continue;
+          const lower = line.toLowerCase();
+          if (/^(chapter|part|section|lesson|rule|principle|law)\b/i.test(lower)) {
+            return line;
+          }
+          if (line === line.toUpperCase() && /[A-Z]{3,}/.test(line) && line.split(/\s+/).length <= 9) {
+            return line.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+          }
+        }
+        return null;
+      }
+
+      function splitCleanSentences(text) {
+        const normalized = text
+          .replace(/([a-z])-\s+([a-z])/gi, "$1$2")
+          .replace(/\s+/g, " ")
+          .trim();
+        const protectedText = normalized
+          .replace(/\b(Mr|Mrs|Ms|Dr|Prof|Sr|Jr|St|vs|etc|e\.g|i\.e|No|Fig|Ch|p|pp)\./gi, "$1<DOT>");
+        const raw = protectedText.match(/[^.!?]+[.!?]+(?=["”’)\s]|$)/g) || [protectedText];
+        return raw
+          .map((s) => s.replace(/<DOT>/g, ".").replace(/^["“”'\s\-–—]+/, "").trim())
+          .filter((s) => {
+            const wc = s.split(/\s+/).filter(Boolean).length;
+            const alphaRatio = (s.match(/[a-zA-Z]/g) || []).length / Math.max(1, s.length);
+            return wc >= 6 && wc <= 65 && alphaRatio > 0.65;
           });
-        }
-        state.passageCache.set(source.id, candidates);
-        return candidates;
       }
 
-      function extractKeywords(text, limit = 5) {
-        const stop = new Set([
-          "that", "this", "with", "from", "your", "have", "they", "will", "what", "when",
-          "where", "which", "there", "their", "about", "would", "could", "should", "into",
-          "more", "than", "then", "them", "these", "those", "some", "only", "very", "just",
-          "most", "other", "such", "even", "much", "also", "been", "being", "because", "people",
-          "person", "thing", "things", "time", "life", "world", "make", "made", "know", "take"
-        ]);
-        const counts = {};
-        const words = text.toLowerCase().match(/\b[a-z]{5,}\b/g) || [];
+      async function extractSubstantivePassage(source, usedHistory) {
+        const { pdf, outlineEntries, numPages } = await loadPDFDocument(source);
+        const startBound = numPages > 20 ? Math.max(3, Math.floor(numPages * 0.08)) : 1;
+        const endBound = numPages > 20 ? Math.max(startBound + 2, Math.floor(numPages * 0.92)) : numPages;
+
+        const usedPages = new Set(
+          usedHistory
+            .filter((h) => h.documentName === source.name && typeof h.startPage === "number")
+            .map((h) => h.startPage)
+        );
+
+        // Build candidate anchor pages across the entire body of the book
+        const candidatePages = [];
+        for (let p = startBound; p <= endBound; p++) {
+          if (!usedPages.has(p)) candidatePages.push(p);
+        }
+        if (candidatePages.length === 0) {
+          for (let p = startBound; p <= endBound; p++) candidatePages.push(p);
+        }
+
+        // Try up to 14 random body anchor pages to find a rich 300–500 word passage
+        const shuffledAnchors = candidatePages.sort(() => Math.random() - 0.5).slice(0, 14);
+
+        for (const anchor of shuffledAnchors) {
+          let combinedSentences = [];
+          let wordCount = 0;
+          let startPage = anchor;
+          let endPage = anchor;
+          let detectedChapter = lookupOutlineChapter(outlineEntries, anchor);
+
+          for (let p = anchor; p <= Math.min(numPages, anchor + 3); p++) {
+            const page = await pdf.getPage(p);
+            const content = await page.getTextContent();
+            const { rawLines, bodyText } = cleanPageLines(content.items);
+            if (!bodyText || bodyText.length < 180 || isFrontOrBackMatter(bodyText)) {
+              if (p === anchor) break;
+              continue;
+            }
+            if (!detectedChapter) {
+              detectedChapter = detectHeadingFromLines(rawLines);
+            }
+            const sentences = splitCleanSentences(bodyText);
+            for (const s of sentences) {
+              const wc = s.split(/\s+/).length;
+              if (wordCount + wc > 495 && wordCount >= 310) {
+                break;
+              }
+              combinedSentences.push(s);
+              wordCount += wc;
+              endPage = p;
+              if (wordCount >= 360) break;
+            }
+            if (wordCount >= 310) break;
+          }
+
+          if (wordCount >= 260 && combinedSentences.length >= 8) {
+            return {
+              id: `${source.name}#p${startPage}-${endPage}`,
+              documentName: source.name,
+              chapter: detectedChapter || `Pages ${startPage}–${endPage}`,
+              startPage,
+              endPage,
+              pageRange: startPage === endPage ? `Page ${startPage}` : `Pages ${startPage}–${endPage}`,
+              sentences: combinedSentences,
+              text: combinedSentences.join(" "),
+              wordCount
+            };
+          }
+        }
+        return null;
+      }
+
+      // Compute word frequencies & meaningful multi-word phrases from the passage itself
+      function analyzePassageVocabulary(text) {
+        const words = (text.toLowerCase().match(/\b[a-z]{4,}\b/g) || []).filter((w) => !STOP_WORDS.has(w));
+        const freq = new Map();
         for (const w of words) {
-          if (!stop.has(w)) counts[w] = (counts[w] || 0) + 1;
+          freq.set(w, (freq.get(w) || 0) + 1);
         }
-        return Object.entries(counts)
+
+        // Extract meaningful bigrams (e.g. "self respect", "emotional control", "personal boundaries")
+        const tokens = text.toLowerCase().match(/\b[a-z]{3,}\b/g) || [];
+        const bigramFreq = new Map();
+        for (let i = 0; i < tokens.length - 1; i++) {
+          const a = tokens[i];
+          const b = tokens[i + 1];
+          if (a.length >= 4 && b.length >= 4 && !STOP_WORDS.has(a) && !STOP_WORDS.has(b)) {
+            const pair = `${a} ${b}`;
+            bigramFreq.set(pair, (bigramFreq.get(pair) || 0) + 1);
+          }
+        }
+
+        const topTerms = Array.from(freq.entries())
           .sort((a, b) => b[1] - a[1])
-          .slice(0, limit)
-          .map(([w]) => w.charAt(0).toUpperCase() + w.slice(1));
+          .slice(0, 10)
+          .map(([w]) => w);
+
+        const topBigrams = Array.from(bigramFreq.entries())
+          .filter(([, count]) => count >= 2)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 6)
+          .map(([phrase]) => phrase);
+
+        return { freq, topTerms, topBigrams };
       }
 
-      function pickAnchorQuote(sentences) {
-        const markers = ["never", "must", "always", "boundary", "respect", "control", "fear", "truth", "action", "decision", "strength", "self", "power", "choose", "standard"];
-        let best = sentences[0] || "";
-        let bestScore = -1;
-        for (const s of sentences) {
-          const wc = s.split(/\s+/).length;
-          let score = wc >= 9 && wc <= 32 ? 3 : 0;
-          const lower = s.toLowerCase();
-          for (const m of markers) {
-            if (lower.includes(m)) score += 2;
-          }
-          if (score > bestScore) {
-            bestScore = score;
-            best = s;
+      function sentenceInfoScore(sentence, freq) {
+        const words = (sentence.toLowerCase().match(/\b[a-z]{4,}\b/g) || []).filter((w) => !STOP_WORDS.has(w));
+        if (words.length === 0) return 0;
+        let sum = 0;
+        for (const w of words) sum += freq.get(w) || 0;
+        return sum / Math.sqrt(words.length);
+      }
+
+      function titleCase(str) {
+        return str.replace(/\b[a-z]/g, (c) => c.toUpperCase());
+      }
+
+      function shortenToClause(sentence, maxWords = 12) {
+        const cleaned = sentence.replace(/\s+/g, " ").trim();
+        const words = cleaned.split(/\s+/);
+        if (words.length <= maxWords) return cleaned.replace(/[.!?]+$/, "");
+        // Prefer cutting at a natural clause boundary
+        const clauses = cleaned.split(/[;:—–]|,\s+(?=(?:and|but|so|because|when|if|which|that)\b)/i);
+        for (const c of clauses) {
+          const cw = c.trim().split(/\s+/);
+          if (cw.length >= 5 && cw.length <= maxWords) {
+            return c.trim().replace(/[.,;:!?]+$/, "");
           }
         }
-        return best.trim();
+        return words.slice(0, maxWords).join(" ").replace(/[.,;:!?]+$/, "") + "…";
       }
 
-      function buildLesson(passage) {
-        const sentences = splitCleanSentences(passage.text);
-        const quote = pickAnchorQuote(sentences);
-        const terms = extractKeywords(passage.text, 5);
-        const t1 = terms[0] || "Self-Belief";
-        const t2 = terms[1] || "Boundaries";
-        const t3 = terms[2] || "Execution";
-        const t4 = terms[3] || "Composure";
+      function pickBestSentence(sentences, usedIndices, scorer) {
+        let bestIdx = -1;
+        let bestScore = -Infinity;
+        for (let i = 0; i < sentences.length; i++) {
+          if (usedIndices.has(i)) continue;
+          const sc = scorer(sentences[i], i);
+          if (sc > bestScore) {
+            bestScore = sc;
+            bestIdx = i;
+          }
+        }
+        return { idx: bestIdx, score: bestScore };
+      }
 
-        const title = `Command Your ${t1} Through ${t2}`;
-        const lead = sentences.slice(0, 2).join(" ");
-        const follow = sentences.slice(2, 4).join(" ");
-        const explanation = `${lead}${follow ? " " + follow : ""}`;
-        const challenge = `Identify one situation today where your ${t1.toLowerCase()} is tested, state your boundary once in plain terms without over-explaining, and hold that line for 24 hours.`;
-        const habit = `Pause for three seconds before responding to pressure, anchor on ${t2.toLowerCase()}, and act on principle rather than seeking approval.`;
-        const oneLiner = quote.split(/\s+/).length <= 18 && quote
-          ? quote
-          : `Unshakable ${t1.toLowerCase()} begins the moment you stop negotiating your standards.`;
-        const reflection = `Where today did I compromise my ${t1.toLowerCase()} for comfort or approval, and what exact response will I execute next time?`;
+      function buildPassageGroundedLesson(passage) {
+        const { sentences, text, chapter, documentName, pageRange, wordCount } = passage;
+        const { freq, topTerms, topBigrams } = analyzePassageVocabulary(text);
+        const used = new Set();
+
+        // 1. Anchor Verbatim Quote (high-authority, self-contained teaching sentence)
+        const quotePick = pickBestSentence(sentences, used, (s) => {
+          const wc = s.split(/\s+/).length;
+          let sc = sentenceInfoScore(s, freq);
+          if (wc >= 10 && wc <= 30) sc += 4;
+          if (/\b(truth|power|boundary|boundaries|respect|fear|control|must|never|always|self|strength|choice|choose|decide|decision|freedom|discipline|worth|value|mind|action|reality|life)\b/i.test(s)) sc += 3.5;
+          if (/^(however|therefore|for example|in addition|also|but|and|he|she|they|it)\b/i.test(s)) sc -= 3;
+          return sc;
+        });
+        const quoteIdx = quotePick.idx >= 0 ? quotePick.idx : 0;
+        const verbatimQuote = sentences[quoteIdx];
+        used.add(quoteIdx);
+
+        // 2. The One-Liner (sharp, memorable, concise aphorism from the passage — distinct from quote)
+        const oneLinerPick = pickBestSentence(sentences, used, (s) => {
+          const wc = s.split(/\s+/).length;
+          let sc = sentenceInfoScore(s, freq);
+          if (wc >= 6 && wc <= 18) sc += 6;
+          else if (wc <= 24) sc += 2;
+          else sc -= 4;
+          if (/\b(is|are|not|never|always|only|every|no one|nothing|everything|must)\b/i.test(s)) sc += 2.5;
+          if (/^(he|she|they|this|that|these|those|it)\b/i.test(s)) sc -= 3;
+          return sc;
+        });
+        const oneLinerIdx = oneLinerPick.idx >= 0 ? oneLinerPick.idx : quoteIdx;
+        const oneLiner = oneLinerIdx !== quoteIdx
+          ? sentences[oneLinerIdx]
+          : shortenToClause(verbatimQuote, 16) + ".";
+        used.add(oneLinerIdx);
+
+        // 3. Daily Challenge (actual imperative / actionable directive extracted from the passage)
+        const challengePick = pickBestSentence(sentences, used, (s) => {
+          const wc = s.split(/\s+/).length;
+          let sc = sentenceInfoScore(s, freq) * 0.8;
+          if (wc >= 8 && wc <= 34) sc += 2;
+          if (/^(stop|start|ask|set|say|refuse|choose|focus|practice|keep|make|take|learn|let|do not|don't|never|always|notice|identify|decide|stand|speak|act|build|create|protect|hold|face|embrace|accept|drop)\b/i.test(s)) sc += 8;
+          if (/\b(you must|you need to|you have to|you can|try to|practice|commit to|refuse to|say no|walk away|step back|take action|ask yourself|remind yourself)\b/i.test(s)) sc += 6;
+          return sc;
+        });
+        const challengeIdx = challengePick.idx >= 0 ? challengePick.idx : 0;
+        const rawChallenge = sentences[challengeIdx] || verbatimQuote;
+        used.add(challengeIdx);
+        const dailyChallenge = /^(stop|start|ask|set|say|refuse|choose|focus|practice|keep|make|take|learn|let|do not|don't|never|always|notice|identify|decide|stand|speak|act|build|create|protect|hold|face|embrace|accept|drop|when|if)\b/i.test(rawChallenge)
+          ? `Today, execute this directive from the passage: ${rawChallenge}`
+          : `Put this principle into direct action today: ${rawChallenge}`;
+
+        // 4. Habit to Inculcate (repeatable rule / conditional response extracted from the passage)
+        const habitPick = pickBestSentence(sentences, used, (s) => {
+          const wc = s.split(/\s+/).length;
+          let sc = sentenceInfoScore(s, freq) * 0.85;
+          if (wc >= 9 && wc <= 34) sc += 2;
+          if (/\b(whenever|when you|if you|every time|instead of|habit|daily|consistently|respond|reaction|react|rule|standard|remember|default|train|discipline|pattern)\b/i.test(s)) sc += 7;
+          return sc;
+        });
+        const habitIdx = habitPick.idx >= 0 ? habitPick.idx : 0;
+        const rawHabit = sentences[habitIdx] || verbatimQuote;
+        used.add(habitIdx);
+        const habitToInculcate = `Make this your default operating rule: ${rawHabit}`;
+
+        // 5. Explanation (coherent synthesis of the passage's core argument + reality + response, ordered chronologically)
+        const explanationIndices = new Set();
+        // Score remaining sentences for core explanatory weight (thesis + mechanism)
+        const rankedForExplanation = sentences
+          .map((s, idx) => {
+            let sc = sentenceInfoScore(s, freq);
+            if (idx === 0 || idx === 1) sc += 1.5;
+            if (/\b(because|therefore|means|reality|truth|reason|causes|leads to|result|when|instead|rather than)\b/i.test(s)) sc += 2.5;
+            if (idx === quoteIdx) sc -= 10; // quote rendered right below/anchored
+            return { idx, sc };
+          })
+          .sort((a, b) => b.sc - a.sc);
+
+        for (const item of rankedForExplanation) {
+          if (explanationIndices.size >= 4) break;
+          explanationIndices.add(item.idx);
+        }
+        const orderedExp = Array.from(explanationIndices)
+          .sort((a, b) => a - b)
+          .map((i) => sentences[i]);
+        const explanation = orderedExp.join(" ");
+
+        // 6. Reflection Prompt (anchored in the passage's actual tension, question, or warning)
+        const questionPick = pickBestSentence(sentences, new Set([quoteIdx]), (s) => {
+          let sc = sentenceInfoScore(s, freq) * 0.6;
+          if (s.endsWith("?")) sc += 12;
+          if (/\b(fear|avoid|excuse|comfort|approval|weakness|fail|mistake|trap|illusion|pretend|doubt|compromise|guilt|shame|hesitate)\b/i.test(s)) sc += 6;
+          return sc;
+        });
+        let reflectionPrompt = "";
+        if (questionPick.idx >= 0 && sentences[questionPick.idx].endsWith("?")) {
+          reflectionPrompt = sentences[questionPick.idx];
+        } else {
+          const tensionSentence = questionPick.idx >= 0 ? sentences[questionPick.idx] : rawHabit;
+          const focusPhrase = topBigrams[0] || topTerms.slice(0, 2).join(" and ") || "this principle";
+          reflectionPrompt = `At the end of today, review this reality from the text — "${shortenToClause(tensionSentence, 18)}" — and ask yourself: where did I live up to ${focusPhrase}, and where did I fall short?`;
+        }
+
+        // 7. Mindset Title (derived directly from real chapter heading or passage's core thesis, zero canned formula)
+        let mindsetTitle = "";
+        const cleanChapter = chapter.replace(/^(chapter|part|section)\s*[\dIVX]+[:.\-\s]*/i, "").trim();
+        if (cleanChapter && !/^Pages?\s+\d+/i.test(cleanChapter) && cleanChapter.length >= 5 && cleanChapter.length <= 68) {
+          mindsetTitle = cleanChapter;
+        } else if (topBigrams.length >= 2) {
+          mindsetTitle = `${titleCase(topBigrams[0])}: ${titleCase(topBigrams[1])}`;
+        } else {
+          mindsetTitle = titleCase(shortenToClause(oneLiner, 8));
+        }
+
+        // 8. 3-Level Nested Mindmap built strictly from the passage's own clusters & sentences
+        const mid = Math.ceil(sentences.length / 2);
+        const firstHalf = sentences.slice(0, mid);
+        const secondHalf = sentences.slice(mid);
+
+        const cluster1Label = topBigrams[0]
+          ? titleCase(topBigrams[0])
+          : (topTerms[0] ? `${titleCase(topTerms[0])} & Reality` : "Core Reality");
+        const cluster2Label = topBigrams[1]
+          ? titleCase(topBigrams[1])
+          : (topTerms[1] ? `${titleCase(topTerms[1])} in Action` : "Applied Execution");
+
+        const pickTopFromSlice = (slice, count) => {
+          return slice
+            .map((s) => ({ s, sc: sentenceInfoScore(s, freq) }))
+            .sort((a, b) => b.sc - a.sc)
+            .slice(0, count)
+            .map((x) => shortenToClause(x.s, 14));
+        };
+
+        const c1Points = pickTopFromSlice(firstHalf, 4);
+        const c2Points = pickTopFromSlice(secondHalf.length >= 2 ? secondHalf : firstHalf, 4);
+
+        const sub1A = topTerms[2] ? titleCase(topTerms[2]) : "Key Insight";
+        const sub1B = topTerms[3] ? titleCase(topTerms[3]) : "Underlying Principle";
+        const sub2A = topTerms[4] ? titleCase(topTerms[4]) : "Direct Application";
+        const sub2B = topTerms[5] ? titleCase(topTerms[5]) : "Daily Standard";
+
         const mindmap = [
           {
-            title: `Core Principle: ${t1}`,
+            title: cluster1Label,
             children: [
-              { title: `Anchor in ${passage.chapter}`, children: [] },
               {
-                title: "Internal Response",
-                children: [
-                  { title: "Eliminate emotional reactivity", children: [] },
-                  { title: `Hold ${t4.toLowerCase()} under pressure`, children: [] }
-                ]
+                title: sub1A,
+                children: c1Points.slice(0, 2).map((pt) => ({ title: pt, children: [] }))
+              },
+              {
+                title: sub1B,
+                children: (c1Points.slice(2, 4).length ? c1Points.slice(2, 4) : [shortenToClause(verbatimQuote, 14)]).map((pt) => ({ title: pt, children: [] }))
               }
             ]
           },
           {
-            title: `Operational ${t2}`,
+            title: cluster2Label,
             children: [
-              { title: `Direct ${t3.toLowerCase()} without apology`, children: [] },
               {
-                title: "Daily Enforcement",
-                children: [
-                  { title: "State standard once", children: [] },
-                  { title: "Audit outcome at night", children: [] }
-                ]
+                title: sub2A,
+                children: c2Points.slice(0, 2).map((pt) => ({ title: pt, children: [] }))
+              },
+              {
+                title: sub2B,
+                children: (c2Points.slice(2, 4).length ? c2Points.slice(2, 4) : [shortenToClause(rawChallenge, 14)]).map((pt) => ({ title: pt, children: [] }))
               }
             ]
           }
         ];
-        const source = `${passage.documentName}, ${passage.chapter}, ${passage.pageRange} (${passage.wordCount} words)`;
 
-        return { title, explanation, quote, challenge, habit, oneLiner, reflection, mindmap, source };
+        const sourceReference = `${documentName} — ${chapter} — ${pageRange} (${wordCount} words)`;
+
+        return {
+          title: mindsetTitle,
+          explanation,
+          quote: verbatimQuote,
+          challenge: dailyChallenge,
+          habit: habitToInculcate,
+          oneLiner,
+          reflection: reflectionPrompt,
+          mindmap,
+          source: sourceReference,
+          rawPassage: text
+        };
       }
 
       function renderMindmap(nodes, depth = 0) {
         return nodes
           .map((node) => {
-            const pad = depth * 18;
-            const bullet = depth === 0 ? "◆" : "•";
-            const color = depth === 0 ? "ios-text-amber font-semibold" : "ios-text-primary";
+            const pad = depth * 16;
+            const bullet = depth === 0 ? "◆" : depth === 1 ? "▸" : "•";
+            const styleClass =
+              depth === 0
+                ? "ios-text-amber font-semibold"
+                : depth === 1
+                  ? "ios-text-primary font-medium"
+                  : "ios-text-secondary text-[13px]";
             const childrenHtml = node.children && node.children.length ? renderMindmap(node.children, depth + 1) : "";
-            return `<div style="padding-left:${pad}px" class="flex items-start gap-2"><span class="text-[12px] text-[#ff9f0a] mt-0.5">${bullet}</span><span class="${color}">${escapeHtml(node.title)}</span></div>${childrenHtml}`;
+            return `<div style="padding-left:${pad}px" class="flex items-start gap-2"><span class="text-[11px] text-[#ff9f0a] mt-1 shrink-0">${bullet}</span><span class="${styleClass}">${escapeHtml(node.title)}</span></div>${childrenHtml}`;
           })
           .join("");
       }
@@ -650,6 +973,9 @@
         state.currentLesson = lesson;
         el.emptyState.classList.add("hidden");
         el.lessonCard.classList.remove("hidden");
+        el.rawPassageBox.classList.add("hidden");
+        el.togglePassageBtn.textContent = "View Source Passage";
+
         el.lessonTitle.textContent = lesson.title;
         el.lessonExplanation.textContent = lesson.explanation;
         el.lessonQuote.textContent = `"${lesson.quote}"`;
@@ -659,6 +985,7 @@
         el.lessonReflection.textContent = lesson.reflection;
         el.lessonMindmap.innerHTML = renderMindmap(lesson.mindmap);
         el.lessonSource.textContent = lesson.source;
+        el.rawPassageText.textContent = lesson.rawPassage;
       }
 
       async function runProtocol() {
@@ -679,40 +1006,45 @@
           }
           el.sourceCountText.textContent = `${sources.length} PDF${sources.length === 1 ? "" : "s"}`;
 
-          const shuffled = [...sources].sort(() => Math.random() - 0.5);
-          let allPassages = [];
-          for (const src of shuffled) {
-            setLoading(true, `Reading ${src.name}...`);
+          const history = loadHistory();
+          // Rotate documents: prefer documents not used in the most recent session
+          const lastDoc = history[0] ? history[0].documentName : null;
+          const prioritized = [...sources].sort((a, b) => {
+            if (a.name === lastDoc && b.name !== lastDoc) return 1;
+            if (b.name === lastDoc && a.name !== lastDoc) return -1;
+            return Math.random() - 0.5;
+          });
+
+          let chosenPassage = null;
+          for (const src of prioritized) {
+            setLoading(true, `Scanning body chapters of ${src.name}...`);
             try {
-              const extracted = await extractPassagesFromSource(src);
-              allPassages = allPassages.concat(extracted);
-              if (allPassages.length >= 12) break;
+              const passage = await extractSubstantivePassage(src, history);
+              if (passage) {
+                chosenPassage = passage;
+                break;
+              }
             } catch (e) {}
           }
 
-          if (allPassages.length === 0) {
-            throw new Error("Could not extract a 300–500 word passage from the available PDFs.");
+          if (!chosenPassage) {
+            throw new Error("Could not extract a substantive 300–500 word body passage from the available PDFs.");
           }
 
-          const history = loadHistory();
-          const usedIds = new Set(history.map((h) => h.id));
-          const unused = allPassages.filter((p) => !usedIds.has(p.id));
-          const pool = unused.length > 0 ? unused : allPassages;
-          const chosen = pool[Math.floor(Math.random() * pool.length)];
-
-          const lesson = buildLesson(chosen);
+          const lesson = buildPassageGroundedLesson(chosenPassage);
           renderLesson(lesson);
 
           history.unshift({
-            id: chosen.id,
+            id: chosenPassage.id,
             title: lesson.title,
-            documentName: chosen.documentName,
-            chapter: chosen.chapter,
-            pageRange: chosen.pageRange,
+            documentName: chosenPassage.documentName,
+            chapter: chosenPassage.chapter,
+            startPage: chosenPassage.startPage,
+            pageRange: chosenPassage.pageRange,
             timestamp: new Date().toISOString()
           });
           saveHistory(history);
-          setLoading(false, `Delivered from ${chosen.documentName} (${chosen.pageRange}).`);
+          setLoading(false, `Extracted from ${chosenPassage.documentName} (${chosenPassage.pageRange}).`);
         } catch (err) {
           setLoading(false, "Protocol halted.");
           showError(err.message || "Failed to generate briefing.");
@@ -728,6 +1060,12 @@
         }
         el.input.value = "mindset";
         runProtocol();
+      });
+
+      el.togglePassageBtn.addEventListener("click", () => {
+        const isHidden = el.rawPassageBox.classList.contains("hidden");
+        el.rawPassageBox.classList.toggle("hidden", !isHidden);
+        el.togglePassageBtn.textContent = isHidden ? "Hide Source Passage" : "View Source Passage";
       });
 
       el.localPdfInput.addEventListener("change", (e) => {
